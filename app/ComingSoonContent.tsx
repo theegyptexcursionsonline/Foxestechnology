@@ -15,9 +15,9 @@ export default function ComingSoonContent() {
     seconds: 0,
   });
 
-  // Countdown timer (until December 31, 2025)
+  // Countdown timer (until February 24, 2026)
   useEffect(() => {
-    const targetDate = new Date('2025-12-31T23:59:59');
+    const targetDate = new Date('2026-02-24T23:59:59');
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -217,7 +217,7 @@ export default function ComingSoonContent() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <p className="text-white font-semibold text-lg md:text-xl">
-                  Launching on <span className="text-red-400">December 31st, 2025</span>
+                  Launching on <span className="text-red-400">February 24th, 2026</span>
                 </p>
                 <motion.div
                   className="w-2 h-2 bg-red-500 rounded-full"
@@ -280,7 +280,7 @@ export default function ComingSoonContent() {
             Reserve Your Spot for Launch Day
           </h3>
           <p className="text-slate-400 mb-6">
-            Get exclusive early access and launch updates on December 31st, 2025.
+            Get exclusive early access and launch updates on February 24th, 2026.
           </p>
 
           <form onSubmit={handleSubmit} className="relative">
@@ -334,7 +334,7 @@ export default function ComingSoonContent() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  You're all set! We'll send you updates before December 31st, 2025.
+                  You're all set! We'll send you updates before February 24th, 2026.
                 </p>
               </motion.div>
             )}
