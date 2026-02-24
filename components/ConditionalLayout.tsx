@@ -15,8 +15,11 @@ export default function ConditionalLayout({
   // Check if coming soon mode is enabled
   const showComingSoon = process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true';
 
-  // If coming soon mode is enabled, show coming soon page for all routes
-  if (showComingSoon) {
+  // Pages that bypass coming soon mode
+  const comingSoonExcluded = ['/showcase'];
+
+  // If coming soon mode is enabled, show coming soon page for all routes except excluded ones
+  if (showComingSoon && !comingSoonExcluded.includes(pathname)) {
     return <ComingSoonContent />;
   }
 
