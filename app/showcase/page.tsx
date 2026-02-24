@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -26,6 +27,9 @@ import {
   Eye,
   ExternalLink,
   X,
+  Hotel,
+  Plane,
+  UserCheck,
 } from 'lucide-react';
 
 /* ─── Brand Constants ─────────────────────────────────────────────── */
@@ -260,6 +264,63 @@ const PROJECTS: Project[] = [
     ],
     status: 'coming-soon',
   },
+  {
+    id: 'ai-hotel-booking',
+    name: 'AI Hotel Booking',
+    tagline: 'Smart Property Management',
+    description:
+      'AI-powered hotel and property management platform for luxury hotels. Real-time occupancy dashboards, dynamic pricing, demand forecasting, smart room assignment, and 360° guest profiles with loyalty programs.',
+    category: 'ai',
+    icon: Hotel,
+    gradient: 'from-indigo-500 via-blue-500 to-sky-500',
+    accentClass: 'indigo',
+    tech: ['Next.js', 'React 19', 'MongoDB', 'GPT-4', 'Zustand'],
+    features: ['Dynamic Pricing', 'Demand Forecasting', 'Smart Room Assignment', 'Guest Profiles', 'Revenue Analytics', 'Loyalty Program'],
+    stats: [
+      { value: 'AI', label: 'Powered' },
+      { value: 'Multi', label: 'Property' },
+      { value: 'Real-Time', label: 'Analytics' },
+    ],
+    status: 'coming-soon',
+  },
+  {
+    id: 'airport-transfer',
+    name: 'Airport Transfer Platform',
+    tagline: 'Guest Transportation & Logistics',
+    description:
+      'End-to-end airport transfer and ground transportation platform. Manage shuttle services, track vehicles in real-time, automate dispatch, and integrate seamlessly with hotel booking systems for guest pickup coordination.',
+    category: 'platform',
+    icon: Plane,
+    gradient: 'from-cyan-500 via-sky-500 to-blue-500',
+    accentClass: 'cyan',
+    tech: ['Next.js', 'MongoDB', 'Google Maps', 'Real-Time Tracking'],
+    features: ['Automated Dispatch', 'Live Vehicle Tracking', 'Hotel Integration', 'Driver Assignment', 'Route Optimization', 'Guest Notifications'],
+    stats: [
+      { value: 'Live', label: 'Tracking' },
+      { value: 'Auto', label: 'Dispatch' },
+      { value: '24/7', label: 'Service' },
+    ],
+    status: 'coming-soon',
+  },
+  {
+    id: 'foxes-crm',
+    name: 'Foxes CRM',
+    tagline: 'Customer Relationship Management',
+    description:
+      'Unified CRM platform connecting all Foxes products. Centralized customer profiles, booking history across platforms, VIP guest tracking, automated communication workflows, and deep integration with hotel, tour, and transfer systems.',
+    category: 'platform',
+    icon: UserCheck,
+    gradient: 'from-rose-500 via-pink-500 to-fuchsia-500',
+    accentClass: 'rose',
+    tech: ['Next.js', 'MongoDB', 'Redis', 'Stripe', 'Mailgun'],
+    features: ['Unified Profiles', 'Cross-Platform History', 'VIP Tracking', 'Auto Workflows', 'Communication Hub', 'Analytics & Reports'],
+    stats: [
+      { value: '360°', label: 'Guest View' },
+      { value: 'Unified', label: 'Platform' },
+      { value: 'Auto', label: 'Workflows' },
+    ],
+    status: 'coming-soon',
+  },
 ];
 
 const CATEGORIES = [
@@ -336,8 +397,8 @@ function ProjectCard({ project, index, onPreview }: { project: Project; index: n
           {/* Header */}
           <div className="flex items-start justify-between mb-5">
             <div className="flex items-center gap-3.5">
-              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg`}>
-                <project.icon className="h-6 w-6 text-white" />
+              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg overflow-hidden`}>
+                <Image src="/logo.png" alt="Foxes" width={32} height={32} className="object-contain" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white leading-tight">{project.name}</h3>
@@ -451,8 +512,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         <div className="p-6 sm:p-10">
           {/* Header */}
           <div className="flex items-start gap-4 mb-8">
-            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-xl`}>
-              <project.icon className="h-8 w-8 text-white" />
+            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-xl overflow-hidden`}>
+              <Image src="/logo.png" alt="Foxes" width={42} height={42} className="object-contain" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
@@ -607,7 +668,7 @@ export default function ShowcasePage() {
               transition={{ delay: 0.3 }}
               className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl"
             >
-              <AnimatedCounter value={11} /> production products powering the future of travel.
+              <AnimatedCounter value={14} /> production products powering the future of travel.
               From AI concierges to global booking platforms — explore what we&apos;ve built.
             </motion.p>
 
@@ -643,9 +704,9 @@ export default function ShowcasePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-0 sm:grid-cols-4">
             {[
-              { value: 11, suffix: '', label: 'Products', icon: Layers },
+              { value: 14, suffix: '', label: 'Products', icon: Layers },
               { value: 4, suffix: '', label: 'Marketplaces', icon: Globe },
-              { value: 2, suffix: '', label: 'AI Products', icon: Bot },
+              { value: 3, suffix: '', label: 'AI Products', icon: Bot },
               { value: 4, suffix: '', label: 'Mobile Apps', icon: Smartphone },
             ].map((stat, i) => (
               <div key={stat.label} className={`flex items-center gap-4 py-6 px-6 ${i > 0 ? 'border-l border-white/[0.06]' : ''}`}>
