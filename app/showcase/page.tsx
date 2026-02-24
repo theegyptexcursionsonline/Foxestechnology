@@ -194,6 +194,7 @@ const PROJECTS: Project[] = [
       { value: '100%', label: 'Tested' },
     ],
     status: 'live',
+    url: 'https://foxes-eta.netlify.app/',
   },
   {
     id: 'eeo-app',
@@ -310,6 +311,7 @@ const PROJECTS: Project[] = [
       { value: '24/7', label: 'Service' },
     ],
     status: 'coming-soon',
+    url: 'https://foxes-airport.netlify.app/',
   },
   {
     id: 'foxes-crm',
