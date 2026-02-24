@@ -43,6 +43,7 @@ interface Project {
   description: string;
   category: 'platform' | 'ai' | 'mobile' | 'marketplace';
   icon: React.ElementType;
+  logo?: string;
   gradient: string;
   accentClass: string;
   tech: string[];
@@ -81,6 +82,7 @@ const PROJECTS: Project[] = [
       'Full-featured tour booking platform for Egypt. Algolia-powered search, AI recommendations, Firebase auth, Stripe payments, PDF tickets with QR codes, and a complete admin dashboard.',
     category: 'marketplace',
     icon: Map,
+    logo: '/eeo-logo.png',
     gradient: 'from-blue-500 via-cyan-500 to-teal-500',
     accentClass: 'blue',
     tech: ['Next.js', 'Algolia', 'Firebase', 'Stripe', 'Vercel AI SDK'],
@@ -111,6 +113,7 @@ const PROJECTS: Project[] = [
       { value: '1', label: 'Codebase' },
     ],
     status: 'live',
+    url: 'https://foxes-network.netlify.app',
   },
   {
     id: 'excursions-online',
@@ -120,6 +123,7 @@ const PROJECTS: Project[] = [
       'Discover, browse, and book tours, activities, and excursions worldwide. Advanced filtering, date selection, shopping cart, secure checkout, and email confirmations with QR codes.',
     category: 'marketplace',
     icon: Compass,
+    logo: '/eo-logo.png',
     gradient: 'from-emerald-500 via-green-500 to-lime-500',
     accentClass: 'green',
     tech: ['Next.js', 'MongoDB', 'Tailwind', 'Cloudinary', 'Mailgun'],
@@ -130,6 +134,7 @@ const PROJECTS: Project[] = [
       { value: '0%', label: 'Commission' },
     ],
     status: 'live',
+    url: 'https://excursions.online/',
   },
   {
     id: 'ai-agent',
@@ -149,6 +154,7 @@ const PROJECTS: Project[] = [
       { value: '∞', label: 'Conversations' },
     ],
     status: 'live',
+    url: 'https://ai-search-agent.netlify.app/',
   },
   {
     id: 'ai-voice-agent',
@@ -168,6 +174,7 @@ const PROJECTS: Project[] = [
       { value: '-80%', label: 'Cost' },
     ],
     status: 'beta',
+    url: 'https://foxes-ai-voice.netlify.app/',
   },
   {
     id: 'eta',
@@ -196,6 +203,7 @@ const PROJECTS: Project[] = [
       'React Native mobile app for travelers. Firebase authentication, Google sign-in, calendar integration, and seamless multi-platform deployment for iOS and Android.',
     category: 'mobile',
     icon: Smartphone,
+    logo: '/eeo-logo.png',
     gradient: 'from-sky-500 via-blue-500 to-indigo-500',
     accentClass: 'sky',
     tech: ['React Native', 'Firebase', 'React Query', 'Zustand'],
@@ -234,6 +242,7 @@ const PROJECTS: Project[] = [
       'Full-featured React Native mobile app for the Excursions Online marketplace. Browse tours, book activities, manage reservations, and receive real-time notifications — all from your pocket.',
     category: 'mobile',
     icon: Compass,
+    logo: '/eo-logo.png',
     gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
     accentClass: 'teal',
     tech: ['React Native', 'Jest', 'React Navigation', 'Async Storage'],
@@ -397,8 +406,8 @@ function ProjectCard({ project, index, onPreview }: { project: Project; index: n
           {/* Header */}
           <div className="flex items-start justify-between mb-5">
             <div className="flex items-center gap-3.5">
-              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg overflow-hidden`}>
-                <Image src="/logo.png" alt="Foxes" width={32} height={32} className="object-contain" />
+              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${project.logo ? 'bg-white' : `bg-gradient-to-br ${project.gradient}`} shadow-lg overflow-hidden`}>
+                <Image src={project.logo || '/logo.png'} alt={project.name} width={32} height={32} className="object-contain" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white leading-tight">{project.name}</h3>
@@ -512,8 +521,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         <div className="p-6 sm:p-10">
           {/* Header */}
           <div className="flex items-start gap-4 mb-8">
-            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-xl overflow-hidden`}>
-              <Image src="/logo.png" alt="Foxes" width={42} height={42} className="object-contain" />
+            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${project.logo ? 'bg-white' : `bg-gradient-to-br ${project.gradient}`} shadow-xl overflow-hidden`}>
+              <Image src={project.logo || '/logo.png'} alt={project.name} width={42} height={42} className="object-contain" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
