@@ -24,7 +24,7 @@ export default function ConditionalLayout({
   }
 
   // Pages that should NOT have header and footer
-  const noLayoutPages = ['/', '/coming-soon', '/api'];
+  const noLayoutPages = ['/', '/coming-soon', '/api', '/showcase'];
 
   const shouldShowLayout = !noLayoutPages.includes(pathname);
 
