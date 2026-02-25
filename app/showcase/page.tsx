@@ -89,7 +89,7 @@ const PROJECTS: Project[] = [
     logo: '/eeo-logo.png',
     gradient: 'from-blue-500 via-cyan-500 to-teal-500',
     accentColor: 'blue',
-    tech: ['Next.js', 'Algolia', 'Firebase', 'Stripe', 'Vercel AI SDK'],
+    tech: ['Next.js', 'Algolia', 'Firebase', 'Stripe', 'Netlify'],
     features: ['Algolia Search', 'AI Recommendations', 'PDF Tickets', 'Hotel Pickup Maps', 'Cart & Wishlist Sync', 'ISR Pages'],
     stats: [
       { value: '1M+', label: 'Bookings' },
@@ -351,7 +351,7 @@ const CATEGORIES = [
 const TECH_MARQUEE = [
   'Next.js 15', 'React 19', 'TypeScript', 'Node.js', 'MongoDB', 'Redis', 'PostgreSQL',
   'Stripe', 'OpenAI', 'Anthropic', 'Google Gemini', 'LangChain', 'LlamaIndex',
-  'Pinecone', 'Vercel AI SDK', 'Hugging Face', 'TensorFlow', 'Python',
+  'Pinecone', 'Netlify', 'Hugging Face', 'TensorFlow', 'Python',
   'React Native', 'Firebase', 'AWS', 'Docker', 'GraphQL', 'Twilio',
   'Algolia', 'Cloudinary', 'Tailwind CSS', 'Framer Motion',
 ];
