@@ -349,9 +349,11 @@ const CATEGORIES = [
 ];
 
 const TECH_MARQUEE = [
-  'Next.js 15', 'React 19', 'TypeScript', 'MongoDB', 'Redis', 'Stripe', 'Algolia',
-  'Firebase', 'OpenAI', 'Google Gemini', 'Pinecone', 'Twilio', 'Cloudinary',
-  'React Native', 'Tailwind CSS', 'Framer Motion', 'Vercel AI SDK', 'Playwright',
+  'Next.js 15', 'React 19', 'TypeScript', 'Node.js', 'MongoDB', 'Redis', 'PostgreSQL',
+  'Stripe', 'OpenAI', 'Anthropic', 'Google Gemini', 'LangChain', 'LlamaIndex',
+  'Pinecone', 'Vercel AI SDK', 'Hugging Face', 'TensorFlow', 'Python',
+  'React Native', 'Firebase', 'AWS', 'Docker', 'GraphQL', 'Twilio',
+  'Algolia', 'Cloudinary', 'Tailwind CSS', 'Framer Motion',
 ];
 
 /* ─── Animated Counter ────────────────────────────────────────────── */
