@@ -264,27 +264,52 @@ export default function ComingSoonPage() {
                 className="mb-8 relative"
               >
                 {/* Glow behind headline */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-blue-500/[0.06] rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] bg-blue-500/[0.08] rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[150px] bg-purple-500/[0.06] rounded-full blur-[80px] pointer-events-none" />
 
-                <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-black tracking-tight leading-[0.95] relative">
-                  {/* Shadow layer for 3D depth */}
+                <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-black tracking-tight leading-[0.95] relative" style={{ perspective: '800px' }}>
+                  {/* Deep shadow layers for 3D extrusion effect */}
+                  {[6, 5, 4, 3, 2, 1].map((i) => (
+                    <span
+                      key={i}
+                      aria-hidden="true"
+                      className="absolute inset-0 text-5xl md:text-7xl lg:text-[6.5rem] font-black tracking-tight leading-[0.95] pointer-events-none select-none"
+                      style={{
+                        transform: `translate(${i * 1.2}px, ${i * 1.8}px)`,
+                        color: `rgba(15, 15, 30, ${0.6 - i * 0.05})`,
+                        WebkitTextStroke: i === 6 ? '1px rgba(59,130,246,0.08)' : 'none',
+                      }}
+                    >
+                      <span className="block">Something Big</span>
+                      <span className="block mt-2">is Coming</span>
+                    </span>
+                  ))}
+
+                  {/* Bright edge / highlight layer */}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-0 text-5xl md:text-7xl lg:text-[6.5rem] font-black tracking-tight leading-[0.95]"
+                    className="absolute inset-0 text-5xl md:text-7xl lg:text-[6.5rem] font-black tracking-tight leading-[0.95] pointer-events-none select-none"
                     style={{
-                      WebkitTextStroke: '2px rgba(255,255,255,0.04)',
+                      transform: 'translate(-0.5px, -0.5px)',
+                      WebkitTextStroke: '1px rgba(255,255,255,0.1)',
                       WebkitTextFillColor: 'transparent',
-                      transform: 'translate(3px, 3px)',
                     }}
                   >
                     <span className="block">Something Big</span>
                     <span className="block mt-2">is Coming</span>
                   </span>
 
-                  {/* Main text */}
-                  <span className="block relative text-white" style={{ textShadow: '0 2px 30px rgba(255,255,255,0.08), 0 0 80px rgba(59,130,246,0.15)' }}>
+                  {/* Main text - "Something Big" */}
+                  <span
+                    className="block relative text-white"
+                    style={{
+                      textShadow: '0 1px 0 rgba(255,255,255,0.15), 0 -1px 2px rgba(0,0,0,0.5), 0 4px 15px rgba(0,0,0,0.4), 0 0 60px rgba(59,130,246,0.2), 0 0 120px rgba(99,102,241,0.1)',
+                    }}
+                  >
                     Something Big
                   </span>
+
+                  {/* Main text - "is Coming" with animated gradient */}
                   <motion.span
                     className="block mt-2 relative"
                     animate={{
@@ -296,7 +321,7 @@ export default function ComingSoonPage() {
                       backgroundSize: '200% 200%',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
-                      filter: 'drop-shadow(0 4px 30px rgba(99,102,241,0.35))',
+                      filter: 'drop-shadow(0 2px 0 rgba(0,0,0,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.3)) drop-shadow(0 8px 40px rgba(99,102,241,0.4))',
                     }}
                   >
                     is Coming
