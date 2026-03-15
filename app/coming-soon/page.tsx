@@ -86,8 +86,23 @@ export default function ComingSoonPage() {
       />
 
       <div className="min-h-screen bg-[#0A0A0F] text-white overflow-x-hidden relative">
+        {/* Background Video */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/videos/travel-bg.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-[#0A0A0F]/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0F]/40 via-transparent to-[#0A0A0F]/70" />
+        </div>
+
         {/* Ambient Background */}
-        <div className="fixed inset-0 pointer-events-none">
+        <div className="fixed inset-0 pointer-events-none z-[1]">
           <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-600/[0.15] rounded-full blur-[150px] animate-pulse" />
           <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600/[0.12] rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-to-br from-indigo-900/10 via-transparent to-transparent rounded-full blur-[200px]" />
