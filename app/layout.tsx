@@ -1,5 +1,5 @@
 // app/layout.tsx
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Tajawal, Manrope, IBM_Plex_Sans_Arabic } from 'next/font/google';
 import ConditionalLayout from '@/components/ConditionalLayout';
 import './globals.css';
 import type { Metadata } from 'next';
@@ -48,10 +48,31 @@ const poppins = Poppins({
   weight: ['400', '500', '600', '700', '800', '900'],
 });
 
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  variable: '--font-tajawal',
+  display: 'swap',
+  weight: ['300', '400', '500', '700', '800', '900'],
+});
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+});
+
+const plexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  variable: '--font-plex-arabic',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable} font-inter bg-white text-slate-800 antialiased`}>
+      <body className={`${inter.variable} ${poppins.variable} ${tajawal.variable} ${manrope.variable} ${plexArabic.variable} font-inter bg-white text-slate-800 antialiased`}>
         <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>

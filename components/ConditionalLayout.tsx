@@ -15,11 +15,18 @@ export default function ConditionalLayout({
   // Check if coming soon mode is enabled
   const showComingSoon = process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true';
 
-  // Pages that bypass coming soon mode
+  // Pages that bypass coming soon mode (exact match)
   const comingSoonExcluded: string[] = [];
 
+  // Path prefixes that bypass coming soon mode (operator landing pages are public)
+  const comingSoonExcludedPrefixes: string[] = ['/operators/', '/ar/operators/'];
+
+  const isExcluded =
+    comingSoonExcluded.includes(pathname) ||
+    comingSoonExcludedPrefixes.some((prefix) => pathname.startsWith(prefix));
+
   // If coming soon mode is enabled, show coming soon page for all routes except excluded ones
-  if (showComingSoon && !comingSoonExcluded.includes(pathname)) {
+  if (showComingSoon && !isExcluded) {
     return <ComingSoonContent />;
   }
 

@@ -1,0 +1,1110 @@
+'use client';
+
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import {
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  Calendar,
+  Coins,
+  Users,
+  Clock,
+  UtensilsCrossed,
+  MapPin,
+  TrendingUp,
+  FileText,
+  Globe,
+  Ship,
+  Sparkles,
+  ChefHat,
+  Receipt,
+  AlertTriangle,
+  Star,
+  Shield,
+  MessageCircle,
+  Wine,
+} from 'lucide-react';
+import LeadForm from './LeadForm';
+import WhatsAppFloat from './WhatsAppFloat';
+import MobileStickyCTA from './MobileStickyCTA';
+import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+
+interface Props {
+  copy: OperatorCopy;
+  locale: Locale;
+  whatsappNumber: string;
+}
+
+export default function DinnerCruisesPage({ copy, locale, whatsappNumber }: Props) {
+  const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
+
+  return (
+    <>
+      <main data-operator-page="dinner-cruises" className="overflow-hidden bg-white text-slate-900">
+        <Hero copy={copy} whatsappHref={whatsappHref} locale={locale} />
+        <SocialProof copy={copy} />
+        <Pains copy={copy} />
+        <Solutions copy={copy} />
+        <HowItWorks copy={copy} />
+        <VerticalFeatures copy={copy} />
+        <Pricing copy={copy} locale={locale} />
+        <FAQ copy={copy} />
+        <LeadFormSection copy={copy} locale={locale} whatsappNumber={whatsappNumber} />
+        <FinalCTA copy={copy} whatsappHref={whatsappHref} locale={locale} />
+      </main>
+
+      <WhatsAppFloat
+        number={whatsappNumber}
+        prefilledMessage={copy.whatsapp.prefilledMessage}
+        label={copy.whatsapp.floatLabel}
+        locale={locale}
+      />
+      <MobileStickyCTA
+        primaryLabel={copy.mobileStickyCta.primary}
+        secondaryLabel={copy.mobileStickyCta.secondary}
+        whatsappHref={whatsappHref}
+        locale={locale}
+      />
+    </>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 1. HERO  — sunset gold theme, evening cruise vibe
+ * ────────────────────────────────────────────────────────────────────────── */
+function Hero({
+  copy,
+  whatsappHref,
+  locale,
+}: {
+  copy: OperatorCopy;
+  whatsappHref: string;
+  locale: Locale;
+}) {
+  return (
+    <section className="relative overflow-hidden bg-[#120A06] pt-32 pb-32 lg:pt-40 lg:pb-40">
+      {/* Warm sunset gradient field */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,_rgba(251,191,36,0.18),_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_85%_110%,_rgba(244,63,94,0.12),_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_30%_at_15%_50%,_rgba(217,119,6,0.08),_transparent_70%)]" />
+        {/* Subtle grain */}
+        <div
+          className="absolute inset-0 opacity-[0.03] mix-blend-screen"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          }}
+        />
+      </div>
+
+      {/* Drifting sparkles instead of bubbles — water reflection feel */}
+      <DriftingSparkles />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 backdrop-blur"
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-300" />
+              </span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-amber-100/90">
+                {copy.hero.badge}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.7 }}
+              className="mt-8 text-[clamp(2.75rem,5.5vw,5rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-white"
+            >
+              {copy.hero.headlineLine1}
+              <span className="mt-1.5 block bg-gradient-to-br from-white via-amber-100 to-amber-300/95 bg-clip-text text-transparent">
+                {copy.hero.headlineLine2}
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28, duration: 0.7 }}
+              className="mt-7 max-w-xl text-lg leading-[1.65] text-amber-50/80 lg:text-[1.18rem]"
+            >
+              {copy.hero.sub}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.38, duration: 0.6 }}
+              className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+            >
+              <Link
+                href="#lead-form"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-red-600 px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_30px_-8px_rgba(220,38,38,0.6)] transition hover:bg-red-700 hover:shadow-[0_12px_40px_-8px_rgba(220,38,38,0.7)]"
+              >
+                <span>{copy.hero.primaryCta}</span>
+                <ArrowRight
+                  className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 ${locale === 'ar' ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`}
+                />
+              </Link>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3.5 text-[15px] font-semibold text-white backdrop-blur transition hover:border-white/30 hover:bg-white/[0.08]"
+              >
+                <MessageCircle className="h-4 w-4 text-emerald-400" />
+                <span>{copy.hero.secondaryCta}</span>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-amber-100/60"
+            >
+              {copy.hero.pills.map((pill, i) => (
+                <div key={pill} className="flex items-center gap-x-5">
+                  {i > 0 && <span className="text-white/20">·</span>}
+                  <span className="font-medium">{pill}</span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="relative"
+          >
+            <HeroVisual locale={locale} />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DriftingSparkles() {
+  const sparkles = [
+    { left: '10%', top: '70%', delay: 0, size: 3, dur: 8 },
+    { left: '25%', top: '40%', delay: 2, size: 2, dur: 9 },
+    { left: '38%', top: '85%', delay: 4, size: 4, dur: 10 },
+    { left: '58%', top: '55%', delay: 1, size: 2, dur: 7 },
+    { left: '72%', top: '78%', delay: 3, size: 3, dur: 11 },
+    { left: '85%', top: '30%', delay: 5, size: 2, dur: 8 },
+  ];
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      {sparkles.map((s, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0.7, 0.7, 0], scale: [0.8, 1.1, 1.1, 0.8] }}
+          transition={{ duration: s.dur, delay: s.delay, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute rounded-full bg-amber-200/50"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.size,
+            height: s.size,
+            boxShadow: '0 0 8px rgba(251,191,36,0.5)',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function HeroVisual({ locale }: { locale: Locale }) {
+  return (
+    <div className="relative">
+      <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
+        <Image
+          src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1400&q=85"
+          alt=""
+          width={1400}
+          height={1000}
+          priority
+          className="h-[540px] w-full object-cover sm:h-[580px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120A06]/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/[0.05] via-transparent to-rose-900/[0.18] mix-blend-overlay" />
+      </div>
+
+      {/* Booking confirmation card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.85, duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className={`absolute top-7 ${locale === 'ar' ? 'right-7' : 'left-7'} w-[290px] rounded-2xl border border-white/10 bg-white/[0.96] p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] backdrop-blur-md`}
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-white">
+            <UtensilsCrossed className="h-5 w-5" strokeWidth={1.7} />
+          </div>
+          <div className="min-w-0">
+            <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
+              Sunset Dinner · 8pm
+            </p>
+            <p className="text-[12px] text-slate-500">Table for 6 · Saturday</p>
+          </div>
+        </div>
+        <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
+          <span className="text-[11px] font-medium text-slate-500">EGP 4,200 · 2 vegetarian</span>
+          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
+            CONFIRMED
+          </span>
+        </div>
+      </motion.div>
+
+      {/* Revenue ping */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.05, type: 'spring', stiffness: 180, damping: 14 }}
+        className={`absolute -bottom-6 ${locale === 'ar' ? '-right-4' : '-left-4'} flex items-center gap-3.5 rounded-2xl border border-amber-100 bg-white p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)]`}
+      >
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 ring-1 ring-amber-100">
+          <TrendingUp className="h-5 w-5 text-amber-600" />
+        </div>
+        <div>
+          <p className="text-[1.6rem] font-extrabold leading-none tracking-[-0.02em] text-slate-900">
+            +48%
+          </p>
+          <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            Direct seats sold
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 2. SOCIAL PROOF
+ * ────────────────────────────────────────────────────────────────────────── */
+function SocialProof({ copy }: { copy: OperatorCopy }) {
+  return (
+    <section className="relative -mt-16 z-20 px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-2xl border border-slate-200/80 bg-white/95 px-6 py-7 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)] backdrop-blur sm:px-10 sm:py-9"
+        >
+          <div className="text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+              {copy.socialProof.label}
+            </p>
+            <p className="mt-2 text-[17px] font-semibold tracking-[-0.01em] text-slate-900 sm:text-[19px]">
+              {copy.socialProof.cities}
+            </p>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-y-6 sm:gap-x-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200 rtl:lg:divide-x-reverse">
+            {copy.socialProof.stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="px-4 text-center"
+              >
+                <div className="text-[1.85rem] font-extrabold tracking-[-0.025em] text-slate-900 sm:text-[2.15rem]">
+                  {stat.value}
+                </div>
+                <div className="mt-1 text-[12.5px] font-medium text-slate-500">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 3. PAIN POINTS
+ * ────────────────────────────────────────────────────────────────────────── */
+function Pains({ copy }: { copy: OperatorCopy }) {
+  const icons = [Calendar, Coins, Users];
+  return (
+    <section className="relative bg-white py-28 sm:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={copy.pains.sectionEyebrow}
+          headline={copy.pains.sectionHeadline}
+          sub={copy.pains.sectionSub}
+        />
+        <div className="mt-20 grid gap-px overflow-hidden rounded-2xl bg-slate-100 lg:grid-cols-3">
+          {copy.pains.items.map((item, i) => {
+            const Icon = icons[i] ?? AlertTriangle;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="group relative bg-white p-8 transition hover:bg-slate-50/60 lg:p-10"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition group-hover:border-slate-900 group-hover:text-slate-900">
+                    <Icon className="h-5 w-5" strokeWidth={1.6} />
+                  </div>
+                  <span className="text-[11px] font-semibold tracking-[0.16em] text-slate-300">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900 sm:text-[1.45rem]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-[1.65] text-slate-600">{item.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 4. SOLUTIONS — vertical-specific mockups
+ * ────────────────────────────────────────────────────────────────────────── */
+function Solutions({ copy }: { copy: OperatorCopy }) {
+  return (
+    <section className="relative bg-gradient-to-b from-amber-50/30 via-white to-white py-28 sm:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={copy.solutions.sectionEyebrow}
+          headline={copy.solutions.sectionHeadline}
+          sub={copy.solutions.sectionSub}
+        />
+        <div className="mt-24 space-y-28 lg:space-y-36">
+          {copy.solutions.items.map((item, i) => (
+            <SolutionRow key={item.title} item={item} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SolutionRow({
+  item,
+  index,
+}: {
+  item: OperatorCopy['solutions']['items'][number];
+  index: number;
+}) {
+  const reverse = index % 2 === 1;
+  return (
+    <div
+      className={`grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20 ${reverse ? 'lg:[direction:rtl]' : ''}`}
+    >
+      <motion.div
+        initial={{ opacity: 0, x: reverse ? 30 : -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="lg:[direction:ltr]"
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+          0{index + 1} · Feature
+        </p>
+        <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
+          {item.title}
+        </h3>
+        <p className="mt-5 max-w-lg text-[1.05rem] leading-[1.65] text-slate-600">
+          {item.description}
+        </p>
+        <ul className="mt-8 space-y-3.5">
+          {item.bullets.map((b) => (
+            <li key={b} className="flex items-start gap-3">
+              <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-slate-900">
+                <Check className="h-2.5 w-2.5 text-white" strokeWidth={3.5} />
+              </span>
+              <span className="text-[15px] font-medium text-slate-800">{b}</span>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: reverse ? -30 : 30, scale: 0.97 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="lg:[direction:ltr]"
+      >
+        <SolutionMockup variant={index} />
+      </motion.div>
+    </div>
+  );
+}
+
+function SolutionMockup({ variant }: { variant: number }) {
+  if (variant === 0) return <DirectBookingMockup />;
+  if (variant === 1) return <SeatingMockup />;
+  return <GroupBookingMockup />;
+}
+
+function MockupShell({
+  title,
+  badge,
+  children,
+}: {
+  title: string;
+  badge?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="relative">
+      <div className="absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-amber-50/80 via-rose-50/40 to-transparent blur-2xl" />
+      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
+        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
+          <span className="text-[12px] font-semibold tracking-[-0.01em] text-slate-700">
+            {title}
+          </span>
+          {badge && (
+            <span className="text-[10px] font-semibold tracking-wider text-emerald-600">{badge}</span>
+          )}
+        </div>
+        <div className="p-6 sm:p-7">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function DirectBookingMockup() {
+  return (
+    <MockupShell title="nilepearl.com/book · Direct booking" badge="LIVE">
+      <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[13px] font-semibold text-slate-900">Saturday, 18 May</p>
+            <p className="text-[12px] text-slate-500">Sunset cruise · 2 hours</p>
+          </div>
+          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
+            AVAILABLE
+          </span>
+        </div>
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          {[
+            { time: '7:00 PM', left: 'EGP 850', cap: 'open' },
+            { time: '8:00 PM', left: 'EGP 850', cap: 'almost' },
+            { time: '9:00 PM', left: 'EGP 850', cap: 'open' },
+          ].map((s, i) => (
+            <motion.button
+              key={s.time}
+              initial={{ opacity: 0, y: 6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + i * 0.07 }}
+              className={`rounded-lg border px-3 py-3 text-start transition ${
+                i === 1
+                  ? 'border-slate-900 bg-slate-900 text-white'
+                  : 'border-slate-200 bg-white hover:border-slate-300'
+              }`}
+            >
+              <p className="text-[12px] font-semibold">{s.time}</p>
+              <p className={`mt-1 text-[10.5px] ${i === 1 ? 'text-white/70' : 'text-slate-500'}`}>
+                {s.left}
+              </p>
+              {s.cap === 'almost' && (
+                <p className="mt-1 text-[10px] font-semibold text-amber-300">3 seats left</p>
+              )}
+            </motion.button>
+          ))}
+        </div>
+        <div className="mt-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-[12px] text-slate-500">Guests</span>
+            <div className="flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1">
+              <span className="text-[11px] font-bold text-slate-400">−</span>
+              <span className="px-1 text-[12px] font-semibold text-slate-900">6</span>
+              <span className="text-[11px] font-bold text-slate-400">+</span>
+            </div>
+          </div>
+          <button className="rounded-lg bg-red-600 px-4 py-2 text-[12px] font-semibold text-white">
+            Continue · EGP 5,100
+          </button>
+        </div>
+      </div>
+      <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-500">
+        <Shield className="h-3 w-3" strokeWidth={2} />
+        <span>Direct payment · 0% OTA commission</span>
+      </div>
+    </MockupShell>
+  );
+}
+
+function SeatingMockup() {
+  const seatings = [
+    { time: '7:00 PM', booked: 38, total: 60, label: 'Early sunset' },
+    { time: '8:00 PM', booked: 56, total: 60, label: 'Prime sunset' },
+    { time: '9:00 PM', booked: 22, total: 60, label: 'Late dinner' },
+  ];
+  return (
+    <MockupShell title="Saturday, 18 May · Seatings" badge="LIVE">
+      <div className="space-y-4">
+        {seatings.map((s, i) => {
+          const pct = (s.booked / s.total) * 100;
+          const isFull = pct >= 90;
+          return (
+            <motion.div
+              key={s.time}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + i * 0.08 }}
+              className="rounded-xl border border-slate-200 p-4"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[13px] font-semibold tracking-[-0.01em] text-slate-900">
+                    {s.time} · {s.label}
+                  </p>
+                  <p className="mt-0.5 text-[11.5px] text-slate-500">
+                    {s.booked}/{s.total} seats · EGP 850/cover
+                  </p>
+                </div>
+                {isFull ? (
+                  <span className="rounded-full bg-rose-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-rose-700 ring-1 ring-rose-100">
+                    NEARLY FULL
+                  </span>
+                ) : (
+                  <span className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-slate-600 ring-1 ring-slate-200">
+                    OPEN
+                  </span>
+                )}
+              </div>
+              <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${pct}%` }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.08, duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  className={`h-full rounded-full ${isFull ? 'bg-rose-600' : 'bg-slate-900'}`}
+                />
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+      <div className="mt-5 flex items-center justify-between rounded-xl border border-amber-200/70 bg-amber-50/70 px-4 py-3">
+        <div className="flex items-center gap-2.5">
+          <Sparkles className="h-4 w-4 text-amber-700" strokeWidth={1.8} />
+          <span className="text-[12.5px] font-medium text-amber-900">
+            8pm pricing auto-adjusted +15% — peak detected
+          </span>
+        </div>
+      </div>
+    </MockupShell>
+  );
+}
+
+function GroupBookingMockup() {
+  const guests = [
+    { name: 'Mona Salem', menu: 'Standard · Halal', tone: 'slate' },
+    { name: 'Tarek El Sayed', menu: 'Vegetarian', tone: 'emerald' },
+    { name: 'Reem Mostafa', menu: 'Standard · Allergy: nuts', tone: 'amber' },
+    { name: 'Karim Adel', menu: 'Standard', tone: 'slate' },
+  ];
+  return (
+    <MockupShell title="Group · Acme Co · 18 guests" badge="DEPOSIT PAID">
+      <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-[11px] font-semibold text-white">
+              A
+            </div>
+            <div>
+              <p className="text-[13px] font-semibold tracking-[-0.01em] text-slate-900">
+                Acme Co · End-of-quarter dinner
+              </p>
+              <p className="text-[11.5px] text-slate-500">Saturday 8pm · 18 guests · 9 vegetarian</p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              Deposit
+            </p>
+            <p className="mt-1 text-[13px] font-bold text-emerald-700">EGP 5,400 · paid</p>
+          </div>
+          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              Balance
+            </p>
+            <p className="mt-1 text-[13px] font-bold text-slate-900">EGP 12,600</p>
+          </div>
+          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              Due
+            </p>
+            <p className="mt-1 text-[13px] font-bold text-amber-700">17 May</p>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4 space-y-1.5">
+        {guests.map((g, i) => (
+          <motion.div
+            key={g.name}
+            initial={{ opacity: 0, x: -6 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 + i * 0.06 }}
+            className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-slate-50"
+          >
+            <span className="text-[12.5px] font-medium text-slate-800">{g.name}</span>
+            <span className="text-[11px] text-slate-500">{g.menu}</span>
+          </motion.div>
+        ))}
+        <button className="w-full rounded-lg border border-dashed border-slate-300 py-2 text-[11px] font-medium text-slate-500">
+          + 14 more guests
+        </button>
+      </div>
+    </MockupShell>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 5. HOW IT WORKS
+ * ────────────────────────────────────────────────────────────────────────── */
+function HowItWorks({ copy }: { copy: OperatorCopy }) {
+  const stepIcons = [Sparkles, ChefHat, Globe];
+  return (
+    <section className="relative bg-slate-50/40 py-28 sm:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={copy.howItWorks.sectionEyebrow}
+          headline={copy.howItWorks.sectionHeadline}
+          sub={copy.howItWorks.sectionSub}
+        />
+        <div className="mt-20 grid gap-5 lg:grid-cols-3 lg:gap-6">
+          {copy.howItWorks.steps.map((step, i) => {
+            const Icon = stepIcons[i] ?? Sparkles;
+            return (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 transition hover:border-slate-300 hover:shadow-[0_30px_80px_-30px_rgba(15,23,42,0.18)] lg:p-10"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition group-hover:border-slate-900 group-hover:text-slate-900">
+                    <Icon className="h-4 w-4" strokeWidth={1.7} />
+                  </div>
+                  <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
+                    STEP {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-[1.65] text-slate-600">
+                  {step.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 6. VERTICAL FEATURES — sunset dark grid
+ * ────────────────────────────────────────────────────────────────────────── */
+function VerticalFeatures({ copy }: { copy: OperatorCopy }) {
+  const icons = [Clock, UtensilsCrossed, Users, MapPin, TrendingUp, FileText, Globe, Ship];
+  return (
+    <section className="relative overflow-hidden bg-[#120A06] py-28 text-white sm:py-36">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,_rgba(251,191,36,0.10),_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_100%,_rgba(244,63,94,0.06),_transparent_70%)]" />
+      </div>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={copy.features.sectionEyebrow}
+          headline={copy.features.sectionHeadline}
+          sub={copy.features.sectionSub}
+          tone="dark"
+        />
+        <div className="mt-20 grid gap-px overflow-hidden rounded-2xl bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
+          {copy.features.items.map((feature, i) => {
+            const Icon = icons[i] ?? Sparkles;
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i % 4) * 0.06, duration: 0.4 }}
+                className="group relative bg-[#120A06] p-7 transition hover:bg-[#1A0F08] sm:p-8"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02] text-amber-200 transition group-hover:border-amber-300/40 group-hover:text-amber-100">
+                    <Icon className="h-4 w-4" strokeWidth={1.7} />
+                  </div>
+                  <span className="text-[10px] font-semibold tracking-[0.18em] text-white/20">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="mt-7 text-[15.5px] font-semibold tracking-[-0.01em] text-white">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 text-[13.5px] leading-[1.6] text-amber-100/50">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 7. PRICING
+ * ────────────────────────────────────────────────────────────────────────── */
+function Pricing({ copy, locale }: { copy: OperatorCopy; locale: Locale }) {
+  return (
+    <section className="relative bg-white py-28 sm:py-36">
+      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-b from-white to-slate-50/60 p-10 text-center shadow-[0_30px_80px_-30px_rgba(15,23,42,0.18)] sm:p-14"
+        >
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-red-600">
+            {copy.pricing.eyebrow}
+          </p>
+          <h2 className="mx-auto mt-5 max-w-2xl text-[2.25rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.75rem]">
+            {copy.pricing.headline}
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-[1.05rem] leading-[1.65] text-slate-600">
+            {copy.pricing.sub}
+          </p>
+
+          <ul className="mx-auto mt-10 grid max-w-md gap-2.5 text-start">
+            {copy.pricing.bullets.map((b) => (
+              <li key={b} className="flex items-center gap-3">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900">
+                  <Check className="h-3 w-3 text-white" strokeWidth={3.5} />
+                </span>
+                <span className="text-[14.5px] font-medium text-slate-700">{b}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-10">
+            <Link
+              href="#lead-form"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_30px_-8px_rgba(15,23,42,0.5)] transition hover:bg-slate-800"
+            >
+              <span>{copy.pricing.cta}</span>
+              <ArrowRight
+                className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 ${locale === 'ar' ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`}
+              />
+            </Link>
+            <p className="mx-auto mt-5 max-w-md text-[12.5px] leading-relaxed text-slate-500">
+              {copy.pricing.fineprint}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 8. FAQ
+ * ────────────────────────────────────────────────────────────────────────── */
+function FAQ({ copy }: { copy: OperatorCopy }) {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="relative bg-slate-50/40 py-28 sm:py-36">
+      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+        <SectionHeader eyebrow={copy.faq.sectionEyebrow} headline={copy.faq.sectionHeadline} />
+        <div className="mt-16 space-y-2">
+          {copy.faq.items.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <motion.div
+                key={item.question}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.03 }}
+                className={`overflow-hidden rounded-2xl border bg-white transition ${
+                  isOpen
+                    ? 'border-slate-300 shadow-[0_20px_50px_-25px_rgba(15,23,42,0.2)]'
+                    : 'border-slate-200'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="flex w-full items-start gap-5 px-6 py-5 text-start sm:px-7 sm:py-6"
+                  aria-expanded={isOpen}
+                >
+                  <span className="flex-1 text-[16px] font-semibold tracking-[-0.01em] text-slate-900 sm:text-[17px]">
+                    {item.question}
+                  </span>
+                  <div
+                    className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition ${
+                      isOpen
+                        ? 'border-slate-900 bg-slate-900 text-white'
+                        : 'border-slate-200 text-slate-500'
+                    }`}
+                  >
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                      strokeWidth={2.2}
+                    />
+                  </div>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+                    >
+                      <div className="px-6 pb-6 text-[15px] leading-[1.7] text-slate-600 sm:px-7 sm:pb-7">
+                        {item.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 9. LEAD FORM SECTION
+ * ────────────────────────────────────────────────────────────────────────── */
+function LeadFormSection({
+  copy,
+  locale,
+  whatsappNumber,
+}: {
+  copy: OperatorCopy;
+  locale: Locale;
+  whatsappNumber: string;
+}) {
+  return (
+    <section id="lead-form" className="relative overflow-hidden bg-white py-28 sm:py-36">
+      <div className="absolute inset-0 -z-0 opacity-60">
+        <div className="absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-amber-100/40 blur-3xl" />
+      </div>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid items-start gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-red-600">
+              {copy.leadForm.sectionEyebrow}
+            </p>
+            <h2 className="mt-5 text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-slate-900 sm:text-[2.75rem] lg:text-[3.25rem]">
+              {copy.leadForm.sectionHeadline}
+            </h2>
+            <p className="mt-6 max-w-xl text-[1.05rem] leading-[1.65] text-slate-600">
+              {copy.leadForm.sectionSub}
+            </p>
+
+            <div className="mt-12 space-y-5">
+              {[
+                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
+                { icon: Star, text: 'Free 15-minute walkthrough — no pitch' },
+                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
+              ].map((b) => (
+                <div key={b.text} className="flex items-start gap-3.5">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
+                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
+                  </div>
+                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
+                  S
+                </div>
+                <div>
+                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
+                    Saif · Foxes Operations
+                  </p>
+                  <p className="text-[12.5px] text-slate-500">
+                    Egypt-based · replies in Arabic or English
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <LeadForm
+            copy={copy.leadForm}
+            category="dinner-cruises"
+            locale={locale}
+            whatsappNumber={whatsappNumber}
+            whatsappPrefilledMessage={copy.whatsapp.prefilledMessage}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * 10. FINAL CTA
+ * ────────────────────────────────────────────────────────────────────────── */
+function FinalCTA({
+  copy,
+  whatsappHref,
+  locale,
+}: {
+  copy: OperatorCopy;
+  whatsappHref: string;
+  locale: Locale;
+}) {
+  return (
+    <section className="relative overflow-hidden bg-[#120A06] py-28 text-white sm:py-36">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-30%,_rgba(251,191,36,0.18),_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_120%,_rgba(244,63,94,0.14),_transparent_70%)]" />
+      </div>
+      <div className="relative mx-auto max-w-3xl px-6 text-center lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[3.5rem]"
+        >
+          {copy.finalCta.headline}
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1, duration: 0.7 }}
+          className="mx-auto mt-6 max-w-xl text-[1.05rem] leading-[1.65] text-amber-100/60 sm:text-[1.15rem]"
+        >
+          {copy.finalCta.sub}
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+          className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <Link
+            href="#lead-form"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-red-600 px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_30px_-8px_rgba(220,38,38,0.6)] transition hover:bg-red-700"
+          >
+            <span>{copy.finalCta.primary}</span>
+            <ArrowRight
+              className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 ${locale === 'ar' ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`}
+            />
+          </Link>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-3.5 text-[15px] font-semibold text-white backdrop-blur transition hover:border-white/30 hover:bg-white/[0.08]"
+          >
+            <MessageCircle className="h-4 w-4 text-emerald-400" />
+            <span>{copy.finalCta.secondary}</span>
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * Shared
+ * ────────────────────────────────────────────────────────────────────────── */
+function SectionHeader({
+  eyebrow,
+  headline,
+  sub,
+  tone = 'light',
+}: {
+  eyebrow: string;
+  headline: string;
+  sub?: string;
+  tone?: 'light' | 'dark';
+}) {
+  return (
+    <div className="mx-auto max-w-3xl text-center">
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${tone === 'dark' ? 'text-amber-300/90' : 'text-red-600'}`}
+      >
+        {eyebrow}
+      </motion.p>
+      <motion.h2
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.05 }}
+        className={`mt-5 text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-[2.75rem] lg:text-[3rem] ${tone === 'dark' ? 'text-white' : 'text-slate-900'}`}
+      >
+        {headline}
+      </motion.h2>
+      {sub && (
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className={`mx-auto mt-5 max-w-xl text-[1.05rem] leading-[1.65] sm:text-[1.13rem] ${tone === 'dark' ? 'text-amber-100/60' : 'text-slate-600'}`}
+        >
+          {sub}
+        </motion.p>
+      )}
+    </div>
+  );
+}
