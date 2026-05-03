@@ -39,6 +39,7 @@ import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
 import { CurrencyProvider, useCurrency } from './CurrencyContext';
+import OperatorExitIntent from './OperatorExitIntent';
 import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
@@ -81,6 +82,7 @@ export default function TourAgenciesPage({ copy, locale, whatsappNumber }: Props
         whatsappHref={whatsappHref}
         locale={locale}
       />
+      <OperatorExitIntent copy={copy.exitIntent} category="tour-agencies" locale={locale} />
     </CurrencyProvider>
   );
 }

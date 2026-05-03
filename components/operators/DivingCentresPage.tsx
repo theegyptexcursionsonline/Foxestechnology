@@ -32,6 +32,7 @@ import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
 import { CurrencyProvider } from './CurrencyContext';
+import OperatorExitIntent from './OperatorExitIntent';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -78,6 +79,7 @@ export default function DivingCentresPage({ copy, locale, whatsappNumber }: Prop
         whatsappHref={whatsappHref}
         locale={locale}
       />
+      <OperatorExitIntent copy={copy.exitIntent} category="diving-centres" locale={locale} />
     </CurrencyProvider>
   );
 }

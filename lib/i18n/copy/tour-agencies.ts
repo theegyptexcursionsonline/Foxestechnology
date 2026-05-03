@@ -254,6 +254,24 @@ export const en: OperatorCopy = {
     primary: 'Get started free',
     secondary: 'WhatsApp',
   },
+  exitIntent: {
+    eyebrow: 'Wait — one thing',
+    headline: 'The OTA commission cheat sheet',
+    sub: 'Every OTA serving Egypt with their real take-rates, payout terms, and what they will negotiate. Free PDF, sent in 60 seconds.',
+    bullets: [
+      'Viator, GetYourGuide, Klook, Headout & 6 more',
+      'Real commission ranges (not list rates)',
+      'Negotiation tactics that work',
+    ],
+    emailPlaceholder: 'you@youragency.com',
+    submitLabel: 'Send me the cheat sheet',
+    submittingLabel: 'Sending...',
+    successTitle: 'Sent. Check your inbox.',
+    successBody:
+      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
+    privacy: 'One email. Unsubscribe with one click.',
+    dismissLabel: 'No thanks',
+  },
 };
 
 export const ar: OperatorCopy = {
@@ -507,5 +525,22 @@ export const ar: OperatorCopy = {
   mobileStickyCta: {
     primary: 'ابدأ مجانًا',
     secondary: 'واتساب',
+  },
+  exitIntent: {
+    eyebrow: 'لحظة — شيء واحد',
+    headline: 'ورقة عمولات وكلاء السفر الإلكترونيين (OTA)',
+    sub: 'كل وكيل OTA يخدم مصر بمعدلاته الحقيقية وشروط الدفع وما يقبل التفاوض عليه. PDF مجاني، يصلك خلال 60 ثانية.',
+    bullets: [
+      'Viator و GetYourGuide و Klook و Headout و 6 آخرون',
+      'نطاقات عمولة حقيقية (وليست أسعار القائمة)',
+      'تكتيكات تفاوض تعمل فعلًا',
+    ],
+    emailPlaceholder: 'you@youragency.com',
+    submitLabel: 'أرسل لي الورقة',
+    submittingLabel: 'جاري الإرسال...',
+    successTitle: 'تم الإرسال. تحقق من بريدك.',
+    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
+    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    dismissLabel: 'لا شكرًا',
   },
 };

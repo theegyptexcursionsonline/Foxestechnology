@@ -254,6 +254,24 @@ export const en: OperatorCopy = {
     primary: 'Get started free',
     secondary: 'WhatsApp',
   },
+  exitIntent: {
+    eyebrow: 'One thing before you go',
+    headline: 'The weather cancellation policy template',
+    sub: '4-tier policy that turns angry refund requests into loyal repeat charters. Word + PDF, sent in 60 seconds.',
+    bullets: [
+      '4 tiers from full refund to no-refund',
+      'Customer-facing email + WhatsApp scripts',
+      'Insurance integration checklist',
+    ],
+    emailPlaceholder: 'you@yourcharter.com',
+    submitLabel: 'Send me the template',
+    submittingLabel: 'Sending...',
+    successTitle: 'Sent. Check your inbox.',
+    successBody:
+      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
+    privacy: 'One email. Unsubscribe with one click.',
+    dismissLabel: 'No thanks',
+  },
 };
 
 export const ar: OperatorCopy = {
@@ -506,5 +524,22 @@ export const ar: OperatorCopy = {
   mobileStickyCta: {
     primary: 'ابدأ مجانًا',
     secondary: 'واتساب',
+  },
+  exitIntent: {
+    eyebrow: 'شيء واحد قبل أن تغادر',
+    headline: 'قالب سياسة إلغاء الطقس',
+    sub: 'سياسة من 4 مستويات تحوّل طلبات الاسترداد الغاضبة إلى زبائن مخلصين. Word + PDF، يصلك خلال 60 ثانية.',
+    bullets: [
+      '4 مستويات من الاسترداد الكامل إلى عدم الاسترداد',
+      'سكربتات بريد وواتساب جاهزة للعميل',
+      'قائمة تكامل التأمين',
+    ],
+    emailPlaceholder: 'you@yourcharter.com',
+    submitLabel: 'أرسل لي القالب',
+    submittingLabel: 'جاري الإرسال...',
+    successTitle: 'تم الإرسال. تحقق من بريدك.',
+    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
+    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    dismissLabel: 'لا شكرًا',
   },
 };

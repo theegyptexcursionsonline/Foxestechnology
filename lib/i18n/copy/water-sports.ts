@@ -254,6 +254,24 @@ export const en: OperatorCopy = {
     primary: 'Get started free',
     secondary: 'WhatsApp',
   },
+  exitIntent: {
+    eyebrow: 'Before you go',
+    headline: 'The digital waiver template (free)',
+    sub: 'Bilingual EN+AR waiver, customer-phone-friendly, insurance-audit-ready. Editable Word + PDF. Sent in 60 seconds.',
+    bullets: [
+      'Bilingual layout (EN + AR side by side)',
+      'Insurance & emergency-contact fields',
+      'Egyptian-law compliant signature line',
+    ],
+    emailPlaceholder: 'you@yourwatersports.com',
+    submitLabel: 'Send me the waiver',
+    submittingLabel: 'Sending...',
+    successTitle: 'Sent. Check your inbox.',
+    successBody:
+      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
+    privacy: 'One email. Unsubscribe with one click.',
+    dismissLabel: 'No thanks',
+  },
 };
 
 export const ar: OperatorCopy = {
@@ -507,5 +525,22 @@ export const ar: OperatorCopy = {
   mobileStickyCta: {
     primary: 'ابدأ مجانًا',
     secondary: 'واتساب',
+  },
+  exitIntent: {
+    eyebrow: 'قبل أن تغادر',
+    headline: 'قالب التنازل الرقمي (مجاني)',
+    sub: 'تنازل ثنائي اللغة عربي/إنجليزي، مناسب لهاتف العميل، جاهز لتدقيق التأمين. Word قابل للتعديل + PDF. يصلك خلال 60 ثانية.',
+    bullets: [
+      'تخطيط ثنائي اللغة (عربي وإنجليزي جنبًا إلى جنب)',
+      'حقول التأمين وجهة الاتصال في الطوارئ',
+      'سطر توقيع متوافق مع القانون المصري',
+    ],
+    emailPlaceholder: 'you@yourwatersports.com',
+    submitLabel: 'أرسل لي التنازل',
+    submittingLabel: 'جاري الإرسال...',
+    successTitle: 'تم الإرسال. تحقق من بريدك.',
+    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
+    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    dismissLabel: 'لا شكرًا',
   },
 };

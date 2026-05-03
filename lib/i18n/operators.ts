@@ -101,6 +101,19 @@ export interface OperatorCopy {
     primary: string;
     secondary: string;
   };
+  exitIntent: {
+    eyebrow: string;
+    headline: string;
+    sub: string;
+    bullets: string[];
+    emailPlaceholder: string;
+    submitLabel: string;
+    submittingLabel: string;
+    successTitle: string;
+    successBody: string;
+    privacy: string;
+    dismissLabel: string;
+  };
 }
 
 import {
@@ -374,6 +387,24 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       primary: 'Get started free',
       secondary: 'WhatsApp',
     },
+    exitIntent: {
+      eyebrow: 'One thing before you go',
+      headline: 'The dinner cruise customer journey map',
+      sub: 'Every touchpoint from search to sailing — what works, what loses guests. Free PDF, sent to your email in 60 seconds.',
+      bullets: [
+        '14 touchpoints mapped out',
+        'Conversion benchmarks per stage',
+        'WhatsApp & SMS scripts you can copy',
+      ],
+      emailPlaceholder: 'you@yourcruise.com',
+      submitLabel: 'Send me the map',
+      submittingLabel: 'Sending...',
+      successTitle: 'Sent. Check your inbox.',
+      successBody:
+        "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
+      privacy: 'One email. Unsubscribe with one click.',
+      dismissLabel: 'No thanks',
+    },
   },
   'diving-centres': {
     meta: {
@@ -622,6 +653,24 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     mobileStickyCta: {
       primary: 'Get started free',
       secondary: 'WhatsApp',
+    },
+    exitIntent: {
+      eyebrow: 'Wait — one thing',
+      headline: 'Take the dive centre revenue audit with you',
+      sub: '12 questions every Egyptian dive operator should be asking. Free PDF, sent to your email in 60 seconds.',
+      bullets: [
+        'Pricing & packaging benchmarks',
+        'Equipment ROI worksheet',
+        'Insurance + medical clearance checklist',
+      ],
+      emailPlaceholder: 'you@yourdivecentre.com',
+      submitLabel: 'Send me the audit',
+      submittingLabel: 'Sending...',
+      successTitle: 'Sent. Check your inbox.',
+      successBody:
+        "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
+      privacy: 'One email. Unsubscribe with one click.',
+      dismissLabel: 'No thanks',
     },
   },
 };
@@ -879,6 +928,23 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       primary: 'ابدأ مجانًا',
       secondary: 'واتساب',
     },
+    exitIntent: {
+      eyebrow: 'شيء واحد قبل أن تغادر',
+      headline: 'خريطة رحلة عميل العشاء النيلي',
+      sub: 'كل نقطة تواصل من البحث حتى الإبحار — ما الذي يعمل وما الذي يخسر الضيوف. PDF مجاني، يصلك خلال 60 ثانية.',
+      bullets: [
+        '14 نقطة تواصل مفصّلة',
+        'معايير التحويل لكل مرحلة',
+        'سكربتات واتساب و SMS جاهزة للنسخ',
+      ],
+      emailPlaceholder: 'you@yourcruise.com',
+      submitLabel: 'أرسل لي الخريطة',
+      submittingLabel: 'جاري الإرسال...',
+      successTitle: 'تم الإرسال. تحقق من بريدك.',
+      successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
+      privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+      dismissLabel: 'لا شكرًا',
+    },
   },
   'diving-centres': {
     meta: {
@@ -1127,6 +1193,23 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     mobileStickyCta: {
       primary: 'ابدأ مجانًا',
       secondary: 'واتساب',
+    },
+    exitIntent: {
+      eyebrow: 'لحظة — شيء واحد',
+      headline: 'خذ معك تدقيق إيرادات مركز الغوص',
+      sub: '12 سؤال يجب أن يسأله كل مشغّل غوص مصري. PDF مجاني، يصلك خلال 60 ثانية.',
+      bullets: [
+        'معايير التسعير والباقات',
+        'ورقة عمل عائد المعدات',
+        'قائمة التأمين والإذن الطبي',
+      ],
+      emailPlaceholder: 'you@yourdivecentre.com',
+      submitLabel: 'أرسل لي التدقيق',
+      submittingLabel: 'جاري الإرسال...',
+      successTitle: 'تم الإرسال. تحقق من بريدك.',
+      successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
+      privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+      dismissLabel: 'لا شكرًا',
     },
   },
 };
