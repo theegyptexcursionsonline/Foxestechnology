@@ -203,6 +203,30 @@ function Hero({
                 </div>
               ))}
             </motion.div>
+
+            {/* Vertical cross-links — guaranteed-rendered fallback */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12.5px]">
+              <span className="font-semibold uppercase tracking-[0.16em] text-rose-100/65">
+                {locale === 'ar' ? 'مصمم لـ' : 'Built for'}
+              </span>
+              {[
+                { slug: 'diving-centres', en: 'Diving centres', ar: 'مراكز الغوص' },
+                { slug: 'dinner-cruises', en: 'Dinner cruises', ar: 'رحلات العشاء' },
+                { slug: 'tour-agencies', en: 'Tour agencies', ar: 'وكالات السياحة' },
+                { slug: 'water-sports', en: 'Water sports', ar: 'الرياضات المائية' },
+                { slug: 'boat-operators', en: 'Boat operators', ar: 'مشغّلو القوارب' },
+              ].map((v, i) => (
+                <span key={v.slug} className="flex items-center gap-3">
+                  {i > 0 && <span className="text-white/20">·</span>}
+                  <Link
+                    href={locale === 'ar' ? `/ar/operators/${v.slug}` : `/operators/${v.slug}`}
+                    className="font-medium text-rose-100/85 underline-offset-4 transition hover:text-white hover:underline"
+                  >
+                    {v[locale]}
+                  </Link>
+                </span>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div

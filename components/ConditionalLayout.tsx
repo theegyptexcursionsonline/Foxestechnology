@@ -18,8 +18,13 @@ export default function ConditionalLayout({
   // Pages that bypass coming soon mode (exact match)
   const comingSoonExcluded: string[] = [];
 
-  // Path prefixes that bypass coming soon mode (operator landing pages are public)
-  const comingSoonExcludedPrefixes: string[] = ['/operators/', '/ar/operators/'];
+  // Path prefixes that bypass coming soon mode (operator + solution landing pages are public)
+  const comingSoonExcludedPrefixes: string[] = [
+    '/operators/',
+    '/ar/operators/',
+    '/solutions/',
+    '/ar/solutions/',
+  ];
 
   const isExcluded =
     comingSoonExcluded.includes(pathname) ||
@@ -33,8 +38,15 @@ export default function ConditionalLayout({
   // Pages that should NOT have header and footer (exact match)
   const noLayoutPages = ['/', '/coming-soon', '/api', '/showcase'];
 
-  // Path prefixes that bring their own header/footer (operator landing pages)
-  const noLayoutPrefixes = ['/operators/', '/ar/operators/'];
+  // Path prefixes that bring their own header/footer (operator + solution landing pages)
+  const noLayoutPrefixes = [
+    '/operators/',
+    '/ar/operators/',
+    '/solutions/ai-voice',
+    '/solutions/ai-search',
+    '/ar/solutions/ai-voice',
+    '/ar/solutions/ai-search',
+  ];
 
   const shouldShowLayout =
     !noLayoutPages.includes(pathname) &&
