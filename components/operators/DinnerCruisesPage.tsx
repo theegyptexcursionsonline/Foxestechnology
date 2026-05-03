@@ -31,6 +31,8 @@ import {
 import LeadForm from './LeadForm';
 import WhatsAppFloat from './WhatsAppFloat';
 import MobileStickyCTA from './MobileStickyCTA';
+import OperatorHeader from './OperatorHeader';
+import OperatorFooter from './OperatorFooter';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -44,6 +46,7 @@ export default function DinnerCruisesPage({ copy, locale, whatsappNumber }: Prop
 
   return (
     <>
+      <OperatorHeader category="dinner-cruises" locale={locale} whatsappHref={whatsappHref} ctaLabel={copy.hero.primaryCta} whatsappLabel={copy.hero.secondaryCta} />
       <main data-operator-page="dinner-cruises" className="overflow-hidden bg-white text-slate-900">
         <Hero copy={copy} whatsappHref={whatsappHref} locale={locale} />
         <SocialProof copy={copy} />
@@ -56,6 +59,7 @@ export default function DinnerCruisesPage({ copy, locale, whatsappNumber }: Prop
         <LeadFormSection copy={copy} locale={locale} whatsappNumber={whatsappNumber} />
         <FinalCTA copy={copy} whatsappHref={whatsappHref} locale={locale} />
       </main>
+      <OperatorFooter category="dinner-cruises" locale={locale} whatsappHref={whatsappHref} />
 
       <WhatsAppFloat
         number={whatsappNumber}

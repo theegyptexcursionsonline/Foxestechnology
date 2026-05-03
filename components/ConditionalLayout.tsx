@@ -30,10 +30,15 @@ export default function ConditionalLayout({
     return <ComingSoonContent />;
   }
 
-  // Pages that should NOT have header and footer
+  // Pages that should NOT have header and footer (exact match)
   const noLayoutPages = ['/', '/coming-soon', '/api', '/showcase'];
 
-  const shouldShowLayout = !noLayoutPages.includes(pathname);
+  // Path prefixes that bring their own header/footer (operator landing pages)
+  const noLayoutPrefixes = ['/operators/', '/ar/operators/'];
+
+  const shouldShowLayout =
+    !noLayoutPages.includes(pathname) &&
+    !noLayoutPrefixes.some((prefix) => pathname.startsWith(prefix));
 
   if (!shouldShowLayout) {
     return <>{children}</>;
