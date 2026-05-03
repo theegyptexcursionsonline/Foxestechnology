@@ -5,7 +5,9 @@ export type OperatorCategory =
   | 'dinner-cruises'
   | 'tour-agencies'
   | 'water-sports'
-  | 'boat-operators';
+  | 'boat-operators'
+  | 'ai-voice'
+  | 'ai-search';
 
 export interface OperatorCopy {
   meta: {
@@ -128,11 +130,15 @@ import {
   en as boatOperatorsEn,
   ar as boatOperatorsAr,
 } from './copy/boat-operators';
+import { en as aiVoiceEn, ar as aiVoiceAr } from './copy/ai-voice';
+import { en as aiSearchEn, ar as aiSearchAr } from './copy/ai-search';
 
 const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
   'tour-agencies': tourAgenciesEn,
   'water-sports': waterSportsEn,
   'boat-operators': boatOperatorsEn,
+  'ai-voice': aiVoiceEn,
+  'ai-search': aiSearchEn,
   'dinner-cruises': {
     meta: {
       title: 'Booking Software for Dinner Cruise Operators in Egypt',
@@ -679,6 +685,8 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
   'tour-agencies': tourAgenciesAr,
   'water-sports': waterSportsAr,
   'boat-operators': boatOperatorsAr,
+  'ai-voice': aiVoiceAr,
+  'ai-search': aiSearchAr,
   'dinner-cruises': {
     meta: {
       title: 'برنامج حجوزات لمشغلي رحلات العشاء النيلية في مصر',

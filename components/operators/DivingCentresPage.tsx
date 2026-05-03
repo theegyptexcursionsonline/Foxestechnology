@@ -33,6 +33,7 @@ import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
 import { CurrencyProvider } from './CurrencyContext';
 import OperatorExitIntent from './OperatorExitIntent';
+import OperatorEcosystem from './OperatorEcosystem';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -63,6 +64,7 @@ export default function DivingCentresPage({ copy, locale, whatsappNumber }: Prop
         <Pricing copy={copy} locale={locale} />
         <FAQ copy={copy} />
         <LeadFormSection copy={copy} locale={locale} whatsappNumber={whatsappNumber} />
+        <OperatorEcosystem category="diving-centres" locale={locale} />
         <FinalCTA copy={copy} whatsappHref={whatsappHref} locale={locale} />
       </main>
       <OperatorFooter category="diving-centres" locale={locale} whatsappHref={whatsappHref} />

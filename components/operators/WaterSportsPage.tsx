@@ -34,6 +34,7 @@ import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
 import { CurrencyProvider, useCurrency } from './CurrencyContext';
 import OperatorExitIntent from './OperatorExitIntent';
+import OperatorEcosystem from './OperatorEcosystem';
 import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
@@ -62,6 +63,7 @@ export default function WaterSportsPage({ copy, locale, whatsappNumber }: Props)
         <Pricing copy={copy} locale={locale} />
         <FAQ copy={copy} />
         <LeadFormSection copy={copy} locale={locale} whatsappNumber={whatsappNumber} />
+        <OperatorEcosystem category="water-sports" locale={locale} />
         <FinalCTA copy={copy} whatsappHref={whatsappHref} locale={locale} />
       </main>
 

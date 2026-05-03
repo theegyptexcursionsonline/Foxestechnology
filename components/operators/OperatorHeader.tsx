@@ -20,15 +20,32 @@ const COPY = {
   switchLang: { en: 'العربية', ar: 'English' },
   backToFoxes: { en: 'Foxes Technology', ar: 'Foxes Technology' },
   forOperators: { en: 'For operators', ar: 'للمشغلين' },
+  solutions: { en: 'Solutions', ar: 'الحلول' },
 };
 
-const SIBLING_PAGES: { slug: OperatorCategory; en: string; ar: string }[] = [
+const OPERATOR_PAGES: { slug: OperatorCategory; en: string; ar: string }[] = [
   { slug: 'diving-centres', en: 'Diving centres', ar: 'مراكز الغوص' },
   { slug: 'dinner-cruises', en: 'Dinner cruises', ar: 'رحلات العشاء' },
   { slug: 'tour-agencies', en: 'Tour agencies', ar: 'وكالات السياحة' },
   { slug: 'water-sports', en: 'Water sports', ar: 'الرياضات المائية' },
   { slug: 'boat-operators', en: 'Boat operators', ar: 'مشغّلو القوارب' },
 ];
+
+interface SolutionPage {
+  slug: 'ai-voice' | 'ai-search' | 'online-booking' | 'pos-hardware' | 'kiosk';
+  en: string;
+  ar: string;
+}
+
+const SOLUTION_PAGES: SolutionPage[] = [
+  { slug: 'ai-voice', en: 'AI Voice Agent', ar: 'وكيل الصوت الذكي' },
+  { slug: 'ai-search', en: 'AI Search Widget', ar: 'أداة البحث الذكية' },
+  { slug: 'online-booking', en: 'Online Booking', ar: 'الحجز الإلكتروني' },
+  { slug: 'pos-hardware', en: 'POS Hardware', ar: 'أجهزة نقاط البيع' },
+  { slug: 'kiosk', en: 'Self-service Kiosk', ar: 'كشك الخدمة الذاتية' },
+];
+
+const SOLUTION_SLUGS = new Set<string>(['ai-voice', 'ai-search']);
 
 export default function OperatorHeader({
   category,
@@ -58,10 +75,13 @@ export default function OperatorHeader({
   }, [open]);
 
   const oppositeLocale: Locale = locale === 'ar' ? 'en' : 'ar';
+  const isSolution = SOLUTION_SLUGS.has(category);
+  const basePath = isSolution ? 'solutions' : 'operators';
   const switchLangHref =
     locale === 'ar'
-      ? `/operators/${category}`
-      : `/ar/operators/${category}`;
+      ? `/${basePath}/${category}`
+      : `/ar/${basePath}/${category}`;
+  const dropdownLabel = isSolution ? COPY.solutions[locale] : COPY.forOperators[locale];
 
   return (
     <header
@@ -106,16 +126,17 @@ export default function OperatorHeader({
               }`}
               style={!scrolled ? { textShadow: '0 1px 12px rgba(0,0,0,0.35)' } : undefined}
             >
-              {COPY.forOperators[locale]}
+              {dropdownLabel}
               <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor" aria-hidden>
                 <path d="M0 1l5 4 5-4-1-1L5 4 1 0 0 1z" />
               </svg>
             </button>
             {dropdownOpen && (
-              <div className="absolute end-0 mt-1 w-60 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/15">
-                {SIBLING_PAGES.map((p) => {
+              <div className="absolute end-0 mt-1 w-64 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/15">
+                {(isSolution ? SOLUTION_PAGES : OPERATOR_PAGES).map((p) => {
+                  const itemBase = isSolution ? 'solutions' : 'operators';
                   const href =
-                    locale === 'ar' ? `/ar/operators/${p.slug}` : `/operators/${p.slug}`;
+                    locale === 'ar' ? `/ar/${itemBase}/${p.slug}` : `/${itemBase}/${p.slug}`;
                   const isCurrent = p.slug === category;
                   return (
                     <Link
@@ -249,12 +270,13 @@ export default function OperatorHeader({
       {open && (
         <div className="border-t border-slate-200 bg-white px-6 py-5 lg:hidden">
           <p className="mb-3 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-            {COPY.forOperators[locale]}
+            {dropdownLabel}
           </p>
           <nav className="flex flex-col gap-1">
-            {SIBLING_PAGES.map((p) => {
+            {(isSolution ? SOLUTION_PAGES : OPERATOR_PAGES).map((p) => {
+              const itemBase = isSolution ? 'solutions' : 'operators';
               const href =
-                locale === 'ar' ? `/ar/operators/${p.slug}` : `/operators/${p.slug}`;
+                locale === 'ar' ? `/ar/${itemBase}/${p.slug}` : `/${itemBase}/${p.slug}`;
               const isCurrent = p.slug === category;
               return (
                 <Link
