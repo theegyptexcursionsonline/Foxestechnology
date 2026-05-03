@@ -31,6 +31,7 @@ import WhatsAppFloat from './WhatsAppFloat';
 import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
+import { CurrencyProvider } from './CurrencyContext';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -43,7 +44,7 @@ export default function DivingCentresPage({ copy, locale, whatsappNumber }: Prop
   const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
 
   return (
-    <>
+    <CurrencyProvider>
       <OperatorHeader
         category="diving-centres"
         locale={locale}
@@ -77,7 +78,7 @@ export default function DivingCentresPage({ copy, locale, whatsappNumber }: Prop
         whatsappHref={whatsappHref}
         locale={locale}
       />
-    </>
+    </CurrencyProvider>
   );
 }
 

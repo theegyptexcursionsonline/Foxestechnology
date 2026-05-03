@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, MessageCircle, Menu, X } from 'lucide-react';
+import { ArrowRight, MessageCircle, Menu, X, Check } from 'lucide-react';
 import type { OperatorCategory, Locale } from '@/lib/i18n/operators';
+import { CURRENCY_OPTIONS, type Currency } from '@/lib/currency';
+import { useCurrency } from './CurrencyContext';
 
 interface Props {
   category: OperatorCategory;
@@ -38,6 +40,8 @@ export default function OperatorHeader({
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [currencyOpen, setCurrencyOpen] = useState(false);
+  const { currency, setCurrency } = useCurrency();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -139,6 +143,60 @@ export default function OperatorHeader({
 
         {/* Right side */}
         <div className="flex items-center gap-2">
+          {/* Currency switcher */}
+          <div
+            className="relative hidden sm:block"
+            onMouseEnter={() => setCurrencyOpen(true)}
+            onMouseLeave={() => setCurrencyOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setCurrencyOpen((o) => !o)}
+              aria-haspopup="listbox"
+              aria-expanded={currencyOpen}
+              className={`inline-flex h-9 items-center gap-1 rounded-full border px-3 text-[12.5px] font-semibold transition ${
+                scrolled
+                  ? 'border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                  : 'border-white/20 bg-white/10 text-white backdrop-blur-md hover:border-white/40 hover:bg-white/15'
+              }`}
+            >
+              <span>{currency}</span>
+              <svg width="9" height="6" viewBox="0 0 10 6" fill="currentColor" aria-hidden>
+                <path d="M0 1l5 4 5-4-1-1L5 4 1 0 0 1z" />
+              </svg>
+            </button>
+            {currencyOpen && (
+              <div
+                role="listbox"
+                className="absolute end-0 mt-1 w-56 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl shadow-slate-900/15"
+              >
+                {CURRENCY_OPTIONS.map((opt) => {
+                  const isSelected = opt.code === currency;
+                  return (
+                    <button
+                      key={opt.code}
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => {
+                        setCurrency(opt.code);
+                        setCurrencyOpen(false);
+                      }}
+                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-start text-[13px] font-medium transition ${
+                        isSelected
+                          ? 'bg-slate-100 text-slate-900'
+                          : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                      }`}
+                    >
+                      <span>{opt.label}</span>
+                      {isSelected && <Check className="h-3.5 w-3.5 text-red-600" strokeWidth={2.5} />}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
           <Link
             href={switchLangHref}
             className={`hidden h-9 items-center rounded-full border px-3.5 text-[12.5px] font-semibold transition sm:inline-flex ${
@@ -216,6 +274,27 @@ export default function OperatorHeader({
                 </Link>
               );
             })}
+            <div className="mt-5">
+              <p className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                Currency
+              </p>
+              <div className="flex gap-2">
+                {CURRENCY_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.code}
+                    type="button"
+                    onClick={() => setCurrency(opt.code)}
+                    className={`flex-1 rounded-lg border px-3 py-2 text-[12.5px] font-semibold transition ${
+                      currency === opt.code
+                        ? 'border-slate-900 bg-slate-900 text-white'
+                        : 'border-slate-200 text-slate-700 hover:border-slate-300'
+                    }`}
+                  >
+                    {opt.code}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="mt-4 grid grid-cols-2 gap-2">
               <Link
                 href={switchLangHref}

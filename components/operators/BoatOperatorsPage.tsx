@@ -38,6 +38,8 @@ import WhatsAppFloat from './WhatsAppFloat';
 import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
+import { CurrencyProvider, useCurrency } from './CurrencyContext';
+import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -50,7 +52,7 @@ export default function BoatOperatorsPage({ copy, locale, whatsappNumber }: Prop
   const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
 
   return (
-    <>
+    <CurrencyProvider>
       <OperatorHeader category="boat-operators" locale={locale} whatsappHref={whatsappHref} ctaLabel={copy.hero.primaryCta} whatsappLabel={copy.hero.secondaryCta} />
       <main data-operator-page="boat-operators" className="overflow-hidden bg-white text-slate-900">
         <Hero copy={copy} whatsappHref={whatsappHref} locale={locale} />
@@ -79,7 +81,7 @@ export default function BoatOperatorsPage({ copy, locale, whatsappNumber }: Prop
         whatsappHref={whatsappHref}
         locale={locale}
       />
-    </>
+    </CurrencyProvider>
   );
 }
 
@@ -248,6 +250,7 @@ function DriftingWaves() {
 }
 
 function HeroVisual({ locale }: { locale: Locale }) {
+  const { currency } = useCurrency();
   return (
     <div className="relative">
       <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
@@ -283,7 +286,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">EGP 6,000 · 8 guests</span>
+          <span className="text-[11px] font-medium text-slate-500">{formatPrice(6000, currency)} · 8 guests</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
             DEPOSIT PAID
           </span>
@@ -624,10 +627,11 @@ function FleetCalendarMockup() {
 
 /* ── Mockup B: Payment timeline ──────────────────────────────────────── */
 function PaymentTimelineMockup() {
+  const { currency } = useCurrency();
   const nodes = [
     {
       label: 'Deposit paid',
-      sub: '30 Apr · EGP 2,400',
+      sub: `30 Apr · ${formatPrice(2400, currency)}`,
       icon: Check,
       state: 'done' as const,
     },
@@ -674,19 +678,19 @@ function PaymentTimelineMockup() {
         <div className="mt-4 grid grid-cols-3 gap-2 text-center">
           <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Total</p>
-            <p className="mt-1 text-[13px] font-bold text-slate-900">EGP 6,000</p>
+            <p className="mt-1 text-[13px] font-bold text-slate-900">{formatPrice(6000, currency)}</p>
           </div>
           <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Deposit 40%
             </p>
-            <p className="mt-1 text-[13px] font-bold text-emerald-700">EGP 2,400</p>
+            <p className="mt-1 text-[13px] font-bold text-emerald-700">{formatPrice(2400, currency)}</p>
           </div>
           <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Balance
             </p>
-            <p className="mt-1 text-[13px] font-bold text-amber-700">EGP 3,600</p>
+            <p className="mt-1 text-[13px] font-bold text-amber-700">{formatPrice(3600, currency)}</p>
           </div>
         </div>
       </div>
@@ -745,6 +749,7 @@ function PaymentTimelineMockup() {
 
 /* ── Mockup C: Weather cancellation flow ─────────────────────────────── */
 function WeatherCancelMockup() {
+  const { currency } = useCurrency();
   const [policy, setPolicy] = useState<'refund' | 'rebook' | 'partial'>('rebook');
   const policies: { value: 'refund' | 'rebook' | 'partial'; label: string; sub: string }[] = [
     { value: 'refund', label: 'Full refund', sub: 'Return 100%' },
@@ -806,8 +811,8 @@ function WeatherCancelMockup() {
         <div className="mt-3 space-y-1.5">
           <PreviewRow name="Halse family · DE" outcome="Rebook to Sun 19 May" tone="emerald" />
           <PreviewRow name="Ramirez · ES" outcome="Rebook to Sun 19 May" tone="emerald" />
-          <PreviewRow name="Khaled · EG" outcome="Refund EGP 4,800" tone="rose" />
-          <PreviewRow name="Schmidt · DE" outcome="Partial EGP 1,200" tone="amber" />
+          <PreviewRow name="Khaled · EG" outcome={`Refund ${formatPrice(4800, currency)}`} tone="rose" />
+          <PreviewRow name="Schmidt · DE" outcome={`Partial ${formatPrice(1200, currency)}`} tone="amber" />
         </div>
       </div>
 

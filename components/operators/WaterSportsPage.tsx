@@ -32,6 +32,8 @@ import WhatsAppFloat from './WhatsAppFloat';
 import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
+import { CurrencyProvider, useCurrency } from './CurrencyContext';
+import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -47,7 +49,7 @@ export default function WaterSportsPage({ copy, locale, whatsappNumber }: Props)
   const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
 
   return (
-    <>
+    <CurrencyProvider>
       <OperatorHeader category="water-sports" locale={locale} whatsappHref={whatsappHref} ctaLabel={copy.hero.primaryCta} whatsappLabel={copy.hero.secondaryCta} />
       <main data-operator-page="water-sports" className="overflow-hidden bg-white text-slate-900">
         <Hero copy={copy} whatsappHref={whatsappHref} locale={locale} />
@@ -76,7 +78,7 @@ export default function WaterSportsPage({ copy, locale, whatsappNumber }: Props)
         whatsappHref={whatsappHref}
         locale={locale}
       />
-    </>
+    </CurrencyProvider>
   );
 }
 
@@ -264,6 +266,7 @@ function DriftingWaves() {
 }
 
 function HeroVisual({ locale }: { locale: Locale }) {
+  const { currency } = useCurrency();
   return (
     <div className="relative">
       <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
@@ -313,7 +316,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">EGP 1,200 · waiver signed</span>
+          <span className="text-[11px] font-medium text-slate-500">{formatPrice(1200, currency)} · waiver signed</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
             CONFIRMED
           </span>
@@ -546,6 +549,7 @@ function MockupShell({
 
 /* ── Mockup 1: hourly slot booking widget ── */
 function HourlySlotMockup() {
+  const { currency } = useCurrency();
   type Status = 'open' | 'almost' | 'booked';
   const slots: { time: string; status: Status; left?: string }[] = [
     { time: '10:00 AM', status: 'open' },
@@ -621,7 +625,7 @@ function HourlySlotMockup() {
             </div>
           </div>
           <button className="rounded-lg bg-red-600 px-4 py-2 text-[12px] font-semibold text-white shadow-[0_6px_18px_-8px_rgba(220,38,38,0.55)]">
-            Continue · EGP 1,200
+            Continue · {formatPrice(1200, currency)}
           </button>
         </div>
       </div>

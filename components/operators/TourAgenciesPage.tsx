@@ -38,6 +38,8 @@ import WhatsAppFloat from './WhatsAppFloat';
 import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
+import { CurrencyProvider, useCurrency } from './CurrencyContext';
+import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -50,7 +52,7 @@ export default function TourAgenciesPage({ copy, locale, whatsappNumber }: Props
   const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
 
   return (
-    <>
+    <CurrencyProvider>
       <OperatorHeader category="tour-agencies" locale={locale} whatsappHref={whatsappHref} ctaLabel={copy.hero.primaryCta} whatsappLabel={copy.hero.secondaryCta} />
       <main data-operator-page="tour-agencies" className="overflow-hidden bg-white text-slate-900">
         <Hero copy={copy} whatsappHref={whatsappHref} locale={locale} />
@@ -79,7 +81,7 @@ export default function TourAgenciesPage({ copy, locale, whatsappNumber }: Props
         whatsappHref={whatsappHref}
         locale={locale}
       />
-    </>
+    </CurrencyProvider>
   );
 }
 
@@ -537,13 +539,14 @@ function MockupShell({
 
 /* Mockup A — Multi-product manager dashboard */
 function ProductManagerMockup() {
+  const { currency } = useCurrency();
   const products = [
     {
       icon: Mountain,
       tone: 'amber',
       name: 'Cairo Pyramids Day Tour',
       type: 'Tour · 8h',
-      price: 'EGP 1,250',
+      price: formatPrice(1250, currency),
       channels: ['V', 'G', 'T', 'D'],
       status: 'Active',
     },
@@ -552,7 +555,7 @@ function ProductManagerMockup() {
       tone: 'rose',
       name: 'Luxor 2-Day Package',
       type: 'Package · 2 nights',
-      price: 'EGP 4,800',
+      price: formatPrice(4800, currency),
       channels: ['V', 'G', 'D'],
       status: 'Active',
     },
@@ -561,7 +564,7 @@ function ProductManagerMockup() {
       tone: 'sky',
       name: 'Airport Transfer · Hurghada',
       type: 'Transfer · Sedan',
-      price: 'EGP 480',
+      price: formatPrice(480, currency),
       channels: ['V', 'D'],
       status: 'Active',
     },
@@ -570,7 +573,7 @@ function ProductManagerMockup() {
       tone: 'violet',
       name: 'Nile Felucca Sunset',
       type: 'Activity · 2h',
-      price: 'EGP 350',
+      price: formatPrice(350, currency),
       channels: ['G', 'T', 'D'],
       status: 'Active',
     },
@@ -579,7 +582,7 @@ function ProductManagerMockup() {
       tone: 'emerald',
       name: 'Red Sea Snorkel Trip',
       type: 'Day trip · 6h',
-      price: 'EGP 950',
+      price: formatPrice(950, currency),
       channels: ['V', 'G', 'D'],
       status: 'Draft',
     },
@@ -690,6 +693,7 @@ function ProductManagerMockup() {
 
 /* Mockup B — Branded voucher generator */
 function VoucherMockup() {
+  const { currency } = useCurrency();
   return (
     <MockupShell title="Voucher · #FX-08291 · auto-generated" badge="READY">
       <div className="rounded-xl border border-slate-200 bg-gradient-to-b from-white to-violet-50/30 p-5">
@@ -729,7 +733,7 @@ function VoucherMockup() {
             <DetailRow label="Guest" value="Sarah Müller" />
             <DetailRow label="Pax" value="2 adults · 1 child" />
             <DetailRow label="Pickup" value="Steigenberger Hurghada · 06:30" />
-            <DetailRow label="Total paid" value="EGP 4,250 · Card" valueClass="text-emerald-700" />
+            <DetailRow label="Total paid" value={`${formatPrice(4250, currency)} · Card`} valueClass="text-emerald-700" />
           </div>
           <QRMock />
         </div>
@@ -830,9 +834,10 @@ function QRMock() {
 
 /* Mockup C — B2B reseller portal */
 function ResellerPortalMockup() {
+  const { currency } = useCurrency();
   const stats = [
     { label: 'Bookings · May', value: '286', tone: 'violet', icon: Database },
-    { label: 'Commission earned', value: 'EGP 142k', tone: 'emerald', icon: Wallet },
+    { label: 'Commission earned', value: formatPrice(142000, currency, { compact: true }), tone: 'emerald', icon: Wallet },
     { label: 'Active resellers', value: '24', tone: 'indigo', icon: Users },
   ];
   const resellers = [
@@ -842,7 +847,7 @@ function ResellerPortalMockup() {
       name: 'Hurghada Concierge Co',
       city: 'Hurghada · 6 hotels',
       bookings: 64,
-      commission: 'EGP 38,400',
+      commission: formatPrice(38400, currency),
       status: 'Active',
     },
     {
@@ -851,7 +856,7 @@ function ResellerPortalMockup() {
       name: 'Luxor Hotels Group',
       city: 'Luxor · 4 hotels',
       bookings: 42,
-      commission: 'EGP 26,500',
+      commission: formatPrice(26500, currency),
       status: 'Active',
     },
     {
@@ -860,7 +865,7 @@ function ResellerPortalMockup() {
       name: 'Cairo Travel Desk',
       city: 'Cairo · 3 hotels',
       bookings: 31,
-      commission: 'EGP 18,900',
+      commission: formatPrice(18900, currency),
       status: 'Active',
     },
     {
@@ -869,7 +874,7 @@ function ResellerPortalMockup() {
       name: 'Red Sea Resellers',
       city: 'El Gouna · Marsa Alam',
       bookings: 18,
-      commission: 'EGP 11,200',
+      commission: formatPrice(11200, currency),
       status: 'Pending',
     },
   ];

@@ -33,6 +33,8 @@ import WhatsAppFloat from './WhatsAppFloat';
 import MobileStickyCTA from './MobileStickyCTA';
 import OperatorHeader from './OperatorHeader';
 import OperatorFooter from './OperatorFooter';
+import { CurrencyProvider, useCurrency } from './CurrencyContext';
+import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -45,7 +47,7 @@ export default function DinnerCruisesPage({ copy, locale, whatsappNumber }: Prop
   const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
 
   return (
-    <>
+    <CurrencyProvider>
       <OperatorHeader category="dinner-cruises" locale={locale} whatsappHref={whatsappHref} ctaLabel={copy.hero.primaryCta} whatsappLabel={copy.hero.secondaryCta} />
       <main data-operator-page="dinner-cruises" className="overflow-hidden bg-white text-slate-900">
         <Hero copy={copy} whatsappHref={whatsappHref} locale={locale} />
@@ -73,7 +75,7 @@ export default function DinnerCruisesPage({ copy, locale, whatsappNumber }: Prop
         whatsappHref={whatsappHref}
         locale={locale}
       />
-    </>
+    </CurrencyProvider>
   );
 }
 
@@ -239,6 +241,7 @@ function DriftingSparkles() {
 }
 
 function HeroVisual({ locale }: { locale: Locale }) {
+  const { currency } = useCurrency();
   return (
     <div className="relative">
       <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
@@ -273,7 +276,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">EGP 4,200 · 2 vegetarian</span>
+          <span className="text-[11px] font-medium text-slate-500">{formatPrice(4200, currency)} · 2 vegetarian</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
             CONFIRMED
           </span>
@@ -503,6 +506,9 @@ function MockupShell({
 }
 
 function DirectBookingMockup() {
+  const { currency } = useCurrency();
+  const seatPrice = formatPrice(850, currency);
+  const totalPrice = formatPrice(5100, currency);
   return (
     <MockupShell title="nilepearl.com/book · Direct booking" badge="LIVE">
       <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-5">
@@ -517,9 +523,9 @@ function DirectBookingMockup() {
         </div>
         <div className="mt-4 grid grid-cols-3 gap-2">
           {[
-            { time: '7:00 PM', left: 'EGP 850', cap: 'open' },
-            { time: '8:00 PM', left: 'EGP 850', cap: 'almost' },
-            { time: '9:00 PM', left: 'EGP 850', cap: 'open' },
+            { time: '7:00 PM', left: seatPrice, cap: 'open' },
+            { time: '8:00 PM', left: seatPrice, cap: 'almost' },
+            { time: '9:00 PM', left: seatPrice, cap: 'open' },
           ].map((s, i) => (
             <motion.button
               key={s.time}
@@ -553,7 +559,7 @@ function DirectBookingMockup() {
             </div>
           </div>
           <button className="rounded-lg bg-red-600 px-4 py-2 text-[12px] font-semibold text-white">
-            Continue · EGP 5,100
+            Continue · {totalPrice}
           </button>
         </div>
       </div>
@@ -566,6 +572,8 @@ function DirectBookingMockup() {
 }
 
 function SeatingMockup() {
+  const { currency } = useCurrency();
+  const cover = formatPrice(850, currency);
   const seatings = [
     { time: '7:00 PM', booked: 38, total: 60, label: 'Early sunset' },
     { time: '8:00 PM', booked: 56, total: 60, label: 'Prime sunset' },
@@ -592,7 +600,7 @@ function SeatingMockup() {
                     {s.time} · {s.label}
                   </p>
                   <p className="mt-0.5 text-[11.5px] text-slate-500">
-                    {s.booked}/{s.total} seats · EGP 850/cover
+                    {s.booked}/{s.total} seats · {cover}/cover
                   </p>
                 </div>
                 {isFull ? (
@@ -631,6 +639,7 @@ function SeatingMockup() {
 }
 
 function GroupBookingMockup() {
+  const { currency } = useCurrency();
   const guests = [
     { name: 'Mona Salem', menu: 'Standard · Halal', tone: 'slate' },
     { name: 'Tarek El Sayed', menu: 'Vegetarian', tone: 'emerald' },
@@ -658,13 +667,13 @@ function GroupBookingMockup() {
             <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Deposit
             </p>
-            <p className="mt-1 text-[13px] font-bold text-emerald-700">EGP 5,400 · paid</p>
+            <p className="mt-1 text-[13px] font-bold text-emerald-700">{formatPrice(5400, currency)} · paid</p>
           </div>
           <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Balance
             </p>
-            <p className="mt-1 text-[13px] font-bold text-slate-900">EGP 12,600</p>
+            <p className="mt-1 text-[13px] font-bold text-slate-900">{formatPrice(12600, currency)}</p>
           </div>
           <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
