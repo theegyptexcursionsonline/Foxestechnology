@@ -36,7 +36,7 @@ import OperatorHeader from '@/components/operators/OperatorHeader';
 import OperatorFooter from '@/components/operators/OperatorFooter';
 import { CurrencyProvider } from '@/components/operators/CurrencyContext';
 import OperatorExitIntent from '@/components/operators/OperatorExitIntent';
-import SolutionForOperators from './SolutionForOperators';
+import OperatorEcosystem from '@/components/operators/OperatorEcosystem';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -70,7 +70,7 @@ export default function AIVoicePage({ copy, locale, whatsappNumber }: Props) {
         <Pricing copy={copy} locale={locale} />
         <FAQ copy={copy} />
         <LeadFormSection copy={copy} locale={locale} whatsappNumber={whatsappNumber} />
-        <SolutionForOperators solution="ai-voice" locale={locale} />
+        <OperatorEcosystem category="ai-voice" locale={locale} />
         <FinalCTA copy={copy} whatsappHref={whatsappHref} locale={locale} />
       </main>
       <OperatorFooter category="ai-voice" locale={locale} whatsappHref={whatsappHref} />

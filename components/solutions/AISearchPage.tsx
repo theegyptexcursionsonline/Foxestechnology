@@ -35,7 +35,7 @@ import OperatorHeader from '../operators/OperatorHeader';
 import OperatorFooter from '../operators/OperatorFooter';
 import { CurrencyProvider } from '../operators/CurrencyContext';
 import OperatorExitIntent from '../operators/OperatorExitIntent';
-import SolutionForOperators from './SolutionForOperators';
+import OperatorEcosystem from '@/components/operators/OperatorEcosystem';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
 interface Props {
@@ -66,7 +66,7 @@ export default function AISearchPage({ copy, locale, whatsappNumber }: Props) {
         <Pricing copy={copy} locale={locale} />
         <FAQ copy={copy} />
         <LeadFormSection copy={copy} locale={locale} whatsappNumber={whatsappNumber} />
-        <SolutionForOperators solution="ai-search" locale={locale} />
+        <OperatorEcosystem category="ai-search" locale={locale} />
         <FinalCTA copy={copy} whatsappHref={whatsappHref} locale={locale} />
       </main>
       <OperatorFooter category="ai-search" locale={locale} whatsappHref={whatsappHref} />

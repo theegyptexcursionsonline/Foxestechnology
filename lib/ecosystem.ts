@@ -51,6 +51,36 @@ const ACCENTS = {
     ring: 'ring-emerald-200',
     badge: 'bg-emerald-600',
   },
+  diving: {
+    bg: 'bg-cyan-50',
+    text: 'text-cyan-700',
+    ring: 'ring-cyan-200',
+    badge: 'bg-cyan-600',
+  },
+  dinner: {
+    bg: 'bg-amber-50',
+    text: 'text-amber-700',
+    ring: 'ring-amber-200',
+    badge: 'bg-amber-600',
+  },
+  agency: {
+    bg: 'bg-violet-50',
+    text: 'text-violet-700',
+    ring: 'ring-violet-200',
+    badge: 'bg-violet-600',
+  },
+  water: {
+    bg: 'bg-teal-50',
+    text: 'text-teal-700',
+    ring: 'ring-teal-200',
+    badge: 'bg-teal-600',
+  },
+  boat: {
+    bg: 'bg-sky-50',
+    text: 'text-sky-700',
+    ring: 'ring-sky-200',
+    badge: 'bg-sky-600',
+  },
 } as const;
 
 type CardDef = Omit<EcosystemCard, 'blurb'>;
@@ -92,6 +122,42 @@ const CARDS: Record<string, CardDef> = {
     title: { en: 'Online Booking Engine', ar: 'محرك الحجز الأونلاين' },
     icon: 'globe',
     accent: ACCENTS.booking,
+  },
+  // Operator-vertical cards used on solution pages (cross-link back to ops)
+  divingCentres: {
+    id: 'diving-centres',
+    href: '/operators/diving-centres',
+    title: { en: 'Diving centres', ar: 'مراكز الغوص' },
+    icon: 'monitor',
+    accent: ACCENTS.diving,
+  },
+  dinnerCruises: {
+    id: 'dinner-cruises',
+    href: '/operators/dinner-cruises',
+    title: { en: 'Dinner cruises', ar: 'رحلات العشاء' },
+    icon: 'monitor',
+    accent: ACCENTS.dinner,
+  },
+  tourAgencies: {
+    id: 'tour-agencies',
+    href: '/operators/tour-agencies',
+    title: { en: 'Tour agencies', ar: 'وكالات السياحة' },
+    icon: 'monitor',
+    accent: ACCENTS.agency,
+  },
+  waterSports: {
+    id: 'water-sports',
+    href: '/operators/water-sports',
+    title: { en: 'Water sports', ar: 'الرياضات المائية' },
+    icon: 'monitor',
+    accent: ACCENTS.water,
+  },
+  boatOperators: {
+    id: 'boat-operators',
+    href: '/operators/boat-operators',
+    title: { en: 'Boat operators', ar: 'مشغّلو القوارب' },
+    icon: 'monitor',
+    accent: ACCENTS.boat,
   },
 };
 
@@ -242,6 +308,74 @@ const ECOSYSTEM: Partial<Record<OperatorCategory, CategoryEcosystem>> = {
         blurb: {
           en: 'Smart search widget for your site so guests pick the right session (jet ski / parasail / banana / kitesurf) without scrolling.',
           ar: 'أداة بحث ذكية لموقعك ليختار الضيف الجلسة المناسبة (جت سكي / باراسيل / بانانا / كايت) بدون تصفح.',
+        },
+      },
+    ],
+  },
+  'ai-voice': {
+    eyebrow: { en: 'Built for these operators', ar: 'مصمم لهؤلاء المشغلين' },
+    headline: {
+      en: 'See how operators in your vertical use AI Voice.',
+      ar: 'شاهد كيف يستخدم المشغّلون في مجالك الصوت الذكي.',
+    },
+    sub: {
+      en: 'Each vertical gets its own playbook — pick yours to see the full landing page tailored to your operations.',
+      ar: 'لكل قطاع منهجه الخاص — اختر قطاعك لترى الصفحة المصممة لعملياتك.',
+    },
+    picks: [
+      {
+        key: 'tourAgencies',
+        blurb: {
+          en: 'Inbound RFQs qualified, quoted, and booked in 8+ languages — ideal for non-English-speaking markets.',
+          ar: 'استقبال طلبات العروض، تأهيل، عرض سعر وحجز بأكثر من 8 لغات — مثالي للأسواق غير الناطقة بالإنجليزية.',
+        },
+      },
+      {
+        key: 'boatOperators',
+        blurb: {
+          en: 'Charter quote-to-booking automation. Calls qualified, quoted with deposit link by SMS, calendar updated.',
+          ar: 'أتمتة عرض السعر إلى الحجز. مكالمات مؤهلة، عرض سعر مع رابط دفعة عبر SMS، تحديث التقويم.',
+        },
+      },
+      {
+        key: 'dinnerCruises',
+        blurb: {
+          en: 'Take table reservations at 11pm. Handle dietary requirements and group bookings without a host.',
+          ar: 'استقبل حجوزات الطاولات الساعة 11 مساءً. تعامل مع المتطلبات الغذائية والمجموعات بدون مضيف.',
+        },
+      },
+    ],
+  },
+  'ai-search': {
+    eyebrow: { en: 'Built for these operators', ar: 'مصمم لهؤلاء المشغلين' },
+    headline: {
+      en: 'See how operators in your vertical use AI Search.',
+      ar: 'شاهد كيف يستخدم المشغّلون في مجالك البحث الذكي.',
+    },
+    sub: {
+      en: 'Each vertical gets its own playbook — pick yours to see the full landing page tailored to your operations.',
+      ar: 'لكل قطاع منهجه الخاص — اختر قطاعك لترى الصفحة المصممة لعملياتك.',
+    },
+    picks: [
+      {
+        key: 'tourAgencies',
+        blurb: {
+          en: 'Drop a smart widget into your agency website. Customers find the right tour without browsing 50+ products.',
+          ar: 'ضع أداة ذكية في موقع وكالتك. يجد العملاء الجولة المناسبة دون تصفح 50+ منتج.',
+        },
+      },
+      {
+        key: 'dinnerCruises',
+        blurb: {
+          en: 'Smart search on your booking page so guests find the right cruise (sunset · standard · iftar · group) instantly.',
+          ar: 'بحث ذكي على صفحة الحجز ليجد الضيف الرحلة الصحيحة (غروب · عادية · إفطار · مجموعة) فورًا.',
+        },
+      },
+      {
+        key: 'waterSports',
+        blurb: {
+          en: 'Guests pick the right session (jet ski / parasail / banana / kitesurf) without scrolling.',
+          ar: 'يختار الضيف الجلسة المناسبة (جت سكي / باراسيل / بانانا / كايت) بدون تصفح.',
         },
       },
     ],
