@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import {
   ArrowUpRight,
   Building2,
@@ -60,12 +57,7 @@ export default function SolutionForOperators({ solution, locale }: Props) {
         />
       </div>
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mx-auto max-w-3xl text-center"
-        >
+        <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-red-600">
             {COPY.eyebrow[locale]}
           </p>
@@ -75,44 +67,37 @@ export default function SolutionForOperators({ solution, locale }: Props) {
           <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.65] text-slate-600">
             {COPY.sub[locale]}
           </p>
-        </motion.div>
+        </div>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map((card, i) => {
+          {cards.map((card) => {
             const Icon = ICONS[card.iconKey];
             const href =
               locale === 'ar' ? `/ar/operators/${card.slug}` : `/operators/${card.slug}`;
             return (
-              <motion.div
+              <Link
                 key={card.slug}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
+                href={href}
+                className="group relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_30px_80px_-30px_rgba(15,23,42,0.18)] sm:p-7"
               >
-                <Link
-                  href={href}
-                  className="group relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_30px_80px_-30px_rgba(15,23,42,0.18)] sm:p-7"
+                <div
+                  className={`flex h-11 w-11 items-center justify-center rounded-2xl ${card.bg} ${card.text} ring-1 ${card.ring}`}
                 >
-                  <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-2xl ${card.bg} ${card.text} ring-1 ${card.ring}`}
-                  >
-                    <Icon className="h-5 w-5" strokeWidth={1.7} />
-                  </div>
-                  <h3 className="mt-6 text-[1.15rem] font-semibold tracking-[-0.015em] text-slate-900">
-                    {card.title[locale]}
-                  </h3>
-                  <p className="mt-3 flex-1 text-[14px] leading-[1.6] text-slate-600">
-                    {card.blurb[locale]}
-                  </p>
-                  <div className="mt-6 flex items-center gap-1.5 text-[12.5px] font-semibold text-slate-700 transition group-hover:text-red-700">
-                    <span>{COPY.cta[locale]}</span>
-                    <ArrowUpRight
-                      className={`h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${locale === 'ar' ? 'scale-x-[-1]' : ''}`}
-                    />
-                  </div>
-                </Link>
-              </motion.div>
+                  <Icon className="h-5 w-5" strokeWidth={1.7} />
+                </div>
+                <h3 className="mt-6 text-[1.15rem] font-semibold tracking-[-0.015em] text-slate-900">
+                  {card.title[locale]}
+                </h3>
+                <p className="mt-3 flex-1 text-[14px] leading-[1.6] text-slate-600">
+                  {card.blurb[locale]}
+                </p>
+                <div className="mt-6 flex items-center gap-1.5 text-[12.5px] font-semibold text-slate-700 transition group-hover:text-red-700">
+                  <span>{COPY.cta[locale]}</span>
+                  <ArrowUpRight
+                    className={`h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${locale === 'ar' ? 'scale-x-[-1]' : ''}`}
+                  />
+                </div>
+              </Link>
             );
           })}
         </div>
