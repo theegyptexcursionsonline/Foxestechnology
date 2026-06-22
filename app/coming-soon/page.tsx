@@ -19,10 +19,10 @@ export default function ComingSoonPage() {
   });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  // Countdown timer (until May 15, 2026)
+  // Countdown timer (until July 15, 2026)
   useEffect(() => {
     setMounted(true);
-    const targetDate = new Date('2026-05-15T00:00:00').getTime();
+    const targetDate = new Date('2026-07-15T00:00:00').getTime();
 
     const calculateTime = () => {
       const now = Date.now();
@@ -264,7 +264,7 @@ export default function ComingSoonPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
-                  <span className="text-sm text-slate-300 font-medium">Launching May 15th, 2026</span>
+                  <span className="text-sm text-slate-300 font-medium">Launching July 15th, 2026</span>
                   <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
@@ -354,7 +354,7 @@ export default function ComingSoonPage() {
                 We&apos;re building the next generation of travel technology
                 for <span className="text-blue-400 font-semibold">Egypt</span> and the <span className="text-purple-400 font-semibold">GCC region</span>.
                 Something you&apos;ve never seen before. Launching{' '}
-                <span className="text-white font-semibold">May 15th, 2026</span>.
+                <span className="text-white font-semibold">July 15th, 2026</span>.
               </motion.p>
 
               {/* Countdown Timer */}
@@ -942,7 +942,7 @@ export default function ComingSoonPage() {
                     {
                       date: 'Q2 2026',
                       title: 'Public Launch',
-                      description: 'Doors open on May 15th. Full platform available to everyone.',
+                      description: 'Doors open on July 15th. Full platform available to everyone.',
                       status: 'upcoming',
                       color: 'bg-slate-600',
                     },
@@ -1010,7 +1010,7 @@ export default function ComingSoonPage() {
                 {[
                   {
                     question: 'When is the official launch date?',
-                    answer: 'We are launching on May 15th, 2026. Join our waitlist to be the first to know and get exclusive early access.',
+                    answer: 'We are launching on July 15th, 2026. Join our waitlist to be the first to know and get exclusive early access.',
                   },
                   {
                     question: 'Who is this platform built for?',

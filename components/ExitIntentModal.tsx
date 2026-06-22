@@ -170,7 +170,7 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                 >
                   Be among the first to experience the future of tour booking!
                   Sign up now and get <span className="text-red-400 font-bold">early access</span> plus{' '}
-                  <span className="text-red-400 font-bold">special launch pricing</span> on May 15th, 2026.
+                  <span className="text-red-400 font-bold">special launch pricing</span> on July 15th, 2026.
                 </motion.p>
 
                 {/* Email Form */}

@@ -15,8 +15,11 @@ export default function ConditionalLayout({
   // Check if coming soon mode is enabled
   const showComingSoon = process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true';
 
-  // Pages that bypass coming soon mode (exact match)
-  const comingSoonExcluded: string[] = [];
+  // Pages that bypass coming soon mode (exact match).
+  // /request-access is the CRM-front gateway: it must stay reachable while the
+  // rest of the site is in coming-soon mode, so invited/approved prospects can
+  // request access to the Foxes solutions.
+  const comingSoonExcluded: string[] = ['/request-access'];
 
   // Path prefixes that bypass coming soon mode (operator + solution landing pages are public)
   const comingSoonExcludedPrefixes: string[] = [
@@ -36,7 +39,7 @@ export default function ConditionalLayout({
   }
 
   // Pages that should NOT have header and footer (exact match)
-  const noLayoutPages = ['/', '/coming-soon', '/api', '/showcase'];
+  const noLayoutPages = ['/', '/coming-soon', '/api', '/showcase', '/request-access'];
 
   // Path prefixes that bring their own header/footer (operator + solution landing pages)
   const noLayoutPrefixes = [
