@@ -166,17 +166,18 @@ function RequestAccessForm() {
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col lg:flex-row">
         {/* Brand showcase */}
-        <aside className="flex flex-col px-6 pt-10 lg:w-[50%] lg:px-12 lg:py-14">
+        <aside className="flex flex-col px-6 pb-10 pt-10 lg:w-[50%] lg:px-12 lg:py-14">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <Image src="/logo.png" alt="Foxes Technology" width={36} height={36} className="h-9 w-9 object-contain" priority />
             <span className="text-[15px] font-bold tracking-tight text-white">Foxes Technology</span>
           </Link>
 
+          <div className="flex flex-1 flex-col justify-center py-10 lg:py-0">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mt-12 max-w-lg lg:mt-16"
+            className="max-w-lg"
           >
             <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-red-300">
               <Lock size={11} /> Invite &amp; approval only
@@ -214,6 +215,7 @@ function RequestAccessForm() {
             <TrustItem icon={<Clock3 size={16} />} title="Reviewed within one business day" sub="We follow up by email with next steps and onboarding." />
             <TrustItem icon={<Globe2 size={16} />} title="Built for Egypt, the GCC &amp; MENA" sub="Trusted by tour operators and resellers across the region." />
           </motion.div>
+          </div>
         </aside>
 
         {/* Form */}
