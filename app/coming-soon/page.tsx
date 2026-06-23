@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ExitIntentModal from '@/components/ExitIntentModal';
 import { Playfair_Display, Inter, Space_Grotesk } from 'next/font/google';
-import { ArrowRight, Check, Sparkles, CalendarCheck, Phone, Search, Network, LifeBuoy } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, CalendarCheck, Phone, Search, Network, LifeBuoy, Plane, Compass, Users, GraduationCap } from 'lucide-react';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -25,10 +25,14 @@ const PLATFORM = [
   { icon: Search, title: 'AI Search', body: 'On-site search that understands intent and surfaces the right trip.' },
   { icon: Network, title: 'Attraction Network', body: 'Multi-tenant ticketing with an open reseller marketplace.' },
   { icon: LifeBuoy, title: 'Support & CRM', body: 'Tickets, live chat, knowledge base and AI assist in one window.' },
+  { icon: Plane, title: 'Airport Platform', body: 'Airport transfers, tours and booking widgets across multiple airport domains.' },
+  { icon: Compass, title: 'Excursions Online', body: 'A multi-country storefront to discover and book tours, tickets and experiences.' },
+  { icon: Users, title: 'Travel Ambassadors', body: 'A vetted network connecting travellers with trusted local guides and operators.' },
+  { icon: GraduationCap, title: 'Learning Hub', body: 'Guides, training and a searchable knowledge base for operators and their teams.' },
 ];
 
 const STATS = [
-  { n: '5', l: 'AI products' },
+  { n: '9', l: 'products' },
   { n: '4', l: 'countries' },
   { n: '1', l: 'platform' },
   { n: '∞', l: 'ways to grow' },
@@ -36,7 +40,7 @@ const STATS = [
 
 const FAQS = [
   { q: 'When does Foxes Technology launch?', a: 'We are targeting July 15, 2026 across Egypt, the GCC and the wider MENA region. Priority members get early access ahead of the public launch.' },
-  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators — AI booking, a voice agent, on-site AI search, an attraction & reseller network, and support & CRM, all built for MENA.' },
+  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators — AI booking, a voice agent, on-site AI search, an attraction & reseller network, support & CRM, an airport platform and more, all built for MENA.' },
   { q: 'Who is it for?', a: 'Tour operators, DMCs, attractions, airports and resellers across Egypt, the GCC and MENA who want to take direct bookings and run their whole operation in one place.' },
   { q: 'How do I get early access?', a: 'Join the priority list below. We will reach out before launch with early access and introductory pricing.' },
 ];
@@ -314,7 +318,7 @@ export default function ComingSoonPage() {
       <section className="relative mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28 lg:py-32">
         <motion.div {...fadeUp} className="mb-12 text-center sm:mb-14">
           <p style={mono} className="mb-4 text-[10px] uppercase tracking-[0.32em] text-amber-200/65 sm:text-[11px]">What we&apos;re building</p>
-          <h2 style={serif} className="text-3xl font-medium leading-tight text-white sm:text-4xl lg:text-[3.25rem]">Six products. <span className="fx-gold">One platform.</span></h2>
+          <h2 style={serif} className="text-3xl font-medium leading-tight text-white sm:text-4xl lg:text-[3.25rem]">Nine products. <span className="fx-gold">One platform.</span></h2>
         </motion.div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {PLATFORM.map((p, i) => {
