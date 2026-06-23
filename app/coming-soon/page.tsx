@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ExitIntentModal from '@/components/ExitIntentModal';
 import { Playfair_Display, Inter, Space_Grotesk } from 'next/font/google';
-import { ArrowRight, Check, Sparkles, CalendarCheck, Phone, Search, Network, LifeBuoy, PenLine } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, CalendarCheck, Phone, Search, Network, LifeBuoy } from 'lucide-react';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -25,11 +25,10 @@ const PLATFORM = [
   { icon: Search, title: 'AI Search', body: 'On-site search that understands intent and surfaces the right trip.' },
   { icon: Network, title: 'Attraction Network', body: 'Multi-tenant ticketing with an open reseller marketplace.' },
   { icon: LifeBuoy, title: 'Support & CRM', body: 'Tickets, live chat, knowledge base and AI assist in one window.' },
-  { icon: PenLine, title: 'Content Engine', body: 'SEO content at scale — keywords, drafts and multi-site publishing.' },
 ];
 
 const STATS = [
-  { n: '6', l: 'AI products' },
+  { n: '5', l: 'AI products' },
   { n: '4', l: 'countries' },
   { n: '1', l: 'platform' },
   { n: '∞', l: 'ways to grow' },
@@ -37,7 +36,7 @@ const STATS = [
 
 const FAQS = [
   { q: 'When does Foxes Technology launch?', a: 'We are targeting July 15, 2026 across Egypt, the GCC and the wider MENA region. Priority members get early access ahead of the public launch.' },
-  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators — AI booking, a voice agent, on-site AI search, an attraction & reseller network, support & CRM, and a content engine, all built for MENA.' },
+  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators — AI booking, a voice agent, on-site AI search, an attraction & reseller network, and support & CRM, all built for MENA.' },
   { q: 'Who is it for?', a: 'Tour operators, DMCs, attractions, airports and resellers across Egypt, the GCC and MENA who want to take direct bookings and run their whole operation in one place.' },
   { q: 'How do I get early access?', a: 'Join the priority list below. We will reach out before launch with early access and introductory pricing.' },
 ];
