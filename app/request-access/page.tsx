@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, type FormEvent, type ReactNode } from "react";
+import { Suspense, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -49,6 +49,28 @@ const SOLUTION_OPTIONS = [
   { key: "support", label: "Support Portal" },
 ];
 
+// Best-effort attribution when a visitor lands from a Foxes solution without an
+// explicit ?source= — infer the platform from the referring host.
+const REFERRER_SOURCES: { test: RegExp; key: string }[] = [
+  { test: /voice/, key: "voice" },
+  { test: /search/, key: "search" },
+  { test: /attraction|foxes-network/, key: "attractions" },
+  { test: /airport/, key: "airport" },
+  { test: /foxesconnect/, key: "foxesconnect" },
+  { test: /support/, key: "support" },
+  { test: /book|foxesapp/, key: "booking" },
+];
+function referrerSource(): string {
+  if (typeof document === "undefined" || !document.referrer) return "";
+  try {
+    const host = new URL(document.referrer).hostname;
+    if (!host || /(^|\.)foxestechnology\.com$/.test(host)) return ""; // same-site isn't a platform signal
+    return REFERRER_SOURCES.find((r) => r.test.test(host))?.key || "";
+  } catch {
+    return "";
+  }
+}
+
 const ROLE_OPTIONS = ["Owner / Founder", "Director / GM", "Operations", "Marketing", "Sales / Reservations", "Other"];
 const COUNTRY_OPTIONS = ["Egypt", "United Arab Emirates", "Saudi Arabia", "Oman", "Qatar", "Kuwait", "Bahrain", "Other (MENA)", "Other"];
 const BUSINESS_TYPES = ["Tour operator", "DMC / Destination management", "Reseller / Agent", "OTA / Travel agency", "Attraction / Activity", "Transport / Transfers", "Hotel / Accommodation", "Other"];
@@ -65,9 +87,16 @@ const emailOk = (e: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
 function RequestAccessForm() {
   const sp = useSearchParams();
   const solutionParam = (sp.get("solution") || "").toLowerCase();
-  const source = sp.get("source") || "";
+  const explicitSource = (sp.get("source") || sp.get("from") || "").toLowerCase();
   const solutionLabel = SOLUTION_LABELS[solutionParam] || "";
   const solutionBlurb = SOLUTION_BLURB[solutionParam] || "";
+  // Which Foxes platform this lead came from (the CRM "Came from" attribution):
+  // explicit ?source=/?from=, else the chosen ?solution=, else the referring platform
+  // host, else the main marketing site. Captured via the platform deep-link's url param.
+  const source = useMemo(
+    () => explicitSource || (SOLUTION_LABELS[solutionParam] ? solutionParam : "") || referrerSource() || "foxestechnology",
+    [explicitSource, solutionParam],
+  );
 
   const [step, setStep] = useState(0);
   // Step 1 — about you
@@ -147,7 +176,7 @@ function RequestAccessForm() {
           solutions,
           currentSystem,
           message,
-          source: source || "foxestechnology",
+          source,
         }),
       });
       const d = await res.json().catch(() => ({}));
