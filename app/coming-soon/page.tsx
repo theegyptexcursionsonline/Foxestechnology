@@ -28,8 +28,8 @@ const STATS = [
 
 const FAQS = [
   { q: 'When does Foxes Technology launch?', a: 'We are targeting July 15, 2026 across Egypt, the GCC and the wider MENA region. Priority members get early access ahead of the public launch.' },
-  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators — AI booking, a voice agent, on-site AI search, an attraction & reseller network, support & CRM, an airport platform and more, all built for MENA.' },
-  { q: 'Who is it for?', a: 'Tour operators, DMCs, attractions, airports and resellers across Egypt, the GCC and MENA who want to take direct bookings and run their whole operation in one place.' },
+  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators to take direct bookings, manage availability and run their whole operation — built for Egypt, the GCC and the wider MENA region.' },
+  { q: 'Who is it for?', a: 'Tour & activity operators, DMCs and attractions across Egypt, the GCC and MENA who want to take direct bookings and run their whole operation in one place.' },
   { q: 'How do I get early access?', a: 'Join the priority list below. We will reach out before launch with early access and introductory pricing.' },
 ];
 
@@ -246,8 +246,8 @@ export default function ComingSoonPage() {
                 </motion.h1>
 
                 <motion.p variants={heroItem} className="mx-auto mt-6 max-w-md text-[14.5px] font-light leading-relaxed text-amber-50/70 sm:text-[15.5px]">
-                  We&apos;re building the next generation of travel technology for Egypt, the GCC &amp; MENA — AI booking,
-                  voice, search, an attraction network and support, in one beautifully simple platform.
+                  We&apos;re building the next generation of travel technology for Egypt, the GCC &amp; MENA —
+                  one beautifully simple platform to take direct bookings and run your whole operation.
                 </motion.p>
 
                 <motion.div variants={heroItem} className="mt-8 sm:mt-9"><Countdown time={timeLeft} /></motion.div>
