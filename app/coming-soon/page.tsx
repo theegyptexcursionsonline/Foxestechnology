@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ExitIntentModal from '@/components/ExitIntentModal';
 import { Playfair_Display, Inter, Space_Grotesk } from 'next/font/google';
-import { ArrowRight, Check, Sparkles, CalendarCheck, Phone, Search, Network, LifeBuoy, Plane, Compass, Users, GraduationCap } from 'lucide-react';
+import { ArrowRight, Check, Sparkles } from 'lucide-react';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -19,20 +19,8 @@ const HERO_SLIDES = ['/coming-soon/hero.png', '/coming-soon/egypt.png', '/coming
 const SLIDE_NAMES = ['The Middle East', 'Egypt', 'United Arab Emirates', 'Saudi Arabia', 'Oman'];
 const ROTATING_WORDS = ['technology', 'booking', 'operations', 'intelligence'];
 
-const PLATFORM = [
-  { icon: CalendarCheck, title: 'AI Booking Engine', body: 'Direct bookings, payments and an AI assistant on your own site.' },
-  { icon: Phone, title: 'AI Voice Agent', body: 'A 24/7 voice agent that answers, qualifies and books by phone.' },
-  { icon: Search, title: 'AI Search', body: 'On-site search that understands intent and surfaces the right trip.' },
-  { icon: Network, title: 'Attraction Network', body: 'Multi-tenant ticketing with an open reseller marketplace.' },
-  { icon: LifeBuoy, title: 'Support & CRM', body: 'Tickets, live chat, knowledge base and AI assist in one window.' },
-  { icon: Plane, title: 'Airport Platform', body: 'Airport transfers, tours and booking widgets across multiple airport domains.' },
-  { icon: Compass, title: 'Excursions Online', body: 'A multi-country storefront to discover and book tours, tickets and experiences.' },
-  { icon: Users, title: 'Travel Ambassadors', body: 'A vetted network connecting travellers with trusted local guides and operators.' },
-  { icon: GraduationCap, title: 'Learning Hub', body: 'Guides, training and a searchable knowledge base for operators and their teams.' },
-];
-
 const STATS = [
-  { n: '9', l: 'products' },
+  { n: '1,200+', l: 'operators waiting' },
   { n: '4', l: 'countries' },
   { n: '1', l: 'platform' },
   { n: '∞', l: 'ways to grow' },
@@ -51,13 +39,11 @@ const CSS = `
 @keyframes fxAurora { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6%,-5%) scale(1.18); } }
 @keyframes fxAurora2 { 0%,100% { transform: translate(0,0) scale(1.1); } 50% { transform: translate(-7%,6%) scale(1); } }
 @keyframes fxPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(.7); } }
-@keyframes fxMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes fxBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
 .fx-gold { background: linear-gradient(96deg,#f8e6b0,#eaba63 38%,#c9863a 66%,#f4d79a); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .fx-gold-shimmer { background: linear-gradient(100deg,#b98a48 0%,#f7e6b4 18%,#eaba63 38%,#cd933f 60%,#f3d695 82%); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: fxShimmer 5.5s linear infinite; }
 .fx-grain { position: fixed; inset: -50%; width: 200%; height: 200%; pointer-events: none; opacity: .05; mix-blend-mode: overlay; z-index: 70; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); animation: fxGrain 7s steps(8) infinite; }
 .fx-hairline { background-image: linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04) 28%,rgba(255,255,255,.02)); }
-.fx-marquee-track { display: inline-flex; white-space: nowrap; animation: fxMarquee 32s linear infinite; }
 `;
 
 function GoldDot() {
@@ -293,52 +279,6 @@ export default function ComingSoonPage() {
         <div className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex" style={{ animation: 'fxBob 2.4s ease-in-out infinite' }}>
           <span style={mono} className="text-[9px] uppercase tracking-[0.3em] text-amber-100/40">Scroll</span>
           <span className="h-8 w-px bg-gradient-to-b from-amber-200/50 to-transparent" />
-        </div>
-      </section>
-
-      {/* ===== ECOSYSTEM MARQUEE ===== */}
-      <div className="relative overflow-hidden border-y border-white/[0.06] bg-[#0c0a07] py-5">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#0c0a07] to-transparent sm:w-40" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#0c0a07] to-transparent sm:w-40" />
-        <div className="fx-marquee-track" style={mono}>
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
-              {PLATFORM.concat(PLATFORM.slice(0, 0)).map((p, i) => (
-                <span key={`${dup}-${i}`} className="flex items-center text-[12px] uppercase tracking-[0.18em] text-amber-50/45">
-                  <span className="px-6">{p.title}</span>
-                  <span className="size-1 rounded-full bg-amber-300/50" />
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ===== PLATFORM ===== */}
-      <section className="relative mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28 lg:py-32">
-        <motion.div {...fadeUp} className="mb-12 text-center sm:mb-14">
-          <p style={mono} className="mb-4 text-[10px] uppercase tracking-[0.32em] text-amber-200/65 sm:text-[11px]">What we&apos;re building</p>
-          <h2 style={serif} className="text-3xl font-medium leading-tight text-white sm:text-4xl lg:text-[3.25rem]">Nine products. <span className="fx-gold">One platform.</span></h2>
-        </motion.div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-          {PLATFORM.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <motion.div key={p.title} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.06 }} className="group relative rounded-[1.4rem] fx-hairline p-px transition-transform duration-500 hover:-translate-y-1.5">
-                <div className="relative h-full overflow-hidden rounded-[1.35rem] bg-[#100c08]/80 p-7 backdrop-blur-xl sm:p-8">
-                  <div className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-[radial-gradient(circle,rgba(234,186,99,0.16),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative mb-6 flex size-12 items-center justify-center rounded-xl fx-hairline p-px">
-                    <span className="flex size-full items-center justify-center rounded-[11px] bg-[#1a130c] text-amber-300"><Icon className="size-5" strokeWidth={1.6} /></span>
-                  </div>
-                  <div className="relative flex items-baseline justify-between gap-3">
-                    <h3 style={serif} className="text-xl font-medium text-white sm:text-[1.4rem]">{p.title}</h3>
-                    <span style={mono} className="text-[11px] tabular-nums text-amber-200/35">0{i + 1}</span>
-                  </div>
-                  <p className="relative mt-2.5 text-sm leading-relaxed text-amber-50/60">{p.body}</p>
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
       </section>
 
