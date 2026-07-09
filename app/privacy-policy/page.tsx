@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
           <section className="mb-10">
             <h2 className="font-poppins text-2xl font-bold text-slate-900">1. Introduction</h2>
             <p className="mt-4 text-slate-700 leading-relaxed">
-              Foxes Technology ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our booking management system, POS solutions, and related services (collectively, the "Services").
+              Foxes Technology (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our booking management system, POS solutions, and related services (collectively, the &quot;Services&quot;).
             </p>
             <p className="mt-4 text-slate-700 leading-relaxed">
               By accessing or using our Services, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our Services.
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className="font-poppins text-2xl font-bold text-slate-900">9. Children's Privacy</h2>
+            <h2 className="font-poppins text-2xl font-bold text-slate-900">9. Children&apos;s Privacy</h2>
             <p className="mt-4 text-slate-700 leading-relaxed">
               Our Services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have collected data from a child, we will delete it promptly.
             </p>
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
           <section className="mb-10">
             <h2 className="font-poppins text-2xl font-bold text-slate-900">10. Changes to This Privacy Policy</h2>
             <p className="mt-4 text-slate-700 leading-relaxed">
-              We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the updated policy on our website and updating the "Last Updated" date. Your continued use of our Services after changes indicates acceptance of the updated policy.
+              We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the updated policy on our website and updating the &quot;Last Updated&quot; date. Your continued use of our Services after changes indicates acceptance of the updated policy.
             </p>
           </section>
 

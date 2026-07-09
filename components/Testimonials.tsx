@@ -55,7 +55,7 @@ export default function Testimonials() {
                         Testimonials
                     </h2>
                     <p className="mt-4 font-goldplay text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        Don't Just Take Our Word For It
+                        Don&apos;t Just Take Our Word For It
                     </p>
                     <p className="mx-auto mt-4 max-w-2xl text-lg text-dark-grey">
                         Hear directly from tour operators and attraction managers who have transformed their business with Foxes Technology.

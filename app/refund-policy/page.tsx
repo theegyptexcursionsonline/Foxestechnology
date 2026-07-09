@@ -45,7 +45,7 @@ export default function RefundPolicy() {
               30-Day Money-Back Guarantee
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              We offer a <strong>30-day money-back guarantee</strong> for all new customers. If you're not completely satisfied with our platform within the first 30 days of your subscription, we'll provide a full refund, no questions asked.
+              We offer a <strong>30-day money-back guarantee</strong> for all new customers. If you&apos;re not completely satisfied with our platform within the first 30 days of your subscription, we&apos;ll provide a full refund, no questions asked.
             </p>
             <div className="bg-white rounded-lg p-4">
               <h3 className="font-bold text-gray-900 mb-2">To qualify for our money-back guarantee:</h3>
@@ -69,11 +69,11 @@ export default function RefundPolicy() {
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Monthly Subscriptions</h3>
                 <p className="text-gray-600 mb-3">
-                  You can cancel your monthly subscription at any time. Here's how it works:
+                  You can cancel your monthly subscription at any time. Here&apos;s how it works:
                 </p>
                 <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
                   <li>Cancel anytime from your account dashboard or by contacting support</li>
-                  <li>You'll continue to have access until the end of your current billing period</li>
+                  <li>You&apos;ll continue to have access until the end of your current billing period</li>
                   <li>No refunds for partial months (you pay for the full month)</li>
                   <li>No cancellation fees</li>
                   <li>You can reactivate your subscription at any time</li>
@@ -205,14 +205,14 @@ export default function RefundPolicy() {
               <div className="border-l-4 border-blue-600 pl-4">
                 <h3 className="font-bold text-gray-900 mb-2">Technical Issues</h3>
                 <p className="text-gray-600">
-                  If you experience significant technical issues that prevent you from using our platform, contact our support team immediately. We'll work to resolve the issue or provide a pro-rated refund for downtime exceeding our SLA (Enterprise plans only).
+                  If you experience significant technical issues that prevent you from using our platform, contact our support team immediately. We&apos;ll work to resolve the issue or provide a pro-rated refund for downtime exceeding our SLA (Enterprise plans only).
                 </p>
               </div>
 
               <div className="border-l-4 border-green-600 pl-4">
                 <h3 className="font-bold text-gray-900 mb-2">Billing Errors</h3>
                 <p className="text-gray-600">
-                  If you're charged incorrectly or multiple times due to a billing error, we'll immediately refund the erroneous charges upon verification.
+                  If you&apos;re charged incorrectly or multiple times due to a billing error, we&apos;ll immediately refund the erroneous charges upon verification.
                 </p>
               </div>
 

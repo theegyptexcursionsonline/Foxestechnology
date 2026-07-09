@@ -4,7 +4,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence, useInView, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useSpring, useTransform, type Variants } from 'framer-motion';
 import { ArrowRight, CheckCircle, Users, BarChart2, DollarSign } from 'lucide-react';
 
 // --- Configuration (Aligned with Foxes Technology Brand Brief) ---
@@ -105,11 +105,11 @@ const BackgroundSlider = () => {
 
 // --- Sub-component: Left-side Hero Content ---
 const HeroContent = ({ isInView }: { isInView: boolean }) => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
   };
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
   };
@@ -175,11 +175,11 @@ const HeroContent = ({ isInView }: { isInView: boolean }) => {
 
 // --- Sub-component: Right-side Device Mockup (REALISTIC MACBOOK AIR) ---
 const DeviceMockup = ({ isInView }: { isInView: boolean }) => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8, y: 100 },
     visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 15, delay: 0.4 } },
   };
-  const floatingCardVariants = (delay: number) => ({
+  const floatingCardVariants = (delay: number): Variants => ({
     hidden: { opacity: 0, y: 30, scale: 0.9 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 80, delay: 1 + delay } }
   });

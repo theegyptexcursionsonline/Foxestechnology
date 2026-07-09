@@ -78,7 +78,7 @@ function AboutHero() {
                     <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-300 lg:text-xl"
                        style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}>
                         Empowering tour and activity operators in Egypt and the GCC with cutting-edge technology
-                        to unlock their full potential and showcase the region's rich culture to the world.
+                        to unlock their full potential and showcase the region&apos;s rich culture to the world.
                     </p>
 
                     <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -163,7 +163,7 @@ function MissionVision() {
                         Our Purpose
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        Leading Egypt's tourism digital transformation journey
+                        Leading Egypt&apos;s tourism digital transformation journey
                     </p>
                 </motion.div>
 
@@ -181,10 +181,10 @@ function MissionVision() {
                             </div>
                             <h3 className="mt-6 text-3xl font-black text-slate-900">Our Mission</h3>
                             <p className="mt-4 text-lg leading-relaxed text-slate-700">
-                                To be the catalyst for digital transformation in Egypt's tourism industry, empowering every
+                                To be the catalyst for digital transformation in Egypt&apos;s tourism industry, empowering every
                                 operator—from major attractions to independent guides—with world-class technology. We eliminate
                                 complexity, modernize operations, and create seamless experiences that help Egyptian tourism
-                                businesses compete globally while showcasing our nation's extraordinary heritage.
+                                businesses compete globally while showcasing our nation&apos;s extraordinary heritage.
                             </p>
                         </div>
                     </motion.div>
@@ -203,7 +203,7 @@ function MissionVision() {
                             <h3 className="mt-6 text-3xl font-black text-slate-900">Our Vision</h3>
                             <p className="mt-4 text-lg leading-relaxed text-slate-700">
                                 A fully digitized Egyptian travel ecosystem where technology empowers every tourism business
-                                to thrive on the global stage. We envision Egypt as the region's digital tourism leader,
+                                to thrive on the global stage. We envision Egypt as the region&apos;s digital tourism leader,
                                 where innovation meets heritage, and where every visitor experience begins with seamless,
                                 world-class digital interactions.
                             </p>
@@ -307,7 +307,7 @@ function Timeline() {
                 >
                     <h2 className="text-4xl font-black text-slate-900 lg:text-5xl">Our Transformation Journey</h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        From vision to reality: Leading Egypt's tourism digital revolution
+                        From vision to reality: Leading Egypt&apos;s tourism digital revolution
                     </p>
                 </motion.div>
 
@@ -428,8 +428,8 @@ function AchievementsSection() {
                                 Official Transformation Partner
                             </h2>
                             <p className="mt-4 text-lg leading-relaxed text-slate-700">
-                                Recognized as the official technology partner of Egypt's Ministry of Tourism and Antiquities,
-                                we're leading the nationwide digital transformation initiative to modernize the entire Egyptian
+                                Recognized as the official technology partner of Egypt&apos;s Ministry of Tourism and Antiquities,
+                                we&apos;re leading the nationwide digital transformation initiative to modernize the entire Egyptian
                                 tourism ecosystem and position Egypt as a global digital tourism leader.
                             </p>
                         </div>
@@ -476,12 +476,12 @@ function CareersCTA() {
                                 <div>
                                     <h2 className="text-4xl font-black text-white">Join the Transformation</h2>
                                     <p className="mt-2 text-lg text-gray-300">
-                                        Help us digitize Egypt's tourism industry
+                                        Help us digitize Egypt&apos;s tourism industry
                                     </p>
                                 </div>
                             </div>
                             <p className="mt-6 text-base leading-relaxed text-gray-400">
-                                We're seeking passionate innovators who want to drive real change in Egyptian tourism.
+                                We&apos;re seeking passionate innovators who want to drive real change in Egyptian tourism.
                                 Join our mission to make Egypt a global leader in travel technology and digital experiences.
                             </p>
                         </div>

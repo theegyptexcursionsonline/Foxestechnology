@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Store, Zap } from 'lucide-react';
 
 export default function ProblemSolutionSection() {
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: (isLeft: boolean) => ({ 
       opacity: 0, 
       x: isLeft ? -50 : 50 
@@ -59,7 +59,7 @@ export default function ProblemSolutionSection() {
                 Globally, over <strong className="font-semibold text-red-400">80% of tour and activity bookings are still made offline</strong>, leaving immense potential untapped.
               </p>
               <p>
-                In local markets, up to <strong className="font-semibold text-red-400">90% of businesses don't sell online</strong>, often because they lack the necessary tools or expertise to build a successful digital presence.
+                In local markets, up to <strong className="font-semibold text-red-400">90% of businesses don&apos;t sell online</strong>, often because they lack the necessary tools or expertise to build a successful digital presence.
               </p>
             </div>
           </motion.div>

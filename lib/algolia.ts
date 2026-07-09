@@ -1,11 +1,15 @@
 import algoliasearch from 'algoliasearch/lite';
+import type { SearchClient } from 'instantsearch.js';
 
 // Algolia configuration - only initialize if credentials are available
 const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '';
 const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || '';
 
-export const searchClient = appId && apiKey
-  ? algoliasearch(appId, apiKey)
+// The v4 lite client is runtime-compatible with react-instantsearch v7, but its
+// SearchClient type differs slightly (getRecommendations signature). Cast once here
+// so every consumer gets the type InstantSearch expects.
+export const searchClient: SearchClient | null = appId && apiKey
+  ? (algoliasearch(appId, apiKey) as unknown as SearchClient)
   : null;
 
 export const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME || 'foxes_technology';

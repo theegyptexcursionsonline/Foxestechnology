@@ -185,7 +185,7 @@ const FoxestechnologyHero = () => {
               className="inline-flex items-center gap-3 bg-white/6 backdrop-blur rounded-full px-5 py-2 mb-6 border border-white/10"
             >
               <Star className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm text-white/90 font-medium">World's Leading Travel Tech Platform</span>
+              <span className="text-sm text-white/90 font-medium">World&apos;s Leading Travel Tech Platform</span>
             </motion.div>
 
             {/* Headline */}

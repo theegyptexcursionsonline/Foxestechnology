@@ -279,7 +279,7 @@ function OfflineCapabilities() {
                         <WifiOff className="w-16 h-16 text-white mb-6" />
                         <h2 className="text-4xl font-black text-white mb-6">Works Anywhere, Even Offline</h2>
                         <p className="text-xl text-red-100 mb-6">
-                            Don't let poor internet ruin your day. Our POS devices work perfectly offline and
+                            Don&apos;t let poor internet ruin your day. Our POS devices work perfectly offline and
                             automatically sync when connectivity returns.
                         </p>
                         <ul className="space-y-4">
@@ -397,7 +397,7 @@ function Specifications() {
                         <ul className="space-y-2 text-gray-600">
                             <li>• Quad-core processor</li>
                             <li>• 4GB RAM / 32GB storage</li>
-                            <li>• 5" or 10" touchscreen</li>
+                            <li>• 5&quot; or 10&quot; touchscreen</li>
                             <li>• Built-in cameras</li>
                             <li>• NFC & Bluetooth</li>
                         </ul>

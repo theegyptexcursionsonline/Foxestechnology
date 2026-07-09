@@ -28,7 +28,7 @@ export default function PartnershipBanner() {
               An Official Partner You Can Trust
             </h2>
             <p className="mt-1 text-slate-300 max-w-xl">
-              [cite_start]Foxes Technology is proud to be an official partner of the **Ministry of Tourism and Antiquities**, driving digital transformation in Egypt's travel sector[cite: 14].
+              [cite_start]Foxes Technology is proud to be an official partner of the **Ministry of Tourism and Antiquities**, driving digital transformation in Egypt&apos;s travel sector[cite: 14].
             </p>
           </div>
         </motion.div>

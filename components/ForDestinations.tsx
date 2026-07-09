@@ -97,7 +97,7 @@ export default function ForDestinations() {
                         >
                             Digitally Transforming{' '}
                             <span className="block mt-2 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
-                                Egypt's Tourism Ecosystem
+                                Egypt&apos;s Tourism Ecosystem
                             </span>
                         </motion.h2>
 
@@ -110,7 +110,7 @@ export default function ForDestinations() {
                             className="mt-6 text-lg leading-relaxed text-gray-200 lg:text-xl"
                             style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}
                         >
-                            We partner with the Egyptian Ministry of Tourism and destination authorities to digitize entire tourism ecosystems—from Luxor's ancient wonders to Sharm El Sheikh's coastal resorts—empowering operators nationwide with world-class technology and driving sustainable economic growth.
+                            We partner with the Egyptian Ministry of Tourism and destination authorities to digitize entire tourism ecosystems—from Luxor&apos;s ancient wonders to Sharm El Sheikh&apos;s coastal resorts—empowering operators nationwide with world-class technology and driving sustainable economic growth.
                         </motion.p>
 
                         {/* Stats Card */}
@@ -135,7 +135,7 @@ export default function ForDestinations() {
                                             80% offline opportunity
                                         </p>
                                         <p className="mt-2 text-sm leading-relaxed text-gray-200">
-                                            As digital transformers, we're unlocking massive growth potential by bringing Egyptian operators into the global marketplace with modern booking technology.
+                                            As digital transformers, we&apos;re unlocking massive growth potential by bringing Egyptian operators into the global marketplace with modern booking technology.
                                         </p>
                                     </div>
                                 </div>

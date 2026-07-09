@@ -533,7 +533,7 @@ function Testimonials() {
                         Loved by Tour Operators
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        Don't just take our word for it
+                        Don&apos;t just take our word for it
                     </p>
                 </motion.div>
 
@@ -552,7 +552,7 @@ function Testimonials() {
                                     <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                                 ))}
                             </div>
-                            <p className="text-lg leading-relaxed text-slate-700">"{testimonial.quote}"</p>
+                            <p className="text-lg leading-relaxed text-slate-700">&quot;{testimonial.quote}&quot;</p>
                             <div className="mt-6 flex items-center gap-4">
                                 <div className="h-12 w-12 rounded-full bg-slate-200"></div>
                                 <div>

@@ -197,7 +197,7 @@ function KeyMetrics() {
         { icon: PieChart, title: 'Channel Analysis', description: 'Revenue by source, OTA performance, direct bookings', color: 'cyan' },
     ];
 
-    const colorClasses: any = {
+    const colorClasses: Record<string, { bg: string; text: string }> = {
         green: { bg: 'bg-green-100', text: 'text-green-600' },
         blue: { bg: 'bg-blue-100', text: 'text-blue-600' },
         purple: { bg: 'bg-purple-100', text: 'text-purple-600' },

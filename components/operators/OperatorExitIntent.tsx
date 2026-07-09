@@ -55,8 +55,8 @@ export default function OperatorExitIntent({ copy, category, locale, forceShow =
       try {
         window.sessionStorage.setItem(SESSION_KEY, '1');
       } catch {}
-      if (typeof (window as any).gtag === 'function') {
-        (window as any).gtag('event', 'exit_intent_shown', { category, locale });
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'exit_intent_shown', { category, locale });
       }
     };
 
@@ -166,11 +166,11 @@ export default function OperatorExitIntent({ copy, category, locale, forceShow =
       const data = await res.json().catch(() => ({}));
       if (res.ok && data?.ok) {
         setStatus('success');
-        if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'exit_intent_submitted', { category, locale });
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'exit_intent_submitted', { category, locale });
         }
-        if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
-          (window as any).fbq('track', 'Lead', { category, magnet: copy.headline });
+        if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead', { category, magnet: copy.headline });
         }
       } else {
         setStatus('error');

@@ -147,7 +147,18 @@ function TrustBadges() {
 }
 
 // 3. Enhanced Pricing Tiers
-const tiers = [
+type PricingTier = {
+    name: string;
+    id: string;
+    href: string;
+    price: { monthly: number; annually: number } | 'Custom';
+    description: string;
+    features: string[];
+    notIncluded: string[];
+    mostPopular?: boolean;
+};
+
+const tiers: PricingTier[] = [
     {
         name: 'Starter',
         id: 'tier-starter',
@@ -359,7 +370,7 @@ function FeatureComparison() {
                         Compare All Features
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        See exactly what's included in each plan
+                        See exactly what&apos;s included in each plan
                     </p>
                 </motion.div>
 

@@ -28,7 +28,7 @@ describe('Footer Component', () => {
 
   it('should have Solutions section', () => {
     render(<Footer />);
-    const solutionsHeading = screen.getByText(/solutions/i);
+    const solutionsHeading = screen.getByRole('heading', { name: 'Solutions' });
     expect(solutionsHeading).toBeInTheDocument();
   });
 

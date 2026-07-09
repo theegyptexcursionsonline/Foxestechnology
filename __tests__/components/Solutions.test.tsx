@@ -13,7 +13,7 @@ describe('Solutions Component', () => {
     const { container } = render(<Solutions />);
     // Solutions component should have content
     expect(container.textContent).toBeTruthy();
-    expect(container.textContent.length).toBeGreaterThan(0);
+    expect((container.textContent ?? '').length).toBeGreaterThan(0);
   });
 
   it('should render solution links', () => {

@@ -82,7 +82,7 @@ export default function NotFound() {
                         className="mb-6 text-3xl font-black text-white sm:text-4xl lg:text-5xl"
                         style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.8)' }}
                     >
-                        Oops! Looks Like You're Lost
+                        Oops! Looks Like You&apos;re Lost
                     </motion.h2>
 
                     <motion.p
@@ -92,8 +92,8 @@ export default function NotFound() {
                         className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-gray-300"
                         style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}
                     >
-                        The page you're looking for doesn't exist or has been moved.
-                        Don't worry, let's get you back on track.
+                        The page you&apos;re looking for doesn&apos;t exist or has been moved.
+                        Don&apos;t worry, let&apos;s get you back on track.
                     </motion.p>
 
                     {/* Action Buttons */}

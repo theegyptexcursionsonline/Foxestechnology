@@ -329,12 +329,12 @@ function Customization() {
                         <div className="space-y-4">
                             <div className="bg-white/10 rounded-lg p-4">
                                 <h4 className="text-white font-bold mb-2">Standard Kiosk</h4>
-                                <p className="text-blue-100 text-sm mb-2">22" touchscreen, card reader, printer</p>
+                                <p className="text-blue-100 text-sm mb-2">22&quot; touchscreen, card reader, printer</p>
                                 <p className="text-white text-xl font-black">From $2,999</p>
                             </div>
                             <div className="bg-white/10 rounded-lg p-4">
                                 <h4 className="text-white font-bold mb-2">Premium Kiosk</h4>
-                                <p className="text-blue-100 text-sm mb-2">32" touchscreen, dual screens, camera</p>
+                                <p className="text-blue-100 text-sm mb-2">32&quot; touchscreen, dual screens, camera</p>
                                 <p className="text-white text-xl font-black">From $4,999</p>
                             </div>
                             <div className="bg-white/10 rounded-lg p-4">

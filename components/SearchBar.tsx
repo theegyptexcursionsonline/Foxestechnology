@@ -47,7 +47,7 @@ function SearchResults({ onResultClick, inline = false }: SearchResultsProps) {
           </div>
           <h3 className="text-lg font-bold text-gray-900 mb-2">No results found</h3>
           <p className="text-sm text-gray-600 mb-4">
-            We couldn't find any matches for your search. Try different keywords.
+            We couldn&apos;t find any matches for your search. Try different keywords.
           </p>
           <div className="flex flex-wrap gap-2 justify-center">
             {popularSearches.slice(0, 3).map((search) => (

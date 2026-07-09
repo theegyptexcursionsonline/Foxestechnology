@@ -96,15 +96,15 @@ export default function LeadForm({
       const data = await res.json().catch(() => ({}));
       if (data?.ok) {
         setStatus('success');
-        if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'lead_submitted', {
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'lead_submitted', {
             category,
             locale,
             monthly_bookings: monthlyBookings,
           });
         }
-        if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
-          (window as any).fbq('track', 'Lead', { category });
+        if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead', { category });
         }
       } else {
         setStatus('error');

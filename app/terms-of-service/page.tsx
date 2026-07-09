@@ -20,7 +20,7 @@ export default function TermsOfServicePage() {
           <section className="mb-10">
             <h2 className="font-poppins text-2xl font-bold text-slate-900">1. Acceptance of Terms</h2>
             <p className="mt-4 text-slate-700 leading-relaxed">
-              By accessing or using the services provided by Foxes Technology ("we," "our," or "us"), including our booking management system, POS solutions, and related products (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not use our Services.
+              By accessing or using the services provided by Foxes Technology (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), including our booking management system, POS solutions, and related products (collectively, the &quot;Services&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, you may not use our Services.
             </p>
           </section>
 
@@ -53,7 +53,7 @@ export default function TermsOfServicePage() {
             <p className="mt-4 text-slate-700 leading-relaxed">You agree not to:</p>
             <ul className="mt-4 space-y-2 text-slate-700">
               <li>Use our Services for any illegal, fraudulent, or unauthorized purpose</li>
-              <li>Attempt to gain unauthorized access to our systems or other users' accounts</li>
+              <li>Attempt to gain unauthorized access to our systems or other users&apos; accounts</li>
               <li>Interfere with or disrupt the operation of our Services</li>
               <li>Upload viruses, malware, or harmful code</li>
               <li>Scrape, copy, or reverse engineer our Services</li>
@@ -138,7 +138,7 @@ export default function TermsOfServicePage() {
           <section className="mb-10">
             <h2 className="font-poppins text-2xl font-bold text-slate-900">14. Changes to These Terms</h2>
             <p className="mt-4 text-slate-700 leading-relaxed">
-              We reserve the right to modify these Terms at any time. We will notify you of significant changes by posting the updated Terms on our website and updating the "Last Updated" date. Your continued use of our Services after changes indicates acceptance of the updated Terms.
+              We reserve the right to modify these Terms at any time. We will notify you of significant changes by posting the updated Terms on our website and updating the &quot;Last Updated&quot; date. Your continued use of our Services after changes indicates acceptance of the updated Terms.
             </p>
           </section>
 

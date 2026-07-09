@@ -99,7 +99,7 @@ export default function FAQ() {
                         Frequently Asked Questions
                     </p>
                     <p className="mt-4 text-lg text-dark-grey">
-                        Can't find the answer you're looking for? Reach out to our friendly team.
+                        Can&apos;t find the answer you&apos;re looking for? Reach out to our friendly team.
                     </p>
                 </motion.div>
 

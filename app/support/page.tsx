@@ -52,7 +52,7 @@ function SupportHero() {
 
                     <h1 className="mt-8 text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
                         style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.5)' }}>
-                        We're Here to Help
+                        We&apos;re Here to Help
                         <span className="block bg-gradient-to-r from-red-500 via-red-400 to-orange-500 bg-clip-text text-transparent">
                             24/7 Support
                         </span>
@@ -61,7 +61,7 @@ function SupportHero() {
                     <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-300 lg:text-xl"
                        style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}>
                         Get expert help from our dedicated support team. Whether you need technical assistance,
-                        have questions about features, or need guidance, we're available around the clock.
+                        have questions about features, or need guidance, we&apos;re available around the clock.
                     </p>
 
                     <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -404,7 +404,7 @@ function ContactFormSection() {
                         Send Us a Message
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        Can't find what you're looking for? Reach out directly
+                        Can&apos;t find what you&apos;re looking for? Reach out directly
                     </p>
                 </motion.div>
 

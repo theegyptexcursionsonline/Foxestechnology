@@ -335,7 +335,7 @@ function APICTA() {
                             </h2>
                             <p className="mt-4 text-lg leading-relaxed text-gray-300">
                                 Dive into our API reference or get help from our support team.
-                                We're here to help you succeed.
+                                We&apos;re here to help you succeed.
                             </p>
                         </div>
                         <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">

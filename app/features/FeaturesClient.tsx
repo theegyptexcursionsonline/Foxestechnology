@@ -471,7 +471,7 @@ function TestimonialsSection() {
                                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                                 ))}
                             </div>
-                            <p className="text-white text-lg mb-6">"{testimonial.quote}"</p>
+                            <p className="text-white text-lg mb-6">&quot;{testimonial.quote}&quot;</p>
                             <div>
                                 <div className="font-bold text-white">{testimonial.author}</div>
                                 <div className="text-sm text-gray-400">{testimonial.role}</div>

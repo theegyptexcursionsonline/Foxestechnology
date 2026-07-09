@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "algolia:upload": "ts-node --project tsconfig.node.json scripts/uploadToAlgolia.ts",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",

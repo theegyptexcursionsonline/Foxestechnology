@@ -131,7 +131,7 @@ function HeroSection() {
                                 <div className="p-4 space-y-3 h-80 bg-gray-50">
                                     <div className="flex gap-2">
                                         <div className="bg-purple-600 text-white rounded-2xl rounded-tl-sm px-4 py-2 max-w-[80%]">
-                                            Hello! I'm your AI assistant. How can I help you today?
+                                            Hello! I&apos;m your AI assistant. How can I help you today?
                                         </div>
                                     </div>
                                     <div className="flex gap-2 justify-end">
@@ -375,7 +375,7 @@ function ROIMetrics() {
                     viewport={{ once: true }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl font-black text-white mb-6">The Numbers Don't Lie</h2>
+                    <h2 className="text-4xl font-black text-white mb-6">The Numbers Don&apos;t Lie</h2>
                     <p className="text-xl text-purple-100">Average results from 500+ tour operators</p>
                 </motion.div>
 

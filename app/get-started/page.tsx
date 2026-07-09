@@ -368,7 +368,7 @@ function ChecklistSection() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-4xl font-black text-slate-900 lg:text-5xl">
-                        What You'll Need
+                        What You&apos;ll Need
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
                         Gather these items before you start for a smooth setup

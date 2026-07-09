@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence, useInView, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useSpring, useTransform, type Variants } from 'framer-motion';
 import { ArrowRight, CheckCircle, Users, BarChart3, DollarSign, TrendingUp, X, Sparkles } from 'lucide-react';
 
 // --- Configuration ---
@@ -114,7 +114,7 @@ const ComingSoonModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                   transition={{ delay: 0.4 }}
                   className="mb-6 text-base leading-relaxed text-gray-300"
                 >
-                  We're putting the finishing touches on an amazing onboarding experience.
+                  We&apos;re putting the finishing touches on an amazing onboarding experience.
                   Get notified when we launch!
                 </motion.p>
 
@@ -241,14 +241,14 @@ const BackgroundSlider = () => {
 
 // --- Sub-component: Hero Content ---
 const HeroContent = ({ isInView, setIsModalOpen }: { isInView: boolean; setIsModalOpen: (open: boolean) => void }) => {
-  const containerVariants = { 
-    hidden: { opacity: 0 }, 
-    visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } } 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } }
   };
-  
-  const itemVariants = { 
-    hidden: { opacity: 0, y: 30 }, 
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } } 
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } }
   };
 
   return (
@@ -375,14 +375,14 @@ const HeroContent = ({ isInView, setIsModalOpen }: { isInView: boolean; setIsMod
 
 // --- Sub-component: Device Mockup (Now Just Image) ---
 const DeviceMockup = ({ isInView }: { isInView: boolean }) => {
-  const containerVariants = { 
-    hidden: { opacity: 0, scale: 0.85, y: 50 }, 
-    visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 60, damping: 20, delay: 0.4 } } 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.85, y: 50 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 60, damping: 20, delay: 0.4 } }
   };
-  
-  const cardVariants = (delay: number) => ({ 
-    hidden: { opacity: 0, y: 40, scale: 0.9 }, 
-    visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 80, damping: 15, delay: 0.8 + delay } } 
+
+  const cardVariants = (delay: number): Variants => ({
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 80, damping: 15, delay: 0.8 + delay } }
   });
 
   return (
@@ -493,10 +493,10 @@ const FloatingCard = ({
   children, 
   className, 
   variants 
-}: { 
-  children: React.ReactNode; 
-  className: string; 
-  variants: any;
+}: {
+  children: React.ReactNode;
+  className: string;
+  variants: Variants;
 }) => (
   <motion.div 
     variants={variants} 

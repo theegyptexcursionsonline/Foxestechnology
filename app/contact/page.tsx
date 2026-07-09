@@ -66,7 +66,7 @@ function ContactHero() {
 
                     <h1 className="text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
                         style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.5)' }}>
-                        Let's Build Something
+                        Let&apos;s Build Something
                         <span className="block bg-gradient-to-r from-red-500 via-red-400 to-orange-500 bg-clip-text text-transparent">
                             Amazing Together
                         </span>
@@ -158,7 +158,7 @@ function ContactMethods() {
                         Choose Your Preferred Channel
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        We're available through multiple channels to serve you better
+                        We&apos;re available through multiple channels to serve you better
                     </p>
                 </motion.div>
 
@@ -246,7 +246,7 @@ function ContactFormAndInfo() {
                                 Send Us a Message
                             </h2>
                             <p className="mt-4 text-lg text-slate-600">
-                                Fill out the form below and we'll get back to you within 24 hours.
+                                Fill out the form below and we&apos;ll get back to you within 24 hours.
                             </p>
                         </div>
 

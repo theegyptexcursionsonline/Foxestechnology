@@ -161,7 +161,7 @@ export default function CookiePolicy() {
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">1. Cookie Consent Banner</h3>
                 <p className="text-gray-600">
-                  When you first visit our website, you'll see a cookie consent banner where you can choose which types of cookies to accept.
+                  When you first visit our website, you&apos;ll see a cookie consent banner where you can choose which types of cookies to accept.
                 </p>
               </div>
 
@@ -200,7 +200,7 @@ export default function CookiePolicy() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Do Not Track Signals</h2>
             <p className="text-gray-600 leading-relaxed">
-              Some browsers include a "Do Not Track" (DNT) feature that signals to websites you visit that you do not want to be tracked. We currently do not respond to DNT signals, as there is no industry standard for how DNT should be interpreted. We will continue to monitor developments around DNT browser technology.
+              Some browsers include a &quot;Do Not Track&quot; (DNT) feature that signals to websites you visit that you do not want to be tracked. We currently do not respond to DNT signals, as there is no industry standard for how DNT should be interpreted. We will continue to monitor developments around DNT browser technology.
             </p>
           </section>
 
@@ -208,7 +208,7 @@ export default function CookiePolicy() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Changes to This Policy</h2>
             <p className="text-gray-600 leading-relaxed">
-              We may update this Cookie Policy from time to time to reflect changes in technology, legislation, or our business practices. We will notify you of any material changes by posting the updated policy on this page with a new "Last Updated" date.
+              We may update this Cookie Policy from time to time to reflect changes in technology, legislation, or our business practices. We will notify you of any material changes by posting the updated policy on this page with a new &quot;Last Updated&quot; date.
             </p>
           </section>
 

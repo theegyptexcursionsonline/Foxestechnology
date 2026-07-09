@@ -7,6 +7,18 @@ afterEach(() => {
   cleanup();
 });
 
+// Mock next/font/google — the font loaders only run inside Next's build/runtime,
+// so under vitest they must return a stub with the className/variable shape the
+// components spread onto elements.
+vi.mock('next/font/google', () => {
+  const fontLoader = () => ({
+    className: 'mock-font',
+    variable: '--mock-font',
+    style: { fontFamily: 'mock-font' },
+  });
+  return new Proxy({}, { get: () => fontLoader });
+});
+
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
@@ -22,8 +34,39 @@ vi.mock('next/navigation', () => ({
 }));
 
 // Mock framer-motion
+//
+// jsdom can't run the real animation engine, so we swap motion.* for plain DOM
+// elements and give the motion-value hooks (useSpring/useTransform/useScroll) a
+// minimal MotionValue shape. Components render motion values directly as children
+// (e.g. <motion.span>{useTransform(...)}</motion.span>), so the mock resolves any
+// motion-value child to its current value before rendering — otherwise React
+// throws "Objects are not valid as a React child".
 vi.mock('framer-motion', async () => {
   const React = await import('react');
+
+  const MOTION_VALUE = Symbol.for('framer-motion.mock.motionValue');
+
+  const createMotionValue = (initial: any) => {
+    let current = initial;
+    return {
+      [MOTION_VALUE]: true,
+      get: () => current,
+      set: (next: any) => {
+        current = next;
+      },
+      on: () => () => {},
+      destroy: () => {},
+    };
+  };
+
+  const isMotionValue = (value: any) => Boolean(value && value[MOTION_VALUE]);
+
+  const resolveChildren = (children: any): any => {
+    if (isMotionValue(children)) return String(children.get());
+    if (Array.isArray(children)) return children.map(resolveChildren);
+    return children;
+  };
+
   return {
     motion: new Proxy(
       {},
@@ -48,10 +91,13 @@ vi.mock('framer-motion', async () => {
               dragElastic,
               onDragStart,
               onDragEnd,
+              custom,
+              layout,
+              layoutId,
               style,
               ...rest
             } = props;
-            return React.createElement(prop as string, { ...rest, ref, style }, children);
+            return React.createElement(prop as string, { ...rest, ref, style }, resolveChildren(children));
           });
           Component.displayName = `motion.${String(prop)}`;
           return Component;
@@ -66,11 +112,17 @@ vi.mock('framer-motion', async () => {
     }),
     useInView: () => true,
     useScroll: () => ({
-      scrollY: { current: 0 },
-      scrollYProgress: { current: 0 },
+      scrollY: createMotionValue(0),
+      scrollYProgress: createMotionValue(0),
     }),
-    useTransform: () => ({ current: 0 }),
-    useSpring: () => ({ current: 0 }),
+    useMotionValue: (initial: any) => createMotionValue(initial),
+    useTransform: (input: any, transformer?: any) => {
+      if (typeof transformer === 'function' && isMotionValue(input)) {
+        return createMotionValue(transformer(input.get()));
+      }
+      return createMotionValue(typeof input === 'function' ? input() : 0);
+    },
+    useSpring: (source: any) => createMotionValue(isMotionValue(source) ? source.get() : source),
   };
 });
 

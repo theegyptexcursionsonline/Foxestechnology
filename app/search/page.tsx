@@ -132,7 +132,7 @@ function SearchContent() {
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">AI-Powered Search</h1>
                 <p className="text-gray-600">
-                  Find exactly what you're looking for with intelligent search
+                  Find exactly what you&apos;re looking for with intelligent search
                 </p>
               </div>
             </motion.div>
