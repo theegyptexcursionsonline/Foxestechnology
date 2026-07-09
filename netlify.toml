@@ -4,3 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # These NEXT_PUBLIC_* values are public by design — Next.js inlines them into the
+  # client bundle (Algolia browser search uses a search-only key). Netlify secrets
+  # scanning otherwise fails the build on finding them in the output. The real
+  # secret (ALGOLIA_ADMIN_API_KEY, unprefixed) is intentionally NOT omitted.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_ALGOLIA_APP_ID,NEXT_PUBLIC_ALGOLIA_INDEX_NAME,NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY,NEXT_PUBLIC_SHOW_COMING_SOON"
