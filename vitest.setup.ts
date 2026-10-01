@@ -16,7 +16,18 @@ vi.mock('next/font/google', () => {
     variable: '--mock-font',
     style: { fontFamily: 'mock-font' },
   });
-  return new Proxy({}, { get: () => fontLoader });
+  // Any font name resolves to the loader, but `then` must stay undefined: a module object
+  // that answers `then` looks like a promise to the module loader, and importing a file
+  // that uses next/font (e.g. the coming-soon page) would then wait forever. `has` mirrors
+  // `get` so Vitest's named-export check accepts every font name.
+  const isFont = (prop: string | symbol) => typeof prop === 'string' && prop !== 'then';
+  return new Proxy(
+    {},
+    {
+      get: (_target, prop) => (isFont(prop) ? fontLoader : undefined),
+      has: (_target, prop) => isFont(prop),
+    },
+  );
 });
 
 // Mock next/navigation
@@ -67,11 +78,18 @@ vi.mock('framer-motion', async () => {
     return children;
   };
 
+  // One component per tag, like the real library: building a new component on every
+  // `motion.div` access would give it a new identity on each render, so React would remount
+  // the subtree whenever state changes (e.g. while typing into a form inside it).
+  const motionComponents = new Map<PropertyKey, unknown>();
+
   return {
     motion: new Proxy(
       {},
       {
         get: (_, prop) => {
+          const cached = motionComponents.get(prop);
+          if (cached) return cached;
           const Component = React.forwardRef<any, any>(({ children, ...props }: any, ref: any) => {
             // Filter out framer-motion specific props
             const {
@@ -100,6 +118,7 @@ vi.mock('framer-motion', async () => {
             return React.createElement(prop as string, { ...rest, ref, style }, resolveChildren(children));
           });
           Component.displayName = `motion.${String(prop)}`;
+          motionComponents.set(prop, Component);
           return Component;
         },
       }

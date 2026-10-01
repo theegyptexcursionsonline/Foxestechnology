@@ -2,17 +2,23 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, Gift } from 'lucide-react';
+import { X, Sparkles, Bell } from 'lucide-react';
+import { joinPriorityList, PRIORITY_LIST_MESSAGES, type EmailSignupResult } from '@/lib/priority-list';
 
 interface ExitIntentModalProps {
   isOpen: boolean;
   onClose: () => void;
+  /** Called after the email has been recorded. */
   onEmailSubmit?: (email: string) => void;
 }
 
+type Status = 'idle' | 'submitting' | 'success' | 'error';
+
 export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: ExitIntentModalProps) {
   const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
+  const [message, setMessage] = useState('');
+  const isSubmitted = status === 'success';
 
   useEffect(() => {
     if (isOpen) {
@@ -25,16 +31,27 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
     };
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Confirm only once the lead endpoint has recorded the email.
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (onEmailSubmit) {
-      onEmailSubmit(email);
+    if (status === 'submitting' || status === 'success') return;
+    setStatus('submitting');
+    const result: EmailSignupResult = await joinPriorityList(
+      email,
+      typeof window !== 'undefined' ? window.location.pathname : undefined,
+    );
+    if (result !== 'ok') {
+      setStatus('error');
+      setMessage(PRIORITY_LIST_MESSAGES[result]);
+      return;
     }
+    setStatus('success');
+    setMessage(PRIORITY_LIST_MESSAGES.success);
+    onEmailSubmit?.(email);
     setTimeout(() => {
       onClose();
       setEmail('');
-      setIsSubmitted(false);
+      setStatus('idle');
     }, 3000);
   };
 
@@ -134,7 +151,7 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                       ease: "easeInOut",
                     }}
                   />
-                  <Gift className="h-10 w-10 text-white relative z-10" />
+                  <Bell className="h-10 w-10 text-white relative z-10" />
                 </motion.div>
 
                 {/* Heading */}
@@ -144,7 +161,7 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                   transition={{ delay: 0.3 }}
                   className="mb-3 text-3xl md:text-4xl font-black text-white"
                 >
-                  Wait! Don&apos;t Miss Out
+                  Before you go
                 </motion.h2>
 
                 {/* Subheading */}
@@ -156,7 +173,7 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                 >
                   <Sparkles className="h-5 w-5 text-yellow-400" />
                   <p className="text-lg font-semibold text-yellow-400">
-                    Get Exclusive Launch Benefits
+                    Join the priority list
                   </p>
                   <Sparkles className="h-5 w-5 text-yellow-400" />
                 </motion.div>
@@ -168,9 +185,8 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                   transition={{ delay: 0.5 }}
                   className="mb-8 text-base md:text-lg leading-relaxed text-slate-300"
                 >
-                  Be among the first to experience the future of tour booking!
-                  Sign up now and get <span className="text-red-400 font-bold">early access</span> plus{' '}
-                  <span className="text-red-400 font-bold">special launch pricing</span> on July 15th, 2026.
+                  Be among the first to try Foxes. Leave your email and our team will let you know
+                  as soon as <span className="text-red-400 font-bold">access opens</span>.
                 </motion.p>
 
                 {/* Email Form */}
@@ -187,16 +203,16 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email for exclusive access"
+                      placeholder="Your email address"
                       required
-                      disabled={isSubmitted}
+                      disabled={isSubmitted || status === 'submitting'}
                       className="relative w-full rounded-xl border-2 border-white/20 bg-white/10 px-6 py-4 text-white placeholder-white/60 backdrop-blur-xl transition-all focus:border-red-500 focus:bg-white/15 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
                   <motion.button
                     type="submit"
-                    disabled={isSubmitted}
+                    disabled={isSubmitted || status === 'submitting'}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-600 to-orange-600 px-6 py-4 font-bold text-white shadow-lg shadow-red-600/50 transition-all hover:shadow-xl hover:shadow-red-600/60 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
@@ -213,10 +229,16 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                       }}
                     />
                     <span className="relative z-10">
-                      {isSubmitted ? '✓ Reserved!' : 'Reserve My Spot Now'}
+                      {isSubmitted ? '✓ Done' : status === 'submitting' ? 'Sending…' : 'Notify me'}
                     </span>
                   </motion.button>
                 </motion.form>
+
+                {status === 'error' && (
+                  <p role="alert" className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm font-medium text-red-300">
+                    {message}
+                  </p>
+                )}
 
                 {/* Success Message */}
                 <AnimatePresence>
@@ -231,7 +253,7 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        You&apos;re on the list! Check your email for updates.
+                        {message}
                       </p>
                     </motion.div>
                   )}
@@ -245,10 +267,8 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                   className="mt-8 space-y-3 text-left"
                 >
                   {[
-                    'Early access to all features',
-                    'Special launch pricing (50% off)',
-                    'Priority customer support',
-                    'Exclusive beta features',
+                    'Your email goes straight to our team',
+                    'We let you know as soon as access opens',
                   ].map((feature, index) => (
                     <motion.div
                       key={index}
@@ -274,7 +294,7 @@ export default function ExitIntentModal({ isOpen, onClose, onEmailSubmit }: Exit
                   transition={{ delay: 1.2 }}
                   className="mt-6 text-xs text-slate-500"
                 >
-                  No spam. Just updates about our launch. Unsubscribe anytime.
+                  We only use your email to tell you about access to Foxes.
                 </motion.p>
               </div>
             </motion.div>

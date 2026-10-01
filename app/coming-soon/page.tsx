@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ExitIntentModal from '@/components/ExitIntentModal';
+import { joinPriorityList, PRIORITY_LIST_MESSAGES } from '@/lib/priority-list';
 import { Playfair_Display, Inter, Space_Grotesk } from 'next/font/google';
 import { ArrowRight, Check, Sparkles } from 'lucide-react';
 
@@ -20,17 +21,16 @@ const SLIDE_NAMES = ['The Middle East', 'Egypt', 'United Arab Emirates', 'Saudi 
 const ROTATING_WORDS = ['technology', 'booking', 'operations', 'intelligence'];
 
 const STATS = [
-  { n: '1,200+', l: 'operators waiting' },
   { n: '4', l: 'countries' },
   { n: '1', l: 'platform' },
   { n: '∞', l: 'ways to grow' },
 ];
 
 const FAQS = [
-  { q: 'When does Foxes Technology launch?', a: 'We are targeting July 15, 2026 across Egypt, the GCC and the wider MENA region. Priority members get early access ahead of the public launch.' },
+  { q: 'When does Foxes Technology launch?', a: 'We are opening access in stages across Egypt, the GCC and the wider MENA region. Join the priority list and we will email you as soon as access opens.' },
   { q: 'What exactly are you building?', a: 'One platform for tour & activity operators to take direct bookings, manage availability and run their whole operation — built for Egypt, the GCC and the wider MENA region.' },
   { q: 'Who is it for?', a: 'Tour & activity operators, DMCs and attractions across Egypt, the GCC and MENA who want to take direct bookings and run their whole operation in one place.' },
-  { q: 'How do I get early access?', a: 'Join the priority list below. We will reach out before launch with early access and introductory pricing.' },
+  { q: 'How do I get early access?', a: 'Join the priority list below and we will email you as soon as access opens. If you are ready to talk now, request access at foxestechnology.com/request-access and our team will follow up.' },
 ];
 
 const CSS = `
@@ -50,70 +50,43 @@ function GoldDot() {
   return <span className="mx-2.5 inline-block size-1 rounded-full bg-amber-300/70 align-middle" />;
 }
 
-function Countdown({ time }: { time: { days: number; hours: number; minutes: number; seconds: number } }) {
-  const items = [
-    { v: time.days, l: 'Days' },
-    { v: time.hours, l: 'Hours' },
-    { v: time.minutes, l: 'Minutes' },
-    { v: time.seconds, l: 'Seconds' },
-  ];
-  return (
-    <div className="flex items-stretch justify-center gap-2 sm:gap-3">
-      {items.map((it) => (
-        <div key={it.l} className="group relative rounded-2xl fx-hairline p-px shadow-[0_18px_40px_-22px_rgba(0,0,0,0.8)]">
-          <div className="flex min-w-[62px] flex-col items-center rounded-[15px] bg-[#15100b]/80 px-2.5 py-3 backdrop-blur-xl sm:min-w-[82px] sm:px-4 sm:py-3.5">
-            <span style={serif} className="relative flex h-[1.05em] w-full items-center justify-center overflow-hidden text-[1.75rem] font-medium leading-none tabular-nums sm:text-[2.5rem]">
-              <AnimatePresence initial={false} mode="popLayout">
-                <motion.span key={it.v} initial={{ y: '110%', opacity: 0 }} animate={{ y: '0%', opacity: 1 }} exit={{ y: '-110%', opacity: 0 }} transition={{ duration: 0.5, ease: EASE }} className="fx-gold block">
-                  {it.v.toString().padStart(2, '0')}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-            <span style={mono} className="mt-2 text-[8px] uppercase tracking-[0.22em] text-amber-100/45 sm:text-[9px]">{it.l}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+type SignupStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-function Avatars() {
-  const tones = ['from-amber-200 to-amber-400', 'from-orange-200 to-amber-500', 'from-yellow-100 to-amber-300', 'from-amber-300 to-orange-400'];
-  return (
-    <div className="flex -space-x-2.5">
-      {tones.map((t, i) => (
-        <span key={i} className={`size-7 rounded-full bg-gradient-to-br ${t} ring-2 ring-[#0a0806]`} />
-      ))}
-    </div>
-  );
-}
-
-function Waitlist({ email, setEmail, onSubmit, isSubmitted, proof = true }: { email: string; setEmail: (v: string) => void; onSubmit: (e: React.FormEvent) => void; isSubmitted: boolean; proof?: boolean }) {
+function Waitlist({ email, setEmail, onSubmit, status, message }: { email: string; setEmail: (v: string) => void; onSubmit: (e: React.FormEvent) => void; status: SignupStatus; message: string }) {
+  const done = status === 'success';
+  const busy = status === 'submitting';
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-4">
       <form onSubmit={onSubmit} className="w-full">
         <div className="group relative rounded-[1.4rem] fx-hairline p-px transition focus-within:shadow-[0_0_0_3px_rgba(234,186,99,0.18)] sm:rounded-full">
           <div className="flex flex-col gap-2 rounded-[1.35rem] bg-[#120d09]/75 p-2 backdrop-blur-xl sm:flex-row sm:items-center sm:rounded-full sm:p-1.5">
-            <input type="email" required placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isSubmitted} className="flex-1 rounded-xl bg-transparent px-4 py-3 text-[15px] text-white placeholder-amber-100/35 outline-none sm:rounded-full sm:px-5 sm:py-2.5" />
-            <button type="submit" disabled={isSubmitted} className="group/btn relative inline-flex w-full shrink-0 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 px-6 py-3 text-sm font-semibold tracking-wide text-[#1a1206] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-90 sm:w-auto sm:rounded-full sm:py-2.5" style={mono}>
+            <input type="email" required placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={done || busy} className="flex-1 rounded-xl bg-transparent px-4 py-3 text-[15px] text-white placeholder-amber-100/35 outline-none sm:rounded-full sm:px-5 sm:py-2.5" />
+            <button type="submit" disabled={done || busy} className="group/btn relative inline-flex w-full shrink-0 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 px-6 py-3 text-sm font-semibold tracking-wide text-[#1a1206] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-90 sm:w-auto sm:rounded-full sm:py-2.5" style={mono}>
               <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
-              {isSubmitted ? (<><Check className="size-4" /> You&apos;re in</>) : (<>Notify me <ArrowRight className="size-4 transition-transform group-hover/btn:translate-x-0.5" /></>)}
+              {done ? (<><Check className="size-4" /> You&apos;re in</>) : busy ? (<>Sending…</>) : (<>Notify me <ArrowRight className="size-4 transition-transform group-hover/btn:translate-x-0.5" /></>)}
             </button>
           </div>
         </div>
       </form>
       <AnimatePresence mode="wait">
-        {isSubmitted ? (
-          <motion.p key="ok" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-[13px] tracking-wide text-amber-200/85" style={mono}>
-            ✓ You&apos;re on the priority list — we&apos;ll email you before launch.
+        {done ? (
+          <motion.p key="ok" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-center text-[13px] tracking-wide text-amber-200/85" style={mono}>
+            ✓ {message}
           </motion.p>
-        ) : proof ? (
-          <motion.div key="proof" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-3">
-            <Avatars />
-            <span className="text-[13px] text-amber-50/55">Join <span className="font-semibold text-amber-100/90">1,200+ operators</span> getting early access</span>
-          </motion.div>
+        ) : status === 'error' ? (
+          <motion.p key="error" role="alert" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-center text-[13px] tracking-wide text-red-300" style={mono}>
+            {message}
+          </motion.p>
         ) : null}
       </AnimatePresence>
+      {!done && (
+        <p className="text-center text-[13px] leading-relaxed text-amber-50/55">
+          Invite-only for now. Ready to talk?{' '}
+          <a href="/request-access?source=foxestechnology" className="whitespace-nowrap font-semibold text-amber-100/90 underline-offset-4 transition hover:text-amber-50 hover:underline">
+            Request access&nbsp;→
+          </a>
+        </p>
+      )}
     </div>
   );
 }
@@ -129,10 +102,10 @@ const heroItem = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, tran
 
 export default function ComingSoonPage() {
   const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState<SignupStatus>('idle');
+  const [message, setMessage] = useState('');
   const [showExitIntent, setShowExitIntent] = useState(false);
   const [hasShownExitIntent, setHasShownExitIntent] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [slide, setSlide] = useState(0);
   const [wordIdx, setWordIdx] = useState(0);
@@ -147,42 +120,30 @@ export default function ComingSoonPage() {
     el.style.background = `radial-gradient(680px circle at ${x}% ${y}%, rgba(234,186,99,0.12), transparent 60%)`;
   };
 
-  useEffect(() => {
-    const target = new Date('2026-07-15T23:59:59');
-    const tick = () => {
-      const d = target.getTime() - Date.now();
-      setTimeLeft({
-        days: Math.max(0, Math.floor(d / 86400000)),
-        hours: Math.max(0, Math.floor((d % 86400000) / 3600000)),
-        minutes: Math.max(0, Math.floor((d % 3600000) / 60000)),
-        seconds: Math.max(0, Math.floor((d % 60000) / 1000)),
-      });
-    };
-    tick();
-    const i = setInterval(tick, 1000);
-    return () => clearInterval(i);
-  }, []);
-
   useEffect(() => { const t = setInterval(() => setSlide((s) => (s + 1) % HERO_SLIDES.length), 5500); return () => clearInterval(t); }, []);
   useEffect(() => { const t = setInterval(() => setWordIdx((w) => (w + 1) % ROTATING_WORDS.length), 2600); return () => clearInterval(t); }, []);
 
   useEffect(() => {
-    const onLeave = (e: MouseEvent) => { if (e.clientY <= 0 && !hasShownExitIntent && !isSubmitted) { setShowExitIntent(true); setHasShownExitIntent(true); } };
+    const onLeave = (e: MouseEvent) => { if (e.clientY <= 0 && !hasShownExitIntent && status !== 'success') { setShowExitIntent(true); setHasShownExitIntent(true); } };
     const timer = setTimeout(() => document.addEventListener('mouseleave', onLeave), 6000);
     return () => { clearTimeout(timer); document.removeEventListener('mouseleave', onLeave); };
-  }, [hasShownExitIntent, isSubmitted]);
+  }, [hasShownExitIntent, status]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // The sign-up only counts once the lead endpoint has recorded it.
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => { setEmail(''); setIsSubmitted(false); }, 5000);
+    if (status === 'submitting' || status === 'success') return;
+    setStatus('submitting');
+    const result = await joinPriorityList(email, typeof window !== 'undefined' ? window.location.pathname : undefined);
+    setStatus(result === 'ok' ? 'success' : 'error');
+    setMessage(result === 'ok' ? PRIORITY_LIST_MESSAGES.success : PRIORITY_LIST_MESSAGES[result]);
   };
 
   return (
     <div className={`${playfair.variable} ${inter.variable} ${grotesk.variable} relative min-h-screen overflow-x-hidden bg-[#0a0806] text-white antialiased selection:bg-amber-200/30`} style={{ fontFamily: 'var(--font-inter), system-ui, sans-serif' }}>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
       <div className="fx-grain" aria-hidden />
-      <ExitIntentModal isOpen={showExitIntent} onClose={() => setShowExitIntent(false)} onEmailSubmit={() => {}} />
+      <ExitIntentModal isOpen={showExitIntent} onClose={() => setShowExitIntent(false)} />
 
       {/* ===== HERO ===== */}
       <section onMouseMove={onHeroMove} className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-4 py-20 sm:px-6 sm:py-24">
@@ -211,7 +172,7 @@ export default function ComingSoonPage() {
                 {/* launch pill */}
                 <motion.div variants={heroItem} className="mb-7 inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/[0.07] px-3.5 py-1.5">
                   <span className="relative flex size-1.5"><span className="absolute inline-flex size-full rounded-full bg-amber-300" style={{ animation: 'fxPulse 2s ease-in-out infinite' }} /><span className="relative inline-flex size-1.5 rounded-full bg-amber-300" /></span>
-                  <span style={mono} className="text-[10px] uppercase tracking-[0.24em] text-amber-100/85 sm:text-[11px]">Launching July 2026</span>
+                  <span style={mono} className="text-[10px] uppercase tracking-[0.24em] text-amber-100/85 sm:text-[11px]">Opening soon<span aria-hidden className="mx-2 text-amber-100/40">·</span><span lang="ar" dir="rtl" className="normal-case tracking-normal">قريبًا</span></span>
                 </motion.div>
 
                 {/* lockup */}
@@ -250,9 +211,8 @@ export default function ComingSoonPage() {
                   one beautifully simple platform to take direct bookings and run your whole operation.
                 </motion.p>
 
-                <motion.div variants={heroItem} className="mt-8 sm:mt-9"><Countdown time={timeLeft} /></motion.div>
                 <motion.div variants={heroItem} className="mt-8 flex w-full flex-col items-center sm:mt-9">
-                  <Waitlist email={email} setEmail={setEmail} onSubmit={handleSubmit} isSubmitted={isSubmitted} />
+                  <Waitlist email={email} setEmail={setEmail} onSubmit={handleSubmit} status={status} message={message} />
                 </motion.div>
               </div>
             </div>
@@ -285,7 +245,7 @@ export default function ComingSoonPage() {
       {/* ===== STATS ===== */}
       <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#0c0a07]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_120%_at_50%_0%,rgba(234,170,80,0.08),transparent_70%)]" />
-        <div className="relative mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-6 py-16 sm:py-20 lg:grid-cols-4">
+        <div className="relative mx-auto grid max-w-4xl grid-cols-3 gap-y-10 px-6 py-16 sm:py-20">
           {STATS.map((s, i) => (
             <motion.div key={s.l} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="flex flex-col items-center text-center">
               <span style={serif} className="fx-gold text-5xl font-medium leading-none sm:text-6xl">{s.n}</span>
@@ -338,9 +298,9 @@ export default function ComingSoonPage() {
             <div className="relative overflow-hidden rounded-[2.05rem] bg-[#0d0a07]/75 px-7 py-12 text-center backdrop-blur-2xl sm:px-12 sm:py-14">
               <Sparkles className="mx-auto mb-5 size-6 text-amber-300" strokeWidth={1.5} />
               <h2 style={serif} className="text-3xl font-medium leading-tight text-white sm:text-4xl lg:text-[2.9rem]">Be the first <span className="fx-gold">through the door.</span></h2>
-              <p className="mx-auto mt-4 max-w-md text-[15px] text-amber-50/65">Join the priority list and be first in when we go live on July 15th, 2026.</p>
+              <p className="mx-auto mt-4 max-w-md text-[15px] text-amber-50/65">Join the priority list and we will email you as soon as access opens.</p>
               <div className="mt-9 flex w-full flex-col items-center">
-                <Waitlist email={email} setEmail={setEmail} onSubmit={handleSubmit} isSubmitted={isSubmitted} proof={false} />
+                <Waitlist email={email} setEmail={setEmail} onSubmit={handleSubmit} status={status} message={message} />
               </div>
             </div>
           </div>
