@@ -5,6 +5,7 @@ import { Award, Mail, ArrowRight, Facebook, Twitter, Instagram, Linkedin, Youtub
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import { joinNewsletter, PRIORITY_LIST_MESSAGES } from '@/lib/priority-list';
 
 // --- Enhanced Logo Component ---
 const FoxesLogo = () => (
@@ -80,12 +81,20 @@ const SocialLinks = () => {
 // --- Newsletter with Gradient Background ---
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
 
+  // Confirm only once the lead endpoint has recorded the address.
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === 'loading') return;
     setStatus('loading');
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const result = await joinNewsletter(email, typeof window !== 'undefined' ? window.location.pathname : undefined);
+    if (result !== 'ok') {
+      setStatus('error');
+      setMessage(PRIORITY_LIST_MESSAGES[result]);
+      return;
+    }
     setStatus('success');
     setEmail('');
     setTimeout(() => setStatus('idle'), 3000);
@@ -114,7 +123,7 @@ const NewsletterSignup = () => {
         </div>
 
         <p className="mb-5 text-sm leading-relaxed text-white/90">
-          Join 500+ operators receiving weekly tips, industry news, and product updates.
+          Get occasional tips, industry news and product updates from our team.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -137,6 +146,11 @@ const NewsletterSignup = () => {
             {status === 'idle' && <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />}
           </button>
         </form>
+        {status === 'error' && (
+          <p role="alert" className="mt-3 text-sm font-medium text-white">
+            {message}
+          </p>
+        )}
       </div>
     </motion.div>
   );
@@ -243,28 +257,7 @@ export default function Footer() {
             <FoxesLogo />
             <p className="max-w-md text-base leading-relaxed text-slate-600">
               The all-in-one operating system for modern tours, activities, and attractions.
-              Trusted by 500+ operators across Egypt and the GCC.
             </p>
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                  <span className="text-lg">✓</span>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">500+ Operators</p>
-                  <p className="text-xs text-slate-500">Active users</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-                  <span className="text-lg">$</span>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">$50M+</p>
-                  <p className="text-xs text-slate-500">Processed</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div>

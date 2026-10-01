@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Flag, Target, Users, Award, Heart, Globe, Zap, TrendingUp, Shield, Sparkles, CheckCircle } from 'lucide-react';
+import { ArrowRight, Flag, Target, Users, Award, Heart, Globe, Zap, Shield, Sparkles, CheckCircle } from 'lucide-react';
 
 const BRAND_COLOR_PRIMARY = "bg-red-600";
 const BRAND_HOVER_PRIMARY = "hover:bg-red-700";
@@ -112,7 +112,6 @@ function AboutHero() {
 function StatsSection() {
     const stats = [
         { value: '500+', label: 'Active Operators', icon: Users },
-        { value: '$50M+', label: 'Revenue Processed', icon: TrendingUp },
         { value: '1M+', label: 'Bookings Managed', icon: CheckCircle },
         { value: '15+', label: 'Years Experience', icon: Award },
     ];

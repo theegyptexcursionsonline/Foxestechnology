@@ -227,7 +227,6 @@ export default function SolutionsPage() {
                         >
                             {[
                                 { value: '500+', label: 'Operators' },
-                                { value: '$50M+', label: 'Processed' },
                                 { value: '1M+', label: 'Bookings' },
                                 { value: '99.9%', label: 'Uptime' },
                             ].map((stat, index) => (
@@ -418,7 +417,7 @@ export default function SolutionsPage() {
                                 Ready to Get Started?
                             </h2>
                             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
-                                Join hundreds of tour operators who trust Foxes Technology to power their business.
+                                See how Foxes Technology can power your business.
                             </p>
 
                             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">

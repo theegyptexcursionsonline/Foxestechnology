@@ -19,7 +19,6 @@ import {
     Bell,
     QrCode,
     Star,
-    TrendingUp,
     Sparkles,
     Layers,
     Infinity,
@@ -110,7 +109,6 @@ function TrustedBySection() {
     const stats = [
         { icon: Users, number: '500+', label: 'Tour Operators', color: 'from-blue-500 to-cyan-500' },
         { icon: Globe, number: '50+', label: 'Countries', color: 'from-green-500 to-emerald-500' },
-        { icon: TrendingUp, number: '$50M+', label: 'Revenue Processed', color: 'from-purple-500 to-pink-500' },
         { icon: Star, number: '4.9/5', label: 'Customer Rating', color: 'from-yellow-500 to-orange-500' },
     ];
 
@@ -119,7 +117,7 @@ function TrustedBySection() {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-black text-gray-900 mb-4">Trusted by Industry Leaders</h2>
-                    <p className="text-xl text-gray-600">Join hundreds of tour operators growing with Foxes Technology</p>
+                    <p className="text-xl text-gray-600">Everything you need to run and grow your tour business</p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">

@@ -17,12 +17,12 @@ export const en: OperatorCopy = {
     pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
   },
   socialProof: {
-    label: 'Powering travel agencies across',
+    label: 'Built for travel agencies across',
     cities: 'Cairo · Hurghada · Luxor · Aswan',
     stats: [
-      { value: '300+', label: 'Egyptian operators' },
-      { value: 'EGP 20M+', label: 'Bookings processed' },
-      { value: '150+', label: 'Products per agency' },
+      { value: '24/7', label: 'Direct online bookings' },
+      { value: 'AR + EN', label: 'Support from our team' },
+      { value: 'One', label: 'Dashboard for every product' },
       { value: '< 1 sec', label: 'Branded voucher' },
     ],
   },
@@ -256,7 +256,7 @@ export const en: OperatorCopy = {
   exitIntent: {
     eyebrow: 'Wait — one thing',
     headline: 'The OTA commission cheat sheet',
-    sub: 'Every OTA serving Egypt with their real take-rates, payout terms, and what they will negotiate. Free PDF, sent in 60 seconds.',
+    sub: 'Every OTA serving Egypt with their real take-rates, payout terms, and what they will negotiate. Free — leave your email and our team will send it to you.',
     bullets: [
       'Viator, GetYourGuide, Klook, Headout & 6 more',
       'Real commission ranges (not list rates)',
@@ -265,10 +265,9 @@ export const en: OperatorCopy = {
     emailPlaceholder: 'you@youragency.com',
     submitLabel: 'Send me the cheat sheet',
     submittingLabel: 'Sending...',
-    successTitle: 'Sent. Check your inbox.',
-    successBody:
-      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-    privacy: 'One email. Unsubscribe with one click.',
+    successTitle: 'Thanks — request received.',
+    successBody: 'Our team will email it to you.',
+    privacy: 'We only use your email to send this and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
@@ -290,12 +289,12 @@ export const ar: OperatorCopy = {
     pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
   },
   socialProof: {
-    label: 'يشغّل وكالات السياحة في',
+    label: 'مصمم لوكالات السياحة في',
     cities: 'القاهرة · الغردقة · الأقصر · أسوان',
     stats: [
-      { value: '+300', label: 'مشغّل مصري' },
-      { value: '+20 مليون ج.م', label: 'حجوزات تمت معالجتها' },
-      { value: '+150', label: 'منتج لكل وكالة' },
+      { value: '24/7', label: 'حجوزات مباشرة أونلاين' },
+      { value: 'لغتان', label: 'دعم من فريقنا بالعربية والإنجليزية' },
+      { value: '1', label: 'لوحة لكل منتجاتك' },
       { value: 'أقل من ثانية', label: 'فاوتشر احترافي' },
     ],
   },
@@ -527,7 +526,7 @@ export const ar: OperatorCopy = {
   exitIntent: {
     eyebrow: 'لحظة — شيء واحد',
     headline: 'ورقة عمولات وكلاء السفر الإلكترونيين (OTA)',
-    sub: 'كل وكيل OTA يخدم مصر بمعدلاته الحقيقية وشروط الدفع وما يقبل التفاوض عليه. PDF مجاني، يصلك خلال 60 ثانية.',
+    sub: 'كل وكيل OTA يخدم مصر بمعدلاته الحقيقية وشروط الدفع وما يقبل التفاوض عليه. مجاني — اترك بريدك وسيرسله لك فريقنا.',
     bullets: [
       'Viator و GetYourGuide و Klook و Headout و 6 آخرون',
       'نطاقات عمولة حقيقية (وليست أسعار القائمة)',
@@ -536,9 +535,9 @@ export const ar: OperatorCopy = {
     emailPlaceholder: 'you@youragency.com',
     submitLabel: 'أرسل لي الورقة',
     submittingLabel: 'جاري الإرسال...',
-    successTitle: 'تم الإرسال. تحقق من بريدك.',
-    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    successTitle: 'شكرًا — وصلنا طلبك.',
+    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };

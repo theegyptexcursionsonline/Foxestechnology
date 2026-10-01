@@ -12,7 +12,6 @@ import {
   Coins,
   FileText,
   Sparkles,
-  TrendingUp,
   Clock,
   Star,
   Shield,
@@ -333,14 +332,14 @@ function HeroVisual({ locale }: { locale: Locale }) {
         className={`absolute -bottom-6 ${locale === 'ar' ? '-right-4' : '-left-4'} flex items-center gap-3.5 rounded-2xl border border-violet-100 bg-white p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)]`}
       >
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 ring-1 ring-violet-100">
-          <TrendingUp className="h-5 w-5 text-violet-600" />
+          <Clock className="h-5 w-5 text-violet-600" />
         </div>
         <div>
           <p className="text-[1.6rem] font-extrabold leading-none tracking-[-0.02em] text-slate-900">
-            +38%
+            24/7
           </p>
           <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-            Direct bookings
+            {locale === 'ar' ? 'حجوزات مباشرة' : 'Direct bookings'}
           </p>
         </div>
       </motion.div>

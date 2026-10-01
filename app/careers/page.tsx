@@ -181,14 +181,10 @@ export default function CareersPage() {
                                     </div>
                                 </div>
 
-                                <div className="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                                <div className="mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
                                     <div>
                                         <p className="text-2xl font-black text-white">500+</p>
                                         <p className="mt-1 text-xs text-gray-400">Operators</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-2xl font-black text-white">$50M+</p>
-                                        <p className="mt-1 text-xs text-gray-400">Processed</p>
                                     </div>
                                     <div>
                                         <p className="text-2xl font-black text-white">20+</p>

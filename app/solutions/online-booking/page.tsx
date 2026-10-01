@@ -184,10 +184,10 @@ function SocialProof() {
                 >
                     <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                         {[
-                            { value: '500+', label: 'Active Operators' },
-                            { value: '1M+', label: 'Bookings Processed' },
-                            { value: '$50M+', label: 'Revenue Generated' },
-                            { value: '99.9%', label: 'Uptime SLA' },
+                            { value: '24/7', label: 'Online Bookings' },
+                            { value: 'One', label: 'Dashboard for Your Operation' },
+                            { value: 'AR + EN', label: 'Support from Our Team' },
+                            { value: '< 2 min', label: 'Booking Confirmation' },
                         ].map((stat, index) => (
                             <motion.div
                                 key={index}
@@ -595,7 +595,7 @@ function FinalCTA() {
                             Ready to Transform Your Bookings?
                         </h2>
                         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
-                            Join hundreds of operators who have automated their bookings and increased revenue with our platform.
+                            Bring your bookings, availability and payments into one place.
                         </p>
 
                         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">

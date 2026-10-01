@@ -17,12 +17,12 @@ export const en: OperatorCopy = {
     pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
   },
   socialProof: {
-    label: 'Powering water sports operators across',
+    label: 'Built for water sports operators across',
     cities: 'Hurghada · Sharm El Sheikh · El Gouna · Sahel · Marsa Alam · Dahab',
     stats: [
-      { value: '300+', label: 'Egyptian operators' },
-      { value: 'EGP 20M+', label: 'Bookings processed' },
-      { value: '71%', label: 'More online bookings' },
+      { value: '24/7', label: 'Direct online bookings' },
+      { value: 'AR + EN', label: 'Support from our team' },
+      { value: 'One', label: 'Dashboard for every location' },
       { value: '< 2 min', label: 'Booking confirmation' },
     ],
   },
@@ -256,7 +256,7 @@ export const en: OperatorCopy = {
   exitIntent: {
     eyebrow: 'Before you go',
     headline: 'The digital waiver template (free)',
-    sub: 'Bilingual EN+AR waiver, customer-phone-friendly, insurance-audit-ready. Editable Word + PDF. Sent in 60 seconds.',
+    sub: 'Bilingual EN+AR waiver, customer-phone-friendly, insurance-audit-ready. Editable Word + PDF. Leave your email and our team will send it to you.',
     bullets: [
       'Bilingual layout (EN + AR side by side)',
       'Insurance & emergency-contact fields',
@@ -265,10 +265,9 @@ export const en: OperatorCopy = {
     emailPlaceholder: 'you@yourwatersports.com',
     submitLabel: 'Send me the waiver',
     submittingLabel: 'Sending...',
-    successTitle: 'Sent. Check your inbox.',
-    successBody:
-      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-    privacy: 'One email. Unsubscribe with one click.',
+    successTitle: 'Thanks — request received.',
+    successBody: 'Our team will email it to you.',
+    privacy: 'We only use your email to send this and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
@@ -290,12 +289,12 @@ export const ar: OperatorCopy = {
     pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
   },
   socialProof: {
-    label: 'يشغّل الرياضات المائية في',
+    label: 'مصمم لمشغلي الرياضات المائية في',
     cities: 'الغردقة · شرم الشيخ · الجونة · الساحل · مرسى علم · دهب',
     stats: [
-      { value: '+300', label: 'مشغّل مصري' },
-      { value: '+20 مليون ج.م', label: 'حجوزات تمت معالجتها' },
-      { value: '71%', label: 'زيادة في الحجوزات الأونلاين' },
+      { value: '24/7', label: 'حجوزات مباشرة أونلاين' },
+      { value: 'لغتان', label: 'دعم من فريقنا بالعربية والإنجليزية' },
+      { value: '1', label: 'لوحة لكل مواقعك' },
       { value: 'أقل من دقيقتين', label: 'تأكيد الحجز' },
     ],
   },
@@ -527,7 +526,7 @@ export const ar: OperatorCopy = {
   exitIntent: {
     eyebrow: 'قبل أن تغادر',
     headline: 'قالب التنازل الرقمي (مجاني)',
-    sub: 'تنازل ثنائي اللغة عربي/إنجليزي، مناسب لهاتف العميل، جاهز لتدقيق التأمين. Word قابل للتعديل + PDF. يصلك خلال 60 ثانية.',
+    sub: 'تنازل ثنائي اللغة عربي/إنجليزي، مناسب لهاتف العميل، جاهز لتدقيق التأمين. Word قابل للتعديل + PDF. اترك بريدك وسيرسله لك فريقنا.',
     bullets: [
       'تخطيط ثنائي اللغة (عربي وإنجليزي جنبًا إلى جنب)',
       'حقول التأمين وجهة الاتصال في الطوارئ',
@@ -536,9 +535,9 @@ export const ar: OperatorCopy = {
     emailPlaceholder: 'you@yourwatersports.com',
     submitLabel: 'أرسل لي التنازل',
     submittingLabel: 'جاري الإرسال...',
-    successTitle: 'تم الإرسال. تحقق من بريدك.',
-    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    successTitle: 'شكرًا — وصلنا طلبك.',
+    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };

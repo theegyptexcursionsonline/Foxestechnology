@@ -119,7 +119,7 @@ export default function Header() {
                 Log in
               </Link>
               <Link
-                href="/get-started"
+                href="/request-access?source=foxestechnology"
                 className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full ${BRAND_COLOR_PRIMARY} px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-red-500/20 transition-all duration-300 ${BRAND_HOVER_PRIMARY} hover:shadow-red-500/40`}
               >
                 <span className="relative z-10">Get Started</span>
@@ -293,29 +293,13 @@ export default function Header() {
                     Log in
                   </Link>
                   <Link
-                    href="/get-started"
+                    href="/request-access?source=foxestechnology"
                     className={`group flex items-center justify-center gap-2 rounded-2xl ${BRAND_COLOR_PRIMARY} px-6 py-4 text-lg font-bold text-white shadow-2xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <span>Get Started Free</span>
+                    <span>Get Started</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Link>
-
-                  {/* Quick Stats */}
-                  <div className="grid grid-cols-3 gap-3 pt-4">
-                    <div className="rounded-xl bg-white/5 p-3 text-center backdrop-blur-sm ring-1 ring-white/10">
-                      <div className="text-xl font-black text-white">500+</div>
-                      <div className="text-xs font-semibold text-gray-400">Operators</div>
-                    </div>
-                    <div className="rounded-xl bg-white/5 p-3 text-center backdrop-blur-sm ring-1 ring-white/10">
-                      <div className="text-xl font-black text-white">$50M+</div>
-                      <div className="text-xs font-semibold text-gray-400">Revenue</div>
-                    </div>
-                    <div className="rounded-xl bg-white/5 p-3 text-center backdrop-blur-sm ring-1 ring-white/10">
-                      <div className="text-xl font-black text-white">1M+</div>
-                      <div className="text-xs font-semibold text-gray-400">Bookings</div>
-                    </div>
-                  </div>
                 </motion.div>
               </div>
             </motion.div>

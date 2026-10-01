@@ -254,7 +254,6 @@ export default function ForDestinations() {
                         {[
                             { value: "20+", label: "Destination Projects", subtext: "Across Egypt", icon: Globe },
                             { value: "500+", label: "Operators Digitized", subtext: "And growing", icon: Ticket },
-                            { value: "$50M+", label: "Economic Impact", subtext: "Revenue enabled", icon: TrendingUp },
                         ].map((stat, index) => (
                             <motion.div
                                 key={index}

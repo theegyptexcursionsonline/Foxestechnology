@@ -163,12 +163,12 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
     },
     socialProof: {
-      label: 'Powering dinner cruises across',
+      label: 'Built for dinner cruises across',
       cities: 'Cairo · Luxor · Aswan · Hurghada',
       stats: [
-        { value: '300+', label: 'Egyptian operators' },
-        { value: 'EGP 20M+', label: 'Bookings processed' },
-        { value: '30%', label: 'Average OTA fee saved' },
+        { value: '24/7', label: 'Direct online bookings' },
+        { value: 'AR + EN', label: 'Support from our team' },
+        { value: 'One', label: 'Dashboard for your whole fleet' },
         { value: '< 2 min', label: 'Booking confirmation' },
       ],
     },
@@ -402,7 +402,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     exitIntent: {
       eyebrow: 'One thing before you go',
       headline: 'The dinner cruise customer journey map',
-      sub: 'Every touchpoint from search to sailing — what works, what loses guests. Free PDF, sent to your email in 60 seconds.',
+      sub: 'Every touchpoint from search to sailing — what works, what loses guests. Free — leave your email and our team will send it to you.',
       bullets: [
         '14 touchpoints mapped out',
         'Conversion benchmarks per stage',
@@ -411,10 +411,9 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       emailPlaceholder: 'you@yourcruise.com',
       submitLabel: 'Send me the map',
       submittingLabel: 'Sending...',
-      successTitle: 'Sent. Check your inbox.',
-      successBody:
-        "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-      privacy: 'One email. Unsubscribe with one click.',
+      successTitle: 'Thanks — request received.',
+      successBody: 'Our team will email it to you.',
+      privacy: 'We only use your email to send this and to follow up about Foxes.',
       dismissLabel: 'No thanks',
     },
   },
@@ -435,13 +434,13 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
     },
     socialProof: {
-      label: 'Trusted by dive centres across',
+      label: 'Built for dive centres across',
       cities: 'Hurghada · Sharm El Sheikh · Marsa Alam · Dahab',
       stats: [
-        { value: '300+', label: 'Egyptian operators' },
-        { value: 'EGP 20M+', label: 'Bookings processed' },
-        { value: '99.9%', label: 'Uptime SLA' },
-        { value: '< 2 min', label: 'Average response time' },
+        { value: '24/7', label: 'Direct online bookings' },
+        { value: 'AR + EN', label: 'Support from our team' },
+        { value: 'One', label: 'Place for certifications, gear and bookings' },
+        { value: '< 2 min', label: 'Booking confirmation' },
       ],
     },
     pains: {
@@ -669,7 +668,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     exitIntent: {
       eyebrow: 'Wait — one thing',
       headline: 'Take the dive centre revenue audit with you',
-      sub: '12 questions every Egyptian dive operator should be asking. Free PDF, sent to your email in 60 seconds.',
+      sub: '12 questions every Egyptian dive operator should be asking. Free — leave your email and our team will send it to you.',
       bullets: [
         'Pricing & packaging benchmarks',
         'Equipment ROI worksheet',
@@ -678,10 +677,9 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       emailPlaceholder: 'you@yourdivecentre.com',
       submitLabel: 'Send me the audit',
       submittingLabel: 'Sending...',
-      successTitle: 'Sent. Check your inbox.',
-      successBody:
-        "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-      privacy: 'One email. Unsubscribe with one click.',
+      successTitle: 'Thanks — request received.',
+      successBody: 'Our team will email it to you.',
+      privacy: 'We only use your email to send this and to follow up about Foxes.',
       dismissLabel: 'No thanks',
     },
   },
@@ -710,12 +708,12 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
     },
     socialProof: {
-      label: 'يشغّل رحلات العشاء في',
+      label: 'مصمم لرحلات العشاء في',
       cities: 'القاهرة · الأقصر · أسوان · الغردقة',
       stats: [
-        { value: '+300', label: 'مشغّل مصري' },
-        { value: '+20 مليون ج.م', label: 'حجوزات تمت معالجتها' },
-        { value: '30%', label: 'متوسط العمولة الموفرة' },
+        { value: '24/7', label: 'حجوزات مباشرة أونلاين' },
+        { value: 'لغتان', label: 'دعم من فريقنا بالعربية والإنجليزية' },
+        { value: '1', label: 'لوحة لكل أسطولك' },
         { value: 'أقل من دقيقتين', label: 'تأكيد الحجز' },
       ],
     },
@@ -944,7 +942,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     exitIntent: {
       eyebrow: 'شيء واحد قبل أن تغادر',
       headline: 'خريطة رحلة عميل العشاء النيلي',
-      sub: 'كل نقطة تواصل من البحث حتى الإبحار — ما الذي يعمل وما الذي يخسر الضيوف. PDF مجاني، يصلك خلال 60 ثانية.',
+      sub: 'كل نقطة تواصل من البحث حتى الإبحار — ما الذي يعمل وما الذي يخسر الضيوف. مجاني — اترك بريدك وسيرسله لك فريقنا.',
       bullets: [
         '14 نقطة تواصل مفصّلة',
         'معايير التحويل لكل مرحلة',
@@ -953,9 +951,9 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       emailPlaceholder: 'you@yourcruise.com',
       submitLabel: 'أرسل لي الخريطة',
       submittingLabel: 'جاري الإرسال...',
-      successTitle: 'تم الإرسال. تحقق من بريدك.',
-      successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-      privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+      successTitle: 'شكرًا — وصلنا طلبك.',
+      successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+      privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
       dismissLabel: 'لا شكرًا',
     },
   },
@@ -976,13 +974,13 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
     },
     socialProof: {
-      label: 'موثوق به من مراكز الغوص في',
+      label: 'مصمم لمراكز الغوص في',
       cities: 'الغردقة · شرم الشيخ · مرسى علم · دهب',
       stats: [
-        { value: '+300', label: 'مشغّل مصري' },
-        { value: '+20 مليون ج.م', label: 'حجوزات تمت معالجتها' },
-        { value: '99.9%', label: 'وقت تشغيل مضمون' },
-        { value: 'أقل من دقيقتين', label: 'متوسط وقت الاستجابة' },
+        { value: '24/7', label: 'حجوزات مباشرة أونلاين' },
+        { value: 'لغتان', label: 'دعم من فريقنا بالعربية والإنجليزية' },
+        { value: '1', label: 'مكان للشهادات والمعدات والحجوزات' },
+        { value: 'أقل من دقيقتين', label: 'تأكيد الحجز' },
       ],
     },
     pains: {
@@ -1210,7 +1208,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     exitIntent: {
       eyebrow: 'لحظة — شيء واحد',
       headline: 'خذ معك تدقيق إيرادات مركز الغوص',
-      sub: '12 سؤال يجب أن يسأله كل مشغّل غوص مصري. PDF مجاني، يصلك خلال 60 ثانية.',
+      sub: '12 سؤال يجب أن يسأله كل مشغّل غوص مصري. مجاني — اترك بريدك وسيرسله لك فريقنا.',
       bullets: [
         'معايير التسعير والباقات',
         'ورقة عمل عائد المعدات',
@@ -1219,9 +1217,9 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       emailPlaceholder: 'you@yourdivecentre.com',
       submitLabel: 'أرسل لي التدقيق',
       submittingLabel: 'جاري الإرسال...',
-      successTitle: 'تم الإرسال. تحقق من بريدك.',
-      successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-      privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+      successTitle: 'شكرًا — وصلنا طلبك.',
+      successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+      privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
       dismissLabel: 'لا شكرًا',
     },
   },

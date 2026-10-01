@@ -2,28 +2,28 @@ import type { OperatorCopy } from '../operators';
 
 export const en: OperatorCopy = {
   meta: {
-    title: 'AI Voice Agent for Tour Operators · 120 Languages, 24/7',
+    title: 'AI Voice Agent for Tour Operators · 24 Languages, 24/7',
     description:
-      'Foxes AI Voice Agent answers your phone in 120 languages, qualifies the booking, takes a deposit by SMS, and writes it into your Foxes calendar — even at 2am, even in Korean. Built for dive centres, dinner cruises, water sports, and tour agencies.',
+      'Foxes AI Voice Agent answers your phone in 24 languages, qualifies the booking, takes a deposit by SMS, and writes it into your Foxes calendar — even at 2am, even in Korean. Built for dive centres, dinner cruises, water sports, and tour agencies.',
     ogTitle: 'Take the call. Even at 2am. Even in Korean.',
   },
   hero: {
     badge: 'AI Voice Agent · For Tour Operators',
     headlineLine1: 'Take the call.',
     headlineLine2: 'Even at 2am. Even in Korean.',
-    sub: 'A real-feeling voice that answers in 120 languages, qualifies the booking, takes a deposit by SMS, and drops the reservation into your Foxes calendar. While your team sleeps, the phone keeps making money.',
+    sub: 'A real-feeling voice that answers in 24 languages, qualifies the booking, takes a deposit by SMS, and drops the reservation into your Foxes calendar. While your team sleeps, the phone keeps making money.',
     primaryCta: 'Get started',
     secondaryCta: 'Hear it on WhatsApp',
-    pills: ['120 languages', 'Monthly plans', 'Live in 48 hours'],
+    pills: ['24 languages', 'Monthly plans', 'Live in 48 hours'],
   },
   socialProof: {
-    label: 'Answering calls for operators in',
+    label: 'Built for operators in',
     cities: 'Hurghada · Sharm · Cairo · Aswan · Dubai · Riyadh',
     stats: [
-      { value: '120', label: 'Languages supported' },
+      { value: '24', label: 'Languages supported' },
       { value: '24/7', label: 'Always answering' },
-      { value: '+218', label: 'Calls captured weekly' },
-      { value: 'under 25%', label: 'Calls escalated to human' },
+      { value: 'EN + AR', label: 'Native Arabic and English voices' },
+      { value: '1', label: 'Agent for your phone line and website' },
     ],
   },
   pains: {
@@ -60,7 +60,7 @@ export const en: OperatorCopy = {
         description:
           'The agent picks up on the first ring, greets in the caller’s language, qualifies the booking, and confirms — in real-feeling speech, not a robotic IVR. You hear the transcript with English translation alongside.',
         bullets: [
-          '120 languages with native accent',
+          '24 languages, with native Arabic and English voices',
           'Real-time translation in your dashboard',
           'Switches language mid-call if the caller does',
         ],
@@ -117,8 +117,8 @@ export const en: OperatorCopy = {
       'Generic call-centre AI handles support tickets. Foxes Voice handles bookings — with the booking-engine, the deposit link, and the operator dashboard already wired in.',
     items: [
       {
-        title: '120 languages, native accents',
-        description: 'Korean, Mandarin, Hindi, Russian, Italian, German, Arabic dialects — all native, not translated.',
+        title: '24 languages, Arabic-first',
+        description: 'Arabic (Egyptian and Gulf) and English first, plus Korean, Mandarin, Hindi, Russian, Italian, German and more.',
       },
       {
         title: 'Multi-agent routing',
@@ -201,7 +201,7 @@ export const en: OperatorCopy = {
       {
         question: 'Which languages does it really speak well?',
         answer:
-          'All 120 languages run in production today. The strongest accents are English, Egyptian Arabic, Gulf Arabic, German, Russian, Italian, French, Spanish, Mandarin, Korean, and Polish — those are the ones we tune most aggressively for tour-operator vocabulary. Others are fluent but less domain-tuned.',
+          'AI Voice works in 24 languages and is built Arabic-first: Egyptian Arabic, Gulf Arabic and English are the strongest. We tune each agent to your products and test it with you in the languages your callers use before it goes live.',
       },
       {
         question: 'Can I listen to a real call before I commit?',
@@ -257,7 +257,7 @@ export const en: OperatorCopy = {
   exitIntent: {
     eyebrow: 'One thing before you go',
     headline: 'The Operator Call Audit',
-    sub: 'Twelve real questions every operator should answer about their inbound calls — missed-call rate, language gaps, deposit-take rate, after-hours coverage. Free PDF, sent to your email in 60 seconds.',
+    sub: 'Twelve real questions every operator should answer about their inbound calls — missed-call rate, language gaps, deposit-take rate, after-hours coverage. Free — leave your email and our team will send it to you.',
     bullets: [
       'Missed-call benchmark by vertical',
       'Per-language conversion benchmarks',
@@ -266,37 +266,37 @@ export const en: OperatorCopy = {
     emailPlaceholder: 'you@yourbusiness.com',
     submitLabel: 'Send me the audit',
     submittingLabel: 'Sending...',
-    successTitle: 'Sent. Check your inbox.',
-    successBody: "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-    privacy: 'One email. Unsubscribe with one click.',
+    successTitle: 'Thanks — request received.',
+    successBody: 'Our team will email it to you.',
+    privacy: 'We only use your email to send this and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
 
 export const ar: OperatorCopy = {
   meta: {
-    title: 'وكيل الصوت الذكي لمشغلي السياحة · 120 لغة على مدار الساعة',
+    title: 'وكيل الصوت الذكي لمشغلي السياحة · 24 لغة على مدار الساعة',
     description:
-      'وكيل الصوت الذكي من Foxes يردّ على هاتفك بـ 120 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes — حتى الساعة الثانية صباحًا، حتى بالكورية. مصمم لمراكز الغوص ورحلات العشاء والرياضات المائية ووكالات السياحة.',
+      'وكيل الصوت الذكي من Foxes يردّ على هاتفك بـ 24 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes — حتى الساعة الثانية صباحًا، حتى بالكورية. مصمم لمراكز الغوص ورحلات العشاء والرياضات المائية ووكالات السياحة.',
     ogTitle: 'ردّ على المكالمة. حتى الساعة الثانية صباحًا. حتى بالكورية.',
   },
   hero: {
     badge: 'وكيل الصوت الذكي · لمشغلي السياحة',
     headlineLine1: 'ردّ على المكالمة.',
     headlineLine2: 'حتى الساعة الثانية صباحًا. حتى بالكورية.',
-    sub: 'صوت طبيعي يردّ بـ 120 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes الخاص بك. وأنت نائم — التليفون يكسب لك فلوس.',
+    sub: 'صوت طبيعي يردّ بـ 24 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes الخاص بك. وأنت نائم — التليفون يكسب لك فلوس.',
     primaryCta: 'ابدأ الآن',
     secondaryCta: 'اسمع التجربة على واتساب',
-    pills: ['120 لغة', 'باقات شهرية', 'تشغيل خلال 48 ساعة'],
+    pills: ['24 لغة', 'باقات شهرية', 'تشغيل خلال 48 ساعة'],
   },
   socialProof: {
-    label: 'يردّ على مكالمات مشغلين في',
+    label: 'مصمم للمشغلين في',
     cities: 'الغردقة · شرم · القاهرة · أسوان · دبي · الرياض',
     stats: [
-      { value: '120', label: 'لغة مدعومة' },
+      { value: '24', label: 'لغة مدعومة' },
       { value: '24/7', label: 'يردّ دائمًا' },
-      { value: '+218', label: 'مكالمة محفوظة أسبوعيًا' },
-      { value: 'أقل من 25%', label: 'مكالمة تُحوَّل لإنسان' },
+      { value: 'لغتان', label: 'أصوات عربية وإنجليزية أصيلة' },
+      { value: '1', label: 'وكيل لهاتفك وموقعك' },
     ],
   },
   pains: {
@@ -333,7 +333,7 @@ export const ar: OperatorCopy = {
         description:
           'الوكيل يردّ من أول رنّة، يحيّي بلغة المتصل، يؤهل الحجز ويؤكده — بكلام طبيعي مش روبوت IVR. وأنت تقرأ النص الأصلي والترجمة الإنجليزية في لوحتك.',
         bullets: [
-          '120 لغة بلهجات أصلية',
+          '24 لغة، بأصوات عربية وإنجليزية أصيلة',
           'ترجمة فورية في لوحة التحكم',
           'يبدّل اللغة في وسط المكالمة لو المتصل بدّل',
         ],
@@ -390,8 +390,8 @@ export const ar: OperatorCopy = {
       'الذكاء العام لخدمة العملاء بيعالج تذاكر دعم. Foxes Voice بيعالج حجوزات — مع محرك الحجز ورابط العربون ولوحة المشغّل موصولين فعلًا.',
     items: [
       {
-        title: '120 لغة بلهجات أصلية',
-        description: 'كوري، صيني ماندارين، هندي، روسي، إيطالي، ألماني، لهجات عربية — كلها أصلية مش مترجمة.',
+        title: '24 لغة، والعربية أولًا',
+        description: 'العربية (المصرية والخليجية) والإنجليزية أولًا، إلى جانب الكورية والصينية والهندية والروسية والإيطالية والألمانية وغيرها.',
       },
       {
         title: 'توجيه متعدد الوكلاء',
@@ -474,7 +474,7 @@ export const ar: OperatorCopy = {
       {
         question: 'إيه اللغات اللي بيتكلمها كويس فعلًا؟',
         answer:
-          'كل الـ 120 لغة شغالين في الإنتاج اليوم. الأقوى: الإنجليزية، العربية المصرية، العربية الخليجية، الألمانية، الروسية، الإيطالية، الفرنسية، الإسبانية، الصينية، الكورية، البولندية — دول الأكثر تخصيصًا لكلام مشغلي السياحة. الباقي طلق لكن أقل تخصصًا.',
+          'يعمل وكيل الصوت الذكي بـ 24 لغة، والعربية أولًا، وأقواها العربية المصرية والخليجية والإنجليزية. نضبط كل وكيل على منتجاتك ونختبره معك باللغات التي يستخدمها المتصلون قبل التشغيل.',
       },
       {
         question: 'أقدر أسمع مكالمة حقيقية قبل ما أقرر؟',
@@ -530,7 +530,7 @@ export const ar: OperatorCopy = {
   exitIntent: {
     eyebrow: 'لحظة قبل ما تمشي',
     headline: 'تدقيق مكالمات المشغّل',
-    sub: 'اثني عشر سؤال حقيقي لازم كل مشغّل يجاوب عليهم عن مكالماته الواردة — نسبة الفايت، فجوة اللغة، نسبة استحواذ العربون، تغطية ما بعد الدوام. PDF مجاني، يصلك خلال 60 ثانية.',
+    sub: 'اثني عشر سؤال حقيقي لازم كل مشغّل يجاوب عليهم عن مكالماته الواردة — نسبة الفايت، فجوة اللغة، نسبة استحواذ العربون، تغطية ما بعد الدوام. مجاني — اترك بريدك وسيرسله لك فريقنا.',
     bullets: [
       'معايير المكالمات الفايتة لكل تخصص',
       'معايير التحويل لكل لغة',
@@ -539,9 +539,9 @@ export const ar: OperatorCopy = {
     emailPlaceholder: 'you@yourbusiness.com',
     submitLabel: 'أرسل لي التدقيق',
     submittingLabel: 'جاري الإرسال...',
-    successTitle: 'تم الإرسال. تحقق من بريدك.',
-    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    successTitle: 'شكرًا — وصلنا طلبك.',
+    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };

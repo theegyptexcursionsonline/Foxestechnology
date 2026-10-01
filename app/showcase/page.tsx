@@ -71,7 +71,6 @@ const PROJECTS: Project[] = [
     features: ['Booking Calendar', 'Product Catalog', 'Stripe Payments', 'Team Management', 'Analytics Dashboard', 'Embeddable Widget'],
     stats: [
       { value: '500+', label: 'Operators' },
-      { value: '$50M+', label: 'Processed' },
       { value: '99.9%', label: 'Uptime' },
     ],
     status: 'live',

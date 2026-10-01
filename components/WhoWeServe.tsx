@@ -13,24 +13,18 @@ const audiences = [
         icon: Briefcase,
         title: "Tours & Activities Operators",
         description: "Managing bookings and experiences for travelers",
-        stat: "300+",
-        statLabel: "Active partners",
         color: "from-blue-500 to-blue-600"
     },
     {
         icon: Landmark,
         title: "Attractions & Museums",
         description: "Parks and museums managing visitor experiences",
-        stat: "150+",
-        statLabel: "Venues digitized",
         color: "from-purple-500 to-purple-600"
     },
     {
         icon: UserCheck,
         title: "Tour Guides",
         description: "Independent guides offering personalized tours",
-        stat: "500+",
-        statLabel: "Active guides",
         color: "from-orange-500 to-red-600"
     },
 ];
@@ -234,15 +228,7 @@ export default function WhoWeServe() {
                                     </div>
 
                                     {/* Stats */}
-                                    <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-4">
-                                        <div>
-                                            <div className="text-2xl font-black text-orange-600">
-                                                {audience.stat}
-                                            </div>
-                                            <div className="text-xs font-semibold text-slate-500">
-                                                {audience.statLabel}
-                                            </div>
-                                        </div>
+                                    <div className="mt-4 flex items-center justify-end border-t border-slate-200 pt-4">
                                         <CheckCircle className="h-6 w-6 text-green-600 opacity-0 transition-opacity group-hover:opacity-100" />
                                     </div>
                                 </div>

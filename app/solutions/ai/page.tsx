@@ -30,7 +30,6 @@ export default function AIPage() {
             <FeaturesGrid />
             <IntegrationChannels />
             <UseCases />
-            <ROIMetrics />
             <CTASection />
         </main>
     );
@@ -357,46 +356,6 @@ function UseCases() {
                                 </span>
                             </div>
                             <p className="text-gray-700 leading-relaxed">{useCase.description}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
-
-function ROIMetrics() {
-    return (
-        <section className="py-20 bg-gradient-to-br from-purple-600 to-fuchsia-600">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-4xl font-black text-white mb-6">The Numbers Don&apos;t Lie</h2>
-                    <p className="text-xl text-purple-100">Average results from 500+ tour operators</p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    {[
-                        { number: '40%', label: 'More Bookings', sublabel: 'Never miss after-hours sales' },
-                        { number: '60%', label: 'Cost Savings', sublabel: 'Reduce support staff' },
-                        { number: '95%', label: 'Customer Satisfaction', sublabel: 'Instant, accurate answers' },
-                        { number: '<1s', label: 'Response Time', sublabel: 'Lightning-fast replies' },
-                    ].map((metric, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center ring-1 ring-white/20"
-                        >
-                            <div className="text-5xl font-black text-white mb-2">{metric.number}</div>
-                            <div className="text-xl font-bold text-purple-100 mb-1">{metric.label}</div>
-                            <div className="text-purple-200 text-sm">{metric.sublabel}</div>
                         </motion.div>
                     ))}
                 </div>

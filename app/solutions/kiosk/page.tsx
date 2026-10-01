@@ -30,7 +30,6 @@ export default function KioskPage() {
             <FeaturesGrid />
             <HowItWorks />
             <Customization />
-            <ROISection />
             <CTASection />
         </main>
     );
@@ -136,7 +135,7 @@ function BenefitsSection() {
     const benefits = [
         {
             icon: TrendingDown,
-            title: 'Reduce Wait Times by 70%',
+            title: 'Shorter Wait Times',
             description: 'Customers check-in and book instantly, eliminating long queues'
         },
         {
@@ -166,7 +165,7 @@ function BenefitsSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl font-black text-gray-900 mb-4">Why Tour Operators Love Kiosks</h2>
-                    <p className="text-xl text-gray-600">Proven results from hundreds of installations</p>
+                    <p className="text-xl text-gray-600">What a self-service kiosk takes off your front desk</p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -347,38 +346,6 @@ function Customization() {
     );
 }
 
-function ROISection() {
-    return (
-        <section className="py-20 bg-white">
-            <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    <h2 className="text-4xl font-black text-gray-900 mb-6">Pay for Itself in 6 Months</h2>
-                    <p className="text-xl text-gray-600 mb-12">Average ROI from real customers</p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="bg-blue-50 rounded-2xl p-8">
-                            <div className="text-5xl font-black text-blue-600 mb-2">70%</div>
-                            <div className="text-gray-600">Reduction in wait times</div>
-                        </div>
-                        <div className="bg-blue-50 rounded-2xl p-8">
-                            <div className="text-5xl font-black text-blue-600 mb-2">40%</div>
-                            <div className="text-gray-600">Lower staffing costs</div>
-                        </div>
-                        <div className="bg-blue-50 rounded-2xl p-8">
-                            <div className="text-5xl font-black text-blue-600 mb-2">25%</div>
-                            <div className="text-gray-600">Increase in sales</div>
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    );
-}
-
 function CTASection() {
     return (
         <section className="py-20 bg-gradient-to-br from-slate-900 to-slate-950">
@@ -392,7 +359,7 @@ function CTASection() {
                         Ready to Automate Your Check-ins?
                     </h2>
                     <p className="text-xl text-gray-300 mb-8">
-                        Join hundreds of tour operators using our self-service kiosks.
+                        Tell us about your venue and our team will follow up with a quote.
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link

@@ -17,12 +17,12 @@ export const en: OperatorCopy = {
     pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
   },
   socialProof: {
-    label: 'Powering charters across',
+    label: 'Built for charter operators across',
     cities: 'Hurghada · Sharm El Sheikh · El Gouna · Marina · Dahab',
     stats: [
-      { value: '300+', label: 'Egyptian operators' },
-      { value: 'EGP 20M+', label: 'Bookings processed' },
-      { value: '0', label: 'Double-bookings since launch' },
+      { value: '24/7', label: 'Direct online bookings' },
+      { value: 'AR + EN', label: 'Support from our team' },
+      { value: 'One', label: 'Calendar for your whole fleet' },
       { value: '< 2 min', label: 'Booking confirmation' },
     ],
   },
@@ -256,7 +256,7 @@ export const en: OperatorCopy = {
   exitIntent: {
     eyebrow: 'One thing before you go',
     headline: 'The weather cancellation policy template',
-    sub: '4-tier policy that turns angry refund requests into loyal repeat charters. Word + PDF, sent in 60 seconds.',
+    sub: '4-tier policy that turns angry refund requests into loyal repeat charters. Word + PDF — leave your email and our team will send it to you.',
     bullets: [
       '4 tiers from full refund to no-refund',
       'Customer-facing email + WhatsApp scripts',
@@ -265,10 +265,9 @@ export const en: OperatorCopy = {
     emailPlaceholder: 'you@yourcharter.com',
     submitLabel: 'Send me the template',
     submittingLabel: 'Sending...',
-    successTitle: 'Sent. Check your inbox.',
-    successBody:
-      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-    privacy: 'One email. Unsubscribe with one click.',
+    successTitle: 'Thanks — request received.',
+    successBody: 'Our team will email it to you.',
+    privacy: 'We only use your email to send this and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
@@ -290,12 +289,12 @@ export const ar: OperatorCopy = {
     pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
   },
   socialProof: {
-    label: 'يشغّل الرحلات في',
+    label: 'مصمم لمشغلي الرحلات البحرية في',
     cities: 'الغردقة · شرم الشيخ · الجونة · المارينا · دهب',
     stats: [
-      { value: '+300', label: 'مشغّل مصري' },
-      { value: '+20 مليون ج.م', label: 'حجوزات تمت معالجتها' },
-      { value: '0', label: 'حجز مزدوج منذ الإطلاق' },
+      { value: '24/7', label: 'حجوزات مباشرة أونلاين' },
+      { value: 'لغتان', label: 'دعم من فريقنا بالعربية والإنجليزية' },
+      { value: '1', label: 'تقويم لكل أسطولك' },
       { value: 'أقل من دقيقتين', label: 'تأكيد الحجز' },
     ],
   },
@@ -527,7 +526,7 @@ export const ar: OperatorCopy = {
   exitIntent: {
     eyebrow: 'شيء واحد قبل أن تغادر',
     headline: 'قالب سياسة إلغاء الطقس',
-    sub: 'سياسة من 4 مستويات تحوّل طلبات الاسترداد الغاضبة إلى زبائن مخلصين. Word + PDF، يصلك خلال 60 ثانية.',
+    sub: 'سياسة من 4 مستويات تحوّل طلبات الاسترداد الغاضبة إلى زبائن مخلصين. Word + PDF — اترك بريدك وسيرسله لك فريقنا.',
     bullets: [
       '4 مستويات من الاسترداد الكامل إلى عدم الاسترداد',
       'سكربتات بريد وواتساب جاهزة للعميل',
@@ -536,9 +535,9 @@ export const ar: OperatorCopy = {
     emailPlaceholder: 'you@yourcharter.com',
     submitLabel: 'أرسل لي القالب',
     submittingLabel: 'جاري الإرسال...',
-    successTitle: 'تم الإرسال. تحقق من بريدك.',
-    successBody: 'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    successTitle: 'شكرًا — وصلنا طلبك.',
+    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };

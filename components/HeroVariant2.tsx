@@ -304,7 +304,6 @@ const HeroContent = ({ isInView, setIsModalOpen }: { isInView: boolean; setIsMod
         {[
           { icon: CheckCircle, text: 'Unlimited Bookings' },
           { icon: Users, text: '500+ Operators' },
-          { icon: TrendingUp, text: '$50M+ Processed' },
         ].map((item, index) => (
           <div 
             key={index}

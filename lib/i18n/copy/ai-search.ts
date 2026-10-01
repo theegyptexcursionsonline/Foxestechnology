@@ -17,10 +17,10 @@ export const en: OperatorCopy = {
     pills: ['One-line embed', 'Works on any website', '50+ languages'],
   },
   socialProof: {
-    label: 'Already running on operator sites in',
+    label: 'Built for operator websites in',
     cities: 'Cairo · Hurghada · Sharm · Luxor · Dubai',
     stats: [
-      { value: '+47%', label: 'Search to booking' },
+      { value: '24/7', label: 'Always answering' },
       { value: '50+', label: 'Languages' },
       { value: '< 200ms', label: 'Search latency' },
       { value: '1 line', label: 'Embed code' },
@@ -256,7 +256,7 @@ export const en: OperatorCopy = {
   exitIntent: {
     eyebrow: 'One thing before you go',
     headline: 'The site-search benchmark for tour operators',
-    sub: 'Real conversion data from 40 operator sites in Egypt and the GCC. What "good" looks like and what to fix first. Free PDF, sent in 60 seconds.',
+    sub: 'What good site search looks like for tour and travel websites, and what to fix first. Free — leave your email and our team will send it to you.',
     bullets: [
       'Search-to-booking benchmarks by vertical',
       'Top 20 zero-result queries (and what to do)',
@@ -265,10 +265,9 @@ export const en: OperatorCopy = {
     emailPlaceholder: 'you@yoursite.com',
     submitLabel: 'Send me the benchmark',
     submittingLabel: 'Sending...',
-    successTitle: 'Sent. Check your inbox.',
-    successBody:
-      "If it's not there in 5 minutes, check spam — and message us on WhatsApp.",
-    privacy: 'One email. Unsubscribe with one click.',
+    successTitle: 'Thanks — request received.',
+    successBody: 'Our team will email it to you.',
+    privacy: 'We only use your email to send this and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
@@ -290,10 +289,10 @@ export const ar: OperatorCopy = {
     pills: ['تركيب بسطر واحد', 'يعمل على أي موقع', '+50 لغة'],
   },
   socialProof: {
-    label: 'يعمل بالفعل على مواقع مشغلين في',
+    label: 'مصمم لمواقع المشغلين في',
     cities: 'القاهرة · الغردقة · شرم · الأقصر · دبي',
     stats: [
-      { value: '+47%', label: 'بحث يتحول إلى حجز' },
+      { value: '24/7', label: 'يعمل دائمًا' },
       { value: '+50', label: 'لغة' },
       { value: 'أقل من 200ms', label: 'سرعة البحث' },
       { value: 'سطر واحد', label: 'كود التضمين' },
@@ -528,7 +527,7 @@ export const ar: OperatorCopy = {
   exitIntent: {
     eyebrow: 'شيء واحد قبل أن تغادر',
     headline: 'مرجع أداء بحث المواقع لمشغّلي السياحة',
-    sub: 'بيانات تحويل حقيقية من 40 موقع مشغّل في مصر والخليج. كيف يبدو الأداء الجيد وما الذي يجب إصلاحه أولًا. PDF مجاني، يصلك خلال 60 ثانية.',
+    sub: 'كيف يبدو البحث الجيد في مواقع السياحة والسفر، وما الذي يجب إصلاحه أولًا. مجاني — اترك بريدك وسيرسله لك فريقنا.',
     bullets: [
       'مرجع تحويل البحث إلى حجز لكل قطاع',
       'أكثر 20 استعلام بدون نتائج (وكيف تعالجها)',
@@ -537,10 +536,9 @@ export const ar: OperatorCopy = {
     emailPlaceholder: 'you@yoursite.com',
     submitLabel: 'أرسل لي المرجع',
     submittingLabel: 'جاري الإرسال...',
-    successTitle: 'تم الإرسال. تحقق من بريدك.',
-    successBody:
-      'إن لم يصل خلال 5 دقائق، تحقق من البريد المزعج — وراسلنا على واتساب.',
-    privacy: 'بريد واحد. إلغاء الاشتراك بنقرة.',
+    successTitle: 'شكرًا — وصلنا طلبك.',
+    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
+    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };
