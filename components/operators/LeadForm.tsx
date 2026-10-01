@@ -4,12 +4,14 @@ import { useState, useId, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Loader2, MessageCircle } from 'lucide-react';
 import type { OperatorCopy, OperatorCategory, Locale } from '@/lib/i18n/operators';
+import { buildWhatsappHref } from '@/lib/whatsapp';
 
 interface LeadFormProps {
   copy: OperatorCopy['leadForm'];
   category: OperatorCategory;
   locale: Locale;
-  whatsappNumber: string;
+  /** Configured WhatsApp number; without a real one the success screen offers no WhatsApp button. */
+  whatsappNumber: string | null;
   whatsappPrefilledMessage: string;
   variant?: 'card' | 'inline';
 }
@@ -55,7 +57,7 @@ export default function LeadForm({
     }
   }, []);
 
-  const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(whatsappPrefilledMessage)}`;
+  const whatsappHref = buildWhatsappHref(whatsappNumber, whatsappPrefilledMessage);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,16 +149,20 @@ export default function LeadForm({
               <Check className="h-8 w-8 text-white" strokeWidth={3} />
             </motion.div>
             <h3 className="mt-6 text-2xl font-black text-slate-900">{copy.successTitle}</h3>
-            <p className="mt-3 text-base text-slate-600">{copy.successBody}</p>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-green-500 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:shadow-xl"
-            >
-              <MessageCircle className="h-5 w-5" />
-              <span>{copy.successWhatsapp}</span>
-            </a>
+            {whatsappHref && (
+              <>
+                <p className="mt-3 text-base text-slate-600">{copy.successBody}</p>
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-green-500 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-green-500/30 transition hover:bg-green-600 hover:shadow-xl"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  <span>{copy.successWhatsapp}</span>
+                </a>
+              </>
+            )}
           </motion.div>
         ) : (
           <motion.form

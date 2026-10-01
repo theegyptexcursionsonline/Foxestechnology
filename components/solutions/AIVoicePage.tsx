@@ -33,23 +33,29 @@ import LeadForm from '@/components/operators/LeadForm';
 import WhatsAppFloat from '@/components/operators/WhatsAppFloat';
 import MobileStickyCTA from '@/components/operators/MobileStickyCTA';
 import OperatorHeader from '@/components/operators/OperatorHeader';
+import ContactButton from '@/components/operators/ContactButton';
+import { buildWhatsappHref } from '@/lib/whatsapp';
+import { REQUEST_ACCESS_LABEL, requestAccessHrefFor } from '@/lib/contact';
 import OperatorFooter from '@/components/operators/OperatorFooter';
 import { CurrencyProvider } from '@/components/operators/CurrencyContext';
 import OperatorExitIntent from '@/components/operators/OperatorExitIntent';
 import OperatorEcosystem from '@/components/operators/OperatorEcosystem';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
 
+/** Where visitors go when no real WhatsApp number is configured. */
+const REQUEST_ACCESS_HREF = requestAccessHrefFor('ai-voice');
+
 interface Props {
   copy: OperatorCopy;
   locale: Locale;
-  whatsappNumber: string;
+  whatsappNumber: string | null;
 }
 
 // Distinct violet/indigo identity for AI Voice (vs operator-page palettes)
 const BASE = '#0F0B1F';
 
 export default function AIVoicePage({ copy, locale, whatsappNumber }: Props) {
-  const whatsappHref = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(copy.whatsapp.prefilledMessage)}`;
+  const whatsappHref = buildWhatsappHref(whatsappNumber, copy.whatsapp.prefilledMessage);
 
   return (
     <CurrencyProvider>
@@ -85,6 +91,8 @@ export default function AIVoicePage({ copy, locale, whatsappNumber }: Props) {
         primaryLabel={copy.mobileStickyCta.primary}
         secondaryLabel={copy.mobileStickyCta.secondary}
         whatsappHref={whatsappHref}
+        fallbackHref={REQUEST_ACCESS_HREF}
+        fallbackLabel={REQUEST_ACCESS_LABEL[locale]}
         locale={locale}
       />
       <OperatorExitIntent copy={copy.exitIntent} category="ai-voice" locale={locale} />
@@ -101,7 +109,7 @@ function Hero({
   locale,
 }: {
   copy: OperatorCopy;
-  whatsappHref: string;
+  whatsappHref: string | null;
   locale: Locale;
 }) {
   return (
@@ -187,15 +195,14 @@ function Hero({
                   className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 ${locale === 'ar' ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`}
                 />
               </Link>
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContactButton
+                whatsappHref={whatsappHref}
+                whatsappLabel={copy.hero.secondaryCta}
+                fallbackHref={REQUEST_ACCESS_HREF}
+                fallbackLabel={REQUEST_ACCESS_LABEL[locale]}
                 className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3.5 text-[15px] font-semibold text-white backdrop-blur transition hover:border-white/30 hover:bg-white/[0.08]"
-              >
-                <MessageCircle className="h-4 w-4 text-emerald-400" />
-                <span>{copy.hero.secondaryCta}</span>
-              </a>
+                whatsappIconClassName="h-4 w-4 text-emerald-400"
+              />
             </motion.div>
 
             {/* Trust pills */}
@@ -920,7 +927,7 @@ function Pricing({ copy, locale }: { copy: OperatorCopy; locale: Locale }) {
 
           <div className="mt-10">
             <Link
-              href="#lead-form"
+              href={copy.pricing.ctaHref}
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_30px_-8px_rgba(15,23,42,0.5)] transition hover:bg-slate-800"
             >
               <span>{copy.pricing.cta}</span>
@@ -1016,7 +1023,7 @@ function LeadFormSection({
 }: {
   copy: OperatorCopy;
   locale: Locale;
-  whatsappNumber: string;
+  whatsappNumber: string | null;
 }) {
   return (
     <section id="lead-form" className="relative overflow-hidden bg-white py-28 sm:py-36">
@@ -1090,7 +1097,7 @@ function FinalCTA({
   locale,
 }: {
   copy: OperatorCopy;
-  whatsappHref: string;
+  whatsappHref: string | null;
   locale: Locale;
 }) {
   return (
@@ -1137,15 +1144,14 @@ function FinalCTA({
               className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 ${locale === 'ar' ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`}
             />
           </Link>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ContactButton
+            whatsappHref={whatsappHref}
+            whatsappLabel={copy.finalCta.secondary}
+            fallbackHref={REQUEST_ACCESS_HREF}
+            fallbackLabel={REQUEST_ACCESS_LABEL[locale]}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-3.5 text-[15px] font-semibold text-white backdrop-blur transition hover:border-white/30 hover:bg-white/[0.08]"
-          >
-            <MessageCircle className="h-4 w-4 text-emerald-400" />
-            <span>{copy.finalCta.secondary}</span>
-          </a>
+            whatsappIconClassName="h-4 w-4 text-emerald-400"
+          />
         </motion.div>
       </div>
     </section>

@@ -96,10 +96,10 @@ function HeroSection() {
 
                         <div className="mt-10 flex flex-wrap gap-4">
                             <Link
-                                href="/get-started"
+                                href="/request-access?source=foxestechnology"
                                 className={`group inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY} hover:shadow-red-500/50`}
                             >
-                                Get Started Free
+                                Request a quote
                                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
                             <Link
@@ -140,22 +140,19 @@ function DeviceShowcase() {
             name: 'Handheld POS',
             icon: Smartphone,
             image: '/mobile-pos.png',
-            features: ['Compact & portable', 'Built-in scanner', 'Card reader', '8-hour battery'],
-            price: 'From $399'
+            features: ['Compact & portable', 'Built-in scanner', 'Card reader', '8-hour battery']
         },
         {
             name: 'Tablet POS',
             icon: Tablet,
             image: '/tablet-pos.png',
-            features: ['10" touch screen', 'Stand included', 'Dual cameras', 'Premium design'],
-            price: 'From $699'
+            features: ['10" touch screen', 'Stand included', 'Dual cameras', 'Premium design']
         },
         {
             name: 'Terminal POS',
             icon: Package,
             image: '/terminal.png',
-            features: ['Full keyboard', 'Receipt printer', 'Cash drawer', 'Rugged build'],
-            price: 'From $1,299'
+            features: ['Full keyboard', 'Receipt printer', 'Cash drawer', 'Rugged build']
         },
     ];
 
@@ -193,8 +190,7 @@ function DeviceShowcase() {
                             </div>
                             <div className="p-6">
                                 <device.icon className="w-10 h-10 text-red-600 mb-4" />
-                                <h3 className="text-2xl font-bold text-gray-900 mb-2">{device.name}</h3>
-                                <p className="text-2xl font-black text-red-600 mb-4">{device.price}</p>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">{device.name}</h3>
                                 <ul className="space-y-2 mb-6">
                                     {device.features.map((feature, i) => (
                                         <li key={i} className="flex items-center gap-2 text-gray-600">
@@ -204,10 +200,10 @@ function DeviceShowcase() {
                                     ))}
                                 </ul>
                                 <Link
-                                    href="/contact"
+                                    href="/request-access?source=foxestechnology"
                                     className="block text-center px-6 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors"
                                 >
-                                    Order Now
+                                    Request a quote
                                 </Link>
                             </div>
                         </motion.div>
@@ -443,14 +439,14 @@ function CTASection() {
                         Ready to Upgrade Your Operations?
                     </h2>
                     <p className="text-xl text-gray-300 mb-8">
-                        Get professional POS hardware with free shipping and setup support.
+                        Tell us what you need and our team will follow up with a quote.
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link
-                            href="/get-started"
+                            href="/request-access?source=foxestechnology"
                             className={`inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY}`}
                         >
-                            Order Hardware
+                            Request a quote
                             <ArrowRight className="h-5 w-5" />
                         </Link>
                         <Link

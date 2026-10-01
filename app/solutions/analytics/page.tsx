@@ -94,10 +94,10 @@ function HeroSection() {
 
                         <div className="mt-10 flex flex-wrap gap-4">
                             <Link
-                                href="/get-started"
+                                href="/request-access?solution=booking&source=foxestechnology"
                                 className={`group inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY} hover:shadow-red-500/50`}
                             >
-                                Start Free Trial
+                                Request access
                                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
                             <Link
@@ -392,14 +392,14 @@ function CTASection() {
                         Start Making Smarter Decisions Today
                     </h2>
                     <p className="text-xl text-gray-300 mb-8">
-                        Get instant access to powerful analytics with our free trial.
+                        Request access and our team will follow up with next steps.
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link
-                            href="/get-started"
+                            href="/request-access?solution=booking&source=foxestechnology"
                             className={`inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY}`}
                         >
-                            Start Free Trial
+                            Request access
                             <ArrowRight className="h-5 w-5" />
                         </Link>
                         <Link

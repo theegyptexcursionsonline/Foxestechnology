@@ -12,9 +12,9 @@ export const en: OperatorCopy = {
     headlineLine1: 'All Your Products.',
     headlineLine2: 'One Dashboard.',
     sub: 'The all-in-one platform Egyptian tour agencies use to manage tours, transfers, packages and attractions in one place — generate branded vouchers in seconds, run a B2B reseller portal, and stop giving 30% to OTAs on every booking.',
-    primaryCta: 'Get Started Free',
+    primaryCta: 'Get started',
     secondaryCta: 'Chat on WhatsApp',
-    pills: ['No setup fee', 'Free for 30 days', 'Arabic support'],
+    pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
   },
   socialProof: {
     label: 'Powering travel agencies across',
@@ -152,17 +152,16 @@ export const en: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'Pricing',
-    headline: 'Free for 30 days. No card required.',
-    sub: 'After your trial, simple transparent pricing — no per-product traps, no setup fees.',
+    headline: 'Plans that fit the size of your agency.',
+    sub: 'Plans scale with your monthly bookings, team size and product range. Tell us how you work and we will recommend the right one.',
     bullets: [
-      'Unlimited products and bookings during trial',
-      'Full feature access including reseller portal',
+      'Plans scale with your bookings and team',
       'Arabic + English support',
-      'Cancel anytime',
+      'Prices confirmed before you sign up',
     ],
-    cta: 'Start free trial',
-    fineprint:
-      'No credit card needed to start. Pricing shared after a 15-minute call so we can match your volume.',
+    cta: 'Ask us for pricing',
+    ctaHref: '/request-access?solution=booking&source=foxestechnology',
+    fineprint: 'We share current plans and prices when you request access.',
   },
   faq: {
     sectionEyebrow: 'Questions you should ask',
@@ -235,7 +234,7 @@ export const en: OperatorCopy = {
     successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
     successBody: 'You can also start the conversation now if you prefer:',
     successWhatsapp: 'Open WhatsApp',
-    errorGeneric: 'Something went wrong. Please try again or message us on WhatsApp directly.',
+    errorGeneric: 'Something went wrong. Please try again in a moment.',
     errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
     privacy:
       'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
@@ -243,7 +242,7 @@ export const en: OperatorCopy = {
   finalCta: {
     headline: 'Ready to run every product from one dashboard?',
     sub: 'Join the agencies in Cairo, Hurghada, Luxor and Aswan who consolidated their catalog and took their margin back.',
-    primary: 'Start free trial',
+    primary: 'Get started',
     secondary: 'Talk to us on WhatsApp',
   },
   whatsapp: {
@@ -251,7 +250,7 @@ export const en: OperatorCopy = {
     prefilledMessage: "Hi, I'm interested in Foxes for my travel agency.",
   },
   mobileStickyCta: {
-    primary: 'Get started free',
+    primary: 'Get started',
     secondary: 'WhatsApp',
   },
   exitIntent: {
@@ -286,9 +285,9 @@ export const ar: OperatorCopy = {
     headlineLine1: 'كل منتجاتك.',
     headlineLine2: 'لوحة واحدة.',
     sub: 'المنصة المتكاملة التي تستخدمها وكالات السياحة المصرية لإدارة الجولات والنقل والباقات والتذاكر في مكان واحد — أصدر فاوتشرات احترافية في ثوانٍ، شغّل بوابة وكلاء B2B، وتوقف عن دفع 30% للوسطاء على كل حجز.',
-    primaryCta: 'ابدأ مجانًا',
+    primaryCta: 'ابدأ الآن',
     secondaryCta: 'تحدث معنا عبر واتساب',
-    pills: ['بدون رسوم تركيب', 'مجاني لمدة 30 يومًا', 'دعم باللغة العربية'],
+    pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
   },
   socialProof: {
     label: 'يشغّل وكالات السياحة في',
@@ -425,17 +424,16 @@ export const ar: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'الأسعار',
-    headline: 'مجاني لمدة 30 يومًا. بدون بطاقة.',
-    sub: 'بعد التجربة، تسعير شفاف بسيط — بدون مصائد لكل منتج، بدون رسوم تركيب.',
+    headline: 'باقات تناسب حجم وكالتك.',
+    sub: 'تتدرّج الباقات حسب عدد حجوزاتك الشهرية وحجم فريقك وتنوّع منتجاتك. أخبرنا كيف تعمل وسنرشّح لك الباقة المناسبة.',
     bullets: [
-      'منتجات وحجوزات غير محدودة خلال التجربة',
-      'وصول كامل بما في ذلك بوابة الوكلاء',
+      'باقات تنمو مع حجوزاتك وفريقك',
       'دعم بالعربية والإنجليزية',
-      'إلغاء في أي وقت',
+      'تأكيد الأسعار قبل التسجيل',
     ],
-    cta: 'ابدأ التجربة المجانية',
-    fineprint:
-      'بدون بطاقة ائتمان للبدء. التسعير يُشارَك بعد مكالمة 15 دقيقة لنطابق حجم عملك.',
+    cta: 'اسألنا عن الأسعار',
+    ctaHref: '/request-access?solution=booking&source=foxestechnology',
+    fineprint: 'نشاركك الباقات والأسعار الحالية عند تقديم طلب الانضمام.',
   },
   faq: {
     sectionEyebrow: 'أسئلة يجب أن تسألها',
@@ -507,7 +505,7 @@ export const ar: OperatorCopy = {
     successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
     successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
     successWhatsapp: 'افتح واتساب',
-    errorGeneric: 'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب مباشرة.',
+    errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
     errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
     privacy:
       'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
@@ -515,7 +513,7 @@ export const ar: OperatorCopy = {
   finalCta: {
     headline: 'مستعد لتدير كل منتج من لوحة واحدة؟',
     sub: 'انضم إلى الوكالات في القاهرة والغردقة والأقصر وأسوان التي وحّدت كتالوجها واستعادت هامشها.',
-    primary: 'ابدأ التجربة المجانية',
+    primary: 'ابدأ الآن',
     secondary: 'تحدث معنا على واتساب',
   },
   whatsapp: {
@@ -523,7 +521,7 @@ export const ar: OperatorCopy = {
     prefilledMessage: 'مرحبًا، أنا مهتم بـ Foxes لوكالة السياحة الخاصة بي.',
   },
   mobileStickyCta: {
-    primary: 'ابدأ مجانًا',
+    primary: 'ابدأ الآن',
     secondary: 'واتساب',
   },
   exitIntent: {

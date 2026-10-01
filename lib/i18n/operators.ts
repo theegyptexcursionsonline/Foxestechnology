@@ -59,6 +59,13 @@ export interface OperatorCopy {
     sub: string;
     bullets: string[];
     cta: string;
+    /**
+     * Where the pricing button goes: the product's own public pricing page, or
+     * /request-access when that page is not public yet. Keep `cta` describing it
+     * truthfully ("See plans and pricing" vs "Ask us for pricing"); the pairs are
+     * pinned in __tests__/content/pricing-truth.test.ts.
+     */
+    ctaHref: string;
     fineprint: string;
   };
   faq: {
@@ -151,9 +158,9 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       headlineLine1: 'Fill Every Seat.',
       headlineLine2: 'Cut OTA Fees in Half.',
       sub: 'The all-in-one platform Egyptian dinner cruise and Felucca operators use to take direct bookings 24/7, manage seatings and capacity, handle F&B preferences, and keep groups happy — without giving up 30% to OTAs.',
-      primaryCta: 'Get Started Free',
+      primaryCta: 'Get started',
       secondaryCta: 'Chat on WhatsApp',
-      pills: ['No setup fee', 'Free for 30 days', 'Arabic support'],
+      pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
     },
     socialProof: {
       label: 'Powering dinner cruises across',
@@ -291,17 +298,16 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     },
     pricing: {
       eyebrow: 'Pricing',
-      headline: 'Free for 30 days. No card required.',
-      sub: 'After your trial, simple transparent pricing — no per-seat traps, no setup fees.',
+      headline: 'Plans that fit the size of your operation.',
+      sub: 'Plans scale with your monthly bookings, team size and product range. Tell us how you work and we will recommend the right one.',
       bullets: [
-        'Unlimited bookings during trial',
-        'Full feature access',
+        'Plans scale with your bookings and team',
         'Arabic + English support',
-        'Cancel anytime',
+        'Prices confirmed before you sign up',
       ],
-      cta: 'Start free trial',
-      fineprint:
-        'No credit card needed to start. Pricing shared after a 15-minute call so we can match your volume.',
+      cta: 'Ask us for pricing',
+      ctaHref: '/request-access?solution=booking&source=foxestechnology',
+      fineprint: 'We share current plans and prices when you request access.',
     },
     faq: {
       sectionEyebrow: 'Questions you should ask',
@@ -374,7 +380,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
       successBody: 'You can also start the conversation now if you prefer:',
       successWhatsapp: 'Open WhatsApp',
-      errorGeneric: 'Something went wrong. Please try again or message us on WhatsApp directly.',
+      errorGeneric: 'Something went wrong. Please try again in a moment.',
       errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
       privacy:
         'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
@@ -382,7 +388,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     finalCta: {
       headline: 'Ready to fill every seat — and keep the margin?',
       sub: 'Join the dinner cruise operators in Cairo, Luxor, Aswan and Hurghada who took control of their bookings.',
-      primary: 'Start free trial',
+      primary: 'Get started',
       secondary: 'Talk to us on WhatsApp',
     },
     whatsapp: {
@@ -390,7 +396,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       prefilledMessage: "Hi, I'm interested in Foxes for my dinner cruise.",
     },
     mobileStickyCta: {
-      primary: 'Get started free',
+      primary: 'Get started',
       secondary: 'WhatsApp',
     },
     exitIntent: {
@@ -424,9 +430,9 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       headlineLine1: 'Built for Dive Operators.',
       headlineLine2: 'Certs, Rentals, Bookings — One Place.',
       sub: 'The all-in-one platform Egyptian dive centres use to manage PADI & SSI certifications, equipment rentals, multi-day courses, and divemaster scheduling — without the paper chaos.',
-      primaryCta: 'Get Started Free',
+      primaryCta: 'Get started',
       secondaryCta: 'Chat on WhatsApp',
-      pills: ['No setup fee', 'Free for 30 days', 'Arabic support'],
+      pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
     },
     socialProof: {
       label: 'Trusted by dive centres across',
@@ -560,16 +566,16 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     },
     pricing: {
       eyebrow: 'Pricing',
-      headline: 'Free for 30 days. No card required.',
-      sub: 'After your trial, simple transparent pricing — no per-seat traps, no setup fees.',
+      headline: 'Plans that fit the size of your dive centre.',
+      sub: 'Plans scale with your monthly bookings, team size and product range. Tell us how you work and we will recommend the right one.',
       bullets: [
-        'Unlimited bookings during trial',
-        'Full feature access',
+        'Plans scale with your bookings and team',
         'Arabic + English support',
-        'Cancel anytime',
+        'Prices confirmed before you sign up',
       ],
-      cta: 'Start free trial',
-      fineprint: 'No credit card needed to start. Pricing shared after a 15-minute call so we can match your volume.',
+      cta: 'Ask us for pricing',
+      ctaHref: '/request-access?solution=booking&source=foxestechnology',
+      fineprint: 'We share current plans and prices when you request access.',
     },
     faq: {
       sectionEyebrow: 'Questions you should ask',
@@ -606,9 +612,9 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
             'Generic tools treat a dive trip like a city tour. Foxes was built with dive operators in Hurghada and Sharm. Equipment tracking, certification handling, divemaster scheduling, dive site catalogs — none of that is in Bookeo or Rezdy.',
         },
         {
-          question: 'What is the fee after the trial?',
+          question: 'How much does Foxes cost?',
           answer:
-            'A small percentage per online transaction — no monthly fees, no setup, no per-seat charges. We share the exact number on a 15-minute call so we can match your volume.',
+            'Foxes is sold as subscription plans that scale with your monthly bookings, team size and product range. Tell us about your dive centre and we will share current prices and recommend the right plan before you sign up.',
         },
         {
           question: 'Do you support liveaboards and dive safari boats?',
@@ -641,7 +647,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
       successBody: 'You can also start the conversation now if you prefer:',
       successWhatsapp: 'Open WhatsApp',
-      errorGeneric: 'Something went wrong. Please try again or message us on WhatsApp directly.',
+      errorGeneric: 'Something went wrong. Please try again in a moment.',
       errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
       privacy:
         'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
@@ -649,7 +655,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
     finalCta: {
       headline: 'Ready to run your dive centre like the best in the Red Sea?',
       sub: 'Join the operators in Hurghada, Sharm, Marsa Alam and Dahab who left the paper chaos behind.',
-      primary: 'Start free trial',
+      primary: 'Get started',
       secondary: 'Talk to us on WhatsApp',
     },
     whatsapp: {
@@ -657,7 +663,7 @@ const en: Partial<Record<OperatorCategory, OperatorCopy>> = {
       prefilledMessage: "Hi, I'm interested in Foxes for my diving centre.",
     },
     mobileStickyCta: {
-      primary: 'Get started free',
+      primary: 'Get started',
       secondary: 'WhatsApp',
     },
     exitIntent: {
@@ -699,9 +705,9 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       headlineLine1: 'املأ كل مقعد.',
       headlineLine2: 'خفّض عمولات OTA إلى النصف.',
       sub: 'المنصة المتكاملة التي يستخدمها مشغلو رحلات العشاء النيلية والفلوكا في مصر لاستقبال الحجوزات المباشرة 24/7، وإدارة المواعيد والسعة، والتعامل مع تفضيلات الطعام، وإسعاد المجموعات — بدون التنازل عن 30% للوسطاء.',
-      primaryCta: 'ابدأ مجانًا',
+      primaryCta: 'ابدأ الآن',
       secondaryCta: 'تحدث معنا عبر واتساب',
-      pills: ['بدون رسوم تركيب', 'مجاني لمدة 30 يومًا', 'دعم باللغة العربية'],
+      pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
     },
     socialProof: {
       label: 'يشغّل رحلات العشاء في',
@@ -835,17 +841,16 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     },
     pricing: {
       eyebrow: 'الأسعار',
-      headline: 'مجاني لمدة 30 يومًا. بدون بطاقة.',
-      sub: 'بعد التجربة، تسعير شفاف بسيط — بدون مصائد لكل مقعد، بدون رسوم تركيب.',
+      headline: 'باقات تناسب حجم عملك.',
+      sub: 'تتدرّج الباقات حسب عدد حجوزاتك الشهرية وحجم فريقك وتنوّع منتجاتك. أخبرنا كيف تعمل وسنرشّح لك الباقة المناسبة.',
       bullets: [
-        'حجوزات غير محدودة خلال التجربة',
-        'وصول كامل لكل المزايا',
+        'باقات تنمو مع حجوزاتك وفريقك',
         'دعم بالعربية والإنجليزية',
-        'إلغاء في أي وقت',
+        'تأكيد الأسعار قبل التسجيل',
       ],
-      cta: 'ابدأ التجربة المجانية',
-      fineprint:
-        'بدون بطاقة ائتمان للبدء. التسعير يُشارَك بعد مكالمة 15 دقيقة لنطابق حجم عملك.',
+      cta: 'اسألنا عن الأسعار',
+      ctaHref: '/request-access?solution=booking&source=foxestechnology',
+      fineprint: 'نشاركك الباقات والأسعار الحالية عند تقديم طلب الانضمام.',
     },
     faq: {
       sectionEyebrow: 'أسئلة يجب أن تسألها',
@@ -917,7 +922,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
       successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
       successWhatsapp: 'افتح واتساب',
-      errorGeneric: 'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب مباشرة.',
+      errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
       errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
       privacy:
         'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
@@ -925,7 +930,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     finalCta: {
       headline: 'مستعد لتملأ كل مقعد — وتحتفظ بالهامش؟',
       sub: 'انضم إلى مشغلي رحلات العشاء في القاهرة والأقصر وأسوان والغردقة الذين تحكموا بحجوزاتهم.',
-      primary: 'ابدأ التجربة المجانية',
+      primary: 'ابدأ الآن',
       secondary: 'تحدث معنا على واتساب',
     },
     whatsapp: {
@@ -933,7 +938,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       prefilledMessage: 'مرحبًا، أنا مهتم بـ Foxes لرحلة العشاء الخاصة بي.',
     },
     mobileStickyCta: {
-      primary: 'ابدأ مجانًا',
+      primary: 'ابدأ الآن',
       secondary: 'واتساب',
     },
     exitIntent: {
@@ -966,9 +971,9 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       headlineLine1: 'مصمم لمراكز الغوص.',
       headlineLine2: 'الشهادات والمعدات والحجوزات في مكان واحد.',
       sub: 'المنصة المتكاملة التي تستخدمها مراكز الغوص المصرية لإدارة شهادات PADI و SSI، وإيجار المعدات، والدورات متعددة الأيام، وجدولة مدربي الغوص — بدون فوضى الأوراق.',
-      primaryCta: 'ابدأ مجانًا',
+      primaryCta: 'ابدأ الآن',
       secondaryCta: 'تحدث معنا عبر واتساب',
-      pills: ['بدون رسوم تركيب', 'مجاني لمدة 30 يومًا', 'دعم باللغة العربية'],
+      pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
     },
     socialProof: {
       label: 'موثوق به من مراكز الغوص في',
@@ -1102,16 +1107,16 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     },
     pricing: {
       eyebrow: 'الأسعار',
-      headline: 'مجاني لمدة 30 يومًا. بدون بطاقة.',
-      sub: 'بعد التجربة، تسعير شفاف بسيط — بدون مصائد لكل مقعد، بدون رسوم تركيب.',
+      headline: 'باقات تناسب حجم مركز الغوص لديك.',
+      sub: 'تتدرّج الباقات حسب عدد حجوزاتك الشهرية وحجم فريقك وتنوّع منتجاتك. أخبرنا كيف تعمل وسنرشّح لك الباقة المناسبة.',
       bullets: [
-        'حجوزات غير محدودة خلال التجربة',
-        'وصول كامل لكل المزايا',
+        'باقات تنمو مع حجوزاتك وفريقك',
         'دعم بالعربية والإنجليزية',
-        'إلغاء في أي وقت',
+        'تأكيد الأسعار قبل التسجيل',
       ],
-      cta: 'ابدأ التجربة المجانية',
-      fineprint: 'بدون بطاقة ائتمان للبدء. التسعير يُشارَك بعد مكالمة 15 دقيقة لنطابق حجم عملك.',
+      cta: 'اسألنا عن الأسعار',
+      ctaHref: '/request-access?solution=booking&source=foxestechnology',
+      fineprint: 'نشاركك الباقات والأسعار الحالية عند تقديم طلب الانضمام.',
     },
     faq: {
       sectionEyebrow: 'أسئلة يجب أن تسألها',
@@ -1148,9 +1153,9 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
             'الأدوات العامة تتعامل مع رحلة غوص كأنها جولة مدينة. Foxes صُمم بمعرفة مشغلي الغوص في الغردقة وشرم. تتبع المعدات، إدارة الشهادات، جدولة المدربين، كتالوج المواقع — لا شيء من هذا في Bookeo أو Rezdy.',
         },
         {
-          question: 'ما هي الرسوم بعد التجربة؟',
+          question: 'كم تبلغ تكلفة Foxes؟',
           answer:
-            'نسبة صغيرة لكل عملية أونلاين — بدون رسوم شهرية، بدون تركيب، بدون مقاعد. نشارك الرقم الدقيق في مكالمة 15 دقيقة لنطابق حجم عملك.',
+            'يُباع Foxes في باقات اشتراك تتدرّج حسب عدد حجوزاتك الشهرية وحجم فريقك وتنوّع منتجاتك. أخبرنا عن مركز الغوص لديك وسنشاركك الأسعار الحالية ونرشّح لك الباقة المناسبة قبل التسجيل.',
         },
         {
           question: 'هل تدعمون قوارب الإقامة وقوارب السفاري؟',
@@ -1183,7 +1188,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
       successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
       successWhatsapp: 'افتح واتساب',
-      errorGeneric: 'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب مباشرة.',
+      errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
       errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
       privacy:
         'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
@@ -1191,7 +1196,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
     finalCta: {
       headline: 'مستعد لتدير مركز غوصك مثل أفضل المراكز في البحر الأحمر؟',
       sub: 'انضم إلى المشغلين في الغردقة وشرم ومرسى علم ودهب الذين تركوا فوضى الورق وراءهم.',
-      primary: 'ابدأ التجربة المجانية',
+      primary: 'ابدأ الآن',
       secondary: 'تحدث معنا على واتساب',
     },
     whatsapp: {
@@ -1199,7 +1204,7 @@ const ar: Partial<Record<OperatorCategory, OperatorCopy>> = {
       prefilledMessage: 'مرحبًا، أنا مهتم بـ Foxes لمركز الغوص الخاص بي.',
     },
     mobileStickyCta: {
-      primary: 'ابدأ مجانًا',
+      primary: 'ابدأ الآن',
       secondary: 'واتساب',
     },
     exitIntent: {

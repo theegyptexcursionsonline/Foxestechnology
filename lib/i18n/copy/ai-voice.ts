@@ -12,9 +12,9 @@ export const en: OperatorCopy = {
     headlineLine1: 'Take the call.',
     headlineLine2: 'Even at 2am. Even in Korean.',
     sub: 'A real-feeling voice that answers in 120 languages, qualifies the booking, takes a deposit by SMS, and drops the reservation into your Foxes calendar. While your team sleeps, the phone keeps making money.',
-    primaryCta: 'Get 100 minutes free',
+    primaryCta: 'Get started',
     secondaryCta: 'Hear it on WhatsApp',
-    pills: ['120 languages', 'Pay per minute', 'Live in 48 hours'],
+    pills: ['120 languages', 'Monthly plans', 'Live in 48 hours'],
   },
   socialProof: {
     label: 'Answering calls for operators in',
@@ -152,17 +152,17 @@ export const en: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'Pricing',
-    headline: 'Pay per minute, not per agent.',
-    sub: 'Free 100 minutes to start. After that, simple per-minute pricing — no headcount licences, no setup fee, no minimum commitment.',
+    headline: 'Monthly plans with minutes included.',
+    sub: 'Every plan includes a set number of voice minutes each month, from a single property up to multi-property groups.',
     bullets: [
-      '100 free minutes (about 50 bookings)',
-      'No per-seat licences, no monthly minimums',
-      'Cancel anytime, keep your phone number',
-      'Volume pricing on request',
+      'Voice minutes included in every plan',
+      'Change plans as your call volume grows',
+      'Enterprise plans for larger groups',
+      'Prices in US dollars',
     ],
-    cta: 'Start with 100 free minutes',
-    fineprint:
-      'No credit card needed to start. Per-minute rate shared on a 15-minute call so we can match your call mix and language profile.',
+    cta: 'See plans and pricing',
+    ctaHref: 'https://voice.foxestechnology.com/pricing?lang=en',
+    fineprint: 'Plans, prices and what each one includes are listed on the AI Voice pricing page.',
   },
   faq: {
     sectionEyebrow: 'Questions you should ask',
@@ -194,9 +194,9 @@ export const en: OperatorCopy = {
           'Yes — natively. Confirmed bookings appear in your Foxes calendar with the right product, date, and pax count. Deposits taken on the call show up in your Foxes payments dashboard. If you use external CRMs (HubSpot, Salesforce, Zoho), we sync there too.',
       },
       {
-        question: 'How much does it cost per minute?',
+        question: 'How much does it cost?',
         answer:
-          'Per-minute pricing varies by language mix and call volume — most Egypt-based operators land between 15 and 35 US cents per minute. We share an exact rate after a 15-minute call so we can match your traffic. There are no monthly minimums.',
+          'AI Voice is sold as monthly plans, each with a set number of voice minutes, plus an Enterprise plan for larger groups. You can move between plans as your call volume changes. Current prices are on the AI Voice pricing page, and we are happy to walk you through them on a short call.',
       },
       {
         question: 'Which languages does it really speak well?',
@@ -235,15 +235,15 @@ export const en: OperatorCopy = {
     successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
     successBody: 'You can also start the conversation now if you prefer:',
     successWhatsapp: 'Open WhatsApp',
-    errorGeneric: 'Something went wrong. Please try again or message us on WhatsApp directly.',
+    errorGeneric: 'Something went wrong. Please try again in a moment.',
     errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
     privacy:
       'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
   },
   finalCta: {
     headline: 'Stop letting the phone ring out.',
-    sub: 'Get 100 minutes free. Hear your own agent answer your own number — in your customer’s language — within 48 hours.',
-    primary: 'Start with 100 free minutes',
+    sub: 'Hear your own agent answer your own number — in your customer’s language — within 48 hours.',
+    primary: 'Get started',
     secondary: 'Talk to us on WhatsApp',
   },
   whatsapp: {
@@ -251,7 +251,7 @@ export const en: OperatorCopy = {
     prefilledMessage: "Hi, I'd like to hear a demo of the Foxes AI Voice Agent.",
   },
   mobileStickyCta: {
-    primary: '100 free minutes',
+    primary: 'Get started',
     secondary: 'WhatsApp',
   },
   exitIntent: {
@@ -285,9 +285,9 @@ export const ar: OperatorCopy = {
     headlineLine1: 'ردّ على المكالمة.',
     headlineLine2: 'حتى الساعة الثانية صباحًا. حتى بالكورية.',
     sub: 'صوت طبيعي يردّ بـ 120 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes الخاص بك. وأنت نائم — التليفون يكسب لك فلوس.',
-    primaryCta: 'احصل على 100 دقيقة مجانًا',
+    primaryCta: 'ابدأ الآن',
     secondaryCta: 'اسمع التجربة على واتساب',
-    pills: ['120 لغة', 'دفع بالدقيقة', 'تشغيل خلال 48 ساعة'],
+    pills: ['120 لغة', 'باقات شهرية', 'تشغيل خلال 48 ساعة'],
   },
   socialProof: {
     label: 'يردّ على مكالمات مشغلين في',
@@ -425,17 +425,17 @@ export const ar: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'الأسعار',
-    headline: 'دفع بالدقيقة، مش بالموظف.',
-    sub: '100 دقيقة مجانية في البداية. بعد كده تسعير بسيط بالدقيقة — بدون رخص لكل مقعد، بدون رسوم تركيب، بدون التزام شهري.',
+    headline: 'باقات شهرية تشمل الدقائق.',
+    sub: 'تتضمن كل باقة عددًا محددًا من دقائق المكالمات شهريًا، من منشأة واحدة إلى مجموعات متعددة المنشآت.',
     bullets: [
-      '100 دقيقة مجانية (تقريبًا 50 حجز)',
-      'بدون رخص لكل مقعد، بدون حد أدنى شهري',
-      'إلغاء في أي وقت، احتفظ برقمك',
-      'تسعير حجمي للطلب',
+      'دقائق المكالمات مشمولة في كل باقة',
+      'غيّر باقتك مع نمو حجم مكالماتك',
+      'باقات مؤسسية للمجموعات الكبيرة',
+      'الأسعار بالدولار الأمريكي',
     ],
-    cta: 'ابدأ بـ 100 دقيقة مجانية',
-    fineprint:
-      'بدون بطاقة ائتمان للبدء. السعر بالدقيقة بنشاركه في مكالمة 15 دقيقة علشان نطابق نوع مكالماتك ولغاتك.',
+    cta: 'اطّلع على الباقات والأسعار',
+    ctaHref: 'https://voice.foxestechnology.com/pricing?lang=ar',
+    fineprint: 'الباقات والأسعار وما تتضمنه كل باقة متاحة في صفحة أسعار وكيل الصوت الذكي.',
   },
   faq: {
     sectionEyebrow: 'أسئلة لازم تسألها',
@@ -467,9 +467,9 @@ export const ar: OperatorCopy = {
           'نعم — بشكل أصلي. الحجوزات المؤكدة تظهر في تقويم Foxes بالمنتج والتاريخ وعدد الأشخاص الصح. العربون اللي اتدفع في المكالمة يظهر في لوحة المدفوعات. ولو بتستخدم HubSpot أو Salesforce أو Zoho بنزامن معاهم كمان.',
       },
       {
-        question: 'كم سعر الدقيقة؟',
+        question: 'كم تبلغ التكلفة؟',
         answer:
-          'السعر بالدقيقة بيختلف حسب اللغات والحجم — معظم المشغلين في مصر بين 15 و 35 سنت أمريكي للدقيقة. بنشارك السعر الدقيق بعد مكالمة 15 دقيقة لنطابق حجمك. بدون حد أدنى شهري.',
+          'يُباع وكيل الصوت الذكي في باقات شهرية، لكل منها عدد محدد من دقائق المكالمات، إلى جانب باقة مؤسسية للمجموعات الكبيرة. ويمكنك الانتقال بين الباقات كلما تغيّر حجم مكالماتك. الأسعار الحالية متاحة في صفحة أسعار وكيل الصوت الذكي، ويسعدنا أن نشرحها لك في مكالمة قصيرة.',
       },
       {
         question: 'إيه اللغات اللي بيتكلمها كويس فعلًا؟',
@@ -508,15 +508,15 @@ export const ar: OperatorCopy = {
     successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
     successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
     successWhatsapp: 'افتح واتساب',
-    errorGeneric: 'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب مباشرة.',
+    errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
     errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
     privacy:
       'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
   },
   finalCta: {
     headline: 'بطّل تسيب التليفون يرنّ.',
-    sub: 'احصل على 100 دقيقة مجانًا. اسمع وكيلك بيردّ على رقمك أنت — بلغة عميلك أنت — خلال 48 ساعة.',
-    primary: 'ابدأ بـ 100 دقيقة مجانية',
+    sub: 'اسمع وكيلك بيردّ على رقمك أنت — بلغة عميلك أنت — خلال 48 ساعة.',
+    primary: 'ابدأ الآن',
     secondary: 'تحدث معنا على واتساب',
   },
   whatsapp: {
@@ -524,7 +524,7 @@ export const ar: OperatorCopy = {
     prefilledMessage: 'مرحبًا، أريد سماع تجربة لوكيل الصوت الذكي من Foxes.',
   },
   mobileStickyCta: {
-    primary: '100 دقيقة مجانية',
+    primary: 'ابدأ الآن',
     secondary: 'واتساب',
   },
   exitIntent: {

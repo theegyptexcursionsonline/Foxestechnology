@@ -3,15 +3,18 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, MessageCircle, Menu, X, Check } from 'lucide-react';
+import { ArrowRight, Menu, X, Check } from 'lucide-react';
 import type { OperatorCategory, Locale } from '@/lib/i18n/operators';
 import { CURRENCY_OPTIONS, type Currency } from '@/lib/currency';
+import { REQUEST_ACCESS_LABEL, requestAccessHrefFor } from '@/lib/contact';
 import { useCurrency } from './CurrencyContext';
+import ContactButton from './ContactButton';
 
 interface Props {
   category: OperatorCategory;
   locale: Locale;
-  whatsappHref: string;
+  /** wa.me link, or null when no real WhatsApp number is configured (request access is shown instead). */
+  whatsappHref: string | null;
   ctaLabel: string;
   whatsappLabel: string;
 }
@@ -82,6 +85,8 @@ export default function OperatorHeader({
       ? `/${basePath}/${category}`
       : `/ar/${basePath}/${category}`;
   const dropdownLabel = isSolution ? COPY.solutions[locale] : COPY.forOperators[locale];
+  const requestAccessHref = requestAccessHrefFor(category);
+  const requestAccessLabel = REQUEST_ACCESS_LABEL[locale];
 
   return (
     <header
@@ -228,20 +233,21 @@ export default function OperatorHeader({
           >
             {COPY.switchLang[locale]}
           </Link>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ContactButton
+            whatsappHref={whatsappHref}
+            whatsappLabel={whatsappLabel}
+            fallbackHref={requestAccessHref}
+            fallbackLabel={requestAccessLabel}
             className={`hidden h-9 items-center gap-1.5 rounded-full border px-3.5 text-[12.5px] font-semibold transition sm:inline-flex ${
               scrolled
                 ? 'border-slate-200 text-slate-700 hover:border-emerald-300 hover:bg-emerald-50'
                 : 'border-white/20 bg-white/10 text-white backdrop-blur-md hover:border-white/40 hover:bg-white/15'
             }`}
-            aria-label={whatsappLabel}
-          >
-            <MessageCircle className="h-3.5 w-3.5 text-emerald-500" />
-            <span className="hidden md:inline">{whatsappLabel}</span>
-          </a>
+            whatsappIconClassName="h-3.5 w-3.5 text-emerald-500"
+            fallbackIconClassName="h-3.5 w-3.5"
+            labelClassName="hidden md:inline"
+            withAriaLabel
+          />
           <Link
             href="#lead-form"
             className="group inline-flex h-9 items-center gap-1.5 rounded-full bg-red-600 px-4 text-[12.5px] font-semibold text-white shadow-md shadow-red-600/20 transition hover:bg-red-700"
@@ -325,16 +331,16 @@ export default function OperatorHeader({
               >
                 {COPY.switchLang[locale]}
               </Link>
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContactButton
+                whatsappHref={whatsappHref}
+                whatsappLabel={whatsappLabel}
+                fallbackHref={requestAccessHref}
+                fallbackLabel={requestAccessLabel}
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2.5 text-[13px] font-semibold text-slate-700"
-              >
-                <MessageCircle className="h-3.5 w-3.5 text-emerald-500" />
-                {whatsappLabel}
-              </a>
+                whatsappIconClassName="h-3.5 w-3.5 text-emerald-500"
+                fallbackIconClassName="h-3.5 w-3.5 text-slate-500"
+              />
             </div>
             <Link
               href="#lead-form"

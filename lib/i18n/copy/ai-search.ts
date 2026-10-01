@@ -4,17 +4,17 @@ export const en: OperatorCopy = {
   meta: {
     title: 'AI Search Widget for Tour Operators · Foxes Technology',
     description:
-      'Embed an AI-powered search bar on your tour, cruise, attraction or hotel website. Visitors search in any language, find the right product instantly, and convert. One line of code. Free up to 5,000 searches per month.',
+      'Embed an AI-powered search bar on your tour, cruise, attraction or hotel website. Visitors search in any language, find the right product instantly, and convert. One line of code.',
     ogTitle: 'Search That Actually Finds The Tour · Foxes Technology',
   },
   hero: {
     badge: 'AI Search Agent · For your website',
     headlineLine1: 'Search That Actually',
     headlineLine2: 'Finds The Tour.',
-    sub: 'A drop-in AI search widget for tour, cruise, attraction and hotel websites. Visitors type in plain language — even half-spelt, in any language — and the right product comes up first. One line of code. Free up to 5,000 searches a month.',
-    primaryCta: 'Get Started Free',
+    sub: 'A drop-in AI search widget for tour, cruise, attraction and hotel websites. Visitors type in plain language — even half-spelt, in any language — and the right product comes up first. One line of code.',
+    primaryCta: 'Get started',
     secondaryCta: 'Chat on WhatsApp',
-    pills: ['One-line embed', 'Free 5K searches / mo', '50+ languages'],
+    pills: ['One-line embed', 'Works on any website', '50+ languages'],
   },
   socialProof: {
     label: 'Already running on operator sites in',
@@ -23,7 +23,7 @@ export const en: OperatorCopy = {
       { value: '+47%', label: 'Search to booking' },
       { value: '50+', label: 'Languages' },
       { value: '< 200ms', label: 'Search latency' },
-      { value: '5,000', label: 'Free searches / mo' },
+      { value: '1 line', label: 'Embed code' },
     ],
   },
   pains: {
@@ -152,17 +152,16 @@ export const en: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'Pricing',
-    headline: 'Free up to 5,000 searches a month.',
-    sub: 'After that, pennies per search — usage-based, no monthly minimum, no setup fee.',
+    headline: 'Plans sized to your search traffic.',
+    sub: 'Every plan includes a set number of searches each month. Tell us about your site and we will recommend the right one.',
     bullets: [
-      'Free tier covers most operator sites',
-      'Unlimited products and tenants',
-      'Real-time analytics included',
-      'Cancel anytime',
+      'A monthly search allowance on every plan',
+      'Move up a plan as your traffic grows',
+      'Prices confirmed before you sign up',
     ],
-    cta: 'Start free trial',
-    fineprint:
-      'No credit card needed to start. Pricing for paid tiers shared on a 15-minute call so we can match your traffic.',
+    cta: 'Ask us for pricing',
+    ctaHref: '/request-access?solution=search&source=foxestechnology',
+    fineprint: 'We share current plans and prices when you request access.',
   },
   faq: {
     sectionEyebrow: 'Questions you should ask',
@@ -204,9 +203,9 @@ export const en: OperatorCopy = {
           'Yes. We support direct integrations with Foxes booking engine, Bokun, Rezdy, FareHarbor, custom REST and CSV feeds. The widget reads your products at index time and links search results straight into your existing booking flow — no rewrites required.',
       },
       {
-        question: 'What is the limit on the free tier?',
+        question: 'How is AI Search priced?',
         answer:
-          'Free covers up to 5,000 searches per month per widget — enough for most operator sites. Paid plans kick in only when you exceed that, and pricing is per-search, not per-product, so you never pay for catalog size. We share exact rates after a 15-minute call.',
+          'AI Search is sold as plans, each with a set monthly allowance of searches, so you know your costs before you start. Larger plans add more searches and features for busier sites. Tell us about your site and our team will share current prices and recommend the right plan.',
       },
     ],
   },
@@ -235,7 +234,7 @@ export const en: OperatorCopy = {
     successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
     successBody: 'You can also start the conversation now if you prefer:',
     successWhatsapp: 'Open WhatsApp',
-    errorGeneric: 'Something went wrong. Please try again or message us on WhatsApp directly.',
+    errorGeneric: 'Something went wrong. Please try again in a moment.',
     errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
     privacy:
       'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
@@ -243,7 +242,7 @@ export const en: OperatorCopy = {
   finalCta: {
     headline: 'Ready to turn your search box into a booking machine?',
     sub: 'Operators in Cairo, Hurghada, Sharm and Luxor already use Foxes AI Search to convert visitors before they bounce.',
-    primary: 'Start free trial',
+    primary: 'Get started',
     secondary: 'Talk to us on WhatsApp',
   },
   whatsapp: {
@@ -251,7 +250,7 @@ export const en: OperatorCopy = {
     prefilledMessage: "Hi, I'm interested in the Foxes AI Search widget for my website.",
   },
   mobileStickyCta: {
-    primary: 'Get started free',
+    primary: 'Get started',
     secondary: 'WhatsApp',
   },
   exitIntent: {
@@ -278,17 +277,17 @@ export const ar: OperatorCopy = {
   meta: {
     title: 'أداة البحث الذكية لمشغّلي السياحة · Foxes Technology',
     description:
-      'ضع شريط بحث مدعوم بالذكاء الاصطناعي على موقع جولاتك أو رحلاتك أو فندقك. يبحث الزائرون بأي لغة، يجدون المنتج المناسب فورًا، ويحجزون. سطر واحد من الكود. مجاني حتى 5000 عملية بحث شهريًا.',
+      'ضع شريط بحث مدعوم بالذكاء الاصطناعي على موقع جولاتك أو رحلاتك أو فندقك. يبحث الزائرون بأي لغة، يجدون المنتج المناسب فورًا، ويحجزون. سطر واحد من الكود.',
     ogTitle: 'بحث يجد الجولة فعلًا · Foxes Technology',
   },
   hero: {
     badge: 'وكيل البحث الذكي · لموقعك',
     headlineLine1: 'بحث يجد الجولة',
     headlineLine2: 'فعلًا.',
-    sub: 'أداة بحث ذكية تُضاف بسطر واحد إلى مواقع الجولات والرحلات والمعالم والفنادق. الزائر يكتب بلغته الطبيعية — حتى لو بأخطاء، بأي لغة — والمنتج المناسب يظهر أولًا. سطر واحد من الكود. مجاني حتى 5000 عملية بحث شهريًا.',
-    primaryCta: 'ابدأ مجانًا',
+    sub: 'أداة بحث ذكية تُضاف بسطر واحد إلى مواقع الجولات والرحلات والمعالم والفنادق. الزائر يكتب بلغته الطبيعية — حتى لو بأخطاء، بأي لغة — والمنتج المناسب يظهر أولًا. سطر واحد من الكود.',
+    primaryCta: 'ابدأ الآن',
     secondaryCta: 'تحدث معنا عبر واتساب',
-    pills: ['تركيب بسطر واحد', 'مجاني حتى 5000 بحث شهريًا', '+50 لغة'],
+    pills: ['تركيب بسطر واحد', 'يعمل على أي موقع', '+50 لغة'],
   },
   socialProof: {
     label: 'يعمل بالفعل على مواقع مشغلين في',
@@ -297,7 +296,7 @@ export const ar: OperatorCopy = {
       { value: '+47%', label: 'بحث يتحول إلى حجز' },
       { value: '+50', label: 'لغة' },
       { value: 'أقل من 200ms', label: 'سرعة البحث' },
-      { value: '5000', label: 'بحث مجاني شهريًا' },
+      { value: 'سطر واحد', label: 'كود التضمين' },
     ],
   },
   pains: {
@@ -425,17 +424,16 @@ export const ar: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'الأسعار',
-    headline: 'مجاني حتى 5000 بحث شهريًا.',
-    sub: 'بعدها، قروش لكل بحث — على أساس الاستخدام، بلا حد أدنى شهري، بلا رسوم تركيب.',
+    headline: 'باقات تناسب حجم البحث على موقعك.',
+    sub: 'تتضمن كل باقة عددًا محددًا من عمليات البحث شهريًا. أخبرنا عن موقعك وسنرشّح لك الباقة المناسبة.',
     bullets: [
-      'الباقة المجانية تكفي معظم مواقع المشغلين',
-      'منتجات ومستأجرون بلا حد',
-      'تحليلات لحظية مشمولة',
-      'إلغاء في أي وقت',
+      'حصة بحث شهرية في كل باقة',
+      'انتقل إلى باقة أكبر مع نمو زياراتك',
+      'تأكيد الأسعار قبل التسجيل',
     ],
-    cta: 'ابدأ التجربة المجانية',
-    fineprint:
-      'بدون بطاقة ائتمان للبدء. أسعار الباقات المدفوعة تُشارَك في مكالمة 15 دقيقة لنطابق حجم زوارك.',
+    cta: 'اسألنا عن الأسعار',
+    ctaHref: '/request-access?solution=search&source=foxestechnology',
+    fineprint: 'نشاركك الباقات والأسعار الحالية عند تقديم طلب الانضمام.',
   },
   faq: {
     sectionEyebrow: 'أسئلة يجب أن تسألها',
@@ -477,9 +475,9 @@ export const ar: OperatorCopy = {
           'نعم. ندعم تكاملات مباشرة مع محرك Foxes للحجز و Bokun و Rezdy و FareHarbor و REST مخصّص وملفات CSV. تقرأ الأداة منتجاتك وقت الفهرسة وتربط نتائج البحث بمسار الحجز الحالي مباشرة — بدون إعادة كتابة شيء.',
       },
       {
-        question: 'ما حدود الباقة المجانية؟',
+        question: 'كيف تُسعَّر أداة البحث الذكية؟',
         answer:
-          'المجانية تشمل حتى 5000 عملية بحث شهريًا لكل أداة — ما يكفي معظم مواقع المشغلين. الباقات المدفوعة تبدأ فقط حين تتجاوز ذلك، والتسعير لكل بحث لا لكل منتج، فلا تدفع أبدًا مقابل حجم الكتالوج. نشارك الأرقام بعد مكالمة 15 دقيقة.',
+          'تُباع أداة البحث الذكية في باقات، لكل منها حصة شهرية محددة من عمليات البحث، فتعرف تكلفتك قبل أن تبدأ. وتضيف الباقات الأكبر مزيدًا من عمليات البحث والمزايا للمواقع الأكثر زيارة. أخبرنا عن موقعك وسيشاركك فريقنا الأسعار الحالية ويرشّح لك الباقة المناسبة.',
       },
     ],
   },
@@ -508,7 +506,7 @@ export const ar: OperatorCopy = {
     successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
     successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
     successWhatsapp: 'افتح واتساب',
-    errorGeneric: 'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب مباشرة.',
+    errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
     errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
     privacy:
       'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
@@ -516,7 +514,7 @@ export const ar: OperatorCopy = {
   finalCta: {
     headline: 'مستعد لتحوّل شريط بحثك إلى آلة حجز؟',
     sub: 'مشغّلون في القاهرة والغردقة وشرم والأقصر يستخدمون بحث Foxes الذكي بالفعل لتحويل الزوار قبل أن يغادروا.',
-    primary: 'ابدأ التجربة المجانية',
+    primary: 'ابدأ الآن',
     secondary: 'تحدث معنا على واتساب',
   },
   whatsapp: {
@@ -524,7 +522,7 @@ export const ar: OperatorCopy = {
     prefilledMessage: 'مرحبًا، أنا مهتم بأداة البحث الذكية من Foxes لموقعي.',
   },
   mobileStickyCta: {
-    primary: 'ابدأ مجانًا',
+    primary: 'ابدأ الآن',
     secondary: 'واتساب',
   },
   exitIntent: {

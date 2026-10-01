@@ -423,10 +423,10 @@ function CTASection() {
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link
-                            href="/get-started"
+                            href="/request-access?solution=booking&source=foxestechnology"
                             className={`inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY}`}
                         >
-                            Activate AI Free
+                            Request access
                             <ArrowRight className="h-5 w-5" />
                         </Link>
                         <Link

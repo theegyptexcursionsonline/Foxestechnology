@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import DivingCentresPage from '@/components/operators/DivingCentresPage';
 import RTLProvider from '@/components/operators/RTLProvider';
 import { getOperatorCopy } from '@/lib/i18n/operators';
+import { getFoxesWhatsappNumber } from '@/lib/whatsapp';
 
 const SITE_URL = 'https://foxestechnology.com';
 const PAGE_PATH = '/ar/operators/diving-centres';
@@ -37,9 +38,9 @@ export const metadata: Metadata = {
   },
 };
 
-const whatsappNumber = process.env.NEXT_PUBLIC_FOXES_WHATSAPP ?? '+201000000000';
-
 export default function Page() {
+  // null when no real number is configured: the page then offers request access instead of WhatsApp.
+  const whatsappNumber = getFoxesWhatsappNumber();
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [

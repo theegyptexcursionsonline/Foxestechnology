@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X } from 'lucide-react';
+import { buildWhatsappHref } from '@/lib/whatsapp';
 
 interface WhatsAppFloatProps {
-  number: string;
+  /** Configured WhatsApp number; when it is missing or not a real number nothing renders. */
+  number: string | null;
   prefilledMessage: string;
   label: string;
   locale: 'en' | 'ar';
@@ -15,13 +17,15 @@ export default function WhatsAppFloat({ number, prefilledMessage, label, locale 
   const [visible, setVisible] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const positionClass = locale === 'ar' ? 'left-4 sm:left-6' : 'right-4 sm:right-6';
+  const href = buildWhatsappHref(number, prefilledMessage);
 
   useEffect(() => {
+    if (!href) return;
     const onScroll = () => setVisible(window.scrollY > 240);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [href]);
 
   useEffect(() => {
     if (!visible) return;
@@ -33,7 +37,7 @@ export default function WhatsAppFloat({ number, prefilledMessage, label, locale 
     };
   }, [visible]);
 
-  const href = `https://wa.me/${number.replace(/[^\d]/g, '')}?text=${encodeURIComponent(prefilledMessage)}`;
+  if (!href) return null;
 
   return (
     <AnimatePresence>

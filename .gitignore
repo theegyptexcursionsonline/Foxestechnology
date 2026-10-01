@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+# local verification evidence (screenshots, test output) — never committed
+/readiness-proof/
 
 # next.js
 /.next/

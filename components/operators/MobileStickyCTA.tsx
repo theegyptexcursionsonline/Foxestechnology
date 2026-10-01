@@ -2,12 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import ContactButton from './ContactButton';
 
 interface MobileStickyCTAProps {
   primaryLabel: string;
   secondaryLabel: string;
-  whatsappHref: string;
+  /** wa.me link, or null when no real WhatsApp number is configured. */
+  whatsappHref: string | null;
+  /** Used in place of WhatsApp when there is no number. */
+  fallbackHref: string;
+  fallbackLabel: string;
   formAnchor?: string;
   locale: 'en' | 'ar';
 }
@@ -16,6 +21,8 @@ export default function MobileStickyCTA({
   primaryLabel,
   secondaryLabel,
   whatsappHref,
+  fallbackHref,
+  fallbackLabel,
   formAnchor = '#lead-form',
   locale,
 }: MobileStickyCTAProps) {
@@ -46,15 +53,15 @@ export default function MobileStickyCTA({
               <span>{primaryLabel}</span>
               <ArrowRight className={`h-4 w-4 ${locale === 'ar' ? 'rotate-180' : ''}`} />
             </a>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContactButton
+              whatsappHref={whatsappHref}
+              whatsappLabel={secondaryLabel}
+              fallbackHref={fallbackHref}
+              fallbackLabel={fallbackLabel}
               className="flex items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm transition active:scale-95"
-            >
-              <MessageCircle className="h-4 w-4 text-green-600" />
-              <span>{secondaryLabel}</span>
-            </a>
+              whatsappIconClassName="h-4 w-4 text-green-600"
+              fallbackIconClassName="h-4 w-4 text-slate-500"
+            />
           </div>
         </motion.div>
       )}

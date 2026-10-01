@@ -1,12 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, MessageCircle, Mail } from 'lucide-react';
+import { ArrowUpRight, Mail } from 'lucide-react';
 import type { OperatorCategory, Locale } from '@/lib/i18n/operators';
+import { REQUEST_ACCESS_LABEL, requestAccessHrefFor } from '@/lib/contact';
+import ContactButton from './ContactButton';
 
 interface Props {
   category: OperatorCategory;
   locale: Locale;
-  whatsappHref: string;
+  /** wa.me link, or null when no real WhatsApp number is configured (request access is shown instead). */
+  whatsappHref: string | null;
 }
 
 const COPY = {
@@ -72,15 +75,14 @@ export default function OperatorFooter({ category, locale, whatsappHref }: Props
               {COPY.tagline[locale]}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContactButton
+                whatsappHref={whatsappHref}
+                whatsappLabel={COPY.chatLabel[locale]}
+                fallbackHref={requestAccessHrefFor(category)}
+                fallbackLabel={REQUEST_ACCESS_LABEL[locale]}
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[13px] font-semibold text-white backdrop-blur-md transition hover:border-emerald-300/40 hover:bg-emerald-400/10"
-              >
-                <MessageCircle className="h-4 w-4 text-emerald-400" />
-                <span>{COPY.chatLabel[locale]}</span>
-              </a>
+                fallbackIconClassName="h-4 w-4 text-white/80"
+              />
               <a
                 href="mailto:hello@foxestechnology.com"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[13px] font-semibold text-white backdrop-blur-md transition hover:border-white/30 hover:bg-white/10"

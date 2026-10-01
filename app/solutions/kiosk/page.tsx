@@ -94,10 +94,10 @@ function HeroSection() {
 
                         <div className="mt-10 flex flex-wrap gap-4">
                             <Link
-                                href="/get-started"
+                                href="/request-access?source=foxestechnology"
                                 className={`group inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY} hover:shadow-red-500/50`}
                             >
-                                Get Started Free
+                                Request a quote
                                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
                             <Link
@@ -329,18 +329,15 @@ function Customization() {
                         <div className="space-y-4">
                             <div className="bg-white/10 rounded-lg p-4">
                                 <h4 className="text-white font-bold mb-2">Standard Kiosk</h4>
-                                <p className="text-blue-100 text-sm mb-2">22&quot; touchscreen, card reader, printer</p>
-                                <p className="text-white text-xl font-black">From $2,999</p>
+                                <p className="text-blue-100 text-sm">22&quot; touchscreen, card reader, printer</p>
                             </div>
                             <div className="bg-white/10 rounded-lg p-4">
                                 <h4 className="text-white font-bold mb-2">Premium Kiosk</h4>
-                                <p className="text-blue-100 text-sm mb-2">32&quot; touchscreen, dual screens, camera</p>
-                                <p className="text-white text-xl font-black">From $4,999</p>
+                                <p className="text-blue-100 text-sm">32&quot; touchscreen, dual screens, camera</p>
                             </div>
                             <div className="bg-white/10 rounded-lg p-4">
                                 <h4 className="text-white font-bold mb-2">Outdoor Kiosk</h4>
-                                <p className="text-blue-100 text-sm mb-2">Weather-proof, anti-glare, vandal-resistant</p>
-                                <p className="text-white text-xl font-black">From $7,999</p>
+                                <p className="text-blue-100 text-sm">Weather-proof, anti-glare, vandal-resistant</p>
                             </div>
                         </div>
                     </motion.div>
@@ -362,7 +359,7 @@ function ROISection() {
                     <h2 className="text-4xl font-black text-gray-900 mb-6">Pay for Itself in 6 Months</h2>
                     <p className="text-xl text-gray-600 mb-12">Average ROI from real customers</p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="bg-blue-50 rounded-2xl p-8">
                             <div className="text-5xl font-black text-blue-600 mb-2">70%</div>
                             <div className="text-gray-600">Reduction in wait times</div>
@@ -374,33 +371,6 @@ function ROISection() {
                         <div className="bg-blue-50 rounded-2xl p-8">
                             <div className="text-5xl font-black text-blue-600 mb-2">25%</div>
                             <div className="text-gray-600">Increase in sales</div>
-                        </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">Example: Medium Tour Operator</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                            <div>
-                                <div className="text-sm text-gray-600 mb-1">Monthly Savings</div>
-                                <div className="text-2xl font-black text-gray-900 mb-3">$3,500</div>
-                                <ul className="text-gray-600 text-sm space-y-1">
-                                    <li>• 2 fewer front desk staff</li>
-                                    <li>• Extended service hours</li>
-                                    <li>• Reduced payment processing fees</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <div className="text-sm text-gray-600 mb-1">Investment</div>
-                                <div className="text-2xl font-black text-gray-900 mb-3">$4,999</div>
-                                <ul className="text-gray-600 text-sm space-y-1">
-                                    <li>• One-time hardware cost</li>
-                                    <li>• Free installation & setup</li>
-                                    <li>• Lifetime software updates</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="mt-6 pt-6 border-t border-blue-200">
-                            <div className="text-lg font-bold text-gray-900">Payback Period: <span className="text-blue-600">1.4 months</span></div>
                         </div>
                     </div>
                 </motion.div>
@@ -426,10 +396,10 @@ function CTASection() {
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link
-                            href="/contact"
+                            href="/request-access?source=foxestechnology"
                             className={`inline-flex items-center gap-2 rounded-full ${BRAND_COLOR_PRIMARY} px-8 py-4 text-lg font-bold text-white shadow-xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY}`}
                         >
-                            Request Quote
+                            Request a quote
                             <ArrowRight className="h-5 w-5" />
                         </Link>
                         <Link

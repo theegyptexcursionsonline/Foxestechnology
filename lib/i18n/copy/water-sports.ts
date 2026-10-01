@@ -12,9 +12,9 @@ export const en: OperatorCopy = {
     headlineLine1: 'Sell Sessions',
     headlineLine2: 'While You Sleep.',
     sub: 'The all-in-one platform Egyptian water sports operators use to take hourly bookings 24/7, sign waivers digitally, track every jet ski and parasail in real time, and turn beach walk-ins into bookings from Instagram, Google Maps and hotel concierge desks.',
-    primaryCta: 'Get Started Free',
+    primaryCta: 'Get started',
     secondaryCta: 'Chat on WhatsApp',
-    pills: ['No setup fee', 'Free for 30 days', 'Arabic support'],
+    pills: ['No setup fee', 'Plans that grow with you', 'Arabic support'],
   },
   socialProof: {
     label: 'Powering water sports operators across',
@@ -152,17 +152,16 @@ export const en: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'Pricing',
-    headline: 'Free for 30 days. No card required.',
-    sub: 'After your trial, simple transparent pricing — no per-seat traps, no setup fees.',
+    headline: 'Plans that fit the size of your operation.',
+    sub: 'Plans scale with your monthly bookings, team size and product range. Tell us how you work and we will recommend the right one.',
     bullets: [
-      'Unlimited bookings during trial',
-      'Full feature access',
+      'Plans scale with your bookings and team',
       'Arabic + English support',
-      'Cancel anytime',
+      'Prices confirmed before you sign up',
     ],
-    cta: 'Start free trial',
-    fineprint:
-      'No credit card needed to start. Pricing shared after a 15-minute call so we can match your volume.',
+    cta: 'Ask us for pricing',
+    ctaHref: '/request-access?solution=booking&source=foxestechnology',
+    fineprint: 'We share current plans and prices when you request access.',
   },
   faq: {
     sectionEyebrow: 'Questions you should ask',
@@ -235,7 +234,7 @@ export const en: OperatorCopy = {
     successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
     successBody: 'You can also start the conversation now if you prefer:',
     successWhatsapp: 'Open WhatsApp',
-    errorGeneric: 'Something went wrong. Please try again or message us on WhatsApp directly.',
+    errorGeneric: 'Something went wrong. Please try again in a moment.',
     errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
     privacy:
       'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
@@ -243,7 +242,7 @@ export const en: OperatorCopy = {
   finalCta: {
     headline: 'Ready to sell sessions while you sleep?',
     sub: 'Join the water sports operators in Hurghada, Sharm, El Gouna, Sahel, Marsa Alam and Dahab who turned the beach into a 24/7 booking machine.',
-    primary: 'Start free trial',
+    primary: 'Get started',
     secondary: 'Talk to us on WhatsApp',
   },
   whatsapp: {
@@ -251,7 +250,7 @@ export const en: OperatorCopy = {
     prefilledMessage: "Hi, I'm interested in Foxes for my water sports business.",
   },
   mobileStickyCta: {
-    primary: 'Get started free',
+    primary: 'Get started',
     secondary: 'WhatsApp',
   },
   exitIntent: {
@@ -286,9 +285,9 @@ export const ar: OperatorCopy = {
     headlineLine1: 'بِع جلسات',
     headlineLine2: 'أثناء نومك.',
     sub: 'المنصة المتكاملة التي يستخدمها مشغلو الرياضات المائية في مصر لاستقبال حجوزات بالساعة 24/7، وتوقيع التعهدات رقميًا، وتتبع كل جت سكي وباراسيل لحظة بلحظة، وتحويل الزوار العابرين على الشاطئ إلى حجوزات قادمة من إنستجرام وخرائط جوجل وأقسام الحجز في الفنادق.',
-    primaryCta: 'ابدأ مجانًا',
+    primaryCta: 'ابدأ الآن',
     secondaryCta: 'تحدث معنا عبر واتساب',
-    pills: ['بدون رسوم تركيب', 'مجاني لمدة 30 يومًا', 'دعم باللغة العربية'],
+    pills: ['بدون رسوم تركيب', 'باقات تنمو معك', 'دعم باللغة العربية'],
   },
   socialProof: {
     label: 'يشغّل الرياضات المائية في',
@@ -425,17 +424,16 @@ export const ar: OperatorCopy = {
   },
   pricing: {
     eyebrow: 'الأسعار',
-    headline: 'مجاني لمدة 30 يومًا. بدون بطاقة.',
-    sub: 'بعد التجربة، تسعير شفاف بسيط — بدون مصائد لكل مقعد، بدون رسوم تركيب.',
+    headline: 'باقات تناسب حجم عملك.',
+    sub: 'تتدرّج الباقات حسب عدد حجوزاتك الشهرية وحجم فريقك وتنوّع منتجاتك. أخبرنا كيف تعمل وسنرشّح لك الباقة المناسبة.',
     bullets: [
-      'حجوزات غير محدودة خلال التجربة',
-      'وصول كامل لكل المزايا',
+      'باقات تنمو مع حجوزاتك وفريقك',
       'دعم بالعربية والإنجليزية',
-      'إلغاء في أي وقت',
+      'تأكيد الأسعار قبل التسجيل',
     ],
-    cta: 'ابدأ التجربة المجانية',
-    fineprint:
-      'بدون بطاقة ائتمان للبدء. التسعير يُشارَك بعد مكالمة 15 دقيقة لنطابق حجم عملك.',
+    cta: 'اسألنا عن الأسعار',
+    ctaHref: '/request-access?solution=booking&source=foxestechnology',
+    fineprint: 'نشاركك الباقات والأسعار الحالية عند تقديم طلب الانضمام.',
   },
   faq: {
     sectionEyebrow: 'أسئلة يجب أن تسألها',
@@ -507,7 +505,7 @@ export const ar: OperatorCopy = {
     successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
     successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
     successWhatsapp: 'افتح واتساب',
-    errorGeneric: 'حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب مباشرة.',
+    errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
     errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
     privacy:
       'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
@@ -515,7 +513,7 @@ export const ar: OperatorCopy = {
   finalCta: {
     headline: 'مستعد لتبيع جلسات أثناء نومك؟',
     sub: 'انضم إلى مشغلي الرياضات المائية في الغردقة وشرم والجونة والساحل ومرسى علم ودهب الذين حوّلوا الشاطئ إلى ماكينة حجز 24/7.',
-    primary: 'ابدأ التجربة المجانية',
+    primary: 'ابدأ الآن',
     secondary: 'تحدث معنا على واتساب',
   },
   whatsapp: {
@@ -523,7 +521,7 @@ export const ar: OperatorCopy = {
     prefilledMessage: 'مرحبًا، أنا مهتم بـ Foxes لنشاط الرياضات المائية الخاص بي.',
   },
   mobileStickyCta: {
-    primary: 'ابدأ مجانًا',
+    primary: 'ابدأ الآن',
     secondary: 'واتساب',
   },
   exitIntent: {
