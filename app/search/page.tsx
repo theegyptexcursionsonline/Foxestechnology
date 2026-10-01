@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Search, Filter, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { searchClient, ALGOLIA_INDEX_NAME, SearchHit, searchCategories } from '@/lib/algolia';
+import { searchClient, ALGOLIA_INDEX_NAME, SearchHit, searchCategories, searchHitHref, searchHitLabel, searchHitText } from '@/lib/algolia';
 import {
   InstantSearch,
   SearchBox,
@@ -20,20 +20,26 @@ import {
 
 function Hit({ hit }: { hit: SearchHit }) {
   const router = useRouter();
+  // Catalogue records carry `{ _id, name }` references and no page on this site.
+  const href = searchHitHref(hit);
+  const category = searchHitLabel(hit.category);
+  const title = searchHitText(hit.title);
+  const image = searchHitText(hit.image);
+  const tags = Array.isArray(hit.tags) ? hit.tags.map(searchHitLabel).filter(Boolean) : [];
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer group"
-      onClick={() => router.push(hit.url)}
+      className={`bg-white rounded-lg border border-gray-200 p-6 group ${href ? 'hover:shadow-lg transition-shadow cursor-pointer' : ''}`}
+      onClick={href ? () => router.push(href) : undefined}
     >
       <div className="flex items-start gap-4">
-        {hit.image && (
+        {image && (
           <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
             <img
-              src={hit.image}
-              alt={hit.title}
+              src={image}
+              alt={title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
@@ -46,21 +52,23 @@ function Hit({ hit }: { hit: SearchHit }) {
             <h3
               className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors"
               dangerouslySetInnerHTML={{
-                __html: hit._highlightResult?.title?.value || hit.title,
+                __html: hit._highlightResult?.title?.value || title,
               }}
             />
-            <span className="text-xs px-2.5 py-1 bg-red-50 text-red-600 rounded-full capitalize font-medium">
-              {hit.category}
-            </span>
+            {category && (
+              <span className="text-xs px-2.5 py-1 bg-red-50 text-red-600 rounded-full capitalize font-medium">
+                {category}
+              </span>
+            )}
           </div>
           <p
             className="text-gray-600 mb-3 line-clamp-2"
             dangerouslySetInnerHTML={{
-              __html: hit._highlightResult?.description?.value || hit.description,
+              __html: hit._highlightResult?.description?.value || searchHitText(hit.description),
             }}
           />
           <div className="flex items-center gap-2 flex-wrap">
-            {hit.tags?.slice(0, 4).map((tag) => (
+            {tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
                 className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-md"

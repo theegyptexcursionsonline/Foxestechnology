@@ -22,21 +22,58 @@ export const searchConfig = {
   snippetEllipsisText: '...',
 };
 
-// Types for search results
+/** A populated reference as stored by the catalogue sync, e.g. a category or destination. */
+export interface SearchReference {
+  _id?: string;
+  name?: string;
+}
+
+/**
+ * A record from the search index. The index holds two shapes: site pages (string category and
+ * an internal `url`) and catalogue records synced from the booking platform, whose `category`
+ * is a `{ _id, name }` reference and which have no page on this site. Render fields through
+ * the helpers below rather than directly — rendering a reference object crashes the page.
+ */
 export interface SearchHit {
   objectID: string;
-  title: string;
-  description: string;
-  content: string;
-  url: string;
-  category: string;
-  tags?: string[];
+  title?: string;
+  description?: string;
+  content?: string;
+  url?: unknown;
+  category?: string | SearchReference | null;
+  tags?: unknown[];
   image?: string;
   _highlightResult?: {
-    title: { value: string };
-    description: { value: string };
-    content: { value: string };
+    title?: { value: string };
+    description?: { value: string };
+    content?: { value: string };
   };
+}
+
+/** Text for a field that may be a plain string or a `{ name }` reference; empty when there is none. */
+export function searchHitLabel(value: unknown): string {
+  if (typeof value === 'string') return value.trim();
+  if (value && typeof value === 'object' && 'name' in value) {
+    const { name } = value as { name?: unknown };
+    return typeof name === 'string' ? name.trim() : '';
+  }
+  return '';
+}
+
+/** A string field's value, or an empty string when the record holds something else. */
+export function searchHitText(value: unknown): string {
+  return typeof value === 'string' ? value : '';
+}
+
+/**
+ * The page on this site a result opens, or null when it has none. Only same-site paths are
+ * allowed — never an external, protocol-relative or script address.
+ */
+export function searchHitHref(hit: Pick<SearchHit, 'url'>): string | null {
+  if (typeof hit.url !== 'string') return null;
+  const url = hit.url.trim();
+  if (!url.startsWith('/') || url.startsWith('//') || url.startsWith('/\\')) return null;
+  return url;
 }
 
 // Search categories for filtering

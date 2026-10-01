@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X, TrendingUp, FileQuestion, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { searchClient, ALGOLIA_INDEX_NAME, SearchHit } from '@/lib/algolia';
+import { searchClient, ALGOLIA_INDEX_NAME, SearchHit, searchHitHref, searchHitLabel, searchHitText } from '@/lib/algolia';
 import { InstantSearch, useSearchBox, useHits, Configure } from 'react-instantsearch';
 
 // Popular searches for suggestions
@@ -75,21 +75,20 @@ function SearchResults({ onResultClick, inline = false }: SearchResultsProps) {
     >
       <div className="overflow-y-auto max-h-[400px] overscroll-contain search-results-scroll">
         <div className={inline ? "space-y-1" : "p-2"}>
-          {hits.slice(0, 6).map((hit, index) => (
-            <motion.button
-              key={hit.objectID}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.05 }}
-              onClick={() => handleResultClick(hit.url)}
-              className="w-full text-left p-4 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 rounded-xl transition-all duration-200 group border border-transparent hover:border-red-100"
-            >
+          {hits.slice(0, 6).map((hit, index) => {
+            // Catalogue records carry `{ _id, name }` references and no page on this site:
+            // show them, but only results with a same-site page are clickable.
+            const href = searchHitHref(hit);
+            const category = searchHitLabel(hit.category);
+            const title = searchHitText(hit.title);
+            const image = searchHitText(hit.image);
+            const content = (
               <div className="flex items-start gap-4">
-                {hit.image && (
+                {image && (
                   <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-gray-100 to-gray-200 ring-2 ring-gray-100 group-hover:ring-red-200 transition-all">
                     <img
-                      src={hit.image}
-                      alt={hit.title}
+                      src={image}
+                      alt={title}
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         (e.target as HTMLImageElement).style.display = 'none';
@@ -102,23 +101,50 @@ function SearchResults({ onResultClick, inline = false }: SearchResultsProps) {
                     <h4
                       className="font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-1 text-base"
                       dangerouslySetInnerHTML={{
-                        __html: hit._highlightResult?.title?.value || hit.title,
+                        __html: hit._highlightResult?.title?.value || title,
                       }}
                     />
-                    <span className="text-xs px-2.5 py-1 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 rounded-full capitalize flex-shrink-0 font-medium border border-gray-200">
-                      {hit.category}
-                    </span>
+                    {category && (
+                      <span
+                        data-search-category
+                        className="text-xs px-2.5 py-1 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 rounded-full capitalize flex-shrink-0 font-medium border border-gray-200"
+                      >
+                        {category}
+                      </span>
+                    )}
                   </div>
                   <p
                     className="text-sm text-gray-600 line-clamp-2 leading-relaxed"
                     dangerouslySetInnerHTML={{
-                      __html: hit._highlightResult?.description?.value || hit.description,
+                      __html: hit._highlightResult?.description?.value || searchHitText(hit.description),
                     }}
                   />
                 </div>
               </div>
-            </motion.button>
-          ))}
+            );
+            return href ? (
+              <motion.button
+                key={hit.objectID}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                onClick={() => handleResultClick(href)}
+                className="w-full text-left p-4 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 rounded-xl transition-all duration-200 group border border-transparent hover:border-red-100"
+              >
+                {content}
+              </motion.button>
+            ) : (
+              <motion.div
+                key={hit.objectID}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="w-full text-left p-4 rounded-xl border border-transparent"
+              >
+                {content}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
