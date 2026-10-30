@@ -308,7 +308,7 @@ function RequestAccessForm() {
                         {step === 0 && (
                           <>
                             <Field icon={<User size={15} />} label="Full name">
-                              <input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Sara Hassan" className={inputCls} autoFocus />
+                              <input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Sara Hassan" className={inputCls} />
                             </Field>
                             <Field icon={<Mail size={15} />} label="Work email">
                               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@company.com" className={inputCls} />
