@@ -3,7 +3,8 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # Node 20 receives no security fixes; the patched 22 LTS, as on the other Foxes sites (30 Oct 2026).
+  NODE_VERSION = "22.23.4"
   # These NEXT_PUBLIC_* values are public by design — Next.js inlines them into the
   # client bundle (Algolia browser search uses a search-only key). Netlify secrets
   # scanning otherwise fails the build on finding them in the output. The real
