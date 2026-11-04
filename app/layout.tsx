@@ -5,7 +5,13 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 // Meta Title, Description, and Social Sharing tags added
+// Absolute base for every relative metadata URL (preview images, canonicals).
+// Without it Next falls back to http://localhost:3000 in production, so WhatsApp
+// and social previews of every page pointed at an address nobody can reach.
+const SITE_URL = 'https://foxestechnology.com';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Foxes Technology | Booking Systems & POS for Tours & Activities',
     template: '%s | Foxes Technology',

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: 'Foxes Technology',
     images: [
       {
-        url: '/foxes1.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Coming Soon - Foxes Technology',
     description: 'The all-in-one platform to digitize and grow your travel business. Launching soon!',
-    images: ['/foxes1.png'],
+    images: ['/og-image.png'],
   },
 };
 
