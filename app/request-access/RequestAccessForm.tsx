@@ -102,6 +102,22 @@ export function RequestAccessForm({ solution, source }: RequestAccessFormProps) 
     if (done) doneHeading.current?.focus();
   }, [done]);
 
+  // The first step arrives as HTML, so a visitor can type before this script runs. Take what is
+  // already in the fields, or "Continue" would ask for a name the field is showing.
+  const formRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const typed = (field: string) => {
+      const el = form.elements.namedItem(field);
+      return el instanceof HTMLInputElement || el instanceof HTMLSelectElement ? el.value : "";
+    };
+    if (typed("name")) setName(typed("name"));
+    if (typed("email")) setEmail(typed("email"));
+    if (typed("phone")) setPhone(typed("phone"));
+    if (typed("role")) setRole(typed("role"));
+  }, []);
+
   const toggleSolution = (key: string) =>
     setSolutions((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
 
@@ -260,7 +276,7 @@ export function RequestAccessForm({ solution, source }: RequestAccessFormProps) 
                     ))}
                   </div>
 
-                  <form onSubmit={onSubmit} noValidate className="mt-4 sm:mt-6">
+                  <form ref={formRef} onSubmit={onSubmit} noValidate className="mt-4 sm:mt-6">
                     {/* initial={false}: the first step is drawn as it will stay, so the server HTML shows it;
                         later steps fade (no sideways movement, which reduced-motion settings ask to avoid). */}
                     <AnimatePresence mode="wait" initial={false}>
@@ -374,9 +390,9 @@ export function RequestAccessForm({ solution, source }: RequestAccessFormProps) 
         </section>
 
         <ul className="space-y-3.5 border-t border-white/10 pt-6 sm:border-0 sm:pt-0 lg:col-start-1 lg:row-start-4 lg:mt-10">
-          <TrustItem icon={<ShieldCheck size={16} />} title="Vetted, invite-only access" sub="Every request is reviewed by our team — no open signups." />
-          <TrustItem icon={<Mail size={16} />} title="Next steps by email" sub="Once your request is reviewed, we follow up by email with next steps and onboarding." />
-          <TrustItem icon={<Globe2 size={16} />} title="Built for Egypt, the GCC & MENA" sub="Made for tour operators, attractions and resellers across the region." />
+          <TrustItem icon={<ShieldCheck size={16} />} title="Access by invitation" sub="Every request is read by our team. There is no open sign-up." />
+          <TrustItem icon={<Mail size={16} />} title="Next steps by email" sub="Once your request is reviewed, we reply by email with what happens next." />
+          <TrustItem icon={<Globe2 size={16} />} title="Built for Egypt, the GCC & MENA" sub="For tour operators, attractions and resellers across the region." />
         </ul>
       </div>
     </main>

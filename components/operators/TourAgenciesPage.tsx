@@ -13,22 +13,12 @@ import {
   FileText,
   Sparkles,
   Clock,
-  Star,
-  Shield,
   Globe,
   Users,
   Wallet,
   Database,
   Hotel,
   Settings2,
-  QrCode,
-  Send,
-  MapPin,
-  Plane,
-  Ship,
-  Building2,
-  Mountain,
-  Repeat,
   Tag,
 } from 'lucide-react';
 import LeadForm from './LeadForm';
@@ -39,11 +29,11 @@ import ContactButton from './ContactButton';
 import { buildWhatsappHref } from '@/lib/whatsapp';
 import { REQUEST_ACCESS_LABEL, requestAccessHrefFor } from '@/lib/contact';
 import OperatorFooter from './OperatorFooter';
-import { CurrencyProvider, useCurrency } from './CurrencyContext';
+import { CurrencyProvider } from './CurrencyContext';
 import OperatorExitIntent from './OperatorExitIntent';
 import OperatorEcosystem from './OperatorEcosystem';
-import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+import { BookingExample, LeadReassurance } from '@/components/operators/BookingExamples';
 
 /** Where visitors go when no real WhatsApp number is configured. */
 const REQUEST_ACCESS_HREF = requestAccessHrefFor('tour-agencies');
@@ -297,29 +287,15 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-              Cairo Day Tour
+              {locale === 'ar' ? 'جولة القاهرة ليوم واحد' : 'Cairo day tour'}
             </p>
-            <p className="text-[12px] text-slate-500">8 products synced</p>
+            <p className="text-[12px] text-slate-500">{locale === 'ar' ? 'حجز تجريبي · 4 ضيوف' : 'Example booking · 4 guests'}</p>
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <div className="flex -space-x-1.5">
-            {['V', 'G', 'T', 'K'].map((c, i) => (
-              <div
-                key={c}
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-bold text-white ring-2 ring-white ${
-                  ['bg-rose-500', 'bg-amber-500', 'bg-emerald-600', 'bg-sky-600'][i]
-                }`}
-              >
-                {c}
-              </div>
-            ))}
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-900 text-[9px] font-bold text-white ring-2 ring-white">
-              +
-            </div>
-          </div>
+          <span className="text-[11px] font-medium text-slate-500">{locale === 'ar' ? 'الموقع · المكتب · الوكلاء' : 'Website · desk · agents'}</span>
           <span className="rounded-full bg-violet-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-violet-700 ring-1 ring-violet-100">
-            ALL CHANNELS
+            {locale === 'ar' ? 'قائمة واحدة' : 'ONE LIST'}
           </span>
         </div>
       </motion.div>
@@ -480,7 +456,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          0{index + 1} · Feature
+          0{index + 1}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -514,479 +490,7 @@ function SolutionRow({
 }
 
 function SolutionMockup({ variant }: { variant: number }) {
-  if (variant === 0) return <ProductManagerMockup />;
-  if (variant === 1) return <VoucherMockup />;
-  return <ResellerPortalMockup />;
-}
-
-function MockupShell({
-  title,
-  badge,
-  children,
-}: {
-  title: string;
-  badge?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-violet-100/70 via-indigo-50/40 to-transparent blur-2xl" />
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
-        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
-          <span className="text-[12px] font-semibold tracking-[-0.01em] text-slate-700">
-            {title}
-          </span>
-          {badge && (
-            <span className="text-[10px] font-semibold tracking-wider text-violet-600">{badge}</span>
-          )}
-        </div>
-        <div className="p-6 sm:p-7">{children}</div>
-      </div>
-    </div>
-  );
-}
-
-/* Mockup A — Multi-product manager dashboard */
-function ProductManagerMockup() {
-  const { currency } = useCurrency();
-  const products = [
-    {
-      icon: Mountain,
-      tone: 'amber',
-      name: 'Cairo Pyramids Day Tour',
-      type: 'Tour · 8h',
-      price: formatPrice(1250, currency),
-      channels: ['V', 'G', 'T', 'D'],
-      status: 'Active',
-    },
-    {
-      icon: MapPin,
-      tone: 'rose',
-      name: 'Luxor 2-Day Package',
-      type: 'Package · 2 nights',
-      price: formatPrice(4800, currency),
-      channels: ['V', 'G', 'D'],
-      status: 'Active',
-    },
-    {
-      icon: Plane,
-      tone: 'sky',
-      name: 'Airport Transfer · Hurghada',
-      type: 'Transfer · Sedan',
-      price: formatPrice(480, currency),
-      channels: ['V', 'D'],
-      status: 'Active',
-    },
-    {
-      icon: Ship,
-      tone: 'violet',
-      name: 'Nile Felucca Sunset',
-      type: 'Activity · 2h',
-      price: formatPrice(350, currency),
-      channels: ['G', 'T', 'D'],
-      status: 'Active',
-    },
-    {
-      icon: Building2,
-      tone: 'emerald',
-      name: 'Red Sea Snorkel Trip',
-      type: 'Day trip · 6h',
-      price: formatPrice(950, currency),
-      channels: ['V', 'G', 'D'],
-      status: 'Draft',
-    },
-  ];
-  const toneMap: Record<string, string> = {
-    amber: 'from-amber-500 to-orange-500',
-    rose: 'from-rose-500 to-pink-500',
-    sky: 'from-sky-500 to-cyan-500',
-    violet: 'from-violet-500 to-indigo-500',
-    emerald: 'from-emerald-500 to-teal-500',
-  };
-  const channelColor: Record<string, string> = {
-    V: 'bg-rose-500',
-    G: 'bg-amber-500',
-    T: 'bg-emerald-600',
-    K: 'bg-sky-600',
-    D: 'bg-slate-900',
-  };
-
-  return (
-    <MockupShell title="Catalog · 152 products · all channels" badge="LIVE">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-violet-50 px-2.5 py-1 text-[10.5px] font-semibold tracking-wider text-violet-700 ring-1 ring-violet-100">
-            ALL · 152
-          </span>
-          <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10.5px] font-semibold tracking-wider text-slate-600 ring-1 ring-slate-200">
-            Tours · 64
-          </span>
-          <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10.5px] font-semibold tracking-wider text-slate-600 ring-1 ring-slate-200">
-            Transfers · 38
-          </span>
-        </div>
-        <button className="rounded-md bg-slate-900 px-2.5 py-1 text-[10.5px] font-semibold text-white">
-          + Product
-        </button>
-      </div>
-
-      <div className="mt-4 overflow-hidden rounded-xl border border-slate-200">
-        <div className="grid grid-cols-[1.6fr_1fr_0.8fr_0.6fr] gap-3 border-b border-slate-100 bg-slate-50/70 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-          <span>Product</span>
-          <span>Channels</span>
-          <span>Price</span>
-          <span>Status</span>
-        </div>
-        <div className="divide-y divide-slate-100">
-          {products.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, x: -6 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 + i * 0.06 }}
-                className="grid grid-cols-[1.6fr_1fr_0.8fr_0.6fr] items-center gap-3 px-3.5 py-3 transition hover:bg-slate-50/60"
-              >
-                <div className="flex min-w-0 items-center gap-2.5">
-                  <div
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${toneMap[p.tone]} text-white`}
-                  >
-                    <Icon className="h-3.5 w-3.5" strokeWidth={1.8} />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate text-[12.5px] font-semibold tracking-[-0.01em] text-slate-900">
-                      {p.name}
-                    </p>
-                    <p className="truncate text-[10.5px] text-slate-500">{p.type}</p>
-                  </div>
-                </div>
-                <div className="flex -space-x-1.5">
-                  {p.channels.map((c) => (
-                    <div
-                      key={c}
-                      className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-bold text-white ring-2 ring-white ${channelColor[c]}`}
-                    >
-                      {c}
-                    </div>
-                  ))}
-                </div>
-                <span className="text-[12px] font-semibold text-slate-900">{p.price}</span>
-                <span
-                  className={`justify-self-start rounded-full px-2 py-0.5 text-[9.5px] font-semibold tracking-wider ring-1 ${
-                    p.status === 'Active'
-                      ? 'bg-emerald-50 text-emerald-700 ring-emerald-100'
-                      : 'bg-amber-50 text-amber-700 ring-amber-100'
-                  }`}
-                >
-                  {p.status.toUpperCase()}
-                </span>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="mt-4 flex items-center justify-between rounded-xl border border-violet-200/70 bg-violet-50/60 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <Repeat className="h-4 w-4 text-violet-700" strokeWidth={1.8} />
-          <span className="text-[12.5px] font-medium text-violet-900">
-            Update once · syncs to website, OTAs, resellers in 8s
-          </span>
-        </div>
-      </div>
-    </MockupShell>
-  );
-}
-
-/* Mockup B — Branded voucher generator */
-function VoucherMockup() {
-  const { currency } = useCurrency();
-  return (
-    <MockupShell title="Voucher · #FX-08291 · auto-generated" badge="READY">
-      <div className="rounded-xl border border-slate-200 bg-gradient-to-b from-white to-violet-50/30 p-5">
-        {/* Voucher header */}
-        <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-indigo-700 text-white">
-              <Mountain className="h-4 w-4" strokeWidth={1.8} />
-            </div>
-            <div>
-              <p className="text-[12px] font-bold tracking-[-0.01em] text-slate-900">
-                Pyramid Travel Egypt
-              </p>
-              <p className="text-[9.5px] uppercase tracking-wider text-slate-500">Booking voucher</p>
-            </div>
-          </div>
-          <div className="text-end">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Ref</p>
-            <p className="text-[11.5px] font-bold text-slate-900">#FX-08291</p>
-          </div>
-        </div>
-
-        {/* Tour title */}
-        <div className="mt-4">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-violet-700">
-            Confirmed
-          </p>
-          <h4 className="mt-1 text-[15px] font-bold tracking-[-0.01em] text-slate-900">
-            Cairo Pyramids Day Tour
-          </h4>
-          <p className="mt-0.5 text-[11px] text-slate-500">Saturday, 18 May · 08:00 · 8 hours</p>
-        </div>
-
-        {/* Customer + QR row */}
-        <div className="mt-4 grid grid-cols-[1fr_auto] gap-4">
-          <div className="space-y-2 text-[11px]">
-            <DetailRow label="Guest" value="Sarah Müller" />
-            <DetailRow label="Pax" value="2 adults · 1 child" />
-            <DetailRow label="Pickup" value="Steigenberger Hurghada · 06:30" />
-            <DetailRow label="Total paid" value={`${formatPrice(4250, currency)} · Card`} valueClass="text-emerald-700" />
-          </div>
-          <QRMock />
-        </div>
-
-        {/* Terms */}
-        <div className="mt-4 border-t border-slate-200 pt-3">
-          <p className="text-[9px] leading-relaxed text-slate-500">
-            Terms · Cancellation up to 24h before pickup. Bring this voucher (printed or on phone).
-            Driver will scan QR at pickup. For changes WhatsApp +20 100 000 0000.
-          </p>
-        </div>
-      </div>
-
-      {/* Action row */}
-      <div className="mt-4 flex items-center gap-2">
-        <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-slate-900 px-3 py-2.5 text-[12px] font-semibold text-white transition hover:bg-slate-800">
-          <FileText className="h-3.5 w-3.5" strokeWidth={2} />
-          Download PDF
-        </button>
-        <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-3 py-2.5 text-[12px] font-semibold text-white transition hover:bg-emerald-700">
-          <Send className="h-3.5 w-3.5" strokeWidth={2} />
-          Send WhatsApp
-        </button>
-      </div>
-      <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-500">
-        <Sparkles className="h-3 w-3 text-violet-500" strokeWidth={2} />
-        <span>Generated in 0.8s · branded with your colors and logo</span>
-      </div>
-    </MockupShell>
-  );
-}
-
-function DetailRow({
-  label,
-  value,
-  valueClass = 'text-slate-900',
-}: {
-  label: string;
-  value: string;
-  valueClass?: string;
-}) {
-  return (
-    <div className="flex items-baseline justify-between gap-3 border-b border-slate-100 pb-1.5 last:border-0 last:pb-0">
-      <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500">{label}</span>
-      <span className={`text-end text-[11.5px] font-semibold ${valueClass}`}>{value}</span>
-    </div>
-  );
-}
-
-function QRMock() {
-  // 7x7 stylized QR pattern
-  const matrix = [
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1],
-  ];
-  // Random-feeling middle data
-  const dataMatrix = [
-    [1, 0, 1, 1, 0, 1, 0],
-    [0, 1, 0, 0, 1, 0, 1],
-    [1, 1, 0, 1, 0, 1, 1],
-    [0, 0, 1, 1, 1, 0, 0],
-    [1, 0, 1, 0, 0, 1, 1],
-    [0, 1, 1, 0, 1, 1, 0],
-    [1, 1, 0, 1, 0, 0, 1],
-  ];
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <div className="grid grid-cols-7 gap-[1.5px] rounded-md border border-slate-200 bg-white p-1.5">
-        {matrix.flatMap((row, r) =>
-          row.map((cell, c) => {
-            // Use finder pattern in corners, data elsewhere
-            const inFinder =
-              (r < 7 && c < 7 && (r < 3 || r > 3 || c < 3 || c > 3) && cell === 1) || cell === 1;
-            const useData =
-              r >= 0 && c >= 0 && !(r <= 1 && c <= 1) && !(r <= 1 && c >= 5) && !(r >= 5 && c <= 1);
-            const filled = useData ? dataMatrix[r][c] : inFinder;
-            return (
-              <div
-                key={`${r}-${c}`}
-                className={`h-[5px] w-[5px] rounded-[1px] ${filled ? 'bg-slate-900' : 'bg-transparent'}`}
-              />
-            );
-          })
-        )}
-      </div>
-      <div className="flex items-center gap-1 text-[9px] font-medium text-slate-500">
-        <QrCode className="h-2.5 w-2.5" strokeWidth={2} />
-        Scan at pickup
-      </div>
-    </div>
-  );
-}
-
-/* Mockup C — B2B reseller portal */
-function ResellerPortalMockup() {
-  const { currency } = useCurrency();
-  const stats = [
-    { label: 'Bookings · May', value: '286', tone: 'violet', icon: Database },
-    { label: 'Commission earned', value: formatPrice(142000, currency, { compact: true }), tone: 'emerald', icon: Wallet },
-    { label: 'Active resellers', value: '24', tone: 'indigo', icon: Users },
-  ];
-  const resellers = [
-    {
-      initial: 'H',
-      tone: 'from-violet-500 to-indigo-500',
-      name: 'Hurghada Concierge Co',
-      city: 'Hurghada · 6 hotels',
-      bookings: 64,
-      commission: formatPrice(38400, currency),
-      status: 'Active',
-    },
-    {
-      initial: 'L',
-      tone: 'from-rose-500 to-pink-500',
-      name: 'Luxor Hotels Group',
-      city: 'Luxor · 4 hotels',
-      bookings: 42,
-      commission: formatPrice(26500, currency),
-      status: 'Active',
-    },
-    {
-      initial: 'C',
-      tone: 'from-amber-500 to-orange-500',
-      name: 'Cairo Travel Desk',
-      city: 'Cairo · 3 hotels',
-      bookings: 31,
-      commission: formatPrice(18900, currency),
-      status: 'Active',
-    },
-    {
-      initial: 'R',
-      tone: 'from-sky-500 to-cyan-500',
-      name: 'Red Sea Resellers',
-      city: 'El Gouna · Marsa Alam',
-      bookings: 18,
-      commission: formatPrice(11200, currency),
-      status: 'Pending',
-    },
-  ];
-
-  return (
-    <MockupShell title="B2B Portal · Reseller dashboard" badge="LIVE">
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-2.5">
-        {stats.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 6 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 + i * 0.06 }}
-              className="rounded-xl border border-slate-200 bg-white p-3"
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className={`flex h-7 w-7 items-center justify-center rounded-lg ${
-                    s.tone === 'violet'
-                      ? 'bg-violet-50 text-violet-700 ring-1 ring-violet-100'
-                      : s.tone === 'emerald'
-                        ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100'
-                        : 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100'
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" strokeWidth={1.8} />
-                </div>
-              </div>
-              <p className="mt-2.5 text-[16.5px] font-extrabold tracking-[-0.02em] text-slate-900">
-                {s.value}
-              </p>
-              <p className="text-[9.5px] font-medium uppercase tracking-wider text-slate-500">
-                {s.label}
-              </p>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Reseller list */}
-      <div className="mt-4 overflow-hidden rounded-xl border border-slate-200">
-        <div className="border-b border-slate-100 bg-slate-50/70 px-3.5 py-2">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-            Top resellers · this month
-          </span>
-        </div>
-        <div className="divide-y divide-slate-100">
-          {resellers.map((r, i) => (
-            <motion.div
-              key={r.name}
-              initial={{ opacity: 0, x: -6 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 + i * 0.06 }}
-              className="flex items-center gap-3 px-3.5 py-3 transition hover:bg-slate-50/60"
-            >
-              <div
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${r.tone} text-[12px] font-bold text-white`}
-              >
-                {r.initial}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-[12.5px] font-semibold tracking-[-0.01em] text-slate-900">
-                  {r.name}
-                </p>
-                <p className="truncate text-[10.5px] text-slate-500">{r.city}</p>
-              </div>
-              <div className="text-end">
-                <p className="text-[12px] font-bold text-slate-900">{r.bookings}</p>
-                <p className="text-[9.5px] uppercase tracking-wider text-slate-500">bookings</p>
-              </div>
-              <div className="text-end">
-                <p className="text-[12px] font-bold text-emerald-700">{r.commission}</p>
-                <p className="text-[9.5px] uppercase tracking-wider text-slate-500">YTD</p>
-              </div>
-              <span
-                className={`shrink-0 rounded-full px-2 py-0.5 text-[9.5px] font-semibold tracking-wider ring-1 ${
-                  r.status === 'Active'
-                    ? 'bg-emerald-50 text-emerald-700 ring-emerald-100'
-                    : 'bg-amber-50 text-amber-700 ring-amber-100'
-                }`}
-              >
-                {r.status.toUpperCase()}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-4 flex items-center justify-between rounded-xl border border-violet-200/70 bg-violet-50/60 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <Wallet className="h-4 w-4 text-violet-700" strokeWidth={1.8} />
-          <span className="text-[12.5px] font-medium text-violet-900">
-            Auto commission statements · paid 1st of every month
-          </span>
-        </div>
-      </div>
-    </MockupShell>
-  );
+  return <BookingExample variant={variant} trade="agency" />;
 }
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -1019,7 +523,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -1246,36 +750,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { icon: Star, text: 'Free 15-minute walkthrough — no pitch' },
-                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

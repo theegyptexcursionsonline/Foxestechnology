@@ -13,17 +13,13 @@ import {
   FileSignature,
   Waves,
   Shield,
-  Star,
   Sparkles,
-  PenLine,
   Camera,
   MapPin,
   Users,
   Anchor,
   Wrench,
-  ShieldCheck,
   Eye,
-  Zap,
 } from 'lucide-react';
 import LeadForm from './LeadForm';
 import WhatsAppFloat from './WhatsAppFloat';
@@ -38,6 +34,7 @@ import OperatorExitIntent from './OperatorExitIntent';
 import OperatorEcosystem from './OperatorEcosystem';
 import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+import { BookingExample, LeadReassurance } from '@/components/operators/BookingExamples';
 
 /** Where visitors go when no real WhatsApp number is configured. */
 const REQUEST_ACCESS_HREF = requestAccessHrefFor('water-sports');
@@ -305,15 +302,15 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-              Jet Ski Session · 11am
+              {locale === 'ar' ? 'جلسة جت سكي · 11 صباحًا' : 'Jet ski session · 11 am'}
             </p>
-            <p className="text-[12px] text-slate-500">Saturday · 30 min · 2 riders</p>
+            <p className="text-[12px] text-slate-500">{locale === 'ar' ? 'حجز تجريبي · 30 دقيقة · راكبان' : 'Example booking · 30 min · 2 riders'}</p>
           </div>
         </div>
         <div className="mt-3.5">
           <div className="flex items-center justify-between text-[11px]">
-            <span className="font-medium text-slate-500">Capacity</span>
-            <span className="font-semibold text-slate-900">4 booked / 6</span>
+            <span className="font-medium text-slate-500">{locale === 'ar' ? 'السعة' : 'Capacity'}</span>
+            <span className="font-semibold text-slate-900">{locale === 'ar' ? 'حُجز 4 من 6' : '4 of 6 booked'}</span>
           </div>
           <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
             <motion.div
@@ -325,9 +322,9 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">{formatPrice(1200, currency)} · waiver signed</span>
+          <span className="text-[11px] font-medium text-slate-500">{formatPrice(1200, currency)} · {locale === 'ar' ? 'أُرسلت القسيمة' : 'voucher sent'}</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            CONFIRMED
+            {locale === 'ar' ? 'محجوز' : 'RESERVED'}
           </span>
         </div>
       </motion.div>
@@ -488,7 +485,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          0{index + 1} · Feature
+          0{index + 1}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -522,395 +519,7 @@ function SolutionRow({
 }
 
 function SolutionMockup({ variant }: { variant: number }) {
-  if (variant === 0) return <HourlySlotMockup />;
-  if (variant === 1) return <DigitalWaiverMockup />;
-  return <EquipmentDashboardMockup />;
-}
-
-function MockupShell({
-  title,
-  badge,
-  children,
-}: {
-  title: string;
-  badge?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-teal-50/80 via-amber-50/40 to-transparent blur-2xl" />
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
-        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
-          <span className="text-[12px] font-semibold tracking-[-0.01em] text-slate-700">
-            {title}
-          </span>
-          {badge && (
-            <span className="text-[10px] font-semibold tracking-wider text-emerald-600">
-              {badge}
-            </span>
-          )}
-        </div>
-        <div className="p-6 sm:p-7">{children}</div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Mockup 1: hourly slot booking widget ── */
-function HourlySlotMockup() {
-  const { currency } = useCurrency();
-  type Status = 'open' | 'almost' | 'booked';
-  const slots: { time: string; status: Status; left?: string }[] = [
-    { time: '10:00 AM', status: 'open' },
-    { time: '11:00 AM', status: 'almost', left: '3 left' },
-    { time: '12:00 PM', status: 'booked' },
-    { time: '1:00 PM', status: 'open' },
-    { time: '2:00 PM', status: 'almost', left: '2 left' },
-    { time: '3:00 PM', status: 'open' },
-    { time: '4:00 PM', status: 'booked' },
-    { time: '5:00 PM', status: 'open' },
-  ];
-  return (
-    <MockupShell title="redseajetski.com/book · Saturday 18 May" badge="LIVE">
-      <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[13px] font-semibold text-slate-900">Jet Ski Session · 30 min</p>
-            <p className="text-[12px] text-slate-500">Pick a slot · 2 riders per ski</p>
-          </div>
-          <span className="rounded-full bg-teal-50 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-teal-700 ring-1 ring-teal-100">
-            BOOKING OPEN
-          </span>
-        </div>
-
-        <div className="mt-4 grid grid-cols-4 gap-2">
-          {slots.map((s, i) => {
-            const selected = i === 1;
-            const isBooked = s.status === 'booked';
-            return (
-              <motion.button
-                key={s.time}
-                initial={{ opacity: 0, y: 6 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.05 + i * 0.04 }}
-                disabled={isBooked}
-                className={`relative rounded-lg border px-2 py-2.5 text-center transition ${
-                  selected
-                    ? 'border-slate-900 bg-slate-900 text-white shadow-[0_8px_24px_-12px_rgba(15,23,42,0.5)]'
-                    : isBooked
-                      ? 'cursor-not-allowed border-slate-200 bg-slate-100/70 text-slate-400'
-                      : 'border-slate-200 bg-white text-slate-900 hover:border-slate-300'
-                }`}
-              >
-                <p className="text-[11.5px] font-semibold leading-tight">{s.time}</p>
-                {s.status === 'almost' && (
-                  <p
-                    className={`mt-1 text-[9.5px] font-semibold ${selected ? 'text-amber-300' : 'text-amber-600'}`}
-                  >
-                    {s.left}
-                  </p>
-                )}
-                {s.status === 'booked' && (
-                  <p className="mt-1 text-[9.5px] font-semibold text-slate-400">Booked out</p>
-                )}
-                {s.status === 'open' && (
-                  <p className={`mt-1 text-[9.5px] ${selected ? 'text-white/60' : 'text-slate-400'}`}>
-                    Available
-                  </p>
-                )}
-              </motion.button>
-            );
-          })}
-        </div>
-
-        <div className="mt-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-[12px] text-slate-500">Riders</span>
-            <div className="flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1">
-              <span className="text-[11px] font-bold text-slate-400">−</span>
-              <span className="px-1 text-[12px] font-semibold text-slate-900">2</span>
-              <span className="text-[11px] font-bold text-slate-400">+</span>
-            </div>
-          </div>
-          <button className="rounded-lg bg-red-600 px-4 py-2 text-[12px] font-semibold text-white shadow-[0_6px_18px_-8px_rgba(220,38,38,0.55)]">
-            Continue · {formatPrice(1200, currency)}
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-500">
-        <Shield className="h-3 w-3" strokeWidth={2} />
-        <span>30 min · Includes life jacket and brief · Direct payment</span>
-      </div>
-    </MockupShell>
-  );
-}
-
-/* ── Mockup 2: digital waiver signing flow ── */
-function DigitalWaiverMockup() {
-  return (
-    <MockupShell title="Waiver · Mona Salem · Jet Ski 11am" badge="SIGNED">
-      <div className="grid grid-cols-[1fr_auto] gap-4">
-        {/* Phone-shaped card */}
-        <div className="rounded-[26px] border-[6px] border-slate-900 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(15,23,42,0.4)]">
-          <div className="mx-auto mb-3 h-1 w-12 rounded-full bg-slate-200" />
-          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3.5">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-teal-700">
-              Sign your waiver
-            </p>
-            <p className="mt-1 text-[13px] font-semibold tracking-[-0.01em] text-slate-900">
-              Red Sea Jet Ski · 30 min
-            </p>
-
-            <div className="mt-3 space-y-2.5">
-              <div className="rounded-md border border-slate-200 bg-white px-3 py-2">
-                <p className="text-[9.5px] font-semibold uppercase tracking-wider text-slate-400">
-                  Full name
-                </p>
-                <p className="mt-0.5 text-[12px] font-medium text-slate-900">Mona Salem</p>
-              </div>
-              <div className="rounded-md border border-slate-200 bg-white px-3 py-2">
-                <p className="text-[9.5px] font-semibold uppercase tracking-wider text-slate-400">
-                  Emergency contact
-                </p>
-                <p className="mt-0.5 text-[12px] font-medium text-slate-900">
-                  Tarek Salem · +20 100 ••• 4271
-                </p>
-              </div>
-
-              <label className="flex items-start gap-2 rounded-md border border-slate-200 bg-white px-3 py-2">
-                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-teal-600">
-                  <Check className="h-2.5 w-2.5 text-white" strokeWidth={3.5} />
-                </span>
-                <span className="text-[11px] leading-snug text-slate-700">
-                  I confirm insurance acknowledgement and accept the operator&apos;s safety brief.
-                </span>
-              </label>
-
-              <div className="rounded-md border border-dashed border-slate-300 bg-white p-3">
-                <p className="text-[9.5px] font-semibold uppercase tracking-wider text-slate-400">
-                  Signature
-                </p>
-                <svg
-                  viewBox="0 0 220 56"
-                  className="mt-1.5 h-12 w-full"
-                  aria-hidden
-                >
-                  <motion.path
-                    d="M5 38 C 22 18, 38 50, 56 28 S 92 14, 112 32 S 152 50, 172 24 S 200 38, 215 22"
-                    fill="none"
-                    stroke="#0f172a"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  />
-                </svg>
-              </div>
-
-              <button className="w-full rounded-lg bg-slate-900 py-2.5 text-[12px] font-semibold text-white">
-                Submit signed waiver
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar status pills */}
-        <div className="hidden flex-col gap-3 sm:flex">
-          {[
-            { label: 'Identity', value: 'Verified', tone: 'emerald' as const, Icon: ShieldCheck },
-            { label: 'Insurance', value: 'Acknowledged', tone: 'teal' as const, Icon: Shield },
-            { label: 'Signed at', value: '9:42 AM', tone: 'slate' as const, Icon: PenLine },
-          ].map((p) => {
-            const toneCls =
-              p.tone === 'emerald'
-                ? 'bg-emerald-50 text-emerald-700 ring-emerald-100'
-                : p.tone === 'teal'
-                  ? 'bg-teal-50 text-teal-700 ring-teal-100'
-                  : 'bg-slate-100 text-slate-700 ring-slate-200';
-            return (
-              <div
-                key={p.label}
-                className={`flex w-[170px] items-center gap-3 rounded-xl px-3 py-2.5 ring-1 ${toneCls}`}
-              >
-                <p.Icon className="h-4 w-4" strokeWidth={1.8} />
-                <div className="min-w-0">
-                  <p className="text-[10px] font-semibold uppercase tracking-wider opacity-70">
-                    {p.label}
-                  </p>
-                  <p className="text-[12px] font-semibold tracking-[-0.01em]">{p.value}</p>
-                </div>
-              </div>
-            );
-          })}
-          <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Audit trail
-            </p>
-            <p className="mt-1 text-[11.5px] leading-snug text-slate-700">
-              Signed PDF + IP + timestamp stored for 7 years.
-            </p>
-          </div>
-        </div>
-      </div>
-    </MockupShell>
-  );
-}
-
-/* ── Mockup 3: live equipment dashboard ── */
-function EquipmentDashboardMockup() {
-  type UnitState = 'available' | 'out' | 'service' | 'damaged';
-  const sections: { name: string; units: { id: string; state: UnitState; meta?: string }[] }[] = [
-    {
-      name: 'Jet Skis',
-      units: [
-        { id: 'J1', state: 'out', meta: 'until 11:30' },
-        { id: 'J2', state: 'available' },
-        { id: 'J3', state: 'available' },
-        { id: 'J4', state: 'out', meta: 'until 11:00' },
-        { id: 'J5', state: 'service' },
-        { id: 'J6', state: 'available' },
-        { id: 'J7', state: 'damaged' },
-        { id: 'J8', state: 'available' },
-      ],
-    },
-    {
-      name: 'Parasails',
-      units: [
-        { id: 'P1', state: 'out', meta: 'until 12:15' },
-        { id: 'P2', state: 'available' },
-        { id: 'P3', state: 'available' },
-      ],
-    },
-    {
-      name: 'Paddleboards',
-      units: [
-        { id: 'B1', state: 'available' },
-        { id: 'B2', state: 'available' },
-        { id: 'B3', state: 'out', meta: 'until 10:45' },
-        { id: 'B4', state: 'service' },
-      ],
-    },
-    {
-      name: 'Banana Boats',
-      units: [
-        { id: 'N1', state: 'available' },
-        { id: 'N2', state: 'out', meta: 'until 11:20' },
-        { id: 'N3', state: 'available' },
-      ],
-    },
-  ];
-
-  const stateMeta: Record<
-    UnitState,
-    { label: string; tile: string; dot: string; text: string }
-  > = {
-    available: {
-      label: 'Available',
-      tile: 'bg-emerald-50 border-emerald-100 text-emerald-700',
-      dot: 'bg-emerald-500',
-      text: 'text-emerald-600',
-    },
-    out: {
-      label: 'Out',
-      tile: 'bg-sky-50 border-sky-100 text-sky-700',
-      dot: 'bg-sky-500',
-      text: 'text-sky-600',
-    },
-    service: {
-      label: 'Service',
-      tile: 'bg-amber-50 border-amber-100 text-amber-700',
-      dot: 'bg-amber-500',
-      text: 'text-amber-600',
-    },
-    damaged: {
-      label: 'Damaged',
-      tile: 'bg-rose-50 border-rose-100 text-rose-700',
-      dot: 'bg-rose-500',
-      text: 'text-rose-600',
-    },
-  };
-
-  return (
-    <MockupShell title="Fleet · Hurghada Marina · Live" badge="REAL-TIME">
-      <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[12.5px] font-semibold tracking-[-0.01em] text-slate-900">
-              12 of 18 available right now
-            </p>
-            <p className="text-[11px] text-slate-500">Auto-blocks new bookings when fleet is full</p>
-          </div>
-          <div className="flex items-center gap-2 text-[10px] font-medium">
-            {(['available', 'out', 'service', 'damaged'] as UnitState[]).map((s) => (
-              <span key={s} className="flex items-center gap-1.5">
-                <span className={`h-1.5 w-1.5 rounded-full ${stateMeta[s].dot}`} />
-                <span className={stateMeta[s].text}>{stateMeta[s].label}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-4 space-y-4">
-        {sections.map((section, si) => (
-          <motion.div
-            key={section.name}
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 + si * 0.06 }}
-          >
-            <div className="flex items-center justify-between">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                {section.name}
-              </p>
-              <span className="text-[10.5px] font-medium text-slate-400">
-                {section.units.filter((u) => u.state === 'available').length}/{section.units.length}{' '}
-                available
-              </span>
-            </div>
-            <div className="mt-2 grid grid-cols-4 gap-1.5 sm:grid-cols-8">
-              {section.units.map((u, ui) => {
-                const m = stateMeta[u.state];
-                return (
-                  <motion.div
-                    key={u.id}
-                    initial={{ opacity: 0, scale: 0.92 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + si * 0.05 + ui * 0.025 }}
-                    className={`relative rounded-md border px-1.5 py-1.5 text-center ${m.tile}`}
-                  >
-                    <p className="text-[10.5px] font-bold tracking-tight">{u.id}</p>
-                    {u.meta && (
-                      <p className="text-[8.5px] font-medium leading-tight opacity-80">{u.meta}</p>
-                    )}
-                    <span
-                      className={`absolute right-1 top-1 h-1.5 w-1.5 rounded-full ${m.dot}`}
-                      aria-hidden
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      <div className="mt-4 flex items-center justify-between rounded-xl border border-teal-200/60 bg-teal-50/60 px-3.5 py-2.5">
-        <div className="flex items-center gap-2.5">
-          <Zap className="h-4 w-4 text-teal-700" strokeWidth={1.8} />
-          <span className="text-[12px] font-medium text-teal-900">
-            J7 flagged damaged — slot reassigned to J6 automatically
-          </span>
-        </div>
-      </div>
-    </MockupShell>
-  );
+  return <BookingExample variant={variant} trade="water" />;
 }
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -943,7 +552,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -1170,36 +779,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { icon: Star, text: 'Free 15-minute walkthrough — no pitch' },
-                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

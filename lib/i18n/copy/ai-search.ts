@@ -1,152 +1,156 @@
 import type { OperatorCopy } from '../operators';
 
+/**
+ * AI Search, as it works today: a search and chat widget for a tour website. It answers from the
+ * business's own tours in Arabic, English and German and sends the visitor to the tour page; it
+ * does not take the booking. Tours come in by reading the website or by spreadsheet upload.
+ *
+ * No speed figure, no language count beyond the three proven, no result or conversion figure and
+ * no customer reference belongs here, and the technology behind it is never named. Access is by
+ * reviewed request and prices are shared on request.
+ */
 export const en: OperatorCopy = {
   meta: {
-    title: 'AI Search Widget for Tour Operators · Foxes Technology',
+    title: 'AI Search for Tour Websites · Search and Chat from Your Own Tours',
     description:
-      'Embed an AI-powered search bar on your tour, cruise, attraction or hotel website. Visitors search in any language, find the right product instantly, and convert. One line of code.',
-    ogTitle: 'Search That Actually Finds The Tour · Foxes Technology',
+      'A search and chat widget for tour, cruise and activity websites. Visitors ask in plain Arabic, English or German and get your own tours back as cards with photo and price, each opening the right tour page. Access by invitation.',
+    ogTitle: 'Travellers ask in their own words. Your tours answer. · Foxes Technology',
   },
   hero: {
-    badge: 'AI Search Agent · For your website',
-    headlineLine1: 'Search That Actually',
-    headlineLine2: 'Finds The Tour.',
-    sub: 'A drop-in AI search widget for tour, cruise, attraction and hotel websites. Visitors type in plain language — even half-spelt, in any language — and the right product comes up first. One line of code.',
-    primaryCta: 'Get started',
+    badge: 'AI Search · For your website',
+    headlineLine1: 'Travellers ask in their own words.',
+    headlineLine2: 'Your tours answer.',
+    sub: 'AI Search is a search and chat widget for tour websites. A visitor types what they want in plain Arabic, English or German and gets your own tours back as cards with photo and price, each one opening the right tour page on your site.',
+    primaryCta: 'Ask for a demo',
     secondaryCta: 'Chat on WhatsApp',
-    pills: ['One-line embed', 'Works on any website', '50+ languages'],
+    pills: ['One script tag', 'Arabic, English and German', 'Access by invitation'],
   },
   socialProof: {
-    label: 'Built for operator websites in',
-    cities: 'Cairo · Hurghada · Sharm · Luxor · Dubai',
+    label: 'Built for tour websites in',
+    cities: 'Cairo · Hurghada · Sharm El Sheikh · Luxor',
     stats: [
-      { value: '24/7', label: 'Always answering' },
-      { value: '50+', label: 'Languages' },
-      { value: '< 200ms', label: 'Search latency' },
-      { value: '1 line', label: 'Embed code' },
+      { value: 'AR · EN · DE', label: 'Answers in the language of the page' },
+      { value: '1', label: 'Script tag to add it' },
+      { value: '24/7', label: 'On your website' },
+      { value: 'Yours', label: 'Tours, prices and policies only' },
     ],
   },
   pains: {
     sectionEyebrow: 'Why visitors leave without booking',
     sectionHeadline: 'Your site search does not find your own tours.',
-    sectionSub:
-      'Modern travelers do not browse — they search. If your search box returns nothing for "romantic Nile cruise for two", they go to Viator. Your margin goes with them.',
+    sectionSub: 'A visitor who cannot find the trip in a few seconds looks for it somewhere else.',
     items: [
       {
-        title: 'Keyword search misses every real query',
+        title: 'Keyword search misses real questions',
         description:
-          'A guest types "boat trip for sunset" and your search returns nothing — even though you sell three sunset cruises. Your catalog is fine. The search box is the problem.',
+          'A guest types "boat trip for sunset" and gets nothing, although you sell three sunset cruises. The tours are there. The search box does not understand the question.',
       },
       {
-        title: 'Foreign visitors cannot find anything',
+        title: 'Visitors search in their own language',
         description:
-          'Russians, Germans, French and Arab guests search in their own language. Most site search tools only index your English titles. The right tour is there. They never see it.',
+          'Arabic and German guests type in their own language and the site answers in another, or not at all.',
       },
       {
-        title: 'Zero-result pages send guests to OTAs',
+        title: 'A blank results page',
         description:
-          'When the search returns nothing, the visitor opens a new tab, types your tour into Google, and Viator ranks first. You sold the booking — and gave 25% of it away.',
+          'When nothing comes back, the visitor opens a new tab and looks for the same trip on a marketplace.',
       },
     ],
   },
   solutions: {
-    sectionEyebrow: 'How Foxes AI Search fixes it',
-    sectionHeadline: 'Semantic search, conversational fallback, real numbers.',
-    sectionSub:
-      'A search widget built for the way travelers actually shop — not for an SQL LIKE clause from 2008.',
+    sectionEyebrow: 'What it does today',
+    sectionHeadline: 'It finds the trip, suggests the closest one, and shows you what people ask.',
+    sectionSub: 'One widget on your website, answering only from your own tours.',
     items: [
       {
-        title: 'Semantic search across your full catalog',
+        title: 'Finds tours by meaning, not just keywords',
         description:
-          'The widget understands meaning, not keywords. "Romantic boat trip under an hour" finds a 50-minute Nile felucca even when the title says nothing about romance. Type in any language — results come back in the visitor language.',
+          'A visitor asks for "a quiet boat trip at sunset for two" and gets the tours that fit, even when those words are not in the title. Each result is a card with a photo, the price and the key details, and opens the tour page on your own site, where the booking happens.',
         bullets: [
-          'Anthropic + OpenAI embeddings under the hood',
-          'Indexes 10 to 10,000 products in minutes',
-          'Result ranking tuned to your conversion data',
+          'Answers in Arabic, English and German',
+          'Cards with photo, price and details from your own list',
+          'Opens your tour page; it does not take the booking itself',
         ],
       },
       {
-        title: 'Conversational fallback when no exact match',
+        title: 'A chat that suggests the closest trips',
         description:
-          'When the catalog has no perfect answer, the widget switches to chat: "We do not have that exact tour — here are three close ones." Guests stay on your site, click a suggestion, book.',
+          'Visitors can also ask in a conversation. The assistant answers from your tours, prices and policies, suggests alternatives when there is no exact match, and can draft a day-by-day plan from your own trips. If your tour list cannot be read, it says so instead of inventing a trip.',
         bullets: [
-          'Suggests 3 closest matches with thumbnails',
-          'Politely surfaces alternatives in the visitor tone',
-          'Hands off to WhatsApp if the guest needs a human',
+          'Suggestions with pictures and prices',
+          'Day-by-day plans built from your tours',
+          'A visitor can leave their details for your team',
         ],
       },
       {
-        title: 'Real-time analytics dashboard',
+        title: 'See what visitors look for',
         description:
-          'See every query your visitors actually type. Track top queries, zero-result queries, search-to-booking conversion, and which products win after a search. Fix gaps in your catalog by the end of the week.',
+          'Your dashboard lists the questions people ask most and the ones that found nothing, so you know which trips or answers are missing.',
         bullets: [
-          'Top queries and zero-result queries',
-          'Search-to-booking conversion per query',
-          'Heatmap of search-engaged user journeys',
+          'The questions asked most',
+          'Searches that found nothing',
+          'Each business sees only its own tours and settings',
         ],
       },
     ],
   },
   howItWorks: {
-    sectionEyebrow: 'Setup is fast',
-    sectionHeadline: 'From zero to live search in 15 minutes.',
-    sectionSub:
-      'Add one script tag, point it at your product catalog, and the widget indexes everything in the background while you finish your tea.',
+    sectionEyebrow: 'How you start',
+    sectionHeadline: 'Access is by invitation.',
+    sectionSub: 'AI Search is opening to new customers in stages. You send a request and our team reads it and replies.',
     steps: [
       {
-        title: 'Sign up and pick a tenant',
+        title: 'Send a request',
         description:
-          'Create your widget in the Foxes dashboard. Choose colors, font, accent and the exact product set the widget can return.',
+          'Tell us about your website in the form below or on the request access page. Every request is read by our team.',
       },
       {
-        title: 'Drop one script tag',
+        title: 'Your tours go in',
         description:
-          'Paste the embed snippet on your website. The widget appears as a search bar, a floating chat bubble, or both — your choice.',
+          'Your tour list is read from your website or uploaded as a spreadsheet. You choose the colours, the logo, the headline and the assistant’s tone.',
       },
       {
-        title: 'Catalog auto-indexes',
-        description:
-          'Foxes pulls your tours from the booking engine, your CMS, or a CSV. The widget is searchable in any language within minutes.',
+        title: 'Add one script tag',
+        description: 'Paste it on your site. The widget runs only on the web addresses you allow.',
       },
     ],
   },
   features: {
-    sectionEyebrow: 'Designed for tour and travel sites',
-    sectionHeadline: 'Every feature, built for visitors who type before they browse.',
-    sectionSub:
-      'Generic site search treats every query like a string match. Foxes treats it like a guest about to book.',
+    sectionEyebrow: 'In the product today',
+    sectionHeadline: 'What you get.',
+    sectionSub: 'A search box and an assistant that know your tours and nothing else.',
     items: [
       {
-        title: 'One-line script-tag embed',
-        description: 'Single tag drop-in. Works on Next.js, WordPress, Shopify, Webflow or hand-rolled HTML.',
+        title: 'One script tag',
+        description: 'One tag adds the widget to your website.',
       },
       {
-        title: '50+ languages out of the box',
-        description: 'Auto-detects visitor language. Returns localized results without separate indexes.',
+        title: 'Arabic, English and German',
+        description: 'It answers in the language of the page, right to left in Arabic.',
       },
       {
-        title: 'Semantic vector search',
-        description: 'Anthropic + OpenAI embeddings rank by intent, not exact keyword.',
+        title: 'Search by meaning',
+        description: 'It matches what the visitor means, with a keyword match as a fallback.',
       },
       {
-        title: 'Conversational chat fallback',
-        description: 'When the search is ambiguous, the widget asks a clarifying question and offers options.',
+        title: 'Chat assistant',
+        description: 'Answers questions from your own tours, prices and policies.',
       },
       {
-        title: 'Real-time analytics',
-        description: 'Top queries, zero-result queries, query-to-booking conversion, dashboards per tenant.',
+        title: 'What visitors ask',
+        description: 'The questions asked most and the searches that found nothing.',
       },
       {
-        title: 'White-label widget',
-        description: 'Per-tenant branding, fonts, accent color, dark or light mode, and tone of voice.',
+        title: 'Your colours and tone',
+        description: 'Colours, logo, headline and the assistant’s tone, within ready-made themes.',
       },
       {
-        title: 'Domain-locked install',
-        description: 'Each widget is restricted to the domains you allow. Stops other sites from using your key.',
+        title: 'Locked to your website',
+        description: 'The widget runs only on the web addresses you allow.',
       },
       {
-        title: 'Custom embeddings per catalog',
-        description: 'Fine-tune ranking on your historical bookings so winners come up first.',
+        title: 'Search bar, chat bubble or full page',
+        description: 'Choose how it appears on your site.',
       },
     ],
   },
@@ -165,62 +169,60 @@ export const en: OperatorCopy = {
   },
   faq: {
     sectionEyebrow: 'Questions you should ask',
-    sectionHeadline: 'Honest answers.',
+    sectionHeadline: 'Straight answers.',
     items: [
       {
-        question: 'How long does install actually take?',
+        question: 'Can anyone sign up?',
         answer:
-          'Most operators are live within 15 minutes. Paste one script tag, set your domain in the dashboard, point the widget at your product feed, and you are searchable. Catalog indexing runs in the background and usually finishes in under five minutes for sites with 100 to 500 products.',
+          'Not yet. AI Search is opening to new customers in stages. Send a request, our team reads it and replies. There is no open sign-up.',
       },
       {
-        question: 'How does the language detection work?',
+        question: 'Which languages does it answer in?',
         answer:
-          'The widget reads the browser locale, the page lang attribute, and the actual query text. If a Russian visitor types in Cyrillic, results come back in Russian even if your titles are stored in English. You can override the detected language anytime — fine for multi-language sites with manual selectors.',
+          'Arabic, English and German. It answers in the language of the page the visitor is on, right to left in Arabic.',
       },
       {
-        question: 'Do I have to translate my product catalog?',
+        question: 'Do I have to translate my tours?',
         answer:
-          'No. Foxes indexes your existing English (or Arabic) titles and uses multilingual embeddings to match them against queries in 50+ languages. If you do already maintain translations, the widget will use them and rank them higher for native-language queries.',
+          'No. A visitor can ask in Arabic or German about tours you have written in English and still get the right ones. The tour page they open is your own page, in the languages your site already has.',
       },
       {
-        question: 'What happens when the search has no good answer?',
+        question: 'What happens when nothing matches?',
         answer:
-          'The widget switches into conversational mode: it explains there is no exact match, offers the three closest alternatives with thumbnails and prices, and asks a clarifying question. Visitors stay on your site instead of bouncing to a search engine and ending up on an OTA.',
+          'The assistant says there is no exact match and suggests the closest trips from your list. It does not invent a tour, a price or a policy.',
       },
       {
-        question: 'How fast is it? Will it slow my site?',
+        question: 'Does it take the booking?',
         answer:
-          'Search latency is under 200ms at the 95th percentile. The widget loads asynchronously, so it never blocks your page render. The search popup itself opens instantly because the embedding index lives on our edge — not on your origin.',
+          'No. Each result opens the tour page on your own website, and the booking happens there with the booking system you already use.',
       },
       {
-        question: 'What about visitor privacy and data?',
+        question: 'How do my tours get in?',
         answer:
-          'Queries are processed anonymously. We do not store IPs, do not set tracking cookies on your domain, and the analytics dashboard only shows aggregate query patterns — never personal identifiers. Full PII-free design and GDPR-compliant out of the box.',
+          'Your tour list is read from your website, or you upload it as a spreadsheet. There is no direct connection to a booking system today.',
       },
       {
-        question: 'Does it work with my existing booking platform?',
+        question: 'What about visitor privacy?',
         answer:
-          'Yes. We support direct integrations with Foxes booking engine, Bokun, Rezdy, FareHarbor, custom REST and CSV feeds. The widget reads your products at index time and links search results straight into your existing booking flow — no rewrites required.',
+          'The widget sets no cookies on your site and does not store visitors’ IP addresses. The questions visitors type are kept in your own account so you can see what people look for.',
       },
       {
         question: 'How is AI Search priced?',
-        answer:
-          'AI Search is sold as plans, each with a set monthly allowance of searches, so you know your costs before you start. Larger plans add more searches and features for busier sites. Tell us about your site and our team will share current prices and recommend the right plan.',
+        answer: 'We share current plans and prices when you request access, before you commit to anything.',
       },
     ],
   },
   leadForm: {
     sectionEyebrow: 'Ready when you are',
-    sectionHeadline: 'See AI Search live — on your own catalog.',
-    sectionSub:
-      'Tell us your site URL. We will index a sample of your products and send you a working widget preview within the hour.',
+    sectionHeadline: 'See AI Search on your own tours.',
+    sectionSub: 'Tell us your website and our team will contact you to arrange a demo.',
     fields: {
       name: 'Your name',
-      namePlaceholder: 'Ahmed Hassan',
-      business: 'Website / business name',
-      businessPlaceholder: 'Pyramid Travel Egypt',
+      namePlaceholder: 'Your full name',
+      business: 'Website or business name',
+      businessPlaceholder: 'yourwebsite.com',
       whatsapp: 'WhatsApp number',
-      whatsappPlaceholder: '+20 100 000 0000',
+      whatsappPlaceholder: '+20 1XX XXX XXXX',
       monthlyBookings: 'Monthly site visitors (roughly)',
       monthlyBookingsOptions: [
         { value: 'lt-5k', label: 'Less than 5,000' },
@@ -229,195 +231,185 @@ export const en: OperatorCopy = {
         { value: '100k-plus', label: 'More than 100,000' },
       ],
     },
-    submit: 'Get my preview',
+    submit: 'Ask for a demo',
     submitting: 'Sending...',
-    successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
+    successTitle: 'Thank you. We have your request and our team will contact you.',
     successBody: 'You can also start the conversation now if you prefer:',
     successWhatsapp: 'Open WhatsApp',
+    errorMissing:
+      'Please fill in every field: your name, your business, a WhatsApp number with its country code, and the monthly figure.',
     errorGeneric: 'Something went wrong. Please try again in a moment.',
     errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
-    privacy:
-      'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
+    privacy: 'By sending this you agree to be contacted by the Foxes team about your request.',
   },
   finalCta: {
-    headline: 'Ready to turn your search box into a booking machine?',
-    sub: 'Operators in Cairo, Hurghada, Sharm and Luxor already use Foxes AI Search to convert visitors before they bounce.',
-    primary: 'Get started',
+    headline: 'Let visitors find the right trip on your own site.',
+    sub: 'Access is by invitation. Send a request and our team will reply.',
+    primary: 'Ask for a demo',
     secondary: 'Talk to us on WhatsApp',
   },
   whatsapp: {
-    floatLabel: 'Chat with us',
-    prefilledMessage: "Hi, I'm interested in the Foxes AI Search widget for my website.",
+    floatLabel: 'Ask about AI Search',
+    prefilledMessage: "Hi, I'd like a demo of Foxes AI Search on my website.",
   },
   mobileStickyCta: {
-    primary: 'Get started',
+    primary: 'Ask for a demo',
     secondary: 'WhatsApp',
   },
   exitIntent: {
-    eyebrow: 'One thing before you go',
-    headline: 'The site-search benchmark for tour operators',
-    sub: 'What good site search looks like for tour and travel websites, and what to fix first. Free — leave your email and our team will send it to you.',
-    bullets: [
-      'Search-to-booking benchmarks by vertical',
-      'Top 20 zero-result queries (and what to do)',
-      'A/B test playbook for site search',
-    ],
-    emailPlaceholder: 'you@yoursite.com',
-    submitLabel: 'Send me the benchmark',
+    eyebrow: 'Before you go',
+    headline: 'Prefer that we write to you?',
+    sub: 'Leave your email and a person from our team will write to you about AI Search. It is not a newsletter.',
+    bullets: ['Read by our team', 'A reply in Arabic or English', 'Access is by invitation'],
+    emailPlaceholder: 'you@yourbusiness.com',
+    submitLabel: 'Email me',
     submittingLabel: 'Sending...',
     successTitle: 'Thanks — request received.',
-    successBody: 'Our team will email it to you.',
-    privacy: 'We only use your email to send this and to follow up about Foxes.',
+    successBody: 'Our team will write to you.',
+    privacy: 'We only use your email to reply and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
 
 export const ar: OperatorCopy = {
   meta: {
-    title: 'أداة البحث الذكية لمشغّلي السياحة · Foxes Technology',
+    title: 'AI Search لمواقع السياحة · بحث ومحادثة من رحلاتك أنت',
     description:
-      'ضع شريط بحث مدعوم بالذكاء الاصطناعي على موقع جولاتك أو رحلاتك أو فندقك. يبحث الزائرون بأي لغة، يجدون المنتج المناسب فورًا، ويحجزون. سطر واحد من الكود.',
-    ogTitle: 'بحث يجد الجولة فعلًا · Foxes Technology',
+      'أداة بحث ومحادثة لمواقع الجولات والرحلات والأنشطة. يسأل الزائر بالعربية أو الإنجليزية أو الألمانية فتظهر له رحلاتك أنت في بطاقات بالصورة والسعر، وكل بطاقة تفتح صفحة الرحلة الصحيحة. الانضمام بدعوة.',
+    ogTitle: 'يسأل المسافر بكلماته. ورحلاتك تجيب. · Foxes Technology',
   },
   hero: {
-    badge: 'وكيل البحث الذكي · لموقعك',
-    headlineLine1: 'بحث يجد الجولة',
-    headlineLine2: 'فعلًا.',
-    sub: 'أداة بحث ذكية تُضاف بسطر واحد إلى مواقع الجولات والرحلات والمعالم والفنادق. الزائر يكتب بلغته الطبيعية — حتى لو بأخطاء، بأي لغة — والمنتج المناسب يظهر أولًا. سطر واحد من الكود.',
-    primaryCta: 'ابدأ الآن',
-    secondaryCta: 'تحدث معنا عبر واتساب',
-    pills: ['تركيب بسطر واحد', 'يعمل على أي موقع', '+50 لغة'],
+    badge: 'AI Search · لموقعك',
+    headlineLine1: 'يسأل المسافر بكلماته.',
+    headlineLine2: 'ورحلاتك تجيب.',
+    sub: 'AI Search أداة بحث ومحادثة لمواقع السياحة. يكتب الزائر ما يريده بالعربية أو الإنجليزية أو الألمانية، فتظهر له رحلاتك أنت في بطاقات بالصورة والسعر، وكل بطاقة تفتح صفحة الرحلة الصحيحة على موقعك.',
+    primaryCta: 'اطلب عرضًا',
+    secondaryCta: 'تحدث عبر واتساب',
+    pills: ['سطر كود واحد', 'العربية والإنجليزية والألمانية', 'الانضمام بدعوة'],
   },
   socialProof: {
-    label: 'مصمم لمواقع المشغلين في',
-    cities: 'القاهرة · الغردقة · شرم · الأقصر · دبي',
+    label: 'مصمم لمواقع السياحة في',
+    cities: 'القاهرة · الغردقة · شرم الشيخ · الأقصر',
     stats: [
-      { value: '24/7', label: 'يعمل دائمًا' },
-      { value: '+50', label: 'لغة' },
-      { value: 'أقل من 200ms', label: 'سرعة البحث' },
-      { value: 'سطر واحد', label: 'كود التضمين' },
+      { value: 'AR · EN · DE', label: 'يجيب بلغة الصفحة' },
+      { value: '1', label: 'سطر كود لإضافته' },
+      { value: '24/7', label: 'على موقعك' },
+      { value: 'لك', label: 'رحلاتك وأسعارك وسياساتك فقط' },
     ],
   },
   pains: {
     sectionEyebrow: 'لماذا يغادر الزوار دون حجز',
-    sectionHeadline: 'بحث موقعك لا يجد جولاتك أنت.',
-    sectionSub:
-      'المسافر اليوم لا يتصفح — يبحث. إن كان شريط البحث لا يرجع شيئًا لـ "رحلة نيلية رومانسية لشخصين"، يذهب إلى Viator. ويذهب هامشك معه.',
+    sectionHeadline: 'بحث موقعك لا يجد رحلاتك أنت.',
+    sectionSub: 'الزائر الذي لا يجد الرحلة خلال ثوانٍ يبحث عنها في مكان آخر.',
     items: [
       {
-        title: 'البحث بالكلمات يفوّت كل استعلام حقيقي',
+        title: 'البحث بالكلمات يفوّت الأسئلة الحقيقية',
         description:
-          'يكتب الضيف "رحلة قارب وقت الغروب" فلا يرجع البحث شيئًا — رغم أنك تبيع ثلاث رحلات غروب. الكتالوج سليم. شريط البحث هو المشكلة.',
+          'يكتب الضيف «رحلة قارب وقت الغروب» فلا يجد شيئًا، مع أنك تبيع ثلاث رحلات غروب. الرحلات موجودة. لكن مربع البحث لا يفهم السؤال.',
       },
       {
-        title: 'الزوار الأجانب لا يجدون شيئًا',
-        description:
-          'الروس والألمان والفرنسيون والعرب يبحثون بلغاتهم. معظم أدوات البحث تفهرس فقط عناوينك الإنجليزية. الجولة موجودة. لكنهم لا يرونها.',
+        title: 'الزوار يبحثون بلغتهم',
+        description: 'يكتب الضيوف العرب والألمان بلغتهم فيجيبهم الموقع بلغة أخرى، أو لا يجيب أصلًا.',
       },
       {
-        title: 'صفحات النتائج الفارغة تسلّم الزائر للوسطاء',
-        description:
-          'حين لا يرجع البحث شيئًا، يفتح الزائر تبويبًا جديدًا، يكتب جولتك في Google، فيتصدر Viator. بِعت الحجز — وسلّمت 25% منه.',
+        title: 'صفحة نتائج فارغة',
+        description: 'حين لا يظهر شيء، يفتح الزائر تبويبًا جديدًا ويبحث عن الرحلة نفسها في أحد مواقع الحجز الكبرى.',
       },
     ],
   },
   solutions: {
-    sectionEyebrow: 'كيف يحل Foxes AI Search ذلك',
-    sectionHeadline: 'بحث دلالي، ردّ محادثة، أرقام حقيقية.',
-    sectionSub:
-      'أداة بحث مصممة لطريقة تسوّق المسافر فعلًا — لا لاستعلام SQL LIKE من عام 2008.',
+    sectionEyebrow: 'ما يقدّمه اليوم',
+    sectionHeadline: 'يجد الرحلة، ويقترح الأقرب، ويريك ما يسأل عنه الناس.',
+    sectionSub: 'أداة واحدة على موقعك تجيب من رحلاتك أنت فقط.',
     items: [
       {
-        title: 'بحث دلالي عبر كتالوجك الكامل',
+        title: 'يجد الرحلات بالمعنى لا بالكلمات فقط',
         description:
-          'الأداة تفهم المعنى لا الكلمات. "رحلة قارب رومانسية أقل من ساعة" تجد فلوكا نيلية مدتها 50 دقيقة حتى لو لم يذكر العنوان كلمة "رومانسي". اكتب بأي لغة — تأتي النتائج بلغة الزائر.',
+          'يسأل الزائر عن «رحلة قارب هادئة وقت الغروب لشخصين» فتظهر له الرحلات المناسبة حتى لو لم ترد تلك الكلمات في العنوان. كل نتيجة بطاقة فيها الصورة والسعر وأهم التفاصيل، وتفتح صفحة الرحلة على موقعك حيث يتم الحجز.',
         bullets: [
-          'تضمينات Anthropic و OpenAI تحت الغطاء',
-          'تفهرس من 10 إلى 10000 منتج خلال دقائق',
-          'ترتيب نتائج مضبوط على بيانات تحويلك',
+          'يجيب بالعربية والإنجليزية والألمانية',
+          'بطاقات بالصورة والسعر والتفاصيل من قائمتك أنت',
+          'يفتح صفحة رحلتك، ولا يُجري الحجز بنفسه',
         ],
       },
       {
-        title: 'ردّ محادثة حين لا توجد نتيجة دقيقة',
+        title: 'محادثة تقترح أقرب الرحلات',
         description:
-          'حين لا يجد الكتالوج إجابة دقيقة، تتحوّل الأداة إلى محادثة: "ليست لدينا هذه الجولة بالضبط — إليك ثلاث جولات قريبة." يبقى الضيف على موقعك، يضغط اقتراحًا، يحجز.',
+          'يستطيع الزائر أن يسأل في محادثة أيضًا. يجيب المساعد من رحلاتك وأسعارك وسياساتك، ويقترح بدائل حين لا يوجد تطابق تام، ويمكنه إعداد برنامج يومي من رحلاتك. وإذا تعذّرت قراءة قائمة رحلاتك يقول ذلك ولا يختلق رحلة.',
         bullets: [
-          'تقترح 3 جولات قريبة بصور وأسعار',
-          'تطرح بدائل بلطف وبنبرة الزائر',
-          'تحوّل المحادثة إلى واتساب إن طلب الضيف إنسانًا',
+          'اقتراحات بالصور والأسعار',
+          'برامج يومية مبنية من رحلاتك',
+          'يستطيع الزائر ترك بياناته لفريقك',
         ],
       },
       {
-        title: 'لوحة تحليلات لحظية',
+        title: 'اعرف ما يبحث عنه الزوار',
         description:
-          'شاهد كل ما يكتبه زوارك فعلًا. تتبّع أكثر الاستعلامات، الاستعلامات بدون نتائج، نسبة التحويل من بحث إلى حجز، وأي منتج يربح بعد البحث. أصلح فجوات كتالوجك قبل نهاية الأسبوع.',
+          'تعرض لوحة التحكم أكثر الأسئلة تكرارًا والأسئلة التي لم تجد نتيجة، فتعرف ما الذي ينقص من رحلات أو إجابات.',
         bullets: [
-          'أكثر الاستعلامات والاستعلامات بدون نتائج',
-          'تحويل البحث إلى حجز لكل استعلام',
-          'خريطة حرارية لرحلة الزائر بعد البحث',
+          'الأسئلة الأكثر تكرارًا',
+          'عمليات البحث التي لم تجد شيئًا',
+          'كل نشاط يرى رحلاته وإعداداته فقط',
         ],
       },
     ],
   },
   howItWorks: {
-    sectionEyebrow: 'الإعداد سريع',
-    sectionHeadline: 'من الصفر إلى بحث حي خلال 15 دقيقة.',
-    sectionSub:
-      'أضف وسم سكربت واحد، وجّهه إلى كتالوج منتجاتك، فتُفهرس الأداة كل شيء في الخلفية بينما تُنهي شايك.',
+    sectionEyebrow: 'كيف تبدأ',
+    sectionHeadline: 'الانضمام بدعوة.',
+    sectionSub: 'يُفتح AI Search للعملاء الجدد على مراحل. ترسل طلبًا فيقرؤه فريقنا ويرد عليك.',
     steps: [
       {
-        title: 'سجّل واختر بيانات مشغّلك',
-        description: 'أنشئ أداتك في لوحة Foxes. اختر الألوان والخط واللون المميز ومجموعة المنتجات التي ترجعها الأداة بالضبط.',
+        title: 'أرسل طلبًا',
+        description: 'أخبرنا عن موقعك في النموذج أدناه أو في صفحة طلب الانضمام. يقرأ فريقنا كل طلب.',
       },
       {
-        title: 'ضع وسم سكربت واحد',
+        title: 'تُضاف رحلاتك',
         description:
-          'الصق مقتطف التضمين على موقعك. تظهر الأداة كشريط بحث أو فقاعة محادثة عائمة أو الاثنين معًا — الاختيار لك.',
+          'تُقرأ قائمة رحلاتك من موقعك أو تُرفع في جدول بيانات. وتختار أنت الألوان والشعار والعنوان ونبرة المساعد.',
       },
       {
-        title: 'الكتالوج يُفهرس تلقائيًا',
-        description:
-          'يسحب Foxes جولاتك من محرك الحجز أو نظام المحتوى أو ملف CSV. تصبح الأداة قابلة للبحث بأي لغة خلال دقائق.',
+        title: 'أضف سطر كود واحدًا',
+        description: 'الصقه في موقعك. تعمل الأداة فقط على عناوين المواقع التي تسمح بها.',
       },
     ],
   },
   features: {
-    sectionEyebrow: 'مصمم لمواقع السياحة',
-    sectionHeadline: 'كل ميزة، مصممة للزائر الذي يكتب قبل أن يتصفّح.',
-    sectionSub:
-      'البحث العام يعامل كل استعلام كمطابقة نصّية. Foxes يعامله كضيف على وشك الحجز.',
+    sectionEyebrow: 'في المنتج اليوم',
+    sectionHeadline: 'ما تحصل عليه.',
+    sectionSub: 'مربع بحث ومساعد يعرفان رحلاتك ولا شيء غيرها.',
     items: [
       {
-        title: 'تركيب بسطر سكربت واحد',
-        description: 'وسم واحد. يعمل على Next.js و WordPress و Shopify و Webflow أو HTML يدوي.',
+        title: 'سطر كود واحد',
+        description: 'سطر واحد يضيف الأداة إلى موقعك.',
       },
       {
-        title: '+50 لغة جاهزة',
-        description: 'يكتشف لغة الزائر تلقائيًا. يرجع نتائج محلية بلا فهارس منفصلة.',
+        title: 'العربية والإنجليزية والألمانية',
+        description: 'يجيب بلغة الصفحة، ومن اليمين إلى اليسار في العربية.',
       },
       {
-        title: 'بحث دلالي بالمتجهات',
-        description: 'تضمينات Anthropic و OpenAI ترتّب النتائج بالنية لا بالكلمة الحرفية.',
+        title: 'بحث بالمعنى',
+        description: 'يطابق ما يقصده الزائر، مع مطابقة بالكلمات كخيار احتياطي.',
       },
       {
-        title: 'محادثة احتياطية',
-        description: 'حين يكون البحث ملتبسًا، تطرح الأداة سؤالًا توضيحيًا وتعرض خيارات.',
+        title: 'مساعد محادثة',
+        description: 'يجيب عن الأسئلة من رحلاتك وأسعارك وسياساتك أنت.',
       },
       {
-        title: 'تحليلات لحظية',
-        description: 'أكثر الاستعلامات، الاستعلامات بدون نتائج، تحويل من بحث إلى حجز، لوحات لكل مشغّل.',
+        title: 'ما يسأل عنه الزوار',
+        description: 'الأسئلة الأكثر تكرارًا وعمليات البحث التي لم تجد شيئًا.',
       },
       {
-        title: 'علامة بيضاء للأداة',
-        description: 'علامة لكل مشغّل وخطوط ولون مميز ووضع ليلي أو نهاري ونبرة كلام.',
+        title: 'ألوانك ونبرتك',
+        description: 'الألوان والشعار والعنوان ونبرة المساعد، ضمن قوالب جاهزة.',
       },
       {
-        title: 'تركيب مقفل بالنطاق',
-        description: 'كل أداة مقيّدة بالنطاقات التي تسمح بها. تمنع المواقع الأخرى من استخدام مفتاحك.',
+        title: 'مقفلة على موقعك',
+        description: 'تعمل الأداة فقط على عناوين المواقع التي تسمح بها.',
       },
       {
-        title: 'تضمينات مخصّصة لكتالوجك',
-        description: 'اضبط الترتيب على بيانات حجوزاتك السابقة ليتصدّر الفائزون.',
+        title: 'شريط بحث أو فقاعة محادثة أو صفحة كاملة',
+        description: 'اختر كيف تظهر على موقعك.',
       },
     ],
   },
@@ -435,110 +427,104 @@ export const ar: OperatorCopy = {
     fineprint: 'نشاركك الباقات والأسعار الحالية عند تقديم طلب الانضمام.',
   },
   faq: {
-    sectionEyebrow: 'أسئلة يجب أن تسألها',
-    sectionHeadline: 'إجابات صريحة.',
+    sectionEyebrow: 'أسئلة ينبغي أن تسألها',
+    sectionHeadline: 'إجابات مباشرة.',
     items: [
       {
-        question: 'كم يستغرق التركيب فعلًا؟',
+        question: 'هل التسجيل متاح للجميع؟',
         answer:
-          'معظم المشغلين يعملون خلال 15 دقيقة. الصق وسم سكربت واحدًا، حدّد نطاقك في اللوحة، وجّه الأداة إلى موجز المنتجات، فيصبح موقعك قابلًا للبحث. الفهرسة تعمل في الخلفية وتنتهي عادةً في أقل من خمس دقائق لمواقع تحتوي 100 إلى 500 منتج.',
+          'ليس بعد. يُفتح AI Search للعملاء الجدد على مراحل. ترسل طلبًا فيقرؤه فريقنا ويرد عليك. لا يوجد تسجيل مفتوح.',
       },
       {
-        question: 'كيف يعمل اكتشاف اللغة؟',
+        question: 'بأي لغات يجيب؟',
         answer:
-          'تقرأ الأداة لغة المتصفح وسمة lang في الصفحة ونصّ الاستعلام نفسه. إن كتب زائر روسي بالكيريلية، ترجع النتائج بالروسية حتى لو كانت عناوينك بالإنجليزية. ويمكنك تجاوز اللغة المكتشفة في أي وقت — مناسب للمواقع متعددة اللغات بمحدّد يدوي.',
+          'بالعربية والإنجليزية والألمانية. يجيب بلغة الصفحة التي يتصفحها الزائر، ومن اليمين إلى اليسار في العربية.',
       },
       {
-        question: 'هل عليّ ترجمة كتالوجي؟',
+        question: 'هل يجب أن أترجم رحلاتي؟',
         answer:
-          'لا. يفهرس Foxes عناوينك الإنجليزية أو العربية الحالية ويستخدم تضمينات متعددة اللغات لمطابقتها مع استعلامات بأكثر من 50 لغة. وإن كانت لديك ترجمات، تستخدمها الأداة وترفعها في الترتيب للاستعلامات بلغتها الأصلية.',
+          'لا. يستطيع الزائر أن يسأل بالعربية أو الألمانية عن رحلات كتبتها بالإنجليزية ويحصل على الرحلات الصحيحة. وصفحة الرحلة التي يفتحها هي صفحتك أنت، باللغات المتوفرة في موقعك.',
       },
       {
-        question: 'ماذا يحدث حين لا يكون للبحث إجابة جيدة؟',
+        question: 'ماذا يحدث إذا لم يوجد تطابق؟',
         answer:
-          'تتحوّل الأداة إلى وضع المحادثة: تشرح أنه لا توجد مطابقة دقيقة، تعرض أقرب ثلاث بدائل بصور وأسعار، وتطرح سؤالًا توضيحيًا. يبقى الزائر على موقعك بدلًا من القفز إلى محرك بحث ينتهي به في OTA.',
+          'يقول المساعد إنه لا يوجد تطابق تام ويقترح أقرب الرحلات من قائمتك. ولا يختلق رحلة ولا سعرًا ولا سياسة.',
       },
       {
-        question: 'ما سرعة الأداة؟ هل تُبطئ موقعي؟',
+        question: 'هل يُجري الحجز؟',
         answer:
-          'سرعة البحث أقل من 200 مللي ثانية في الشريحة الـ95. تُحمَّل الأداة لا تزامنيًا فلا تعرقل عرض صفحتك. والنافذة تفتح فورًا لأن فهرس التضمينات يعيش على الحافة لدينا — لا على خادمك.',
+          'لا. تفتح كل نتيجة صفحة الرحلة على موقعك أنت، ويتم الحجز هناك بنظام الحجز الذي تستخدمه الآن.',
       },
       {
-        question: 'ماذا عن خصوصية الزائر وبياناته؟',
+        question: 'كيف تُضاف رحلاتي؟',
         answer:
-          'تُعالج الاستعلامات بشكل مجهول. لا نخزّن عناوين IP، ولا نضع كوكيز تتبّع على نطاقك، ولوحة التحليلات تعرض أنماطًا تجميعية فقط — لا معرّفات شخصية. تصميم خالٍ من البيانات الشخصية ومتوافق مع GDPR من البداية.',
+          'تُقرأ قائمة رحلاتك من موقعك، أو ترفعها في جدول بيانات. لا يوجد اليوم ربط مباشر بنظام حجز.',
       },
       {
-        question: 'هل يعمل مع منصة الحجز الحالية؟',
+        question: 'ماذا عن خصوصية الزوار؟',
         answer:
-          'نعم. ندعم تكاملات مباشرة مع محرك Foxes للحجز و Bokun و Rezdy و FareHarbor و REST مخصّص وملفات CSV. تقرأ الأداة منتجاتك وقت الفهرسة وتربط نتائج البحث بمسار الحجز الحالي مباشرة — بدون إعادة كتابة شيء.',
+          'لا تضع الأداة ملفات تعريف ارتباط على موقعك ولا تحفظ عناوين IP للزوار. تُحفظ الأسئلة التي يكتبها الزوار في حسابك أنت لترى ما يبحث عنه الناس.',
       },
       {
-        question: 'كيف تُسعَّر أداة البحث الذكية؟',
-        answer:
-          'تُباع أداة البحث الذكية في باقات، لكل منها حصة شهرية محددة من عمليات البحث، فتعرف تكلفتك قبل أن تبدأ. وتضيف الباقات الأكبر مزيدًا من عمليات البحث والمزايا للمواقع الأكثر زيارة. أخبرنا عن موقعك وسيشاركك فريقنا الأسعار الحالية ويرشّح لك الباقة المناسبة.',
+        question: 'كيف يُسعَّر AI Search؟',
+        answer: 'نشاركك الخطط والأسعار الحالية عند طلب الانضمام، وقبل أن تلتزم بأي شيء.',
       },
     ],
   },
   leadForm: {
-    sectionEyebrow: 'جاهزون متى تكون',
-    sectionHeadline: 'شاهد البحث الذكي حيًّا — على كتالوجك أنت.',
-    sectionSub:
-      'أخبرنا برابط موقعك. سنفهرس عيّنة من منتجاتك ونرسل لك معاينة عاملة للأداة خلال ساعة.',
+    sectionEyebrow: 'متى ما كنت جاهزًا',
+    sectionHeadline: 'شاهد AI Search على رحلاتك أنت.',
+    sectionSub: 'أخبرنا بعنوان موقعك وسيتواصل معك فريقنا لترتيب عرض.',
     fields: {
       name: 'اسمك',
-      namePlaceholder: 'أحمد حسن',
-      business: 'اسم الموقع / النشاط',
-      businessPlaceholder: 'Pyramid Travel Egypt',
+      namePlaceholder: 'الاسم الكامل',
+      business: 'الموقع أو اسم النشاط',
+      businessPlaceholder: 'yourwebsite.com',
       whatsapp: 'رقم واتساب',
-      whatsappPlaceholder: '+20 100 000 0000',
-      monthlyBookings: 'زوار الموقع شهريًا (تقريبًا)',
+      whatsappPlaceholder: '+20 1XX XXX XXXX',
+      monthlyBookings: 'عدد زوار الموقع شهريًا (تقريبًا)',
       monthlyBookingsOptions: [
-        { value: 'lt-5k', label: 'أقل من 5000' },
-        { value: '5k-20k', label: 'من 5000 إلى 20000' },
-        { value: '20k-100k', label: 'من 20000 إلى 100000' },
-        { value: '100k-plus', label: 'أكثر من 100000' },
+        { value: 'lt-5k', label: 'أقل من 5,000' },
+        { value: '5k-20k', label: 'من 5,000 إلى 20,000' },
+        { value: '20k-100k', label: 'من 20,000 إلى 100,000' },
+        { value: '100k-plus', label: 'أكثر من 100,000' },
       ],
     },
-    submit: 'احصل على معاينتي',
-    submitting: 'جاري الإرسال...',
-    successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
-    successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
+    submit: 'اطلب عرضًا',
+    submitting: 'جارٍ الإرسال...',
+    successTitle: 'شكرًا لك. وصلنا طلبك وسيتواصل معك فريقنا.',
+    successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أحببت:',
     successWhatsapp: 'افتح واتساب',
-    errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
-    errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
-    privacy:
-      'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
+    errorMissing: 'يرجى تعبئة جميع الحقول: اسمك، واسم نشاطك، ورقم واتساب مع رمز الدولة، والعدد الشهري.',
+    errorGeneric: 'حدث خطأ. حاول مرة أخرى بعد قليل.',
+    errorRateLimit: 'محاولات كثيرة. انتظر قليلًا ثم حاول مرة أخرى.',
+    privacy: 'بإرسال هذا النموذج توافق على أن يتواصل معك فريق Foxes بشأن طلبك.',
   },
   finalCta: {
-    headline: 'مستعد لتحوّل شريط بحثك إلى آلة حجز؟',
-    sub: 'مشغّلون في القاهرة والغردقة وشرم والأقصر يستخدمون بحث Foxes الذكي بالفعل لتحويل الزوار قبل أن يغادروا.',
-    primary: 'ابدأ الآن',
-    secondary: 'تحدث معنا على واتساب',
+    headline: 'دع الزوار يجدون الرحلة المناسبة على موقعك أنت.',
+    sub: 'الانضمام بدعوة. أرسل طلبًا وسيرد عليك فريقنا.',
+    primary: 'اطلب عرضًا',
+    secondary: 'تحدث معنا عبر واتساب',
   },
   whatsapp: {
-    floatLabel: 'تحدث معنا',
-    prefilledMessage: 'مرحبًا، أنا مهتم بأداة البحث الذكية من Foxes لموقعي.',
+    floatLabel: 'اسأل عن AI Search',
+    prefilledMessage: 'مرحبًا، أودّ عرضًا لـ AI Search من Foxes على موقعي.',
   },
   mobileStickyCta: {
-    primary: 'ابدأ الآن',
+    primary: 'اطلب عرضًا',
     secondary: 'واتساب',
   },
   exitIntent: {
-    eyebrow: 'شيء واحد قبل أن تغادر',
-    headline: 'مرجع أداء بحث المواقع لمشغّلي السياحة',
-    sub: 'كيف يبدو البحث الجيد في مواقع السياحة والسفر، وما الذي يجب إصلاحه أولًا. مجاني — اترك بريدك وسيرسله لك فريقنا.',
-    bullets: [
-      'مرجع تحويل البحث إلى حجز لكل قطاع',
-      'أكثر 20 استعلام بدون نتائج (وكيف تعالجها)',
-      'دليل اختبارات A/B لبحث الموقع',
-    ],
-    emailPlaceholder: 'you@yoursite.com',
-    submitLabel: 'أرسل لي المرجع',
-    submittingLabel: 'جاري الإرسال...',
+    eyebrow: 'قبل أن تغادر',
+    headline: 'هل تفضّل أن نراسلك نحن؟',
+    sub: 'اترك بريدك الإلكتروني وسيكتب لك أحد أفراد فريقنا عن AI Search. ليست نشرة بريدية.',
+    bullets: ['يقرؤه فريقنا', 'رد بالعربية أو الإنجليزية', 'الانضمام بدعوة'],
+    emailPlaceholder: 'you@yourbusiness.com',
+    submitLabel: 'راسلوني',
+    submittingLabel: 'جارٍ الإرسال...',
     successTitle: 'شكرًا — وصلنا طلبك.',
-    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
-    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
+    successBody: 'سيكتب لك فريقنا.',
+    privacy: 'نستخدم بريدك فقط للرد عليك وللمتابعة معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };

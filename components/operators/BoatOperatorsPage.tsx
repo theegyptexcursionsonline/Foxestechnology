@@ -7,7 +7,6 @@ import { useState } from 'react';
 import {
   ArrowRight,
   Check,
-  CheckCircle2,
   ChevronDown,
   Calendar,
   Coins,
@@ -20,8 +19,6 @@ import {
   Compass,
   Sparkles,
   Clock,
-  Star,
-  Shield,
   CreditCard,
   Users2,
   Hotel,
@@ -29,7 +26,6 @@ import {
   Repeat,
   Fuel,
   AlertTriangle,
-  RefreshCcw,
 } from 'lucide-react';
 import LeadForm from './LeadForm';
 import WhatsAppFloat from './WhatsAppFloat';
@@ -44,6 +40,7 @@ import OperatorExitIntent from './OperatorExitIntent';
 import OperatorEcosystem from './OperatorEcosystem';
 import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+import { BookingExample, LeadReassurance } from '@/components/operators/BookingExamples';
 
 /** Where visitors go when no real WhatsApp number is configured. */
 const REQUEST_ACCESS_HREF = requestAccessHrefFor('boat-operators');
@@ -289,15 +286,15 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-              Speedboat Charter · 9am Saturday
+              {locale === 'ar' ? 'رحلة قارب سريع · السبت 9 صباحًا' : 'Speedboat charter · Saturday 9 am'}
             </p>
-            <p className="text-[12px] text-slate-500">Captain assigned · Sea Spirit</p>
+            <p className="text-[12px] text-slate-500">{locale === 'ar' ? 'حجز تجريبي · تم تعيين القارب' : 'Example booking · boat assigned'}</p>
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">{formatPrice(6000, currency)} · 8 guests</span>
+          <span className="text-[11px] font-medium text-slate-500">{formatPrice(6000, currency)} · {locale === 'ar' ? '8 ضيوف' : '8 guests'}</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            DEPOSIT PAID
+            {locale === 'ar' ? 'محجوز' : 'RESERVED'}
           </span>
         </div>
       </motion.div>
@@ -458,7 +455,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          0{index + 1} · Feature
+          0{index + 1}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -492,377 +489,7 @@ function SolutionRow({
 }
 
 function SolutionMockup({ variant }: { variant: number }) {
-  if (variant === 0) return <FleetCalendarMockup />;
-  if (variant === 1) return <PaymentTimelineMockup />;
-  return <WeatherCancelMockup />;
-}
-
-function MockupShell({
-  title,
-  badge,
-  children,
-}: {
-  title: string;
-  badge?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-teal-50/80 via-cyan-50/40 to-transparent blur-2xl" />
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
-        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
-          <span className="text-[12px] font-semibold tracking-[-0.01em] text-slate-700">
-            {title}
-          </span>
-          {badge && (
-            <span className="text-[10px] font-semibold tracking-wider text-emerald-600">
-              {badge}
-            </span>
-          )}
-        </div>
-        <div className="p-6 sm:p-7">{children}</div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Mockup A: Fleet calendar ─────────────────────────────────────────── */
-function FleetCalendarMockup() {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const vessels = [
-    {
-      name: 'Sea Spirit',
-      sub: 'Speedboat · 12pax',
-      bookings: [
-        { day: 1, span: 1, label: 'Halse · half day', tone: 'bg-teal-600' },
-        { day: 4, span: 2, label: 'Hilton group', tone: 'bg-slate-900' },
-      ],
-    },
-    {
-      name: 'Blue Pearl',
-      sub: 'Yacht 40ft · 18pax',
-      bookings: [{ day: 0, span: 7, label: 'Schmidt party · all week', tone: 'bg-slate-700' }],
-    },
-    {
-      name: 'Red Falcon',
-      sub: 'Fishing · 8pax',
-      bookings: [
-        { day: 2, span: 1, label: 'Ramirez · fishing', tone: 'bg-emerald-700' },
-        { day: 5, span: 1, label: 'Khaled · sunset', tone: 'bg-rose-600' },
-      ],
-    },
-  ];
-
-  return (
-    <MockupShell title="Fleet · Week of 12 May" badge="LIVE">
-      {/* Day header */}
-      <div
-        className="grid items-center gap-1 text-center"
-        style={{ gridTemplateColumns: '120px repeat(7, 1fr)' }}
-      >
-        <div />
-        {days.map((d) => (
-          <div key={d} className="text-[10px] font-semibold tracking-wider text-slate-400">
-            {d}
-          </div>
-        ))}
-      </div>
-
-      {/* Vessel rows */}
-      <div className="mt-2 space-y-2">
-        {vessels.map((v, vi) => (
-          <motion.div
-            key={v.name}
-            initial={{ opacity: 0, x: -8 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 + vi * 0.07 }}
-            className="grid items-center gap-1"
-            style={{ gridTemplateColumns: '120px repeat(7, 1fr)' }}
-          >
-            <div className="pe-2">
-              <p className="text-[12.5px] font-semibold tracking-[-0.01em] text-slate-900">
-                {v.name}
-              </p>
-              <p className="text-[10.5px] text-slate-500">{v.sub}</p>
-            </div>
-            <div className="col-span-7 relative h-9 rounded-lg bg-slate-50/70 ring-1 ring-slate-100">
-              <div className="absolute inset-0 grid grid-cols-7">
-                {Array.from({ length: 7 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`border-e border-slate-100 ${i === 6 ? 'border-e-0' : ''}`}
-                  />
-                ))}
-              </div>
-              {v.bookings.map((b, bi) => (
-                <motion.div
-                  key={bi}
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: 0.25 + vi * 0.06 + bi * 0.05,
-                    duration: 0.5,
-                    ease: [0.21, 0.47, 0.32, 0.98],
-                  }}
-                  className={`absolute top-1.5 bottom-1.5 mx-0.5 rounded-md ${b.tone} flex items-center px-2 text-[10px] font-medium text-white shadow-sm`}
-                  style={{
-                    left: `calc(${(b.day / 7) * 100}% + 2px)`,
-                    width: `calc(${(b.span / 7) * 100}% - 4px)`,
-                    transformOrigin: 'left',
-                  }}
-                >
-                  <span className="truncate">{b.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      <div className="mt-5 flex items-center justify-between rounded-xl border border-emerald-200/70 bg-emerald-50/70 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <CheckCircle2 className="h-4 w-4 text-emerald-700" strokeWidth={1.8} />
-          <span className="text-[12.5px] font-medium text-emerald-900">
-            No conflicts · 3 vessels · 5 captains scheduled
-          </span>
-        </div>
-        <span className="text-[11px] font-semibold text-emerald-700">All clear</span>
-      </div>
-    </MockupShell>
-  );
-}
-
-/* ── Mockup B: Payment timeline ──────────────────────────────────────── */
-function PaymentTimelineMockup() {
-  const { currency } = useCurrency();
-  const nodes = [
-    {
-      label: 'Deposit paid',
-      sub: `30 Apr · ${formatPrice(2400, currency)}`,
-      icon: Check,
-      state: 'done' as const,
-    },
-    {
-      label: 'Balance reminder',
-      sub: '16 May · 48h before',
-      icon: Clock,
-      state: 'pending' as const,
-    },
-    {
-      label: 'Boarding',
-      sub: '18 May · 9am',
-      icon: Anchor,
-      state: 'upcoming' as const,
-    },
-  ];
-  const palette: Record<'done' | 'pending' | 'upcoming', string> = {
-    done: 'bg-emerald-600 text-white ring-emerald-100',
-    pending: 'bg-amber-500 text-white ring-amber-100',
-    upcoming: 'bg-slate-300 text-white ring-slate-100',
-  };
-  const labelTone: Record<'done' | 'pending' | 'upcoming', string> = {
-    done: 'text-emerald-700',
-    pending: 'text-amber-700',
-    upcoming: 'text-slate-500',
-  };
-
-  return (
-    <MockupShell title="Charter · Speedboat · 18 May 9am" badge="ON TRACK">
-      <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[13px] font-semibold tracking-[-0.01em] text-slate-900">
-              Halse family · 8 guests
-            </p>
-            <p className="mt-0.5 text-[11.5px] text-slate-500">Half-day speedboat · Sea Spirit</p>
-          </div>
-          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            CONFIRMED
-          </span>
-        </div>
-
-        {/* totals row */}
-        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Total</p>
-            <p className="mt-1 text-[13px] font-bold text-slate-900">{formatPrice(6000, currency)}</p>
-          </div>
-          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Deposit 40%
-            </p>
-            <p className="mt-1 text-[13px] font-bold text-emerald-700">{formatPrice(2400, currency)}</p>
-          </div>
-          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Balance
-            </p>
-            <p className="mt-1 text-[13px] font-bold text-amber-700">{formatPrice(3600, currency)}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* timeline */}
-      <div className="relative mt-6">
-        <div className="absolute left-4 right-4 top-3 h-0.5 bg-slate-200" />
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: '50%' }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="absolute left-4 top-3 h-0.5 bg-emerald-500"
-        />
-        <div className="relative grid grid-cols-3">
-          {nodes.map((n, i) => {
-            const Icon = n.icon;
-            return (
-              <motion.div
-                key={n.label}
-                initial={{ opacity: 0, y: 6 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + i * 0.12 }}
-                className="flex flex-col items-center text-center"
-              >
-                <div
-                  className={`relative flex h-7 w-7 items-center justify-center rounded-full ring-4 ${palette[n.state]}`}
-                >
-                  <Icon className="h-3.5 w-3.5" strokeWidth={2.5} />
-                </div>
-                <p className={`mt-2.5 text-[11.5px] font-semibold ${labelTone[n.state]}`}>
-                  {n.label}
-                </p>
-                <p className="text-[10.5px] text-slate-500">{n.sub}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="mt-6 flex items-center justify-between gap-3 rounded-xl border border-amber-200/70 bg-amber-50/70 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <CreditCard className="h-4 w-4 text-amber-700" strokeWidth={1.8} />
-          <span className="text-[12.5px] font-medium text-amber-900">
-            Balance reminder ready · Vodafone Cash + 3 fallbacks
-          </span>
-        </div>
-        <button className="rounded-lg bg-slate-900 px-3 py-1.5 text-[11px] font-semibold text-white hover:bg-slate-800">
-          Send now
-        </button>
-      </div>
-    </MockupShell>
-  );
-}
-
-/* ── Mockup C: Weather cancellation flow ─────────────────────────────── */
-function WeatherCancelMockup() {
-  const { currency } = useCurrency();
-  const [policy, setPolicy] = useState<'refund' | 'rebook' | 'partial'>('rebook');
-  const policies: { value: 'refund' | 'rebook' | 'partial'; label: string; sub: string }[] = [
-    { value: 'refund', label: 'Full refund', sub: 'Return 100%' },
-    { value: 'rebook', label: 'Rebook free', sub: 'Same crew, new date' },
-    { value: 'partial', label: 'Partial', sub: 'Keep 50%' },
-  ];
-
-  return (
-    <MockupShell title="Weather alert · Saturday 18 May" badge="ACTION NEEDED">
-      {/* warning banner */}
-      <div className="flex items-start gap-3 rounded-xl border border-rose-200/70 bg-rose-50/70 p-4">
-        <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-rose-100 text-rose-700">
-          <CloudRain className="h-4 w-4" strokeWidth={1.8} />
-        </div>
-        <div className="min-w-0">
-          <p className="text-[13px] font-semibold tracking-[-0.01em] text-rose-900">
-            Wind 28kn · gusts 35kn — recommend cancellation
-          </p>
-          <p className="mt-1 text-[11.5px] leading-[1.55] text-rose-700/90">
-            4 charters affected on Sea Spirit and Blue Pearl. Marina advisory issued 06:14.
-          </p>
-        </div>
-      </div>
-
-      {/* policy chooser */}
-      <div className="mt-5">
-        <p className="text-[10.5px] font-semibold uppercase tracking-wider text-slate-500">
-          Apply policy to all
-        </p>
-        <div className="mt-2 grid grid-cols-3 gap-2">
-          {policies.map((p) => {
-            const active = policy === p.value;
-            return (
-              <button
-                key={p.value}
-                type="button"
-                onClick={() => setPolicy(p.value)}
-                className={`rounded-lg border px-3 py-2.5 text-start transition ${
-                  active
-                    ? 'border-slate-900 bg-slate-900 text-white'
-                    : 'border-slate-200 bg-white hover:border-slate-300'
-                }`}
-              >
-                <p className="text-[12px] font-semibold">{p.label}</p>
-                <p className={`mt-0.5 text-[10.5px] ${active ? 'text-white/70' : 'text-slate-500'}`}>
-                  {p.sub}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* preview */}
-      <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50/40 p-4">
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-          4 customers will be SMS + email notified
-        </p>
-        <div className="mt-3 space-y-1.5">
-          <PreviewRow name="Halse family · DE" outcome="Rebook to Sun 19 May" tone="emerald" />
-          <PreviewRow name="Ramirez · ES" outcome="Rebook to Sun 19 May" tone="emerald" />
-          <PreviewRow name="Khaled · EG" outcome={`Refund ${formatPrice(4800, currency)}`} tone="rose" />
-          <PreviewRow name="Schmidt · DE" outcome={`Partial ${formatPrice(1200, currency)}`} tone="amber" />
-        </div>
-      </div>
-
-      {/* cta */}
-      <div className="mt-5 flex items-center justify-between gap-3">
-        <p className="text-[11.5px] text-slate-500">
-          Slot re-published to your booking page on confirm.
-        </p>
-        <button className="inline-flex items-center gap-2 rounded-lg bg-rose-600 px-4 py-2 text-[12px] font-semibold text-white hover:bg-rose-700">
-          <RefreshCcw className="h-3.5 w-3.5" strokeWidth={2.5} />
-          Confirm cancellation
-        </button>
-      </div>
-    </MockupShell>
-  );
-}
-
-function PreviewRow({
-  name,
-  outcome,
-  tone,
-}: {
-  name: string;
-  outcome: string;
-  tone: 'emerald' | 'rose' | 'amber';
-}) {
-  const toneMap = {
-    emerald: 'bg-emerald-50 text-emerald-700 ring-emerald-100',
-    rose: 'bg-rose-50 text-rose-700 ring-rose-100',
-    amber: 'bg-amber-50 text-amber-700 ring-amber-100',
-  } as const;
-  return (
-    <div className="flex items-center justify-between rounded-lg bg-white px-3 py-2 ring-1 ring-slate-100">
-      <span className="text-[12px] font-medium text-slate-800">{name}</span>
-      <span
-        className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wider ring-1 ${toneMap[tone]}`}
-      >
-        {outcome}
-      </span>
-    </div>
-  );
+  return <BookingExample variant={variant} trade="boat" />;
 }
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -895,7 +522,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -1119,36 +746,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { icon: Star, text: 'Free 15-minute walkthrough — no pitch' },
-                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

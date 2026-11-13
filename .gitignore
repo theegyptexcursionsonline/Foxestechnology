@@ -62,3 +62,7 @@ RUNBOOK.md
 DECISIONS.md
 GLOSSARY.md
 PROJECT-TRACKER.md
+
+# browser test output
+/test-results/
+/playwright-report/

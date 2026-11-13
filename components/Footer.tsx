@@ -1,11 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Award, Mail, ArrowRight, Facebook, Twitter, Instagram, Linkedin, Youtube, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
-import { joinNewsletter, PRIORITY_LIST_MESSAGES } from '@/lib/priority-list';
+import { joinNewsletter, PRIORITY_LIST_MESSAGES, typedEmail } from '@/lib/priority-list';
 
 // --- Enhanced Logo Component ---
 const FoxesLogo = () => (
@@ -47,37 +47,6 @@ const FooterLinkColumn = ({ title, links }: { title: string, links: { name: stri
   </div>
 );
 
-// --- Social Links with Gradient Hover ---
-const SocialLinks = () => {
-  const socials = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-  ];
-
-  return (
-    <div className="flex items-center gap-3">
-      {socials.map((social) => (
-        <motion.a
-          key={social.label}
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={social.label}
-          whileHover={{ scale: 1.1, y: -2 }}
-          whileTap={{ scale: 0.95 }}
-          className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-slate-100 text-slate-600 transition-all hover:bg-red-600 hover:text-white hover:shadow-lg hover:shadow-red-500/30"
-        >
-          <social.icon className="relative z-10 h-5 w-5" />
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-        </motion.a>
-      ))}
-    </div>
-  );
-};
-
 // --- Newsletter with Gradient Background ---
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
@@ -89,7 +58,7 @@ const NewsletterSignup = () => {
     e.preventDefault();
     if (status === 'loading') return;
     setStatus('loading');
-    const result = await joinNewsletter(email, typeof window !== 'undefined' ? window.location.pathname : undefined);
+    const result = await joinNewsletter(typedEmail(e.currentTarget, email), typeof window !== 'undefined' ? window.location.pathname : undefined);
     if (result !== 'ok') {
       setStatus('error');
       setMessage(PRIORITY_LIST_MESSAGES[result]);
@@ -117,13 +86,13 @@ const NewsletterSignup = () => {
             <Sparkles className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h3 className="text-xl font-black text-white">Stay Ahead</h3>
-            <p className="text-sm font-medium text-white/80">Get exclusive insights</p>
+            <h3 className="text-xl font-black text-white">Hear from us</h3>
+            <p className="text-sm font-medium text-white/80">Product news by email</p>
           </div>
         </div>
 
         <p className="mb-5 text-sm leading-relaxed text-white/90">
-          Get occasional tips, industry news and product updates from our team.
+          Leave your email and we will write to you when there is news about Foxes products.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -142,7 +111,7 @@ const NewsletterSignup = () => {
             disabled={status === 'loading'}
             className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-red-600 shadow-lg transition-all hover:bg-white hover:shadow-xl disabled:opacity-50"
           >
-            {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓ Subscribed!' : 'Subscribe Now'}
+            {status === 'loading' ? 'Sending...' : status === 'success' ? '✓ You’re on the list' : 'Keep me posted'}
             {status === 'idle' && <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />}
           </button>
         </form>
@@ -156,70 +125,14 @@ const NewsletterSignup = () => {
   );
 };
 
-// --- App Download Buttons ---
-const AppButtons = () => (
-  <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-    <motion.a
-      href="#"
-      whileHover={{ scale: 1.02, y: -2 }}
-      whileTap={{ scale: 0.98 }}
-      className="group flex flex-1 items-center gap-4 rounded-2xl border-2 border-slate-200 bg-white px-5 py-4 shadow-sm transition-all hover:border-slate-300 hover:shadow-md"
-    >
-      <svg className="h-9 w-9 text-slate-900 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-      </svg>
-      <div className="text-left">
-        <p className="text-xs font-semibold text-slate-500">Download on the</p>
-        <p className="text-base font-bold text-slate-900">App Store</p>
-      </div>
-    </motion.a>
-
-    <motion.a
-      href="#"
-      whileHover={{ scale: 1.02, y: -2 }}
-      whileTap={{ scale: 0.98 }}
-      className="group flex flex-1 items-center gap-4 rounded-2xl border-2 border-slate-200 bg-white px-5 py-4 shadow-sm transition-all hover:border-slate-300 hover:shadow-md"
-    >
-      <svg className="h-9 w-9 text-slate-900 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-      </svg>
-      <div className="text-left">
-        <p className="text-xs font-semibold text-slate-500">Get it on</p>
-        <p className="text-base font-bold text-slate-900">Google Play</p>
-      </div>
-    </motion.a>
-  </div>
-);
-
-// --- Partner Badge ---
-const PartnerBadge = () => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    className="group relative overflow-hidden rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-6 shadow-sm transition-all hover:shadow-md"
-  >
-    <div className="relative flex items-start gap-4">
-      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-amber-100">
-        <Award className="h-8 w-8 text-amber-600" />
-      </div>
-      <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-amber-600">Official Partner</p>
-        <p className="mt-1 text-base font-bold text-slate-900">Ministry of Tourism</p>
-        <p className="text-sm font-medium text-slate-600">& Antiquities, Egypt</p>
-      </div>
-    </div>
-  </motion.div>
-);
-
 export default function Footer() {
   const solutionsLinks = [
     { name: 'All Solutions', href: '/solutions' },
     { name: 'Online Booking', href: '/solutions/online-booking' },
-    { name: 'POS Hardware', href: '/solutions/pos-hardware' },
-    { name: 'Self-Service Kiosk', href: '/solutions/kiosk' },
-    { name: 'AI Assistant', href: '/solutions/ai' },
-    { name: 'Analytics Dashboard', href: '/solutions/analytics' },
+    { name: 'AI Voice', href: '/solutions/ai-voice' },
+    { name: 'AI Search', href: '/solutions/ai-search' },
+    { name: 'Booking Assistant', href: '/solutions/ai' },
+    { name: 'Reports', href: '/solutions/analytics' },
   ];
 
   const companyLinks = [
@@ -256,7 +169,7 @@ export default function Footer() {
           <div className="space-y-6">
             <FoxesLogo />
             <p className="max-w-md text-base leading-relaxed text-slate-600">
-              The all-in-one operating system for modern tours, activities, and attractions.
+              Booking, voice and search tools for tour and activity operators.
             </p>
           </div>
 
@@ -269,19 +182,10 @@ export default function Footer() {
         <div className="my-12 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent lg:my-16"></div>
 
         {/* Middle Section: Links Grid */}
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5 lg:gap-12">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:gap-12">
           <FooterLinkColumn title="Solutions" links={solutionsLinks} />
           <FooterLinkColumn title="Company" links={companyLinks} />
           <FooterLinkColumn title="Resources" links={resourcesLinks} />
-
-          {/* App Downloads + Partner Badge */}
-          <div className="col-span-2 space-y-6">
-            <div>
-              <h3 className="mb-5 text-sm font-bold uppercase tracking-widest text-slate-900">Get The App</h3>
-              <AppButtons />
-            </div>
-            <PartnerBadge />
-          </div>
         </div>
 
         {/* Divider */}
@@ -291,7 +195,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex flex-col items-center gap-4 md:flex-row md:items-start">
             <p className="text-center text-sm text-slate-500 md:text-left">
-              © {new Date().getFullYear()} <span className="font-bold text-slate-700">Foxes Technology LLC</span>. All rights reserved.
+              © {new Date().getFullYear()} <span className="font-bold text-slate-700">Foxes Technology</span>. All rights reserved.
             </p>
             <div className="hidden h-5 w-px bg-slate-300 md:block"></div>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm md:justify-start">
@@ -307,20 +211,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <SocialLinks />
         </div>
-
-        {/* Optional: Made with Love */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-8 text-center"
-        >
-          <p className="text-xs font-medium text-slate-400">
-            Made with <span className="text-red-500">❤</span> in Egypt & UAE
-          </p>
-        </motion.div>
       </div>
     </footer>
   );

@@ -9,7 +9,6 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
-  Phone,
   Globe,
   MessageCircle,
   Headphones,
@@ -19,14 +18,11 @@ import {
   Brain,
   Sparkles,
   Workflow,
-  CreditCard,
   Clock,
   Zap,
-  ShieldCheck,
   PhoneCall,
   Bot,
   Volume2,
-  WifiHigh,
 } from 'lucide-react';
 import LeadForm from '@/components/operators/LeadForm';
 import WhatsAppFloat from '@/components/operators/WhatsAppFloat';
@@ -35,6 +31,7 @@ import OperatorHeader from '@/components/operators/OperatorHeader';
 import ContactButton from '@/components/operators/ContactButton';
 import { buildWhatsappHref } from '@/lib/whatsapp';
 import { REQUEST_ACCESS_LABEL, requestAccessHrefFor } from '@/lib/contact';
+import { LeadReassurance, usePageLocale } from '@/components/operators/BookingExamples';
 import OperatorFooter from '@/components/operators/OperatorFooter';
 import { CurrencyProvider } from '@/components/operators/CurrencyContext';
 import OperatorExitIntent from '@/components/operators/OperatorExitIntent';
@@ -294,7 +291,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
       <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
         <Image
           src="/images/solutions/ai-voice.jpg"
-          alt="AI voice agent answering an inbound call"
+          alt=""
           width={1400}
           height={1000}
           priority
@@ -326,15 +323,15 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-              Inbound call · German · 11pm
+              {locale === 'ar' ? 'محادثة على الموقع · بالعربية · 11 مساءً' : 'Website call · Arabic · 11 pm'}
             </p>
-            <p className="text-[12px] text-slate-500">+49 30 · Hannah K. · 02:14</p>
+            <p className="text-[12px] text-slate-500">{locale === 'ar' ? 'مثال · ضيف في صفحة الرحلات' : 'Example · a guest on your tours page'}</p>
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">Status</span>
+          <span className="text-[11px] font-medium text-slate-500">{locale === 'ar' ? 'الحالة' : 'Status'}</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            BOOKED · DINNER CRUISE FOR 4
+            {locale === 'ar' ? 'أُرسل طلب الحجز' : 'BOOKING REQUEST SENT'}
           </span>
         </div>
       </motion.div>
@@ -354,7 +351,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
             24/7
           </p>
           <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-            {locale === 'ar' ? 'يردّ على خطك' : 'Answering your line'}
+            {locale === 'ar' ? 'على موقعك' : 'On your website'}
           </p>
         </div>
       </motion.div>
@@ -495,7 +492,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          0{index + 1} · Capability
+          0{index + 1}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -555,41 +552,25 @@ function MockupShell({ title, badge, children }: { title: string; badge?: string
   );
 }
 
-/* ── Mockup 1: Live conversation transcript ──────────────────────────────── */
+/* ── Example 1: a website conversation, words on screen ──────────────────── */
 function TranscriptMockup() {
-  const turns: { who: 'caller' | 'agent'; lang: string; native: string; en: string; t: string }[] = [
-    {
-      who: 'caller',
-      lang: 'DE',
-      native: 'Guten Abend, hätten Sie morgen Abend einen Tisch für vier?',
-      en: 'Good evening, do you have a table for four tomorrow?',
-      t: '00:04',
-    },
-    {
-      who: 'agent',
-      lang: 'DE',
-      native: 'Ja sehr gerne — wir haben 19:30 oder 20:30 frei. Welche Uhrzeit passt?',
-      en: 'Of course — we have 7:30pm or 8:30pm open. Which suits?',
-      t: '00:09',
-    },
-    {
-      who: 'caller',
-      lang: 'DE',
-      native: '20:30 wäre perfekt. Anniversary dinner.',
-      en: '8:30pm would be perfect. Anniversary dinner.',
-      t: '00:18',
-    },
-    {
-      who: 'agent',
-      lang: 'DE',
-      native: 'Glückwunsch. Ich sende Ihnen jetzt einen Link für die Anzahlung per SMS.',
-      en: 'Congratulations. I am sending the deposit link by SMS now.',
-      t: '00:24',
-    },
-  ];
+  const ar = usePageLocale() === 'ar';
+  const turns: { who: 'caller' | 'agent'; text: string; t: string }[] = ar
+    ? [
+        { who: 'caller', text: 'هل رحلة الغروب متاحة يوم الجمعة لأربعة أشخاص؟', t: '00:04' },
+        { who: 'agent', text: 'نعم. رحلة الغروب تنطلق الجمعة 5:30 مساءً وفيها مكان لأربعة. هل أسجّل طلب حجز؟', t: '00:09' },
+        { who: 'caller', text: 'نعم من فضلك.', t: '00:18' },
+        { who: 'agent', text: 'أربعة أشخاص، الجمعة 5:30 مساءً. أرسلت طلبك وسيؤكده الفريق معك.', t: '00:24' },
+      ]
+    : [
+        { who: 'caller', text: 'Is the sunset cruise free this Friday for four of us?', t: '00:04' },
+        { who: 'agent', text: 'Yes. The sunset cruise sails Friday at 5:30 pm and has space for four. Shall I take a booking request?', t: '00:09' },
+        { who: 'caller', text: 'Yes please.', t: '00:18' },
+        { who: 'agent', text: 'Four people, Friday at 5:30 pm. I have sent your request and the team will confirm it with you.', t: '00:24' },
+      ];
   return (
-    <MockupShell title="Live transcript · DE → EN" badge="LIVE">
-      <div className="space-y-3">
+    <MockupShell title={ar ? 'الكلمات على الشاشة' : 'Words on screen'} badge={ar ? 'مثال' : 'EXAMPLE'}>
+      <div className="space-y-3" dir={ar ? 'rtl' : 'ltr'}>
         {turns.map((turn, i) => {
           const isAgent = turn.who === 'agent';
           return (
@@ -608,7 +589,7 @@ function TranscriptMockup() {
                     : 'bg-slate-900 text-white'
                 }`}
               >
-                {isAgent ? <Bot className="h-4 w-4" /> : 'HK'}
+                {isAgent ? <Bot className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
               </div>
               <div
                 className={`max-w-[78%] rounded-2xl px-3.5 py-2.5 text-[12.5px] leading-[1.55] ${
@@ -617,24 +598,18 @@ function TranscriptMockup() {
                     : 'bg-slate-50 text-slate-900 ring-1 ring-slate-100'
                 }`}
               >
-                <div className="flex items-center gap-1.5">
-                  <span className="rounded bg-white/80 px-1 py-px text-[9px] font-semibold tracking-wider text-slate-500 ring-1 ring-slate-200">
-                    {turn.lang}
-                  </span>
-                  <span className="text-[10px] font-medium text-slate-400">{turn.t}</span>
-                </div>
-                <p className="mt-1 font-medium">{turn.native}</p>
-                <p className="mt-1 text-[11.5px] italic text-slate-500">{turn.en}</p>
+                <span className="text-[10px] font-medium text-slate-400" dir="ltr">{turn.t}</span>
+                <p className="mt-1 font-medium">{turn.text}</p>
               </div>
             </motion.div>
           );
         })}
       </div>
-      <div className="mt-5 flex items-center justify-between rounded-xl border border-emerald-200/70 bg-emerald-50/70 px-4 py-3">
+      <div className="mt-5 flex items-center justify-between rounded-xl border border-emerald-200/70 bg-emerald-50/70 px-4 py-3" dir={ar ? 'rtl' : 'ltr'}>
         <div className="flex items-center gap-2.5">
           <CheckCircle2 className="h-4 w-4 text-emerald-700" strokeWidth={1.8} />
           <span className="text-[12.5px] font-medium text-emerald-900">
-            Booked · Dinner Cruise · Sat 8:30pm · 4 pax · EUR 312
+            {ar ? 'أُرسل طلب الحجز · رحلة الغروب · الجمعة 5:30 مساءً · 4 أشخاص' : 'Booking request sent · Sunset cruise · Fri 5:30 pm · 4 people'}
           </span>
         </div>
       </div>
@@ -642,17 +617,42 @@ function TranscriptMockup() {
   );
 }
 
-/* ── Mockup 2: Multi-channel router ──────────────────────────────────────── */
+/* ── Example 2: from the conversation to the team ────────────────────────── */
 function ChannelRouterMockup() {
-  const channels: { key: string; label: string; Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; tone: string }[] = [
-    { key: 'voice', label: 'Voice', Icon: Phone, tone: 'bg-violet-100 text-violet-700 ring-violet-200' },
-    { key: 'whatsapp', label: 'WhatsApp', Icon: MessageCircle, tone: 'bg-emerald-100 text-emerald-700 ring-emerald-200' },
-    { key: 'email', label: 'Email', Icon: Headphones, tone: 'bg-amber-100 text-amber-700 ring-amber-200' },
+  const ar = usePageLocale() === 'ar';
+  const steps: { key: string; label: string; text: string; time: string; Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; tone: string }[] = [
+    {
+      key: 'call',
+      label: ar ? 'محادثة على الموقع' : 'Website conversation',
+      text: ar ? 'ضيف يسأل عن رحلة لثمانية أشخاص' : 'A guest asks about a trip for a group of 8',
+      time: '14:02',
+      Icon: Mic,
+      tone: 'bg-violet-100 text-violet-700 ring-violet-200',
+    },
+    {
+      key: 'request',
+      label: ar ? 'طلب حجز' : 'Booking request',
+      text: ar ? 'تُقرأ التفاصيل على الضيف ثم تُرسل' : 'Details read back to the guest, then sent',
+      time: '14:06',
+      Icon: MessageCircle,
+      tone: 'bg-emerald-100 text-emerald-700 ring-emerald-200',
+    },
+    {
+      key: 'team',
+      label: ar ? 'فريقك' : 'Your team',
+      text: ar ? 'يرى الطلب مع المحادثة كاملة ويؤكده' : 'Sees the request with the full conversation and confirms it',
+      time: '14:07',
+      Icon: Headphones,
+      tone: 'bg-amber-100 text-amber-700 ring-amber-200',
+    },
   ];
+  const facts = ar
+    ? [['اللغات', 'AR + EN'], ['التأكيد', 'فريقك'], ['السجل', 'كل كلمة']]
+    : [['Languages', 'AR + EN'], ['Confirmed by', 'Your team'], ['On record', 'Every word']];
   return (
-    <MockupShell title="One conversation · 3 channels" badge="SAME CONTEXT">
-      <div className="space-y-3.5">
-        {channels.map((c, i) => (
+    <MockupShell title={ar ? 'من المحادثة إلى فريقك' : 'From the conversation to your team'} badge={ar ? 'مثال' : 'EXAMPLE'}>
+      <div className="space-y-3.5" dir={ar ? 'rtl' : 'ltr'}>
+        {steps.map((c, i) => (
           <motion.div
             key={c.key}
             initial={{ opacity: 0, x: -8 }}
@@ -666,73 +666,57 @@ function ChannelRouterMockup() {
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between">
-                <p className="text-[12.5px] font-semibold tracking-[-0.01em] text-slate-900">
-                  {c.label}
-                </p>
-                <span className="text-[10px] font-medium text-slate-400">
-                  {i === 0 ? '14:02' : i === 1 ? '14:08' : '14:21'}
-                </span>
+                <p className="text-[12.5px] font-semibold tracking-[-0.01em] text-slate-900">{c.label}</p>
+                <span className="text-[10px] font-medium text-slate-400" dir="ltr">{c.time}</span>
               </div>
-              <p className="mt-0.5 text-[12px] text-slate-600">
-                {i === 0 && 'Inbound call · qualifying group of 8 for liveaboard'}
-                {i === 1 && 'Caller asked for SMS — agent moved to WhatsApp, kept context'}
-                {i === 2 && 'Booking confirmation + invoice sent · paid via Paymob link'}
-              </p>
+              <p className="mt-0.5 text-[12px] text-slate-600">{c.text}</p>
             </div>
-            {i < channels.length - 1 && (
-              <div className="absolute -bottom-3 left-[27px] h-3 w-px bg-slate-300" />
-            )}
           </motion.div>
         ))}
       </div>
 
-      <div className="mt-5 grid grid-cols-3 gap-2">
-        <div className="rounded-lg border border-slate-100 bg-white px-3 py-2 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Channels</p>
-          <p className="mt-0.5 text-[14px] font-extrabold tracking-[-0.01em] text-slate-900">10</p>
-        </div>
-        <div className="rounded-lg border border-slate-100 bg-white px-3 py-2 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Hand-off</p>
-          <p className="mt-0.5 text-[14px] font-extrabold tracking-[-0.01em] text-slate-900">0 ctx loss</p>
-        </div>
-        <div className="rounded-lg border border-slate-100 bg-white px-3 py-2 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Memory</p>
-          <p className="mt-0.5 text-[14px] font-extrabold tracking-[-0.01em] text-slate-900">Persistent</p>
-        </div>
+      <div className="mt-5 grid grid-cols-3 gap-2" dir={ar ? 'rtl' : 'ltr'}>
+        {facts.map(([k, v]) => (
+          <div key={k} className="rounded-lg border border-slate-100 bg-white px-3 py-2 text-center">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">{k}</p>
+            <p className="mt-0.5 text-[14px] font-extrabold tracking-[-0.01em] text-slate-900">{v}</p>
+          </div>
+        ))}
       </div>
     </MockupShell>
   );
 }
 
-/* ── Mockup 3: Analytics dashboard ───────────────────────────────────────── */
+/* ── Example 3: the call list in the dashboard ───────────────────────────── */
 function AnalyticsMockup() {
-  const calls = [
-    { who: 'Hannah K.', lang: 'DE', score: 96, sentiment: 'happy', nps: 9 },
-    { who: 'Ji-eun P.', lang: 'KO', score: 92, sentiment: 'neutral', nps: 8 },
-    { who: 'Marco B.', lang: 'IT', score: 71, sentiment: 'frustrated', nps: 5 },
-    { who: 'Anna S.', lang: 'RU', score: 88, sentiment: 'happy', nps: 9 },
+  const ar = usePageLocale() === 'ar';
+  const calls: { who: string; lang: string; outcome: 'request' | 'answered' | 'handover'; length: string }[] = [
+    { who: ar ? 'ضيف 1' : 'Guest 1', lang: 'AR', outcome: 'request', length: '02:14' },
+    { who: ar ? 'ضيف 2' : 'Guest 2', lang: 'EN', outcome: 'answered', length: '01:05' },
+    { who: ar ? 'ضيف 3' : 'Guest 3', lang: 'EN', outcome: 'handover', length: '03:40' },
+    { who: ar ? 'ضيف 4' : 'Guest 4', lang: 'AR', outcome: 'answered', length: '00:52' },
   ];
+  const outcomeLabel = {
+    request: ar ? 'طلب حجز' : 'BOOKING REQUEST',
+    answered: ar ? 'تمت الإجابة' : 'ANSWERED',
+    handover: ar ? 'حُوّلت للفريق' : 'HANDED OVER',
+  };
+  const kpis = ar
+    ? [['المكالمات', '4'], ['طلبات الحجز', '1'], ['حُوّلت للفريق', '1']]
+    : [['Calls', '4'], ['Booking requests', '1'], ['Handed over', '1']];
+  const tones = ['text-emerald-700 bg-emerald-50 ring-emerald-100', 'text-violet-700 bg-violet-50 ring-violet-100', 'text-amber-700 bg-amber-50 ring-amber-100'];
   return (
-    <MockupShell title="Today · 142 calls scored" badge="100% QA">
-      {/* Headline KPIs */}
-      <div className="grid grid-cols-3 gap-2.5">
-        {[
-          { k: 'NPS predicted', v: '8.4', tone: 'text-emerald-700 bg-emerald-50 ring-emerald-100' },
-          { k: 'CSAT', v: '94%', tone: 'text-violet-700 bg-violet-50 ring-violet-100' },
-          { k: 'Churn risk', v: '3', tone: 'text-amber-700 bg-amber-50 ring-amber-100' },
-        ].map((kpi) => (
-          <div
-            key={kpi.k}
-            className={`rounded-xl px-3 py-2.5 text-center ring-1 ${kpi.tone}`}
-          >
-            <p className="text-[10px] font-semibold uppercase tracking-wider opacity-80">{kpi.k}</p>
-            <p className="mt-0.5 text-[18px] font-extrabold tracking-[-0.02em]">{kpi.v}</p>
+    <MockupShell title={ar ? 'سجل المكالمات' : 'Call list'} badge={ar ? 'مثال' : 'EXAMPLE'}>
+      <div className="grid grid-cols-3 gap-2.5" dir={ar ? 'rtl' : 'ltr'}>
+        {kpis.map(([k, v], i) => (
+          <div key={k} className={`rounded-xl px-3 py-2.5 text-center ring-1 ${tones[i]}`}>
+            <p className="text-[10px] font-semibold uppercase tracking-wider opacity-80">{k}</p>
+            <p className="mt-0.5 text-[18px] font-extrabold tracking-[-0.02em]">{v}</p>
           </div>
         ))}
       </div>
 
-      {/* Per-call rows with score bars */}
-      <div className="mt-5 space-y-2.5">
+      <div className="mt-5 space-y-2.5" dir={ar ? 'rtl' : 'ltr'}>
         {calls.map((c, i) => (
           <motion.div
             key={c.who}
@@ -752,34 +736,25 @@ function AnalyticsMockup() {
               <div className="flex items-center gap-2">
                 <span
                   className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wider ${
-                    c.sentiment === 'happy'
+                    c.outcome === 'request'
                       ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100'
-                      : c.sentiment === 'neutral'
+                      : c.outcome === 'answered'
                       ? 'bg-slate-100 text-slate-700 ring-1 ring-slate-200'
                       : 'bg-amber-50 text-amber-700 ring-1 ring-amber-100'
                   }`}
                 >
-                  {c.sentiment.toUpperCase()}
+                  {outcomeLabel[c.outcome]}
                 </span>
-                <span className="font-mono text-[11px] font-semibold text-slate-900">{c.score}</span>
+                <span className="font-mono text-[11px] font-semibold text-slate-900" dir="ltr">{c.length}</span>
               </div>
-            </div>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${c.score}%` }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.25 + i * 0.07, duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className={`h-full rounded-full ${c.score < 80 ? 'bg-amber-500' : 'bg-violet-600'}`}
-              />
             </div>
           </motion.div>
         ))}
       </div>
-      <div className="mt-5 flex items-center gap-2.5 rounded-xl border border-violet-200/70 bg-violet-50/70 px-4 py-3">
+      <div className="mt-5 flex items-center gap-2.5 rounded-xl border border-violet-200/70 bg-violet-50/70 px-4 py-3" dir={ar ? 'rtl' : 'ltr'}>
         <Sparkles className="h-4 w-4 text-violet-700" strokeWidth={1.8} />
         <span className="text-[12.5px] font-medium text-violet-900">
-          1 call flagged for coach review · 0 escalations needed
+          {ar ? 'لكل مكالمة تسجيلها ونصها ومدتها' : 'Recording, transcript and length for every call'}
         </span>
       </div>
     </MockupShell>
@@ -816,7 +791,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -836,7 +811,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
  * 6. VERTICAL FEATURES — dark grid (violet-tinted)
  * ────────────────────────────────────────────────────────────────────────── */
 function VerticalFeatures({ copy }: { copy: OperatorCopy }) {
-  const icons = [Globe, Workflow, Languages, Mic, Activity, Brain, Clock, CreditCard];
+  const icons = [Globe, Brain, Languages, Mic, Activity, Headphones, Clock, Workflow];
   return (
     <section
       className="relative overflow-hidden py-28 text-white sm:py-36"
@@ -1042,36 +1017,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { Icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { Icon: WifiHigh, text: 'Live test call with your real catalogue' },
-                { Icon: ShieldCheck, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.Icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-indigo-700 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

@@ -189,11 +189,12 @@ describe('public solution pages make no price, trial or ordering promise', () =>
     });
   }
 
-  it('hardware pages offer "Request a quote" through /request-access', () => {
+  it('the pages that used to sell hardware offer no quote: Foxes sells no devices or kiosks', () => {
     for (const file of ['app/solutions/kiosk/page.tsx', 'app/solutions/pos-hardware/page.tsx']) {
       const source = fs.readFileSync(path.join(ROOT, file), 'utf8');
-      expect(source, file).toMatch(/Request a quote/);
-      expect(source, file).toMatch(/href=["{]['"`]?\/request-access/);
+      expect(source, file).not.toMatch(/Request a quote/i);
+      expect(source, file).toMatch(/does not (?:sell|supply)/);
+      expect(source, file).toMatch(/\/request-access\?solution=booking/);
     }
   });
 });

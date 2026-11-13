@@ -35,17 +35,15 @@ const OPERATOR_PAGES: { slug: OperatorCategory; en: string; ar: string }[] = [
 ];
 
 interface SolutionPage {
-  slug: 'ai-voice' | 'ai-search' | 'online-booking' | 'pos-hardware' | 'kiosk';
+  slug: 'ai-voice' | 'ai-search' | 'online-booking';
   en: string;
   ar: string;
 }
 
 const SOLUTION_PAGES: SolutionPage[] = [
-  { slug: 'ai-voice', en: 'AI Voice Agent', ar: 'وكيل الصوت الذكي' },
-  { slug: 'ai-search', en: 'AI Search Widget', ar: 'أداة البحث الذكية' },
-  { slug: 'online-booking', en: 'Online Booking', ar: 'الحجز الإلكتروني' },
-  { slug: 'pos-hardware', en: 'POS Hardware', ar: 'أجهزة نقاط البيع' },
-  { slug: 'kiosk', en: 'Self-service Kiosk', ar: 'كشك الخدمة الذاتية' },
+  { slug: 'ai-voice', en: 'AI Voice', ar: 'AI Voice' },
+  { slug: 'ai-search', en: 'AI Search', ar: 'AI Search' },
+  { slug: 'online-booking', en: 'Online booking', ar: 'الحجز عبر الإنترنت' },
 ];
 
 const SOLUTION_SLUGS = new Set<string>(['ai-voice', 'ai-search']);

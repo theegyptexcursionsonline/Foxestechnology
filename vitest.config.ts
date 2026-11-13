@@ -15,7 +15,8 @@ export default defineConfig({
     fileParallelism: false,
     setupFiles: ['./vitest.setup.ts'],
     include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    exclude: ['node_modules', 'dist', '.next', 'out'],
+    // e2e/ is the browser suite (pnpm test:e2e); it needs a running build.
+    exclude: ['node_modules', 'dist', '.next', 'out', 'e2e', 'test-results'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

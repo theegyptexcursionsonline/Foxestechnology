@@ -3,11 +3,11 @@ import { Metadata } from 'next';
 import ComingSoonContent from './ComingSoonContent';
 
 export const metadata: Metadata = {
-  title: 'Coming Soon - Foxes Technology | Transform Your Tour Business',
-  description: 'Foxes Technology is launching soon! The ultimate booking system, POS hardware, and AI-powered solutions built exclusively for tours & activities operators in Egypt and the GCC region. Join our waitlist today.',
+  title: { absolute: 'Foxes Technology | Booking tools for tour and activity operators' },
+  description: 'Foxes Technology builds booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages: join the priority list or request access.',
   openGraph: {
-    title: 'Coming Soon - Foxes Technology',
-    description: 'The all-in-one platform to digitize and grow your travel business. Launching soon!',
+    title: 'Foxes Technology | Booking tools for tour and activity operators',
+    description: 'Booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages.',
     url: 'https://foxestechnology.com',
     siteName: 'Foxes Technology',
     images: [
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Coming Soon - Foxes Technology',
-    description: 'The all-in-one platform to digitize and grow your travel business. Launching soon!',
+    title: 'Foxes Technology | Booking tools for tour and activity operators',
+    description: 'Booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages.',
     images: ['/og-image.png'],
   },
 };

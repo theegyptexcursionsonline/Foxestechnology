@@ -10,30 +10,30 @@ interface Solution {
 export const SOLUTIONS = {
   booking: {
     label: "AI Booking Engine",
-    blurb: "Sell tours, manage availability and take payments with an AI-native booking engine.",
+    blurb: "A booking system for tour and activity operators, with a booking widget for your own website.",
     signIn: "https://booking.foxestechnology.com/login",
   },
   voice: {
     label: "AI Voice Agent",
-    blurb: "An AI voice agent that answers, qualifies and books your callers around the clock.",
+    blurb: "A voice concierge on your website that answers guests in Arabic or English and takes booking requests.",
     signIn: "https://voice.foxestechnology.com/login",
   },
   search: {
     label: "AI Search Agent",
-    blurb: "Conversational, AI-powered search that turns browsers into bookings.",
+    blurb: "A search and chat widget that answers visitors from your own tours.",
     signIn: "https://search.foxestechnology.com/login",
   },
   attractions: {
     label: "Attractions Network",
-    blurb: "A multi-tenant ticketing and reseller network for attractions.",
+    blurb: "Websites and online booking for attractions and their resellers.",
   },
   airport: {
     label: "Airport Platform",
-    blurb: "Airport transfers, tours and widgets across multiple domains.",
+    blurb: "Online booking for airport transfers.",
   },
   support: {
     label: "Support Portal",
-    blurb: "A unified, AI-assisted support desk for your whole operation.",
+    blurb: "A support desk for your team and your customers.",
   },
 } satisfies Record<string, Solution>;
 
@@ -42,7 +42,7 @@ export type SolutionKey = keyof typeof SOLUTIONS;
 export const SOLUTION_KEYS = Object.keys(SOLUTIONS) as SolutionKey[];
 
 export const DEFAULT_BLURB =
-  "The AI-native suite for tour operators — booking, voice, search, attractions and support, in one place.";
+  "Booking, voice, search and support tools for tour and activity operators. Tell us which ones you need.";
 
 /** The sign-in page for an approved customer of `solution`, when that solution has one. */
 export function signInFor(solution: SolutionKey | null): string | null {

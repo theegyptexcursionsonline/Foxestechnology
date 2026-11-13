@@ -112,17 +112,10 @@ export default function Header() {
                 <Search className="h-5 w-5" />
               </button>
               <Link
-                href="/login"
-                className="px-4 py-2 text-sm font-bold tracking-tight text-white transition-all rounded-lg hover:bg-white/10 drop-shadow-lg"
-                style={{ textShadow: '0 1px 5px rgba(0, 0, 0, 0.5)' }}
-              >
-                Log in
-              </Link>
-              <Link
                 href="/request-access?source=foxestechnology"
                 className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full ${BRAND_COLOR_PRIMARY} px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-red-500/20 transition-all duration-300 ${BRAND_HOVER_PRIMARY} hover:shadow-red-500/40`}
               >
-                <span className="relative z-10">Get Started</span>
+                <span className="relative z-10">Request access</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 <div className="absolute inset-0 -z-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
               </Link>
@@ -286,18 +279,11 @@ export default function Header() {
                   className="space-y-4 pt-8 border-t border-white/10"
                 >
                   <Link
-                    href="/login"
-                    className="flex items-center justify-center rounded-2xl border-2 border-white/20 bg-white/5 px-6 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Log in
-                  </Link>
-                  <Link
                     href="/request-access?source=foxestechnology"
                     className={`group flex items-center justify-center gap-2 rounded-2xl ${BRAND_COLOR_PRIMARY} px-6 py-4 text-lg font-bold text-white shadow-2xl shadow-red-500/30 transition-all ${BRAND_HOVER_PRIMARY}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <span>Get Started</span>
+                    <span>Request access</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </motion.div>

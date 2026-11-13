@@ -136,9 +136,16 @@ describe('MobileStickyCTA', () => {
 describe('LeadForm', () => {
   const copy = getOperatorCopy('ai-search', 'en');
 
-  function submit(container: HTMLElement) {
+  /** Fill the form the way a visitor does, then send it: an empty form is refused before sending. */
+  function submit(container: HTMLElement, c: typeof copy = copy) {
     const form = container.querySelector('form');
     expect(form).not.toBeNull();
+    fireEvent.change(screen.getByLabelText(c.leadForm.fields.name), { target: { value: 'Test Operator' } });
+    fireEvent.change(screen.getByLabelText(c.leadForm.fields.business), { target: { value: 'example.test' } });
+    fireEvent.change(screen.getByLabelText(c.leadForm.fields.whatsapp), { target: { value: '+20 100 555 0100' } });
+    fireEvent.change(screen.getByLabelText(c.leadForm.fields.monthlyBookings), {
+      target: { value: c.leadForm.fields.monthlyBookingsOptions[0].value },
+    });
     fireEvent.submit(form!);
   }
 
@@ -205,7 +212,7 @@ describe('LeadForm', () => {
         whatsappPrefilledMessage={localized.whatsapp.prefilledMessage}
       />,
     );
-    submit(container);
+    submit(container, localized);
     const alert = await screen.findByRole('alert');
     expect(alert).toHaveTextContent(localized.leadForm.errorGeneric);
     expect(alert.textContent).not.toMatch(/whatsapp|واتساب/i);

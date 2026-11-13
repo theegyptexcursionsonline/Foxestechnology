@@ -14,8 +14,8 @@ interface Props {
 
 const COPY = {
   tagline: {
-    en: 'Built for the people building Egyptian tourism.',
-    ar: 'مصمم للأشخاص الذين يبنون السياحة المصرية.',
+    en: 'Booking, voice and search tools for tour and activity operators.',
+    ar: 'أدوات حجز وصوت وبحث لمشغّلي الرحلات والأنشطة.',
   },
   exploreOperators: { en: 'For operators', ar: 'للمشغلين' },
   company: { en: 'Foxes', ar: 'Foxes' },
@@ -33,7 +33,7 @@ const COPY = {
     en: '© 2026 Foxes Technology. All rights reserved.',
     ar: '© 2026 Foxes Technology. جميع الحقوق محفوظة.',
   },
-  madeIn: { en: 'Made in Egypt', ar: 'صُنع في مصر' },
+  madeIn: { en: 'For tour operators', ar: 'لمشغّلي السياحة' },
   chatLabel: { en: 'WhatsApp', ar: 'واتساب' },
 };
 

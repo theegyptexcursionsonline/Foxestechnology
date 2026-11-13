@@ -12,7 +12,6 @@ import {
   MessagesSquare,
   Sparkles,
   Clock,
-  Shield,
   Globe,
   Code2,
   Languages,
@@ -21,7 +20,6 @@ import {
   Palette,
   Lock,
   Layers,
-  Eye,
   Send,
   Frown,
   ShoppingBag,
@@ -38,6 +36,7 @@ import { CurrencyProvider } from '../operators/CurrencyContext';
 import OperatorExitIntent from '../operators/OperatorExitIntent';
 import OperatorEcosystem from '@/components/operators/OperatorEcosystem';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+import { LeadReassurance, usePageLocale } from '@/components/operators/BookingExamples';
 
 /** Where visitors go when no real WhatsApp number is configured. */
 const REQUEST_ACCESS_HREF = requestAccessHrefFor('ai-search');
@@ -315,7 +314,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
         <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2">
           <Search className="h-3.5 w-3.5 text-rose-600" strokeWidth={2} />
           <span className="truncate text-[12px] font-medium text-slate-800">
-            romantic Nile cruise for two — under 60 minutes
+            {locale === 'ar' ? 'رحلة قارب هادئة وقت الغروب لشخصين' : 'a quiet sunset boat trip for two'}
           </span>
           <motion.span
             animate={{ opacity: [0, 1, 0] }}
@@ -324,11 +323,18 @@ function HeroVisual({ locale }: { locale: Locale }) {
           />
         </div>
         <div className="mt-3 space-y-1.5">
-          {[
-            { name: 'Nile Pearl Sunset Felucca', meta: '50 min · couples', match: '98%' },
-            { name: 'Cairo Twilight Sail · 2 pax', meta: '45 min · private', match: '94%' },
-            { name: 'Maadi Romance Cruise', meta: '55 min · with dinner', match: '89%' },
-          ].map((r, i) => (
+          {(locale === 'ar'
+            ? [
+                { name: 'فلوكة الغروب على النيل', meta: 'مثال · ساعة واحدة · خاصة', match: 'الأنسب' },
+                { name: 'قارب المساء في القاهرة', meta: 'مثال · 45 دقيقة · لشخصين', match: 'قريبة' },
+                { name: 'رحلة عشاء عند الغروب', meta: 'مثال · ساعتان · مع عشاء', match: 'قريبة' },
+              ]
+            : [
+                { name: 'Sunset felucca on the Nile', meta: 'Example · 1 hour · private', match: 'Best fit' },
+                { name: 'Cairo evening sail', meta: 'Example · 45 min · for two', match: 'Close' },
+                { name: 'Sunset dinner cruise', meta: 'Example · 2 hours · with dinner', match: 'Close' },
+              ]
+          ).map((r, i) => (
             <motion.div
               key={r.name}
               initial={{ opacity: 0, x: -6 }}
@@ -368,7 +374,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
             24/7
           </p>
           <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-            {locale === 'ar' ? 'يعمل دائمًا' : 'Always answering'}
+            {locale === 'ar' ? 'على موقعك' : 'On your website'}
           </p>
         </div>
       </motion.div>
@@ -509,7 +515,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          {`0${index + 1}`} · Feature
+          {`0${index + 1}`}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -595,20 +601,22 @@ function SearchAsYouTypeMockup() {
       ],
     },
     {
-      code: 'FR',
-      query: 'balade en bateau au coucher du soleil',
-      flag: 'FR',
+      code: 'DE',
+      query: 'Bootsfahrt bei Sonnenuntergang für zwei',
+      flag: 'DE',
       results: [
-        { name: 'Felouque Nil au coucher du soleil', meta: '50 min · privé · romantique' },
-        { name: 'Bateau rapide Hurghada · couples', meta: '60 min · couchant' },
+        { name: 'Nil-Feluke bei Sonnenuntergang', meta: '50 Min. · privat · romantisch' },
+        { name: 'Hurghada Schnellboot am Abend', meta: '60 Min. · für Paare' },
       ],
     },
   ];
-  const [active, setActive] = useState(0);
+  const ar = usePageLocale() === 'ar';
+  // Arabic pages open on the Arabic example.
+  const [active, setActive] = useState(ar ? 1 : 0);
   const cur = langs[active];
 
   return (
-    <MockupShell title="Search widget · multilingual semantic results" badge="LIVE">
+    <MockupShell title={ar ? 'بحث بثلاث لغات' : 'Search in three languages'} badge={ar ? 'مثال' : 'EXAMPLE'}>
       <div className="flex items-center gap-1.5 mb-4">
         {langs.map((l, i) => (
           <button
@@ -626,7 +634,7 @@ function SearchAsYouTypeMockup() {
           </button>
         ))}
         <span className="ms-auto rounded-full bg-emerald-50 px-2 py-0.5 text-[9.5px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-          ANY LANGUAGE
+          AR · EN · DE
         </span>
       </div>
 
@@ -654,7 +662,7 @@ function SearchAsYouTypeMockup() {
 
         <div className="mt-3 border-t border-slate-100 pt-3">
           <p className="mb-2 text-[9.5px] font-semibold uppercase tracking-wider text-slate-400">
-            Semantic match
+            {ar ? 'مطابقة بالمعنى' : 'Matched by meaning'}
           </p>
           <div className="space-y-1.5">
             {cur.results.map((r, i) => (
@@ -684,7 +692,7 @@ function SearchAsYouTypeMockup() {
                 </div>
                 {i === 0 && (
                   <span className="rounded-full bg-white px-1.5 py-0.5 text-[9px] font-bold tracking-wider text-rose-700 ring-1 ring-rose-200">
-                    BEST
+                    {ar ? 'الأنسب' : 'BEST FIT'}
                   </span>
                 )}
               </motion.div>
@@ -696,7 +704,7 @@ function SearchAsYouTypeMockup() {
       <div className="mt-4 flex items-center gap-2 rounded-xl border border-rose-200/70 bg-rose-50/50 px-4 py-3">
         <BrainCircuit className="h-4 w-4 text-rose-700" strokeWidth={1.8} />
         <span className="text-[12.5px] font-medium text-rose-900">
-          Beat keyword search · the word romantic was never typed by the customer
+          {ar ? 'رحلات تجريبية. المطابقة بالمعنى: كلمة «رومانسي» لم تُكتب أصلًا.' : 'Example tours. The match is by meaning: the word romantic was never typed.'}
         </span>
       </div>
     </MockupShell>
@@ -705,17 +713,18 @@ function SearchAsYouTypeMockup() {
 
 /* Mockup B — Zero-result rescue: AI chat says "we do not have it, here are 3 close ones" */
 function ZeroResultRescueMockup() {
+  const ar = usePageLocale() === 'ar';
   return (
-    <MockupShell title="Zero-result rescue · conversational fallback" badge="SAVED">
+    <MockupShell title={ar ? 'حين لا يوجد تطابق تام' : 'When nothing matches exactly'} badge={ar ? 'مثال' : 'EXAMPLE'}>
       <div className="rounded-xl border border-slate-200 bg-white p-3">
         {/* Failed query */}
         <div className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2">
           <Search className="h-3.5 w-3.5 text-slate-500" strokeWidth={2} />
           <span className="flex-1 text-[12px] font-medium text-slate-700">
-            jet ski lesson with breakfast included
+            {ar ? 'درس جت سكي مع إفطار' : 'jet ski lesson with breakfast included'}
           </span>
           <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[9px] font-bold tracking-wider text-amber-800">
-            0 EXACT
+            {ar ? 'لا تطابق تام' : 'NO EXACT MATCH'}
           </span>
         </div>
 
@@ -731,31 +740,25 @@ function ZeroResultRescueMockup() {
           </div>
           <div className="rounded-2xl rounded-tl-sm border border-slate-200 bg-rose-50/40 px-3.5 py-2.5">
             <p className="text-[12px] leading-[1.5] text-slate-800">
-              We do not have that exact tour — but here are three close matches your guests usually
-              love:
+              {ar ? 'لا توجد لدينا هذه الرحلة تحديدًا. هذه أقرب الرحلات في القائمة:' : 'We do not have that exact tour. These are the closest ones on the list:'}
             </p>
           </div>
         </motion.div>
 
         {/* 3 close matches */}
         <div className="mt-4 space-y-2">
-          {[
-            {
-              name: 'Jet Ski Beginner Session · 30 min',
-              why: 'Skip breakfast — pair with a hotel pickup',
-              tag: 'CLOSEST',
-            },
-            {
-              name: 'Hurghada Marine Lesson + Brunch',
-              why: 'Brunch instead of breakfast · same beach',
-              tag: 'POPULAR',
-            },
-            {
-              name: 'Private Watersports Bundle',
-              why: 'Includes coffee & pastries on arrival',
-              tag: 'PREMIUM',
-            },
-          ].map((m, i) => (
+          {(ar
+            ? [
+                { name: 'جلسة جت سكي للمبتدئين · 30 دقيقة', why: 'بلا إفطار · يتوفر استقبال من الفندق', tag: 'الأقرب' },
+                { name: 'درس بحري مع وجبة خفيفة', why: 'وجبة خفيفة بدل الإفطار · الشاطئ نفسه', tag: 'قريبة' },
+                { name: 'باقة رياضات مائية خاصة', why: 'قهوة ومعجنات عند الوصول', tag: 'قريبة' },
+              ]
+            : [
+                { name: 'Jet ski beginner session · 30 min', why: 'No breakfast · hotel pickup available', tag: 'CLOSEST' },
+                { name: 'Marine lesson with brunch', why: 'Brunch instead of breakfast · same beach', tag: 'CLOSE' },
+                { name: 'Private water sports bundle', why: 'Coffee and pastries on arrival', tag: 'CLOSE' },
+              ]
+          ).map((m, i) => (
             <motion.button
               key={m.name}
               type="button"
@@ -784,7 +787,7 @@ function ZeroResultRescueMockup() {
         {/* Input row */}
         <div className="mt-4 flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50/70 px-3 py-2">
           <span className="flex-1 text-[11.5px] text-slate-500">
-            Tell me what you really need
+            {ar ? 'اسأل سؤالًا آخر' : 'Ask a follow-up question'}
           </span>
           <button className="flex h-7 w-7 items-center justify-center rounded-full bg-rose-600 text-white transition hover:bg-rose-700">
             <Send className="h-3.5 w-3.5" strokeWidth={2.2} />
@@ -795,7 +798,7 @@ function ZeroResultRescueMockup() {
       <div className="mt-4 flex items-center gap-2 rounded-xl border border-emerald-200/70 bg-emerald-50/60 px-4 py-3">
         <MessagesSquare className="h-4 w-4 text-emerald-700" strokeWidth={1.8} />
         <span className="text-[12.5px] font-medium text-emerald-900">
-          37% of zero-result sessions still convert · vs 4% with no rescue
+          {ar ? 'رحلات تجريبية. يقترح المساعد ما في قائمتك أنت فقط.' : 'Example tours. The assistant suggests only what is on your own list.'}
         </span>
       </div>
     </MockupShell>
@@ -804,26 +807,40 @@ function ZeroResultRescueMockup() {
 
 /* Mockup C — Tenant analytics dashboard */
 function AnalyticsDashboardMockup() {
-  const topQueries = [
-    { q: 'pyramids private tour', count: 412, conv: 18 },
-    { q: 'felucca sunset for couples', count: 287, conv: 22 },
-    { q: 'red sea snorkel half day', count: 233, conv: 14 },
-    { q: 'nile dinner cruise group', count: 198, conv: 11 },
-  ];
-  const zeroResults = [
-    { q: 'kid friendly sunset cruise', count: 41 },
-    { q: 'wheelchair accessible camel ride', count: 27 },
-    { q: 'all-inclusive day with hotel', count: 19 },
-  ];
-
+  const ar = usePageLocale() === 'ar';
+  // Made-up questions and counts, shown only to picture the two lists the dashboard keeps.
+  const topQueries = ar
+    ? [
+        { q: 'جولة خاصة للأهرامات', count: 14 },
+        { q: 'فلوكة وقت الغروب لشخصين', count: 9 },
+        { q: 'سنوركل في البحر الأحمر نصف يوم', count: 7 },
+        { q: 'رحلة عشاء نيلية لمجموعة', count: 5 },
+      ]
+    : [
+        { q: 'pyramids private tour', count: 14 },
+        { q: 'felucca at sunset for two', count: 9 },
+        { q: 'red sea snorkelling half day', count: 7 },
+        { q: 'nile dinner cruise for a group', count: 5 },
+      ];
+  const zeroResults = ar
+    ? [
+        { q: 'رحلة غروب مناسبة للأطفال', count: 3 },
+        { q: 'ركوب جمال مناسب للكراسي المتحركة', count: 2 },
+        { q: 'يوم كامل شامل الفندق', count: 1 },
+      ]
+    : [
+        { q: 'kid friendly sunset cruise', count: 3 },
+        { q: 'wheelchair accessible camel ride', count: 2 },
+        { q: 'all-inclusive day with hotel', count: 1 },
+      ];
   return (
-    <MockupShell title="Analytics · last 30 days · across the widget" badge="LIVE">
+    <MockupShell title={ar ? 'ما يسأل عنه الزوار' : 'What visitors ask'} badge={ar ? 'مثال' : 'EXAMPLE'}>
       {/* Top metric row */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: 'Searches', value: '12,840', delta: '+18%', tone: 'rose' },
-          { label: 'Convert', value: '17.4%', delta: '+4.2pt', tone: 'emerald' },
-          { label: 'Zero results', value: '3.1%', delta: '-1.5pt', tone: 'emerald' },
+          { label: ar ? 'الأسئلة' : 'Questions', value: '41', delta: ar ? 'مثال' : 'example', tone: 'rose' },
+          { label: ar ? 'وجدت رحلة' : 'Found a tour', value: '35', delta: ar ? 'مثال' : 'example', tone: 'emerald' },
+          { label: ar ? 'لم تجد شيئًا' : 'Found nothing', value: '6', delta: ar ? 'مثال' : 'example', tone: 'emerald' },
         ].map((m) => (
           <div key={m.label} className="rounded-xl border border-slate-200 bg-slate-50/40 px-3.5 py-3">
             <p className="text-[9.5px] font-semibold uppercase tracking-wider text-slate-500">
@@ -845,9 +862,9 @@ function AnalyticsDashboardMockup() {
       <div className="mt-4 rounded-xl border border-slate-200 bg-white p-3">
         <div className="flex items-baseline justify-between">
           <p className="text-[10.5px] font-semibold uppercase tracking-wider text-slate-500">
-            Search to booking · daily
+            {ar ? 'الأسئلة يوميًا' : 'Questions per day'}
           </p>
-          <span className="text-[10.5px] font-medium text-slate-500">30d</span>
+          <span className="text-[10.5px] font-medium text-slate-500">{ar ? 'مثال' : 'example'}</span>
         </div>
         <div className="mt-2 flex h-12 items-end gap-1">
           {[35, 42, 38, 56, 49, 61, 55, 67, 73, 70, 81, 76, 88, 84, 91].map((h, i) => (
@@ -867,7 +884,7 @@ function AnalyticsDashboardMockup() {
       {/* Top queries */}
       <div className="mt-4">
         <p className="text-[10.5px] font-semibold uppercase tracking-wider text-slate-500">
-          Top queries
+          {ar ? 'الأكثر تكرارًا' : 'Asked most'}
         </p>
         <div className="mt-2 space-y-1.5">
           {topQueries.map((row, i) => (
@@ -882,10 +899,7 @@ function AnalyticsDashboardMockup() {
               <span className="flex-1 truncate text-[11.5px] font-medium text-slate-800">
                 {row.q}
               </span>
-              <span className="font-mono text-[10.5px] text-slate-500">{row.count}</span>
-              <span className="rounded-full bg-emerald-50 px-1.5 py-0.5 text-[9px] font-bold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-                {`${row.conv}% CONV`}
-              </span>
+              <span className="font-mono text-[10.5px] text-slate-500">{`${row.count}×`}</span>
             </motion.div>
           ))}
         </div>
@@ -895,9 +909,9 @@ function AnalyticsDashboardMockup() {
       <div className="mt-4 rounded-xl border border-amber-200/70 bg-amber-50/60 p-3.5">
         <div className="flex items-center justify-between">
           <p className="text-[10.5px] font-semibold uppercase tracking-wider text-amber-800">
-            Zero-result · gaps to fill
+            {ar ? 'لم تجد شيئًا · ما الذي ينقص' : 'Found nothing · what is missing'}
           </p>
-          <span className="text-[10px] font-semibold text-amber-700">3 found</span>
+          <span className="text-[10px] font-semibold text-amber-700">3</span>
         </div>
         <div className="mt-2 space-y-1">
           {zeroResults.map((row) => (
@@ -945,7 +959,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -1172,36 +1186,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { icon: Eye, text: 'Working preview on a sample of your products' },
-                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

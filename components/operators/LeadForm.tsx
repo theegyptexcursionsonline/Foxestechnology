@@ -43,10 +43,10 @@ export default function LeadForm({
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const [name, setName] = useState('');
-  const [business, setBusiness] = useState('');
-  const [whatsapp, setWhatsapp] = useState('+20 ');
-  const [monthlyBookings, setMonthlyBookings] = useState('');
+  const [nameState, setName] = useState('');
+  const [businessState, setBusiness] = useState('');
+  const [whatsappState, setWhatsapp] = useState('+20 ');
+  const [monthlyBookingsState, setMonthlyBookings] = useState('');
   const [honeypot, setHoneypot] = useState('');
 
   const [sourcePath, setSourcePath] = useState('');
@@ -62,6 +62,31 @@ export default function LeadForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (status === 'submitting') return;
+
+    // The form arrives as HTML, so a visitor can type before the script has loaded and the state
+    // never hears of it. Read what the fields show now, falling back to the state.
+    const form = e.currentTarget as HTMLFormElement;
+    const shown = (suffix: string, fromState: string) => {
+      const el = form.querySelector<HTMLInputElement | HTMLSelectElement>(`[id="${baseId}-${suffix}"]`);
+      return el && el.value !== '' ? el.value : fromState;
+    };
+    const name = shown('name', nameState);
+    const business = shown('business', businessState);
+    const whatsapp = shown('whatsapp', whatsappState);
+    const monthlyBookings = shown('bookings', monthlyBookingsState);
+
+    // The form is noValidate so the message is ours and in the page's language. Check here what
+    // the endpoint checks, so an empty form is never sent only to come back as "something went wrong".
+    const incomplete =
+      name.trim().length < 2 ||
+      business.trim().length < 2 ||
+      !/^[+\d\s\-()]{7,25}$/.test(whatsapp.trim()) ||
+      monthlyBookings.trim() === '';
+    if (incomplete) {
+      setStatus('error');
+      setErrorMessage(copy.errorMissing);
+      return;
+    }
 
     setStatus('submitting');
     setErrorMessage(null);
@@ -188,7 +213,7 @@ export default function LeadForm({
               <input
                 id={`${baseId}-name`}
                 type="text"
-                value={name}
+                value={nameState}
                 onChange={(e) => setName(e.target.value)}
                 placeholder={copy.fields.namePlaceholder}
                 autoComplete="name"
@@ -206,7 +231,7 @@ export default function LeadForm({
               <input
                 id={`${baseId}-business`}
                 type="text"
-                value={business}
+                value={businessState}
                 onChange={(e) => setBusiness(e.target.value)}
                 placeholder={copy.fields.businessPlaceholder}
                 autoComplete="organization"
@@ -224,7 +249,7 @@ export default function LeadForm({
               <input
                 id={`${baseId}-whatsapp`}
                 type="tel"
-                value={whatsapp}
+                value={whatsappState}
                 onChange={(e) => setWhatsapp(e.target.value)}
                 placeholder={copy.fields.whatsappPlaceholder}
                 autoComplete="tel"
@@ -242,7 +267,7 @@ export default function LeadForm({
               </label>
               <select
                 id={`${baseId}-bookings`}
-                value={monthlyBookings}
+                value={monthlyBookingsState}
                 onChange={(e) => setMonthlyBookings(e.target.value)}
                 required
                 className={`${fieldClasses} appearance-none bg-[length:20px_20px] bg-no-repeat`}

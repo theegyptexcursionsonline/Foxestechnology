@@ -21,6 +21,24 @@ const MOBILE_INACTIVITY_MS = 35_000;
 const MOBILE_MIN_SCROLL_DEPTH = 0.45;
 const MOUNT_GRACE_MS = 4_000;
 
+// Said by the pop-up itself rather than the page copy, so they are kept in both languages here.
+const MESSAGES: Record<Locale, { rateLimited: string; failed: string; network: string; close: string; email: string }> = {
+  en: {
+    rateLimited: 'Too many requests. Try again in a minute.',
+    failed: 'Something went wrong. Please try again.',
+    network: 'Network error. Please try again.',
+    close: 'Got it',
+    email: 'Email',
+  },
+  ar: {
+    rateLimited: 'محاولات كثيرة. حاول مرة أخرى بعد دقيقة.',
+    failed: 'حدث خطأ. حاول مرة أخرى.',
+    network: 'تعذّر الاتصال. حاول مرة أخرى.',
+    close: 'حسنًا',
+    email: 'البريد الإلكتروني',
+  },
+};
+
 export default function OperatorExitIntent({ copy, category, locale, forceShow = false }: Props) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>('idle');
@@ -159,7 +177,7 @@ export default function OperatorExitIntent({ copy, category, locale, forceShow =
 
       if (res.status === 429) {
         setStatus('error');
-        setErrorMessage('Too many requests. Try again in a minute.');
+        setErrorMessage(MESSAGES[locale].rateLimited);
         return;
       }
 
@@ -174,11 +192,11 @@ export default function OperatorExitIntent({ copy, category, locale, forceShow =
         }
       } else {
         setStatus('error');
-        setErrorMessage('Something went wrong. Please try again.');
+        setErrorMessage(MESSAGES[locale].failed);
       }
     } catch {
       setStatus('error');
-      setErrorMessage('Network error. Please try again.');
+      setErrorMessage(MESSAGES[locale].network);
     }
   };
 
@@ -230,7 +248,7 @@ export default function OperatorExitIntent({ copy, category, locale, forceShow =
                   onClick={close}
                   className="mt-7 inline-flex items-center justify-center gap-1.5 rounded-full bg-slate-900 px-6 py-2.5 text-[13.5px] font-semibold text-white transition hover:bg-slate-800"
                 >
-                  Got it
+                  {MESSAGES[locale].close}
                 </button>
               </div>
             ) : (
@@ -265,7 +283,7 @@ export default function OperatorExitIntent({ copy, category, locale, forceShow =
 
                   <form onSubmit={handleSubmit} noValidate className="mt-6">
                     <label htmlFor={inputId} className="sr-only">
-                      Email
+                      {MESSAGES[locale].email}
                     </label>
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-0 sm:rounded-full sm:border sm:border-slate-300 sm:bg-white sm:p-1">
                       <div className="relative flex flex-1 items-center">

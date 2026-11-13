@@ -13,13 +13,13 @@ const SITE_URL = 'https://foxestechnology.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Foxes Technology | Booking Systems & POS for Tours & Activities',
+    default: 'Foxes Technology | Booking tools for tour and activity operators',
     template: '%s | Foxes Technology',
   },
-  description: 'Transform your tour & activity business with Foxes Technology. Get our all-in-one booking system, POS hardware, and AI solutions, built for operators in Egypt & the GCC.',
+  description: 'Foxes Technology builds booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages: join the priority list or request access.',
   openGraph: {
-    title: 'Foxes Technology | Booking Systems & POS for Tours & Activities',
-    description: 'The all-in-one platform to digitize and grow your travel business in Egypt and the GCC.',
+    title: 'Foxes Technology | Booking tools for tour and activity operators',
+    description: 'Booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages.',
     url: 'https://foxestechnology.com',
     siteName: 'Foxes Technology',
     images: [
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Foxes Technology | Booking Systems & POS for Tours & Activities',
-    description: 'The all-in-one platform to digitize and grow your travel business in Egypt and the GCC.',
+    title: 'Foxes Technology | Booking tools for tour and activity operators',
+    description: 'Booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages.',
     images: ['/og-image.png'],
   },
 };

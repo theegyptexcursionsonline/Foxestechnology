@@ -7,7 +7,6 @@ import { useState } from 'react';
 import {
   ArrowRight,
   Check,
-  CheckCircle2,
   ChevronDown,
   FileText,
   Calendar,
@@ -19,7 +18,6 @@ import {
   AlertTriangle,
   Sparkles,
   Clock,
-  Star,
   Award,
   Compass,
   Anchor,
@@ -36,6 +34,7 @@ import { CurrencyProvider } from './CurrencyContext';
 import OperatorExitIntent from './OperatorExitIntent';
 import OperatorEcosystem from './OperatorEcosystem';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+import { BookingExample, LeadReassurance } from '@/components/operators/BookingExamples';
 
 /** Where visitors go when no real WhatsApp number is configured. */
 const REQUEST_ACCESS_HREF = requestAccessHrefFor('diving-centres');
@@ -280,15 +279,15 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-              PADI Open Water · Verified
+              {locale === 'ar' ? 'رحلة غوص بغطستين · السبت 8 صباحًا' : 'Two-dive day trip · Saturday 8 am'}
             </p>
-            <p className="text-[12px] text-slate-500">Diver #2847 · Expires 2031</p>
+            <p className="text-[12px] text-slate-500">{locale === 'ar' ? 'حجز تجريبي · غواصان' : 'Example booking · 2 divers'}</p>
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">Equipment ready</span>
+          <span className="text-[11px] font-medium text-slate-500">{locale === 'ar' ? 'تم تعيين المرشد والقارب' : 'Guide and boat assigned'}</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            CHECKED IN
+            {locale === 'ar' ? 'محجوز' : 'RESERVED'}
           </span>
         </div>
       </motion.div>
@@ -449,7 +448,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          0{index + 1} · Feature
+          0{index + 1}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -481,182 +480,7 @@ function SolutionRow({
 }
 
 function SolutionMockup({ variant }: { variant: number }) {
-  if (variant === 0) return <CertVaultMockup />;
-  if (variant === 1) return <EquipmentMockup />;
-  return <SchedulerMockup />;
-}
-
-function MockupShell({ title, badge, children }: { title: string; badge?: string; children: React.ReactNode }) {
-  return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-cyan-50/80 via-slate-50 to-transparent blur-2xl" />
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
-        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
-          <span className="text-[12px] font-semibold tracking-[-0.01em] text-slate-700">{title}</span>
-          {badge && (
-            <span className="text-[10px] font-semibold tracking-wider text-emerald-600">{badge}</span>
-          )}
-        </div>
-        <div className="p-6 sm:p-7">{children}</div>
-      </div>
-    </div>
-  );
-}
-
-function CertVaultMockup() {
-  const certs = [
-    { name: 'Sara Mahmoud', cert: 'PADI Advanced Open Water', expires: '2029', status: 'verified' },
-    { name: 'Karim Adel', cert: 'PADI Open Water', expires: '2031', status: 'verified' },
-    { name: 'Layla Ibrahim', cert: 'SSI Rescue Diver', expires: '2024', status: 'expiring' },
-    { name: 'Ahmed Hossam', cert: 'PADI Divemaster', expires: '2030', status: 'verified' },
-  ];
-  return (
-    <MockupShell title="Certifications · 186 active divers" badge="LIVE">
-      <div className="space-y-2">
-        {certs.map((c, i) => (
-          <motion.div
-            key={c.name}
-            initial={{ opacity: 0, x: -8 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 + i * 0.07 }}
-            className="flex items-center gap-3.5 rounded-xl border border-slate-100 bg-slate-50/60 p-3.5 transition hover:border-slate-200 hover:bg-slate-50"
-          >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-900 text-[11px] font-semibold text-white">
-              {c.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')
-                .slice(0, 2)}
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[13.5px] font-semibold tracking-[-0.01em] text-slate-900">
-                {c.name}
-              </p>
-              <p className="text-[12px] text-slate-500">{c.cert} · Exp {c.expires}</p>
-            </div>
-            <div
-              className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wider ${
-                c.status === 'verified'
-                  ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100'
-                  : 'bg-amber-50 text-amber-700 ring-1 ring-amber-100'
-              }`}
-            >
-              {c.status === 'verified' ? 'VERIFIED' : 'EXPIRING'}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </MockupShell>
-  );
-}
-
-function EquipmentMockup() {
-  const items = [
-    { label: 'Tanks (12L)', total: 48, available: 42 },
-    { label: 'BCDs', total: 30, available: 26 },
-    { label: 'Regulators', total: 28, available: 24 },
-    { label: 'Wetsuits 5mm', total: 35, available: 22 },
-  ];
-  return (
-    <MockupShell title="Equipment · Live availability" badge="UPDATED 2s AGO">
-      <div className="space-y-4">
-        {items.map((item, i) => {
-          const pct = (item.available / item.total) * 100;
-          return (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 + i * 0.07 }}
-            >
-              <div className="flex items-center justify-between text-[13.5px]">
-                <span className="font-medium text-slate-700">{item.label}</span>
-                <span className="font-mono text-[12px] font-semibold text-slate-900">
-                  {item.available}/{item.total}
-                </span>
-              </div>
-              <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${pct}%` }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.08, duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="h-full rounded-full bg-slate-900"
-                />
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-      <div className="mt-6 flex items-center justify-between rounded-xl border border-amber-200/70 bg-amber-50/70 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <AlertTriangle className="h-4 w-4 text-amber-700" strokeWidth={1.8} />
-          <span className="text-[12.5px] font-medium text-amber-900">
-            3 regulators due for service
-          </span>
-        </div>
-        <button className="text-[12px] font-semibold text-amber-800 underline-offset-4 hover:underline">
-          Review
-        </button>
-      </div>
-    </MockupShell>
-  );
-}
-
-function SchedulerMockup() {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-  const courses = [
-    { day: 0, span: 4, title: 'Open Water · Group A', tone: 'bg-slate-900' },
-    { day: 1, span: 2, title: 'Advanced · Karim', tone: 'bg-emerald-700' },
-    { day: 3, span: 2, title: 'Rescue · Sara', tone: 'bg-amber-700' },
-    { day: 2, span: 3, title: 'Divemaster track', tone: 'bg-slate-600' },
-  ];
-  return (
-    <MockupShell title="This week · No conflicts" badge="ALL CLEAR">
-      <div className="grid grid-cols-5 gap-1.5 text-center">
-        {days.map((d) => (
-          <div key={d} className="text-[10px] font-semibold tracking-wider text-slate-400">
-            {d}
-          </div>
-        ))}
-      </div>
-      <div className="relative mt-2 h-32">
-        <div className="absolute inset-0 grid grid-cols-5 gap-1.5">
-          {[0, 1, 2, 3, 4].map((d) => (
-            <div key={d} className="rounded-md border border-dashed border-slate-200 bg-slate-50/50" />
-          ))}
-        </div>
-        <div className="absolute inset-0 grid grid-cols-5 gap-1.5">
-          {courses.map((c, i) => (
-            <motion.div
-              key={i}
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-              style={{
-                gridColumnStart: c.day + 1,
-                gridColumnEnd: `span ${c.span}`,
-                marginTop: 8 + (i % 3) * 28,
-                transformOrigin: 'left',
-              }}
-              className={`relative flex h-6 items-center rounded-md ${c.tone} px-2.5 text-[10px] font-medium text-white shadow-sm`}
-            >
-              <span className="truncate">{c.title}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-emerald-200/70 bg-emerald-50/70 px-4 py-3">
-        <CheckCircle2 className="h-4 w-4 text-emerald-700" strokeWidth={1.8} />
-        <span className="text-[12.5px] font-medium text-emerald-900">
-          All 4 divemasters available · Zero double-bookings
-        </span>
-      </div>
-    </MockupShell>
-  );
+  return <BookingExample variant={variant} trade="diving" />;
 }
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -689,7 +513,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -914,36 +738,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { icon: Star, text: 'Free 15-minute walkthrough — no pitch' },
-                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

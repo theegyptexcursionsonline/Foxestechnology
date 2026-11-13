@@ -7,7 +7,6 @@ import { useState } from 'react';
 import {
   ArrowRight,
   Check,
-  CheckCircle2,
   ChevronDown,
   Calendar,
   Coins,
@@ -21,11 +20,7 @@ import {
   Ship,
   Sparkles,
   ChefHat,
-  Receipt,
   AlertTriangle,
-  Star,
-  Shield,
-  Wine,
 } from 'lucide-react';
 import LeadForm from './LeadForm';
 import WhatsAppFloat from './WhatsAppFloat';
@@ -40,6 +35,7 @@ import OperatorExitIntent from './OperatorExitIntent';
 import OperatorEcosystem from './OperatorEcosystem';
 import { formatPrice } from '@/lib/currency';
 import type { OperatorCopy, Locale } from '@/lib/i18n/operators';
+import { BookingExample, LeadReassurance } from '@/components/operators/BookingExamples';
 
 /** Where visitors go when no real WhatsApp number is configured. */
 const REQUEST_ACCESS_HREF = requestAccessHrefFor('dinner-cruises');
@@ -280,15 +276,15 @@ function HeroVisual({ locale }: { locale: Locale }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-              Sunset Dinner · 8pm
+              {locale === 'ar' ? 'رحلة عشاء · السبت 8 مساءً' : 'Dinner cruise · Saturday 8 pm'}
             </p>
-            <p className="text-[12px] text-slate-500">Table for 6 · Saturday</p>
+            <p className="text-[12px] text-slate-500">{locale === 'ar' ? 'حجز تجريبي · 6 ضيوف' : 'Example booking · 6 guests'}</p>
           </div>
         </div>
         <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-[11px] font-medium text-slate-500">{formatPrice(4200, currency)} · 2 vegetarian</span>
+          <span className="text-[11px] font-medium text-slate-500">{formatPrice(4200, currency)} · {locale === 'ar' ? 'أُرسلت القسيمة' : 'voucher sent'}</span>
           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            CONFIRMED
+            {locale === 'ar' ? 'محجوز' : 'RESERVED'}
           </span>
         </div>
       </motion.div>
@@ -449,7 +445,7 @@ function SolutionRow({
         className="lg:[direction:ltr]"
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          0{index + 1} · Feature
+          0{index + 1}
         </p>
         <h3 className="mt-3 text-[2rem] font-extrabold leading-[1.1] tracking-[-0.025em] text-slate-900 sm:text-[2.5rem]">
           {item.title}
@@ -483,236 +479,7 @@ function SolutionRow({
 }
 
 function SolutionMockup({ variant }: { variant: number }) {
-  if (variant === 0) return <DirectBookingMockup />;
-  if (variant === 1) return <SeatingMockup />;
-  return <GroupBookingMockup />;
-}
-
-function MockupShell({
-  title,
-  badge,
-  children,
-}: {
-  title: string;
-  badge?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-amber-50/80 via-rose-50/40 to-transparent blur-2xl" />
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
-        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
-          <span className="text-[12px] font-semibold tracking-[-0.01em] text-slate-700">
-            {title}
-          </span>
-          {badge && (
-            <span className="text-[10px] font-semibold tracking-wider text-emerald-600">{badge}</span>
-          )}
-        </div>
-        <div className="p-6 sm:p-7">{children}</div>
-      </div>
-    </div>
-  );
-}
-
-function DirectBookingMockup() {
-  const { currency } = useCurrency();
-  const seatPrice = formatPrice(850, currency);
-  const totalPrice = formatPrice(5100, currency);
-  return (
-    <MockupShell title="nilepearl.com/book · Direct booking" badge="LIVE">
-      <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[13px] font-semibold text-slate-900">Saturday, 18 May</p>
-            <p className="text-[12px] text-slate-500">Sunset cruise · 2 hours</p>
-          </div>
-          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-emerald-700 ring-1 ring-emerald-100">
-            AVAILABLE
-          </span>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-2">
-          {[
-            { time: '7:00 PM', left: seatPrice, cap: 'open' },
-            { time: '8:00 PM', left: seatPrice, cap: 'almost' },
-            { time: '9:00 PM', left: seatPrice, cap: 'open' },
-          ].map((s, i) => (
-            <motion.button
-              key={s.time}
-              initial={{ opacity: 0, y: 6 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 + i * 0.07 }}
-              className={`rounded-lg border px-3 py-3 text-start transition ${
-                i === 1
-                  ? 'border-slate-900 bg-slate-900 text-white'
-                  : 'border-slate-200 bg-white hover:border-slate-300'
-              }`}
-            >
-              <p className="text-[12px] font-semibold">{s.time}</p>
-              <p className={`mt-1 text-[10.5px] ${i === 1 ? 'text-white/70' : 'text-slate-500'}`}>
-                {s.left}
-              </p>
-              {s.cap === 'almost' && (
-                <p className="mt-1 text-[10px] font-semibold text-amber-300">3 seats left</p>
-              )}
-            </motion.button>
-          ))}
-        </div>
-        <div className="mt-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-[12px] text-slate-500">Guests</span>
-            <div className="flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1">
-              <span className="text-[11px] font-bold text-slate-400">−</span>
-              <span className="px-1 text-[12px] font-semibold text-slate-900">6</span>
-              <span className="text-[11px] font-bold text-slate-400">+</span>
-            </div>
-          </div>
-          <button className="rounded-lg bg-red-600 px-4 py-2 text-[12px] font-semibold text-white">
-            Continue · {totalPrice}
-          </button>
-        </div>
-      </div>
-      <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-500">
-        <Shield className="h-3 w-3" strokeWidth={2} />
-        <span>Direct payment · 0% OTA commission</span>
-      </div>
-    </MockupShell>
-  );
-}
-
-function SeatingMockup() {
-  const { currency } = useCurrency();
-  const cover = formatPrice(850, currency);
-  const seatings = [
-    { time: '7:00 PM', booked: 38, total: 60, label: 'Early sunset' },
-    { time: '8:00 PM', booked: 56, total: 60, label: 'Prime sunset' },
-    { time: '9:00 PM', booked: 22, total: 60, label: 'Late dinner' },
-  ];
-  return (
-    <MockupShell title="Saturday, 18 May · Seatings" badge="LIVE">
-      <div className="space-y-4">
-        {seatings.map((s, i) => {
-          const pct = (s.booked / s.total) * 100;
-          const isFull = pct >= 90;
-          return (
-            <motion.div
-              key={s.time}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 + i * 0.08 }}
-              className="rounded-xl border border-slate-200 p-4"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-[13px] font-semibold tracking-[-0.01em] text-slate-900">
-                    {s.time} · {s.label}
-                  </p>
-                  <p className="mt-0.5 text-[11.5px] text-slate-500">
-                    {s.booked}/{s.total} seats · {cover}/cover
-                  </p>
-                </div>
-                {isFull ? (
-                  <span className="rounded-full bg-rose-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-rose-700 ring-1 ring-rose-100">
-                    NEARLY FULL
-                  </span>
-                ) : (
-                  <span className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-slate-600 ring-1 ring-slate-200">
-                    OPEN
-                  </span>
-                )}
-              </div>
-              <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${pct}%` }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.08, duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className={`h-full rounded-full ${isFull ? 'bg-rose-600' : 'bg-slate-900'}`}
-                />
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-      <div className="mt-5 flex items-center justify-between rounded-xl border border-amber-200/70 bg-amber-50/70 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <Sparkles className="h-4 w-4 text-amber-700" strokeWidth={1.8} />
-          <span className="text-[12.5px] font-medium text-amber-900">
-            8pm pricing auto-adjusted +15% — peak detected
-          </span>
-        </div>
-      </div>
-    </MockupShell>
-  );
-}
-
-function GroupBookingMockup() {
-  const { currency } = useCurrency();
-  const guests = [
-    { name: 'Mona Salem', menu: 'Standard · Halal', tone: 'slate' },
-    { name: 'Tarek El Sayed', menu: 'Vegetarian', tone: 'emerald' },
-    { name: 'Reem Mostafa', menu: 'Standard · Allergy: nuts', tone: 'amber' },
-    { name: 'Karim Adel', menu: 'Standard', tone: 'slate' },
-  ];
-  return (
-    <MockupShell title="Group · Acme Co · 18 guests" badge="DEPOSIT PAID">
-      <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-[11px] font-semibold text-white">
-              A
-            </div>
-            <div>
-              <p className="text-[13px] font-semibold tracking-[-0.01em] text-slate-900">
-                Acme Co · End-of-quarter dinner
-              </p>
-              <p className="text-[11.5px] text-slate-500">Saturday 8pm · 18 guests · 9 vegetarian</p>
-            </div>
-          </div>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Deposit
-            </p>
-            <p className="mt-1 text-[13px] font-bold text-emerald-700">{formatPrice(5400, currency)} · paid</p>
-          </div>
-          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Balance
-            </p>
-            <p className="mt-1 text-[13px] font-bold text-slate-900">{formatPrice(12600, currency)}</p>
-          </div>
-          <div className="rounded-lg bg-white p-2.5 ring-1 ring-slate-200">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Due
-            </p>
-            <p className="mt-1 text-[13px] font-bold text-amber-700">17 May</p>
-          </div>
-        </div>
-      </div>
-      <div className="mt-4 space-y-1.5">
-        {guests.map((g, i) => (
-          <motion.div
-            key={g.name}
-            initial={{ opacity: 0, x: -6 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 + i * 0.06 }}
-            className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-slate-50"
-          >
-            <span className="text-[12.5px] font-medium text-slate-800">{g.name}</span>
-            <span className="text-[11px] text-slate-500">{g.menu}</span>
-          </motion.div>
-        ))}
-        <button className="w-full rounded-lg border border-dashed border-slate-300 py-2 text-[11px] font-medium text-slate-500">
-          + 14 more guests
-        </button>
-      </div>
-    </MockupShell>
-  );
+  return <BookingExample variant={variant} trade="dinner" />;
 }
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -745,7 +512,7 @@ function HowItWorks({ copy }: { copy: OperatorCopy }) {
                     <Icon className="h-4 w-4" strokeWidth={1.7} />
                   </div>
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-300">
-                    STEP {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="mt-7 text-[1.35rem] font-semibold tracking-[-0.02em] text-slate-900">
@@ -971,36 +738,7 @@ function LeadFormSection({
               {copy.leadForm.sectionSub}
             </p>
 
-            <div className="mt-12 space-y-5">
-              {[
-                { icon: Clock, text: 'WhatsApp reply within 1 hour' },
-                { icon: Star, text: 'Free 15-minute walkthrough — no pitch' },
-                { icon: Shield, text: 'Your data stays private. One message, then no spam.' },
-              ].map((b) => (
-                <div key={b.text} className="flex items-start gap-3.5">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700">
-                    <b.icon className="h-4 w-4" strokeWidth={1.7} />
-                  </div>
-                  <p className="pt-1.5 text-[15px] font-medium text-slate-700">{b.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-[13px] font-semibold text-white">
-                  S
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold tracking-[-0.01em] text-slate-900">
-                    Saif · Foxes Operations
-                  </p>
-                  <p className="text-[12.5px] text-slate-500">
-                    Egypt-based · replies in Arabic or English
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LeadReassurance locale={locale} />
           </div>
 
           <LeadForm

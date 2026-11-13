@@ -67,6 +67,18 @@ describe('coming-soon page', () => {
     expect(JSON.parse(init.body)).toMatchObject({ email: 'qa@example.com', category: 'coming-soon' });
   });
 
+  it('sends the address the field shows, even when it was typed before the page finished loading', async () => {
+    const fetchMock = mockFetch({ ok: true, status: 200, body: { ok: true } });
+    const { container } = render(<ComingSoonPage />);
+    const form = container.querySelector('form') as HTMLFormElement;
+    // Typed before the script loaded: the field has the address, the form's state does not.
+    (form.querySelector('input[type="email"]') as HTMLInputElement).value = 'early@example.test';
+    fireEvent.submit(form);
+
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({ email: 'early@example.test' });
+  });
+
   it('shows an error, not a confirmation, when the sign-up is not recorded', async () => {
     mockFetch({ ok: false, status: 502, body: { ok: false, error: 'delivery_failed' } });
     const { container } = render(<ComingSoonPage />);

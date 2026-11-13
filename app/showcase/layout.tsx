@@ -4,13 +4,13 @@ const isComingSoon = process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true';
 
 export const metadata: Metadata = isComingSoon
   ? {
-      title: 'Coming Soon | Foxes Technology',
+      title: 'Opening soon',
       description:
-        'Foxes Technology is launching soon. Get our all-in-one booking system, POS hardware, and AI solutions, built for operators in Egypt & the GCC.',
+        'Foxes Technology builds booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages: join the priority list or request access.',
       openGraph: {
-        title: 'Coming Soon | Foxes Technology',
+        title: 'Opening soon | Foxes Technology',
         description:
-          'Foxes Technology is launching soon. Get our all-in-one booking system, POS hardware, and AI solutions, built for operators in Egypt & the GCC.',
+          'Foxes Technology builds booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages: join the priority list or request access.',
         url: 'https://foxestechnology.com',
         siteName: 'Foxes Technology',
         images: [{ url: '/og-image.png', width: 1200, height: 630 }],
@@ -19,14 +19,14 @@ export const metadata: Metadata = isComingSoon
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Coming Soon | Foxes Technology',
+        title: 'Opening soon | Foxes Technology',
         description:
-          'Foxes Technology is launching soon. Get our all-in-one booking system, POS hardware, and AI solutions, built for operators in Egypt & the GCC.',
+          'Foxes Technology builds booking, voice and search tools for tour and activity operators in Egypt, the GCC and MENA. Access is opening in stages: join the priority list or request access.',
         images: ['/og-image.png'],
       },
     }
   : {
-      title: 'Product Showcase | Foxes Technology',
+      title: 'Product Showcase',
       description:
         'Explore 11+ production products built by Foxes Technology — from AI booking engines and voice agents to multi-tenant marketplaces and mobile apps for the travel industry.',
       openGraph: {

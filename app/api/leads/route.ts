@@ -124,7 +124,7 @@ async function sendMailgunNotification(lead: LeadPayload): Promise<{ sent: boole
         <tr><td style="padding: 8px 0; color: #64748b;">Locale</td><td style="padding: 8px 0; font-weight: 600;">${escapeHtml(lead.locale)}</td></tr>
         <tr><td style="padding: 8px 0; color: #64748b;">Source page</td><td style="padding: 8px 0; font-weight: 600;">${escapeHtml(lead.source ?? '—')}</td></tr>
       </table>
-      <p style="margin-top: 24px; color: #64748b; font-size: 13px;">SLA: WhatsApp the operator within 1 hour.</p>
+      <p style="margin-top: 24px; color: #64748b; font-size: 13px;">The page told this visitor our team will contact them. No reply time was promised.</p>
     </div>
   `;
 

@@ -1,152 +1,156 @@
 import type { OperatorCopy } from '../operators';
 
+/**
+ * AI Voice, as it works today: a voice concierge on the operator's own website. Guests tap to
+ * talk in the browser, or type. It answers from the business's own information, takes booking
+ * requests and callbacks, and hands over to the team.
+ *
+ * It does not answer a telephone number, take payment, or send SMS or WhatsApp, and access is by
+ * reviewed request. Check the product before adding any of those back.
+ */
 export const en: OperatorCopy = {
   meta: {
-    title: 'AI Voice Agent for Tour Operators · 24 Languages, 24/7',
+    title: 'AI Voice for Tour Operators · A Voice Concierge on Your Website',
     description:
-      'Foxes AI Voice Agent answers your phone in 24 languages, qualifies the booking, takes a deposit by SMS, and writes it into your Foxes calendar — even at 2am, even in Korean. Built for dive centres, dinner cruises, water sports, and tour agencies.',
-    ogTitle: 'Take the call. Even at 2am. Even in Korean.',
+      'Guests tap to talk on your website and AI Voice answers in Arabic or English from your own tours, prices and policies. It takes booking requests and callbacks and hands the conversation to your team. 24 languages. Access by invitation.',
+    ogTitle: 'Guests ask out loud. Your website answers.',
   },
   hero: {
-    badge: 'AI Voice Agent · For Tour Operators',
-    headlineLine1: 'Take the call.',
-    headlineLine2: 'Even at 2am. Even in Korean.',
-    sub: 'A real-feeling voice that answers in 24 languages, qualifies the booking, takes a deposit by SMS, and drops the reservation into your Foxes calendar. While your team sleeps, the phone keeps making money.',
-    primaryCta: 'Get started',
+    badge: 'AI Voice · For tour operators',
+    headlineLine1: 'Guests ask out loud.',
+    headlineLine2: 'Your website answers.',
+    sub: 'AI Voice puts a tap-to-talk concierge on your website. Guests speak or type in Arabic or English, it answers only from your own tours, prices and policies, takes booking requests and callbacks, and hands the conversation to your team with everything written down.',
+    primaryCta: 'Ask for a demo',
     secondaryCta: 'Hear it on WhatsApp',
-    pills: ['24 languages', 'Monthly plans', 'Live in 48 hours'],
+    pills: ['Arabic and English', 'Monthly plans', 'Access by invitation'],
   },
   socialProof: {
     label: 'Built for operators in',
-    cities: 'Hurghada · Sharm · Cairo · Aswan · Dubai · Riyadh',
+    cities: 'Hurghada · Sharm El Sheikh · Cairo · Luxor · Aswan',
     stats: [
       { value: '24', label: 'Languages supported' },
-      { value: '24/7', label: 'Always answering' },
-      { value: 'EN + AR', label: 'Native Arabic and English voices' },
-      { value: '1', label: 'Agent for your phone line and website' },
+      { value: '24/7', label: 'On your website, day and night' },
+      { value: 'AR + EN', label: 'Arabic and English voices' },
+      { value: '1', label: 'Agent for talking and typing' },
     ],
   },
   pains: {
-    sectionEyebrow: 'The reality of inbound calls',
-    sectionHeadline: 'The phone keeps ringing. Bookings keep slipping.',
-    sectionSub:
-      'Every missed call is a customer who already chose someone else. Most operators lose between a third and half of their inbound demand to voicemail, language gaps, and after-hours silence.',
+    sectionEyebrow: 'The reality of guest questions',
+    sectionHeadline: 'The question comes at 11 pm. The answer comes at 9 am.',
+    sectionSub: 'By then the guest has asked someone else.',
     items: [
       {
-        title: 'After-hours bookings vanish',
+        title: 'Questions after hours',
         description:
-          'A Korean traveller searching at 2am Cairo time finds your number, dials it, hits voicemail, and books your competitor before sunrise. You only see the missed-call count when you open the phone.',
+          'A guest lands on your site in the evening and wants to know if Friday is free. Nobody is at the desk until morning.',
       },
       {
-        title: 'Non-English calls lost in translation',
+        title: 'The same answers, all day',
         description:
-          'Russian, German, Chinese, Korean, Italian — your front desk speaks two of those, on a good day. The other callers hang up. Or worse: they book the wrong product because nobody could understand them.',
+          'What time is pickup, is lunch included, can children come. Your team types the same replies again and again.',
       },
       {
-        title: 'Peak hours overwhelm the team',
+        title: 'Requests that never reach the desk',
         description:
-          'High season Saturday: 40 calls in three hours. Two staff. Half ring out. Of the half that connect, no deposit gets taken — so half of those no-show. Demand was there. Capture was not.',
+          'A guest was ready to book but did not want to fill in a form. They left, and nobody on your team knows they were there.',
       },
     ],
   },
   solutions: {
-    sectionEyebrow: 'How Foxes Voice fixes it',
-    sectionHeadline: 'Four products. One voice. Every channel.',
-    sectionSub:
-      'Automate inbound and outbound calls. Analyze every conversation. Coach your reps. Assist them live. All running on the same AI brain trained on your menu, dive sites, cruise schedule, and pricing.',
+    sectionEyebrow: 'What it does today',
+    sectionHeadline: 'It talks, it takes the request, it hands over.',
+    sectionSub: 'One agent on your website, set up with your own tours, prices and policies.',
     items: [
       {
-        title: 'Live multilingual conversations',
+        title: 'Answers out loud, in Arabic or English',
         description:
-          'The agent picks up on the first ring, greets in the caller’s language, qualifies the booking, and confirms — in real-feeling speech, not a robotic IVR. You hear the transcript with English translation alongside.',
+          'Guests tap a button and talk in their browser, or type if they prefer. The agent answers from your own information and shows every word on screen as it speaks. When it does not know, it says so.',
         bullets: [
-          '24 languages, with native Arabic and English voices',
-          'Real-time translation in your dashboard',
-          'Switches language mid-call if the caller does',
+          'Arabic and English voices, 24 languages in all',
+          'Speak or type in the same conversation',
+          'Answers only from your tours, prices and policies',
         ],
       },
       {
-        title: 'One conversation across 10 channels',
+        title: 'Takes booking requests and callbacks',
         description:
-          'Voice, WhatsApp, SMS, email, Instagram DM, Facebook Messenger, Telegram, Live Chat, Slack, Teams. Same context, same memory. The caller switches from voice to WhatsApp and the agent picks up exactly where it left off.',
+          'When a guest wants to book, the agent collects the trip, the date and the number of people, reads them back, and sends the request to your team to confirm. It can also take a callback request.',
         bullets: [
-          '10 channels, single conversation thread',
-          'No "what was your name again?"',
-          'Hand-off to human keeps full context',
+          'Details read back before anything is sent',
+          'Your team confirms every booking',
+          'Hands over to a person with the conversation written down',
         ],
       },
       {
-        title: 'Analyze, Coach, Assist your team',
+        title: 'Every call in your dashboard',
         description:
-          'Every call scored on quality, sentiment, and NPS prediction. Underperforming reps get AI-driven coaching with simulated customer roleplay. Live calls get a co-pilot whispering the next-best answer in real time.',
+          'Each conversation is kept with its recording, its transcript and its length, so you can see what guests ask and what was requested.',
         bullets: [
-          '100% QA scoring on every conversation',
-          'AI training simulator with customer roleplay',
-          'Real-time agent co-pilot during live calls',
+          'Recording and transcript for each call',
+          'Guests are told the call is recorded before it starts',
+          'Booking requests and hand-overs listed for your team',
         ],
       },
     ],
   },
   howItWorks: {
-    sectionEyebrow: 'Setup is fast',
-    sectionHeadline: 'Live on your number in 48 hours.',
-    sectionSub:
-      'No phone-system replacement. We hook into the line you already publish on Google, Booking.com, and your website.',
+    sectionEyebrow: 'How you start',
+    sectionHeadline: 'Access is by invitation.',
+    sectionSub: 'There is no open sign-up. You send a request, our team reads it and sets you up.',
     steps: [
       {
-        title: 'Tell us your business',
+        title: 'Send a request',
         description:
-          'A 30-minute call. Your dive sites, your cruise menu, your jet ski rates, your refund policy. We feed it to the agent.',
+          'Tell us about your business in the form below or on the request access page. Every request is read by our team.',
       },
       {
-        title: 'Hook into your number',
+        title: 'Your agent learns your business',
         description:
-          'Forward your existing line to Foxes, or get a new local number. Either way, the agent answers from day one — and writes bookings straight into your Foxes calendar.',
+          'It is set up with your tours, prices and policies. You choose its name, its voice and its greeting in each language.',
       },
       {
-        title: 'Listen, tune, scale',
+        title: 'Add it to your website',
         description:
-          'Listen to the first 50 calls in your dashboard. Flag anything you would say differently. The agent learns. Then you let it answer the other 950.',
+          'Guests tap to talk. You read the conversations and booking requests in your dashboard.',
       },
     ],
   },
   features: {
-    sectionEyebrow: 'Inside the voice agent',
-    sectionHeadline: 'Built for the way bookings actually happen.',
-    sectionSub:
-      'Generic call-centre AI handles support tickets. Foxes Voice handles bookings — with the booking-engine, the deposit link, and the operator dashboard already wired in.',
+    sectionEyebrow: 'In the product today',
+    sectionHeadline: 'What you get.',
+    sectionSub: 'AI Voice works on your website. It does not answer a phone number.',
     items: [
       {
-        title: '24 languages, Arabic-first',
-        description: 'Arabic (Egyptian and Gulf) and English first, plus Korean, Mandarin, Hindi, Russian, Italian, German and more.',
+        title: 'Arabic and English first',
+        description: 'Arabic and English each have their own voice. 22 more languages are available.',
       },
       {
-        title: 'Multi-agent routing',
-        description: 'Sales agent answers bookings. Support agent handles complaints. Visual workflow builder controls who picks up.',
+        title: 'Your information only',
+        description: 'It answers from the tours, prices and policies you give it, and says when it does not know.',
       },
       {
-        title: 'Real-time translation',
-        description: 'Every call captioned in English in your dashboard so you can audit non-English conversations on the fly.',
+        title: 'Speak or type',
+        description: 'A guest who cannot talk out loud can type in the same conversation.',
       },
       {
-        title: 'Custom voice persona',
-        description: 'Pick the voice, name, accent, energy. Your agent sounds like your brand — Egyptian-warm or Gulf-formal or Riviera-cool.',
+        title: 'Words on screen',
+        description: 'Every word appears as text while the agent speaks.',
       },
       {
-        title: 'Sentiment analysis',
-        description: 'Every call tagged: angry, hesitant, ready-to-buy. Your dashboard pulls hot leads to the top of the queue.',
+        title: 'Booking requests and callbacks',
+        description: 'The details are read back to the guest, then sent to your team to confirm.',
       },
       {
-        title: 'CRM and booking sync',
-        description: 'Confirmed bookings drop straight into your Foxes calendar. Customer details push to the CRM with no double entry.',
+        title: 'Hand-over to a person',
+        description: 'When a guest asks for a person, your team gets the conversation written down.',
       },
       {
-        title: 'After-hours capture',
-        description: 'Set business hours and the agent only takes calls outside them — or all the time. Your call. Your money either way.',
+        title: 'Your name, voice and hours',
+        description: 'Choose the agent’s name, voice and greeting for each language, and set your business hours.',
       },
       {
-        title: 'Deposit-taking via SMS link',
-        description: 'During the call the agent texts a Stripe / Paymob / Fawry / Vodafone Cash link. Booking is paid before the call ends.',
+        title: 'Call records',
+        description: 'Recording, transcript and call length for every conversation, in your dashboard.',
       },
     ],
   },
@@ -166,63 +170,62 @@ export const en: OperatorCopy = {
   },
   faq: {
     sectionEyebrow: 'Questions you should ask',
-    sectionHeadline: 'Honest answers.',
+    sectionHeadline: 'Straight answers.',
     items: [
       {
-        question: 'How long does it take to go live?',
+        question: 'Does it answer my phone number?',
         answer:
-          'Most operators are answering live calls within 48 hours. The 30-minute discovery call is the longest part. We forward your existing number — or assign a new local one — train the agent on your products and pricing, and you start hearing real conversations the same week.',
+          'Not today. AI Voice answers on your website: guests tap a button and talk in their browser, or type. Answering a phone line is not available yet.',
       },
       {
-        question: 'How do you train it on my dive sites or cruise menu?',
+        question: 'Which languages does it speak?',
         answer:
-          'You upload your menu PDF, your dive site catalogue, your cruise schedule, your refund policy, and your FAQ. We also pull from your Foxes booking-engine catalogue automatically. The agent answers using your exact wording — not generic boilerplate.',
+          'Arabic and English have their own voices and are the two we set up and test with you first. 22 more languages are available, 24 in all.',
       },
       {
-        question: 'What happens when the agent cannot answer?',
+        question: 'What does it know about my tours?',
         answer:
-          'Three options. It can ring through to a human on your team (we route by language, time of day, or skill). It can take a callback message and your team gets a transcript with the question pre-summarised. Or it can offer the caller a WhatsApp hand-off and continue the conversation there.',
+          'It answers from the tours, prices and policies you give it. When it does not have an answer it says so and offers to pass the question to your team.',
       },
       {
-        question: 'Are calls recorded? What about compliance?',
+        question: 'Can it take a booking?',
         answer:
-          'Calls are recorded by default with caller consent at the start of the call. You control retention windows, redaction of payment details, and per-region data residency. We help operators in Egypt, KSA, UAE, and the EU stay aligned with local rules.',
+          'It takes a booking request. It collects the trip, the date and the number of people, reads them back to the guest and sends the request to your team to confirm. It does not take payment.',
       },
       {
-        question: 'Does it integrate with the Foxes booking platform?',
+        question: 'What happens when a guest wants a person?',
         answer:
-          'Yes — natively. Confirmed bookings appear in your Foxes calendar with the right product, date, and pax count. Deposits taken on the call show up in your Foxes payments dashboard. If you use external CRMs (HubSpot, Salesforce, Zoho), we sync there too.',
+          'The agent hands the conversation to your team with everything written down, or takes a callback request, so the guest does not have to explain again.',
+      },
+      {
+        question: 'Are calls recorded?',
+        answer:
+          'Yes. Before a call starts the guest is told they are talking to an AI assistant and that the call is recorded. You see the recording, the transcript and the call length in your dashboard.',
       },
       {
         question: 'How much does it cost?',
         answer:
-          'AI Voice is sold as monthly plans, each with a set number of voice minutes, plus an Enterprise plan for larger groups. You can move between plans as your call volume changes. Current prices are on the AI Voice pricing page, and we are happy to walk you through them on a short call.',
+          'AI Voice is sold as monthly plans, each with a set number of voice minutes, plus an Enterprise plan for larger groups. Current prices are on the AI Voice pricing page.',
       },
       {
-        question: 'Which languages does it really speak well?',
+        question: 'Can I hear it before I decide?',
         answer:
-          'AI Voice works in 24 languages and is built Arabic-first: Egyptian Arabic, Gulf Arabic and English are the strongest. We tune each agent to your products and test it with you in the languages your callers use before it goes live.',
-      },
-      {
-        question: 'Can I listen to a real call before I commit?',
-        answer:
-          'Yes. We will play you three real (anonymised) calls from operators in your vertical — one inbound booking, one complaint, one after-hours capture. Then we run a live test call with your own product catalogue so you hear the agent in your voice, not a demo script.',
+          'Yes. You can talk to a demo agent at voice.foxestechnology.com, and we can show you one set up with your own tours.',
       },
     ],
   },
   leadForm: {
-    sectionEyebrow: 'Hear it before you commit',
-    sectionHeadline: 'Live demo with your menu, in your language.',
-    sectionSub:
-      'Tell us your business. We will WhatsApp you a 15-minute demo using your real products — and run a live test call so you hear the agent answer your phone.',
+    sectionEyebrow: 'Hear it before you decide',
+    sectionHeadline: 'A demo with your own tours.',
+    sectionSub: 'Tell us about your business and our team will contact you to arrange a demo.',
     fields: {
       name: 'Your name',
-      namePlaceholder: 'Ahmed Hassan',
+      namePlaceholder: 'Your full name',
       business: 'Business name',
-      businessPlaceholder: 'Red Sea Divers Hurghada',
+      businessPlaceholder: 'Your business name',
       whatsapp: 'WhatsApp number',
-      whatsappPlaceholder: '+20 100 000 0000',
-      monthlyBookings: 'Inbound calls per month (roughly)',
+      whatsappPlaceholder: '+20 1XX XXX XXXX',
+      monthlyBookings: 'Guest enquiries per month (roughly)',
       monthlyBookingsOptions: [
         { value: 'lt-200', label: 'Less than 200' },
         { value: '200-1000', label: '200 to 1,000' },
@@ -230,196 +233,183 @@ export const en: OperatorCopy = {
         { value: '5000-plus', label: '5,000 or more' },
       ],
     },
-    submit: 'Get my live demo',
+    submit: 'Ask for a demo',
     submitting: 'Sending...',
-    successTitle: 'Got it. Saif from our team will WhatsApp you within the hour.',
+    successTitle: 'Thank you. We have your request and our team will contact you.',
     successBody: 'You can also start the conversation now if you prefer:',
     successWhatsapp: 'Open WhatsApp',
+    errorMissing:
+      'Please fill in every field: your name, your business, a WhatsApp number with its country code, and the monthly figure.',
     errorGeneric: 'Something went wrong. Please try again in a moment.',
     errorRateLimit: 'Too many submissions. Please wait a moment and try again.',
-    privacy:
-      'By submitting you agree to be contacted by the Foxes team. We never share your data. One message, then no spam.',
+    privacy: 'By sending this you agree to be contacted by the Foxes team about your request.',
   },
   finalCta: {
-    headline: 'Stop letting the phone ring out.',
-    sub: 'Hear your own agent answer your own number — in your customer’s language — within 48 hours.',
-    primary: 'Get started',
+    headline: 'Let your website answer the next guest.',
+    sub: 'Access is by invitation. Send a request and our team will reply.',
+    primary: 'Ask for a demo',
     secondary: 'Talk to us on WhatsApp',
   },
   whatsapp: {
-    floatLabel: 'Hear a demo',
-    prefilledMessage: "Hi, I'd like to hear a demo of the Foxes AI Voice Agent.",
+    floatLabel: 'Ask about AI Voice',
+    prefilledMessage: "Hi, I'd like a demo of Foxes AI Voice.",
   },
   mobileStickyCta: {
-    primary: 'Get started',
+    primary: 'Ask for a demo',
     secondary: 'WhatsApp',
   },
   exitIntent: {
-    eyebrow: 'One thing before you go',
-    headline: 'The Operator Call Audit',
-    sub: 'Twelve real questions every operator should answer about their inbound calls — missed-call rate, language gaps, deposit-take rate, after-hours coverage. Free — leave your email and our team will send it to you.',
-    bullets: [
-      'Missed-call benchmark by vertical',
-      'Per-language conversion benchmarks',
-      'Deposit-take and no-show formulas',
-    ],
+    eyebrow: 'Before you go',
+    headline: 'Prefer that we write to you?',
+    sub: 'Leave your email and a person from our team will write to you about AI Voice. It is not a newsletter.',
+    bullets: ['Read by our team', 'A reply in Arabic or English', 'Access is by invitation'],
     emailPlaceholder: 'you@yourbusiness.com',
-    submitLabel: 'Send me the audit',
+    submitLabel: 'Email me',
     submittingLabel: 'Sending...',
     successTitle: 'Thanks — request received.',
-    successBody: 'Our team will email it to you.',
-    privacy: 'We only use your email to send this and to follow up about Foxes.',
+    successBody: 'Our team will write to you.',
+    privacy: 'We only use your email to reply and to follow up about Foxes.',
     dismissLabel: 'No thanks',
   },
 };
 
 export const ar: OperatorCopy = {
   meta: {
-    title: 'وكيل الصوت الذكي لمشغلي السياحة · 24 لغة على مدار الساعة',
+    title: 'AI Voice لمشغّلي السياحة · مساعد صوتي على موقعك',
     description:
-      'وكيل الصوت الذكي من Foxes يردّ على هاتفك بـ 24 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes — حتى الساعة الثانية صباحًا، حتى بالكورية. مصمم لمراكز الغوص ورحلات العشاء والرياضات المائية ووكالات السياحة.',
-    ogTitle: 'ردّ على المكالمة. حتى الساعة الثانية صباحًا. حتى بالكورية.',
+      'يضغط الضيف زر التحدث على موقعك فيجيبه AI Voice بالعربية أو الإنجليزية من رحلاتك وأسعارك وسياساتك أنت. يستقبل طلبات الحجز وطلبات معاودة الاتصال ويحوّل المحادثة إلى فريقك. 24 لغة. الانضمام بدعوة.',
+    ogTitle: 'يسأل الضيف بصوته. وموقعك يجيب.',
   },
   hero: {
-    badge: 'وكيل الصوت الذكي · لمشغلي السياحة',
-    headlineLine1: 'ردّ على المكالمة.',
-    headlineLine2: 'حتى الساعة الثانية صباحًا. حتى بالكورية.',
-    sub: 'صوت طبيعي يردّ بـ 24 لغة، يؤهل الحجز، يأخذ دفعة عربون عبر SMS، ويسجّل الحجز في تقويم Foxes الخاص بك. وأنت نائم — التليفون يكسب لك فلوس.',
-    primaryCta: 'ابدأ الآن',
-    secondaryCta: 'اسمع التجربة على واتساب',
-    pills: ['24 لغة', 'باقات شهرية', 'تشغيل خلال 48 ساعة'],
+    badge: 'AI Voice · لمشغّلي السياحة',
+    headlineLine1: 'يسأل الضيف بصوته.',
+    headlineLine2: 'وموقعك يجيب.',
+    sub: 'يضع AI Voice مساعدًا صوتيًا على موقعك. يتحدث الضيف أو يكتب بالعربية أو الإنجليزية، فيجيبه من رحلاتك وأسعارك وسياساتك فقط، ويستقبل طلبات الحجز وطلبات معاودة الاتصال، ثم يحوّل المحادثة إلى فريقك مكتوبة بالكامل.',
+    primaryCta: 'اطلب عرضًا',
+    secondaryCta: 'استمع عبر واتساب',
+    pills: ['العربية والإنجليزية', 'خطط شهرية', 'الانضمام بدعوة'],
   },
   socialProof: {
-    label: 'مصمم للمشغلين في',
-    cities: 'الغردقة · شرم · القاهرة · أسوان · دبي · الرياض',
+    label: 'مصمم للمشغّلين في',
+    cities: 'الغردقة · شرم الشيخ · القاهرة · الأقصر · أسوان',
     stats: [
       { value: '24', label: 'لغة مدعومة' },
-      { value: '24/7', label: 'يردّ دائمًا' },
-      { value: 'لغتان', label: 'أصوات عربية وإنجليزية أصيلة' },
-      { value: '1', label: 'وكيل لهاتفك وموقعك' },
+      { value: '24/7', label: 'على موقعك ليلًا ونهارًا' },
+      { value: 'AR + EN', label: 'صوتان بالعربية والإنجليزية' },
+      { value: '1', label: 'مساعد واحد للتحدث والكتابة' },
     ],
   },
   pains: {
-    sectionEyebrow: 'واقع المكالمات الواردة',
-    sectionHeadline: 'التليفون لا يتوقف. والحجوزات تضيع.',
-    sectionSub:
-      'كل مكالمة فاتت يعني عميل اختار غيرك. معظم المشغلين يخسرون من ثلث إلى نص الطلب الوارد بسبب الإجابة المتأخرة، وفجوة اللغة، وسكوت ما بعد الدوام.',
+    sectionEyebrow: 'واقع أسئلة الضيوف',
+    sectionHeadline: 'السؤال يأتي في الحادية عشرة ليلًا. والجواب في التاسعة صباحًا.',
+    sectionSub: 'وحينها يكون الضيف قد سأل غيرك.',
     items: [
       {
-        title: 'حجوزات ما بعد الدوام تضيع',
-        description:
-          'مسافر كوري بيبحث الساعة الثانية صباحًا بتوقيت القاهرة. يلاقي رقمك. يتصل. يقع على البريد الصوتي. يحجز مع منافسك قبل طلوع الشمس. أنت بس بتشوف عداد المكالمات الفايتة لما تفتح التليفون.',
+        title: 'أسئلة بعد ساعات العمل',
+        description: 'يزور ضيف موقعك مساءً ويريد أن يعرف هل يوم الجمعة متاح. ولا أحد في المكتب حتى الصباح.',
       },
       {
-        title: 'مكالمات بغير الإنجليزية تتوه في الترجمة',
-        description:
-          'روسي، ألماني، صيني، كوري، إيطالي — موظف الاستقبال عندك بيتكلم اتنين منهم، في يوم كويس. الباقي يقفل. أو الأسوأ: يحجزوا حاجة غلط لأن محدش فهمهم صح.',
+        title: 'الإجابات نفسها طوال اليوم',
+        description: 'متى موعد الاستقبال، وهل الغداء مشمول، وهل يُسمح بالأطفال. يكتب فريقك الردود نفسها مرارًا.',
       },
       {
-        title: 'أوقات الذروة تسحق الفريق',
-        description:
-          'سبت الموسم العالي: 40 مكالمة في 3 ساعات. اتنين موظفين. نص المكالمات تطلع مشغول. اللي يتردّ عليه ما بياخدش عربون — ونص دول لا يحضروا. الطلب كان موجود. الاستحواذ مكانش.',
+        title: 'طلبات لا تصل إلى المكتب',
+        description: 'كان الضيف مستعدًا للحجز لكنه لم يرغب في تعبئة نموذج. فغادر، ولا أحد في فريقك يعلم أنه كان هنا.',
       },
     ],
   },
   solutions: {
-    sectionEyebrow: 'كيف يحلها Foxes Voice',
-    sectionHeadline: 'أربع منتجات. صوت واحد. كل القنوات.',
-    sectionSub:
-      'أتمتة المكالمات الواردة والصادرة. تحليل كل محادثة. تدريب الفريق. مساعدته مباشر. كلهم يعملوا على نفس الذكاء المدرّب على قائمتك ومواقع الغوص ومواعيد الرحلات والأسعار.',
+    sectionEyebrow: 'ما يقدّمه اليوم',
+    sectionHeadline: 'يتحدث، ويستقبل الطلب، ويحوّله إلى فريقك.',
+    sectionSub: 'مساعد واحد على موقعك، مجهّز برحلاتك وأسعارك وسياساتك أنت.',
     items: [
       {
-        title: 'محادثات حية بكل اللغات',
+        title: 'يجيب بصوته، بالعربية أو الإنجليزية',
         description:
-          'الوكيل يردّ من أول رنّة، يحيّي بلغة المتصل، يؤهل الحجز ويؤكده — بكلام طبيعي مش روبوت IVR. وأنت تقرأ النص الأصلي والترجمة الإنجليزية في لوحتك.',
+          'يضغط الضيف زرًا ويتحدث من متصفحه، أو يكتب إن فضّل ذلك. يجيب المساعد من معلوماتك أنت ويعرض كل كلمة على الشاشة وهو يتحدث. وإن لم يعرف الجواب يقول ذلك.',
         bullets: [
-          '24 لغة، بأصوات عربية وإنجليزية أصيلة',
-          'ترجمة فورية في لوحة التحكم',
-          'يبدّل اللغة في وسط المكالمة لو المتصل بدّل',
+          'صوتان بالعربية والإنجليزية، و24 لغة إجمالًا',
+          'تحدّث أو اكتب في المحادثة نفسها',
+          'يجيب من رحلاتك وأسعارك وسياساتك فقط',
         ],
       },
       {
-        title: 'محادثة واحدة عبر 10 قنوات',
+        title: 'يستقبل طلبات الحجز وطلبات معاودة الاتصال',
         description:
-          'الصوت، واتساب، SMS، إيميل، إنستجرام، فيسبوك ماسنجر، تيليجرام، شات الموقع، Slack، Teams. نفس السياق ونفس الذاكرة. المتصل يحوّل من الصوت لواتساب والوكيل يكمّل من حيث وقف.',
+          'عندما يريد الضيف الحجز، يأخذ المساعد الرحلة والتاريخ وعدد الأشخاص، ويعيد قراءتها على الضيف، ثم يرسل الطلب إلى فريقك ليؤكده. ويمكنه أيضًا تسجيل طلب معاودة اتصال.',
         bullets: [
-          '10 قنوات، خيط محادثة واحد',
-          'بدون "ايه اسمك تاني؟"',
-          'التحويل لإنسان بياخد السياق كله',
+          'تُقرأ التفاصيل على الضيف قبل إرسال أي شيء',
+          'فريقك هو من يؤكد كل حجز',
+          'يحوّل المحادثة إلى موظف وهي مكتوبة بالكامل',
         ],
       },
       {
-        title: 'تحليل وتدريب ومساعدة لفريقك',
+        title: 'كل مكالمة في لوحة التحكم',
         description:
-          'كل مكالمة بتتقيّم على الجودة والشعور وتوقّع NPS. الموظفين الأقل أداءً بياخدوا تدريب ذكي بمحاكاة عميل افتراضي. والمكالمات الحية بتاخد مساعد ذكي يوحي بالجواب الأنسب لحظيًا.',
+          'تُحفظ كل محادثة مع تسجيلها ونصها ومدتها، فترى ما يسأل عنه الضيوف وما طلبوه.',
         bullets: [
-          'تقييم جودة 100% على كل محادثة',
-          'محاكي تدريب بأدوار عميل افتراضي',
-          'مساعد ذكي يساعد الموظف وقت المكالمة',
+          'تسجيل ونص لكل مكالمة',
+          'يُبلَّغ الضيف قبل بدء المكالمة بأنها مسجّلة',
+          'طلبات الحجز والتحويلات معروضة لفريقك',
         ],
       },
     ],
   },
   howItWorks: {
-    sectionEyebrow: 'الإعداد سريع',
-    sectionHeadline: 'يردّ على رقمك خلال 48 ساعة.',
-    sectionSub:
-      'مش هتغيّر نظام تليفونك. إحنا بنحوّل الخط اللي بتنشره على جوجل وBooking.com وموقعك.',
+    sectionEyebrow: 'كيف تبدأ',
+    sectionHeadline: 'الانضمام بدعوة.',
+    sectionSub: 'لا يوجد تسجيل مفتوح. ترسل طلبًا فيقرؤه فريقنا ويجهّز حسابك.',
     steps: [
       {
-        title: 'احكي لنا عن شغلك',
-        description:
-          'مكالمة 30 دقيقة. مواقع الغوص، قائمة الرحلة، أسعار الجت سكي، سياسة الاسترداد. كلهم بنغذّي بيهم الوكيل.',
+        title: 'أرسل طلبًا',
+        description: 'أخبرنا عن نشاطك في النموذج أدناه أو في صفحة طلب الانضمام. يقرأ فريقنا كل طلب.',
       },
       {
-        title: 'وصّل خطك',
-        description:
-          'حوّل خطك الحالي على Foxes، أو خد رقم محلي جديد. في الحالتين، الوكيل بيردّ من أول يوم — والحجوزات تنزل في تقويم Foxes مباشرة.',
+        title: 'يتعرّف المساعد على نشاطك',
+        description: 'يُجهَّز برحلاتك وأسعارك وسياساتك. وتختار أنت اسمه وصوته وتحيته بكل لغة.',
       },
       {
-        title: 'اسمع، عدّل، وسّع',
-        description:
-          'اسمع أول 50 مكالمة في لوحتك. علّم على أي حاجة كنت هتقولها بشكل تاني. الوكيل يتعلم. وبعدين تسيبه يردّ على الـ 950 الباقيين.',
+        title: 'أضفه إلى موقعك',
+        description: 'يضغط الضيوف للتحدث. وتقرأ أنت المحادثات وطلبات الحجز في لوحة التحكم.',
       },
     ],
   },
   features: {
-    sectionEyebrow: 'داخل وكيل الصوت',
-    sectionHeadline: 'مصمم لطريقة الحجز الفعلية.',
-    sectionSub:
-      'الذكاء العام لخدمة العملاء بيعالج تذاكر دعم. Foxes Voice بيعالج حجوزات — مع محرك الحجز ورابط العربون ولوحة المشغّل موصولين فعلًا.',
+    sectionEyebrow: 'في المنتج اليوم',
+    sectionHeadline: 'ما تحصل عليه.',
+    sectionSub: 'يعمل AI Voice على موقعك. ولا يرد على رقم هاتف.',
     items: [
       {
-        title: '24 لغة، والعربية أولًا',
-        description: 'العربية (المصرية والخليجية) والإنجليزية أولًا، إلى جانب الكورية والصينية والهندية والروسية والإيطالية والألمانية وغيرها.',
+        title: 'العربية والإنجليزية أولًا',
+        description: 'للعربية صوتها وللإنجليزية صوتها. وتتوفر 22 لغة أخرى.',
       },
       {
-        title: 'توجيه متعدد الوكلاء',
-        description: 'وكيل المبيعات يردّ على الحجوزات. وكيل الدعم يتعامل مع الشكاوى. باني ورك فلو بصري يحدد مين يردّ.',
+        title: 'معلوماتك أنت فقط',
+        description: 'يجيب من الرحلات والأسعار والسياسات التي تزوّده بها، ويقول حين لا يعرف.',
       },
       {
-        title: 'ترجمة فورية',
-        description: 'كل مكالمة بتتعمل ليها ترجمة إنجليزية في لوحتك علشان تراجع المكالمات بأي لغة في ثواني.',
+        title: 'تحدّث أو اكتب',
+        description: 'الضيف الذي لا يستطيع التحدث بصوت مسموع يكتب في المحادثة نفسها.',
       },
       {
-        title: 'صوت بشخصية مخصصة',
-        description: 'اختار الصوت والاسم واللهجة والطاقة. الوكيل يبقى بصوت علامتك — دافي مصري، رسمي خليجي، أو هادئ ريفييرا.',
+        title: 'الكلمات على الشاشة',
+        description: 'تظهر كل كلمة نصًا أثناء حديث المساعد.',
       },
       {
-        title: 'تحليل المشاعر',
-        description: 'كل مكالمة بتتصنّف: غاضب، متردد، جاهز للحجز. لوحتك بترفع العملاء الجاهزين فوق الطابور.',
+        title: 'طلبات الحجز ومعاودة الاتصال',
+        description: 'تُقرأ التفاصيل على الضيف ثم تُرسل إلى فريقك ليؤكدها.',
       },
       {
-        title: 'مزامنة CRM والحجوزات',
-        description: 'الحجوزات المؤكدة بتنزل مباشرة في تقويم Foxes. بيانات العميل بتتحط في الـ CRM بدون إدخال مكرر.',
+        title: 'التحويل إلى موظف',
+        description: 'عندما يطلب الضيف التحدث إلى موظف، تصل المحادثة إلى فريقك مكتوبة.',
       },
       {
-        title: 'استحواذ ما بعد الدوام',
-        description: 'حدد ساعات العمل والوكيل يردّ بس برّاها — أو طول الوقت. القرار قرارك. الفلوس فلوسك في الحالتين.',
+        title: 'الاسم والصوت وساعات العمل',
+        description: 'اختر اسم المساعد وصوته وتحيته بكل لغة، وحدّد ساعات عملك.',
       },
       {
-        title: 'دفع عربون عبر رابط SMS',
-        description: 'في وسط المكالمة الوكيل بيبعت رابط Stripe / Paymob / Fawry / فودافون كاش. الحجز يتدفع قبل ما المكالمة تخلص.',
+        title: 'سجل المكالمات',
+        description: 'التسجيل والنص ومدة كل محادثة في لوحة التحكم.',
       },
     ],
   },
@@ -438,110 +428,105 @@ export const ar: OperatorCopy = {
     fineprint: 'الباقات والأسعار وما تتضمنه كل باقة متاحة في صفحة أسعار وكيل الصوت الذكي.',
   },
   faq: {
-    sectionEyebrow: 'أسئلة لازم تسألها',
-    sectionHeadline: 'إجابات صريحة.',
+    sectionEyebrow: 'أسئلة ينبغي أن تسألها',
+    sectionHeadline: 'إجابات مباشرة.',
     items: [
       {
-        question: 'إيه الوقت الفعلي للتشغيل؟',
+        question: 'هل يرد على رقم هاتفي؟',
         answer:
-          'معظم المشغلين بيردّوا على مكالمات حقيقية خلال 48 ساعة. مكالمة الاكتشاف اللي 30 دقيقة هي أطول جزء. بنحوّل رقمك الحالي — أو ندّيك رقم محلي جديد — وبندرّب الوكيل على منتجاتك وأسعارك، وتسمع أول مكالمة حقيقية في نفس الأسبوع.',
+          'ليس اليوم. يجيب AI Voice على موقعك: يضغط الضيف زرًا ويتحدث من متصفحه، أو يكتب. الرد على خط هاتفي غير متاح بعد.',
       },
       {
-        question: 'إزاي بتدرّبوه على مواقع الغوص أو قائمة الرحلة؟',
+        question: 'ما اللغات التي يتحدثها؟',
         answer:
-          'بترفع قائمتك بـ PDF، وكتالوج مواقع الغوص، ومواعيد الرحلات، وسياسة الاسترداد، والأسئلة الشائعة. وبنسحب من كتالوج Foxes تلقائيًا. الوكيل بيردّ بكلامك أنت — مش بكلام عام جاهز.',
+          'للعربية والإنجليزية صوتان خاصان، وهما اللغتان اللتان نجهّزهما ونختبرهما معك أولًا. وتتوفر 22 لغة أخرى، أي 24 لغة إجمالًا.',
       },
       {
-        question: 'بيعمل إيه لما مايعرفش يردّ؟',
+        question: 'ماذا يعرف عن رحلاتي؟',
         answer:
-          'تلات اختيارات. ممكن يحوّل لإنسان من فريقك (بنحوّل حسب اللغة، الوقت، أو المهارة). ممكن ياخد رسالة مع نص ملخّص للسؤال. أو يعرض على المتصل التحويل لواتساب ويكمّل المحادثة هناك.',
+          'يجيب من الرحلات والأسعار والسياسات التي تزوّده بها. وإن لم يجد جوابًا يقول ذلك ويعرض تحويل السؤال إلى فريقك.',
       },
       {
-        question: 'المكالمات بتتسجّل؟ إيه موضوع الامتثال؟',
+        question: 'هل يستطيع إتمام حجز؟',
         answer:
-          'المكالمات بتتسجّل مع موافقة المتصل في أول المكالمة. أنت بتتحكم في فترة الحفظ، وإخفاء بيانات الدفع، ومكان تخزين البيانات حسب البلد. بنساعد المشغلين في مصر والسعودية والإمارات وأوروبا يتطابقوا مع القوانين المحلية.',
+          'يستقبل طلب حجز. يأخذ الرحلة والتاريخ وعدد الأشخاص، ويعيد قراءتها على الضيف، ويرسل الطلب إلى فريقك ليؤكده. ولا يستلم أي مدفوعات.',
       },
       {
-        question: 'بيتكامل مع منصة حجوزات Foxes؟',
+        question: 'ماذا يحدث عندما يريد الضيف التحدث إلى موظف؟',
         answer:
-          'نعم — بشكل أصلي. الحجوزات المؤكدة تظهر في تقويم Foxes بالمنتج والتاريخ وعدد الأشخاص الصح. العربون اللي اتدفع في المكالمة يظهر في لوحة المدفوعات. ولو بتستخدم HubSpot أو Salesforce أو Zoho بنزامن معاهم كمان.',
+          'يحوّل المساعد المحادثة إلى فريقك مكتوبة بالكامل، أو يسجّل طلب معاودة اتصال، فلا يضطر الضيف إلى الشرح من جديد.',
       },
       {
-        question: 'كم تبلغ التكلفة؟',
+        question: 'هل تُسجَّل المكالمات؟',
         answer:
-          'يُباع وكيل الصوت الذكي في باقات شهرية، لكل منها عدد محدد من دقائق المكالمات، إلى جانب باقة مؤسسية للمجموعات الكبيرة. ويمكنك الانتقال بين الباقات كلما تغيّر حجم مكالماتك. الأسعار الحالية متاحة في صفحة أسعار وكيل الصوت الذكي، ويسعدنا أن نشرحها لك في مكالمة قصيرة.',
+          'نعم. قبل بدء المكالمة يُبلَّغ الضيف بأنه يتحدث إلى مساعد ذكي وبأن المكالمة مسجّلة. وترى أنت التسجيل والنص ومدة المكالمة في لوحة التحكم.',
       },
       {
-        question: 'إيه اللغات اللي بيتكلمها كويس فعلًا؟',
+        question: 'كم يكلّف؟',
         answer:
-          'يعمل وكيل الصوت الذكي بـ 24 لغة، والعربية أولًا، وأقواها العربية المصرية والخليجية والإنجليزية. نضبط كل وكيل على منتجاتك ونختبره معك باللغات التي يستخدمها المتصلون قبل التشغيل.',
+          'يُباع AI Voice بخطط شهرية، لكل منها عدد محدد من دقائق الصوت، إضافة إلى خطة للمؤسسات والمجموعات الأكبر. الأسعار الحالية في صفحة أسعار AI Voice.',
       },
       {
-        question: 'أقدر أسمع مكالمة حقيقية قبل ما أقرر؟',
+        question: 'هل أستطيع سماعه قبل أن أقرر؟',
         answer:
-          'نعم. هنشغّل لك تلات مكالمات حقيقية (بدون بيانات شخصية) من مشغلين في تخصصك — حجز وارد، شكوى، استحواذ ما بعد الدوام. وبعدها بنعمل مكالمة تجريبية حية بكتالوج منتجاتك علشان تسمع الوكيل بصوتك أنت.',
+          'نعم. يمكنك التحدث إلى مساعد تجريبي على voice.foxestechnology.com، ويمكننا أن نريك مساعدًا مجهّزًا برحلاتك أنت.',
       },
     ],
   },
   leadForm: {
-    sectionEyebrow: 'اسمعه قبل ما تلتزم',
-    sectionHeadline: 'تجربة حية بقائمتك أنت، بلغتك أنت.',
-    sectionSub:
-      'احكي لنا عن شغلك. سنرسل لك تجربة 15 دقيقة على واتساب بمنتجاتك الفعلية — ونعمل مكالمة تجريبية حية تسمع فيها الوكيل يردّ على رقمك.',
+    sectionEyebrow: 'استمع قبل أن تقرر',
+    sectionHeadline: 'عرض برحلاتك أنت.',
+    sectionSub: 'أخبرنا عن نشاطك وسيتواصل معك فريقنا لترتيب عرض.',
     fields: {
       name: 'اسمك',
-      namePlaceholder: 'أحمد حسن',
+      namePlaceholder: 'الاسم الكامل',
       business: 'اسم النشاط',
-      businessPlaceholder: 'Red Sea Divers Hurghada',
+      businessPlaceholder: 'اسم نشاطك',
       whatsapp: 'رقم واتساب',
-      whatsappPlaceholder: '+20 100 000 0000',
-      monthlyBookings: 'مكالمات واردة شهريًا (تقريبًا)',
+      whatsappPlaceholder: '+20 1XX XXX XXXX',
+      monthlyBookings: 'عدد استفسارات الضيوف شهريًا (تقريبًا)',
       monthlyBookingsOptions: [
         { value: 'lt-200', label: 'أقل من 200' },
-        { value: '200-1000', label: 'من 200 إلى 1000' },
-        { value: '1000-5000', label: 'من 1000 إلى 5000' },
-        { value: '5000-plus', label: '5000 أو أكثر' },
+        { value: '200-1000', label: 'من 200 إلى 1,000' },
+        { value: '1000-5000', label: 'من 1,000 إلى 5,000' },
+        { value: '5000-plus', label: '5,000 أو أكثر' },
       ],
     },
-    submit: 'احصل على التجربة',
-    submitting: 'جاري الإرسال...',
-    successTitle: 'تم استلام طلبك. سيف من فريقنا سيتواصل معك على واتساب خلال ساعة.',
-    successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أردت:',
+    submit: 'اطلب عرضًا',
+    submitting: 'جارٍ الإرسال...',
+    successTitle: 'شكرًا لك. وصلنا طلبك وسيتواصل معك فريقنا.',
+    successBody: 'يمكنك أيضًا بدء المحادثة الآن إن أحببت:',
     successWhatsapp: 'افتح واتساب',
-    errorGeneric: 'حدث خطأ. يُرجى المحاولة مرة أخرى بعد قليل.',
-    errorRateLimit: 'محاولات كثيرة. انتظر لحظة ثم حاول مرة أخرى.',
-    privacy:
-      'بإرسالك توافق على تواصل فريق Foxes معك. لا نشارك بياناتك أبدًا. رسالة واحدة، ثم لا إزعاج.',
+    errorMissing: 'يرجى تعبئة جميع الحقول: اسمك، واسم نشاطك، ورقم واتساب مع رمز الدولة، والعدد الشهري.',
+    errorGeneric: 'حدث خطأ. حاول مرة أخرى بعد قليل.',
+    errorRateLimit: 'محاولات كثيرة. انتظر قليلًا ثم حاول مرة أخرى.',
+    privacy: 'بإرسال هذا النموذج توافق على أن يتواصل معك فريق Foxes بشأن طلبك.',
   },
   finalCta: {
-    headline: 'بطّل تسيب التليفون يرنّ.',
-    sub: 'اسمع وكيلك بيردّ على رقمك أنت — بلغة عميلك أنت — خلال 48 ساعة.',
-    primary: 'ابدأ الآن',
-    secondary: 'تحدث معنا على واتساب',
+    headline: 'دع موقعك يجيب الضيف القادم.',
+    sub: 'الانضمام بدعوة. أرسل طلبًا وسيرد عليك فريقنا.',
+    primary: 'اطلب عرضًا',
+    secondary: 'تحدث معنا عبر واتساب',
   },
   whatsapp: {
-    floatLabel: 'اسمع تجربة',
-    prefilledMessage: 'مرحبًا، أريد سماع تجربة لوكيل الصوت الذكي من Foxes.',
+    floatLabel: 'اسأل عن AI Voice',
+    prefilledMessage: 'مرحبًا، أودّ عرضًا لـ AI Voice من Foxes.',
   },
   mobileStickyCta: {
-    primary: 'ابدأ الآن',
+    primary: 'اطلب عرضًا',
     secondary: 'واتساب',
   },
   exitIntent: {
-    eyebrow: 'لحظة قبل ما تمشي',
-    headline: 'تدقيق مكالمات المشغّل',
-    sub: 'اثني عشر سؤال حقيقي لازم كل مشغّل يجاوب عليهم عن مكالماته الواردة — نسبة الفايت، فجوة اللغة، نسبة استحواذ العربون، تغطية ما بعد الدوام. مجاني — اترك بريدك وسيرسله لك فريقنا.',
-    bullets: [
-      'معايير المكالمات الفايتة لكل تخصص',
-      'معايير التحويل لكل لغة',
-      'معادلات استحواذ العربون وعدم الحضور',
-    ],
+    eyebrow: 'قبل أن تغادر',
+    headline: 'هل تفضّل أن نراسلك نحن؟',
+    sub: 'اترك بريدك الإلكتروني وسيكتب لك أحد أفراد فريقنا عن AI Voice. ليست نشرة بريدية.',
+    bullets: ['يقرؤه فريقنا', 'رد بالعربية أو الإنجليزية', 'الانضمام بدعوة'],
     emailPlaceholder: 'you@yourbusiness.com',
-    submitLabel: 'أرسل لي التدقيق',
-    submittingLabel: 'جاري الإرسال...',
+    submitLabel: 'راسلوني',
+    submittingLabel: 'جارٍ الإرسال...',
     successTitle: 'شكرًا — وصلنا طلبك.',
-    successBody: 'سيرسله لك فريقنا عبر البريد الإلكتروني.',
-    privacy: 'نستخدم بريدك فقط لإرسال هذا الملف وللتواصل معك بشأن Foxes.',
+    successBody: 'سيكتب لك فريقنا.',
+    privacy: 'نستخدم بريدك فقط للرد عليك وللمتابعة معك بشأن Foxes.',
     dismissLabel: 'لا شكرًا',
   },
 };

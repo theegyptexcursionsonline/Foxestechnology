@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ExitIntentModal from '@/components/ExitIntentModal';
-import { joinPriorityList, PRIORITY_LIST_MESSAGES } from '@/lib/priority-list';
+import { joinPriorityList, PRIORITY_LIST_MESSAGES, typedEmail } from '@/lib/priority-list';
 import { Playfair_Display, Inter, Space_Grotesk } from 'next/font/google';
 import { ArrowRight, Check, Sparkles } from 'lucide-react';
 
@@ -18,19 +18,18 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const HERO_SLIDES = ['/coming-soon/hero.png', '/coming-soon/egypt.png', '/coming-soon/uae.png', '/coming-soon/saudi.png', '/coming-soon/oman.png'];
 const SLIDE_NAMES = ['The Middle East', 'Egypt', 'United Arab Emirates', 'Saudi Arabia', 'Oman'];
-const ROTATING_WORDS = ['technology', 'booking', 'operations', 'intelligence'];
 
 const STATS = [
-  { n: '4', l: 'countries' },
-  { n: '1', l: 'platform' },
-  { n: '∞', l: 'ways to grow' },
+  { n: '24/7', l: 'on your own website' },
+  { n: '2', l: 'languages for guests' },
+  { n: '1', l: 'place to run the day' },
 ];
 
 const FAQS = [
-  { q: 'When does Foxes Technology launch?', a: 'We are opening access in stages across Egypt, the GCC and the wider MENA region. Join the priority list and we will email you as soon as access opens.' },
-  { q: 'What exactly are you building?', a: 'One platform for tour & activity operators to take direct bookings, manage availability and run their whole operation — built for Egypt, the GCC and the wider MENA region.' },
-  { q: 'Who is it for?', a: 'Tour & activity operators, DMCs and attractions across Egypt, the GCC and MENA who want to take direct bookings and run their whole operation in one place.' },
-  { q: 'How do I get early access?', a: 'Join the priority list below and we will email you as soon as access opens. If you are ready to talk now, request access at foxestechnology.com/request-access and our team will follow up.' },
+  { q: 'When does Foxes Technology open?', a: 'Access is opening in stages across Egypt, the GCC and the wider MENA region, and there is no public date yet. Join the priority list and we will email you when access opens.' },
+  { q: 'What does it do?', a: 'It is software for tour and activity operators: a booking system with a widget for your own website, tools that answer guests’ questions on your site by voice and by search, and one place for your team to run the day.' },
+  { q: 'Who is it for?', a: 'Tour and activity operators, agencies and attractions in Egypt, the GCC and the wider MENA region who want direct bookings on their own website.' },
+  { q: 'How do I get access?', a: 'Access is by invitation. Request access at foxestechnology.com/request-access and our team will read your request and reply, or join the priority list and we will email you when access opens.' },
 ];
 
 const CSS = `
@@ -108,7 +107,6 @@ export default function ComingSoonPage() {
   const [hasShownExitIntent, setHasShownExitIntent] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [slide, setSlide] = useState(0);
-  const [wordIdx, setWordIdx] = useState(0);
   const spotRef = useRef<HTMLDivElement>(null);
 
   const onHeroMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -121,7 +119,6 @@ export default function ComingSoonPage() {
   };
 
   useEffect(() => { const t = setInterval(() => setSlide((s) => (s + 1) % HERO_SLIDES.length), 5500); return () => clearInterval(t); }, []);
-  useEffect(() => { const t = setInterval(() => setWordIdx((w) => (w + 1) % ROTATING_WORDS.length), 2600); return () => clearInterval(t); }, []);
 
   useEffect(() => {
     const onLeave = (e: MouseEvent) => { if (e.clientY <= 0 && !hasShownExitIntent && status !== 'success') { setShowExitIntent(true); setHasShownExitIntent(true); } };
@@ -134,7 +131,7 @@ export default function ComingSoonPage() {
     e.preventDefault();
     if (status === 'submitting' || status === 'success') return;
     setStatus('submitting');
-    const result = await joinPriorityList(email, typeof window !== 'undefined' ? window.location.pathname : undefined);
+    const result = await joinPriorityList(typedEmail(e.currentTarget, email), typeof window !== 'undefined' ? window.location.pathname : undefined);
     setStatus(result === 'ok' ? 'success' : 'error');
     setMessage(result === 'ok' ? PRIORITY_LIST_MESSAGES.success : PRIORITY_LIST_MESSAGES[result]);
   };
@@ -192,23 +189,14 @@ export default function ComingSoonPage() {
 
                 {/* headline */}
                 <motion.h1 variants={heroItem} style={serif} className="text-[2.05rem] font-medium leading-[1.06] tracking-[-0.02em] text-white drop-shadow-[0_8px_34px_rgba(0,0,0,0.6)] sm:text-[3.4rem] sm:leading-[1.02] lg:text-[4.5rem]">
-                  <span className="block">The future of travel</span>
-                  <span className="relative block">
-                    <span className="invisible" aria-hidden>intelligence</span>
-                    <span className="absolute inset-0 flex items-center justify-center">
-                      <AnimatePresence initial={false} mode="popLayout">
-                        <motion.span key={wordIdx} initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }} transition={{ duration: 0.55, ease: EASE }} className="fx-gold-shimmer inline-block pb-[0.08em]">
-                          {ROTATING_WORDS[wordIdx]}
-                        </motion.span>
-                      </AnimatePresence>
-                    </span>
-                  </span>
-                  <span className="block">is almost here.</span>
+                  <span className="block">Booking tools</span>
+                  <span className="fx-gold-shimmer block pb-[0.08em]">for tours</span>
+                  <span className="block">and activities.</span>
                 </motion.h1>
 
                 <motion.p variants={heroItem} className="mx-auto mt-6 max-w-md text-[14.5px] font-light leading-relaxed text-amber-50/70 sm:text-[15.5px]">
-                  We&apos;re building the next generation of travel technology for Egypt, the GCC &amp; MENA —
-                  one beautifully simple platform to take direct bookings and run your whole operation.
+                  Take direct bookings on your own website, answer guests day and night, and run the day from
+                  one place. Access is opening in stages across Egypt, the GCC &amp; MENA.
                 </motion.p>
 
                 <motion.div variants={heroItem} className="mt-8 flex w-full flex-col items-center sm:mt-9">
@@ -315,9 +303,7 @@ export default function ComingSoonPage() {
             <span style={serif} className="text-sm tracking-wide text-amber-50/70">Foxes Technology</span>
           </div>
           <div style={mono} className="flex gap-7 text-[11px] uppercase tracking-[0.22em] text-amber-50/40">
-            <a href="/contact" className="transition-colors hover:text-amber-100">Contact</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-amber-100">Instagram</a>
-            <a href="/privacy-policy" className="transition-colors hover:text-amber-100">Privacy</a>
+            <a href="/request-access?source=foxestechnology" className="transition-colors hover:text-amber-100">Request access</a>
           </div>
           <span className="text-[11px] text-amber-50/30">© 2026 Foxes Technology · Egypt · GCC · MENA</span>
         </div>
