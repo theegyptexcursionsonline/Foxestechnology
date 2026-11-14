@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ExitIntentModal from '@/components/ExitIntentModal';
-import { joinPriorityList, PRIORITY_LIST_MESSAGES, typedEmail } from '@/lib/priority-list';
+import { joinPriorityList, PRIORITY_LIST_MESSAGES } from '@/lib/priority-list';
+import { useAdoptTypedValues, useScriptReady } from '@/lib/use-script-ready';
 import { Playfair_Display, Inter, Space_Grotesk } from 'next/font/google';
 import { ArrowRight, Check, Sparkles } from 'lucide-react';
 
@@ -54,13 +55,19 @@ type SignupStatus = 'idle' | 'submitting' | 'success' | 'error';
 function Waitlist({ email, setEmail, onSubmit, status, message }: { email: string; setEmail: (v: string) => void; onSubmit: (e: React.FormEvent) => void; status: SignupStatus; message: string }) {
   const done = status === 'success';
   const busy = status === 'submitting';
+  const scriptReady = useScriptReady();
+  // An address typed before the script ran (slow connection) becomes the form's own.
+  const inputRef = useRef<HTMLInputElement>(null);
+  useAdoptTypedValues(inputRef, (input) => {
+    if (input.value) setEmail(input.value);
+  });
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-4">
       <form onSubmit={onSubmit} className="w-full">
         <div className="group relative rounded-[1.4rem] fx-hairline p-px transition focus-within:shadow-[0_0_0_3px_rgba(234,186,99,0.18)] sm:rounded-full">
           <div className="flex flex-col gap-2 rounded-[1.35rem] bg-[#120d09]/75 p-2 backdrop-blur-xl sm:flex-row sm:items-center sm:rounded-full sm:p-1.5">
-            <input type="email" required placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={done || busy} className="flex-1 rounded-xl bg-transparent px-4 py-3 text-[15px] text-white placeholder-amber-100/35 outline-none sm:rounded-full sm:px-5 sm:py-2.5" />
-            <button type="submit" disabled={done || busy} className="group/btn relative inline-flex w-full shrink-0 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 px-6 py-3 text-sm font-semibold tracking-wide text-[#1a1206] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-90 sm:w-auto sm:rounded-full sm:py-2.5" style={mono}>
+            <input ref={inputRef} type="email" required placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} disabled={done || busy} className="flex-1 rounded-xl bg-transparent px-4 py-3 text-[15px] text-white placeholder-amber-100/35 outline-none sm:rounded-full sm:px-5 sm:py-2.5" />
+            <button type="submit" disabled={!scriptReady || done || busy} className={`group/btn relative inline-flex w-full shrink-0 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 px-6 py-3 text-sm font-semibold tracking-wide text-[#1a1206] transition hover:brightness-105 active:scale-[0.98] sm:w-auto sm:rounded-full sm:py-2.5 ${done || busy ? 'opacity-90' : ''}`} style={mono}>
               <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
               {done ? (<><Check className="size-4" /> You&apos;re in</>) : busy ? (<>Sending…</>) : (<>Notify me <ArrowRight className="size-4 transition-transform group-hover/btn:translate-x-0.5" /></>)}
             </button>
@@ -131,7 +138,7 @@ export default function ComingSoonPage() {
     e.preventDefault();
     if (status === 'submitting' || status === 'success') return;
     setStatus('submitting');
-    const result = await joinPriorityList(typedEmail(e.currentTarget, email), typeof window !== 'undefined' ? window.location.pathname : undefined);
+    const result = await joinPriorityList(email.trim(), typeof window !== 'undefined' ? window.location.pathname : undefined);
     setStatus(result === 'ok' ? 'success' : 'error');
     setMessage(result === 'ok' ? PRIORITY_LIST_MESSAGES.success : PRIORITY_LIST_MESSAGES[result]);
   };

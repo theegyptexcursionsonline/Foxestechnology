@@ -3,8 +3,11 @@
  * launch date that has passed, a countdown, an unbacked sign-up count or launch pricing, and
  * its email forms must only confirm a sign-up after it has actually been recorded.
  */
+import { act } from 'react';
+import { hydrateRoot } from 'react-dom/client';
+import { renderToString } from 'react-dom/server';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, onTestFinished, vi } from 'vitest';
 import ComingSoonPage from '@/app/coming-soon/page';
 import ExitIntentModal from '@/components/ExitIntentModal';
 
@@ -67,14 +70,29 @@ describe('coming-soon page', () => {
     expect(JSON.parse(init.body)).toMatchObject({ email: 'qa@example.com', category: 'coming-soon' });
   });
 
-  it('sends the address the field shows, even when it was typed before the page finished loading', async () => {
+  it('keeps an address typed before the page finished loading, through the redraws that follow, and sends it', async () => {
     const fetchMock = mockFetch({ ok: true, status: 200, body: { ok: true } });
-    const { container } = render(<ComingSoonPage />);
-    const form = container.querySelector('form') as HTMLFormElement;
-    // Typed before the script loaded: the field has the address, the form's state does not.
-    (form.querySelector('input[type="email"]') as HTMLInputElement).value = 'early@example.test';
-    fireEvent.submit(form);
+    const host = document.createElement('div');
+    document.body.appendChild(host);
+    let root: ReturnType<typeof hydrateRoot> | null = null;
+    onTestFinished(() => {
+      act(() => root?.unmount());
+      host.remove();
+    });
+    host.innerHTML = renderToString(<ComingSoonPage />);
+    const field = () => host.querySelector('input[type="email"]') as HTMLInputElement;
+    // The visitor types into the server-sent field; no script has run yet.
+    field().value = 'early@example.test';
 
+    await act(async () => {
+      root = hydrateRoot(host, <ComingSoonPage />);
+    });
+    // The page has redrawn since (the button turned on): the address is still in the field.
+    expect(field()).toHaveValue('early@example.test');
+
+    await act(async () => {
+      fireEvent.submit(host.querySelector('form')!);
+    });
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({ email: 'early@example.test' });
   });

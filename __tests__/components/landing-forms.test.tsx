@@ -2,8 +2,11 @@
  * The forms and switches every landing page shares: the enquiry form's failure paths, the
  * "write to me" pop-up, and the language switch. The endpoints are faked; nothing is sent.
  */
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { act } from 'react';
+import { hydrateRoot } from 'react-dom/client';
+import { renderToString } from 'react-dom/server';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { afterEach, describe, expect, it, onTestFinished, vi } from 'vitest';
 import LeadForm from '@/components/operators/LeadForm';
 import OperatorExitIntent from '@/components/operators/OperatorExitIntent';
 import OperatorHeader from '@/components/operators/OperatorHeader';
@@ -116,20 +119,44 @@ describe('enquiry form', () => {
     expect(screen.getByRole('alert').textContent).not.toMatch(/[A-Za-z]{3,}/);
   });
 
-  it('uses what the fields show when they were filled before the page finished loading', async () => {
+  it('keeps what was typed before the page finished loading, through the redraws that follow', async () => {
     const fetchMock = fakeFetch({ ok: true, status: 200, body: { ok: true } });
-    const { container, copy } = renderLeadForm('en');
-    // Typed before the script ran: the fields have the values, the form's state does not.
-    const set = (label: string, value: string) => {
-      (screen.getByLabelText(label) as HTMLInputElement).value = value;
-    };
-    set(copy.leadForm.fields.name, 'Early Typist');
-    set(copy.leadForm.fields.business, 'Example Charters');
-    set(copy.leadForm.fields.whatsapp, '+20 100 555 0100');
-    set(copy.leadForm.fields.monthlyBookings, copy.leadForm.fields.monthlyBookingsOptions[1].value);
-    fireEvent.submit(container.querySelector('form')!);
-    expect(await screen.findByText(copy.leadForm.successTitle)).toBeInTheDocument();
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({ name: 'Early Typist', business: 'Example Charters', monthlyBookings: '50-200' });
+    const copy = getOperatorCopy('boat-operators', 'en');
+    const element = (
+      <LeadForm copy={copy.leadForm} category="boat-operators" locale="en" whatsappNumber={null} whatsappPrefilledMessage={copy.whatsapp.prefilledMessage} />
+    );
+    const host = document.createElement('div');
+    document.body.appendChild(host);
+    let root: ReturnType<typeof hydrateRoot> | null = null;
+    onTestFinished(() => {
+      act(() => root?.unmount());
+      host.remove();
+    });
+    host.innerHTML = renderToString(element);
+    const fieldFor = (label: string) => within(host).getByLabelText(label) as HTMLInputElement;
+    // The visitor types into the server-sent fields; no script has run yet.
+    fieldFor(copy.leadForm.fields.name).value = 'Early Typist';
+    fieldFor(copy.leadForm.fields.business).value = 'Example Charters';
+    fieldFor(copy.leadForm.fields.whatsapp).value = '+20 100 555 0100';
+    fieldFor(copy.leadForm.fields.monthlyBookings).value = copy.leadForm.fields.monthlyBookingsOptions[1].value;
+
+    await act(async () => {
+      root = hydrateRoot(host, element);
+    });
+    // The form has redrawn since (the button turned on, the page read its address): still there.
+    expect(fieldFor(copy.leadForm.fields.name)).toHaveValue('Early Typist');
+    expect(fieldFor(copy.leadForm.fields.whatsapp)).toHaveValue('+20 100 555 0100');
+
+    await act(async () => {
+      fireEvent.submit(host.querySelector('form')!);
+    });
+    expect(await within(host).findByText(copy.leadForm.successTitle)).toBeInTheDocument();
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      name: 'Early Typist',
+      business: 'Example Charters',
+      whatsapp: '+20 100 555 0100',
+      monthlyBookings: '50-200',
+    });
   });
 
   it('sends once however often the button is pressed while it is sending', async () => {

@@ -464,3 +464,107 @@ test.describe('links', () => {
     }
   });
 });
+
+/**
+ * A visitor on a slow connection types, and presses Enter, before the page's script has loaded.
+ * The script is held back here until the test lets it through, so the page is the bare HTML a
+ * slow phone shows first. Before 14 Nov 2026 the browser then submitted the request form itself,
+ * putting the name, email and phone in the address bar, and the other forms reloaded empty.
+ */
+test.describe('typing before the page script has loaded', () => {
+  async function holdScript(page: Page) {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => (release = resolve));
+    await page.route('**/_next/static/chunks/**', async (route) => {
+      await gate;
+      await route.continue();
+    });
+    return release;
+  }
+
+  /** Enter in a field of the bare HTML changes nothing: same address, the text still there. */
+  async function enterChangesNothing(page: Page, field: ReturnType<Page['locator']>, typed: string) {
+    const before = page.url();
+    await field.press('Enter');
+    await page.waitForTimeout(800);
+    expect(page.url(), 'the browser submitted the form itself').toBe(before);
+    await expect(field).toHaveValue(typed);
+  }
+
+  test('request access keeps what was typed and puts nothing in the address', async ({ page, baseURL }) => {
+    test.skip(!isLocal(baseURL), 'forms are exercised on a local build only');
+    const posts = recordPosts(page);
+    await page.route('**/api/request-access', answer(200, { ok: true }));
+    const release = await holdScript(page);
+    await open(page, '/request-access?solution=booking&source=foxestechnology');
+
+    await page.getByLabel('Full name').fill('Test Operator');
+    await page.getByLabel('Work email').fill('qa@example.test');
+    await page.getByLabel('Phone / WhatsApp').fill('+20 100 555 0100');
+    await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
+    await enterChangesNothing(page, page.getByLabel('Phone / WhatsApp'), '+20 100 555 0100');
+
+    release();
+    await waitForScript(page);
+    await expect(page.getByRole('button', { name: 'Continue' })).toBeEnabled();
+    await expect(page.getByLabel('Full name')).toHaveValue('Test Operator');
+    await page.getByRole('button', { name: 'Continue' }).click();
+    await page.getByLabel('Company / brand').fill('Example Tours');
+    await page.getByLabel('Business type').selectOption('Tour operator');
+    await page.getByLabel('Country / region').selectOption('Egypt');
+    await page.getByRole('button', { name: 'Continue' }).click();
+    await page.getByRole('checkbox').check();
+    await page.getByRole('button', { name: 'Request access' }).click();
+    await expect(page.getByRole('heading', { name: 'Request received' })).toBeVisible();
+    expect(posts).toHaveLength(1);
+    expect(posts[0]).toMatchObject({ body: { name: 'Test Operator', email: 'qa@example.test', phone: '+20 100 555 0100', company: 'Example Tours' } });
+  });
+
+  test('the enquiry form keeps what was typed and sends it', async ({ page, baseURL }) => {
+    test.skip(!isLocal(baseURL), 'forms are exercised on a local build only');
+    const posts = recordPosts(page);
+    await page.route('**/api/leads', answer(200, { ok: true }));
+    const release = await holdScript(page);
+    await open(page, '/operators/boat-operators');
+    const form = page.locator('#lead-form form').first();
+    await form.scrollIntoViewIfNeeded();
+    const name = form.locator('input[type="text"]:visible').nth(0);
+    await name.fill('Test Operator');
+    await form.locator('input[type="text"]:visible').nth(1).fill('Example Tours');
+    await form.locator('input[type="tel"]').fill('+20 100 555 0100');
+    await form.locator('select').selectOption({ index: 1 });
+    await expect(form.getByRole('button', { name: 'Ask for a demo' })).toBeDisabled();
+    await enterChangesNothing(page, name, 'Test Operator');
+
+    release();
+    await waitForScript(page, '#lead-form form');
+    await form.getByRole('button', { name: 'Ask for a demo' }).click();
+    await expect(page.getByText('Thank you. We have your request and our team will contact you.')).toBeVisible();
+    expect(posts).toHaveLength(1);
+    expect(posts[0]).toMatchObject({ url: '/api/leads', body: { name: 'Test Operator', business: 'Example Tours', whatsapp: '+20 100 555 0100' } });
+  });
+
+  for (const { path, scope, placeholder, button, category } of [
+    { path: '/', scope: 'body', placeholder: 'you@company.com', button: /notify me/i, category: 'coming-soon' },
+    { path: '/solutions/analytics', scope: 'footer', placeholder: 'Enter your email address', button: /keep me posted/i, category: 'newsletter' },
+  ]) {
+    test(`${path}: the e-mail sign-up keeps the address typed early and sends it`, async ({ page, baseURL }) => {
+      test.skip(!isLocal(baseURL), 'forms are exercised on a local build only');
+      const posts = recordPosts(page);
+      await page.route('**/api/leads/magnet', answer(200, { ok: true }));
+      const release = await holdScript(page);
+      await open(page, path);
+      const area = page.locator(scope).first();
+      const field = area.getByPlaceholder(placeholder).first();
+      await field.fill('qa@example.test');
+      await expect(area.getByRole('button', { name: button }).first()).toBeDisabled();
+      await enterChangesNothing(page, field, 'qa@example.test');
+
+      release();
+      await waitForScript(page, `${scope} form`);
+      await area.getByRole('button', { name: button }).first().click();
+      await expect.poll(() => posts.length).toBe(1);
+      expect(posts[0]).toMatchObject({ url: '/api/leads/magnet', body: { email: 'qa@example.test', category } });
+    });
+  }
+});

@@ -46,13 +46,3 @@ export const PRIORITY_LIST_MESSAGES = {
   rate_limited: 'Too many attempts. Please wait a moment and try again.',
   error: 'Something went wrong. Please try again in a moment.',
 } as const;
-
-/**
- * The address in a sign-up form as the visitor sees it. These forms arrive as HTML, so someone
- * on a slow connection can type before the script has loaded; the field then shows an address
- * that the form's own state does not have yet. Read the field, and fall back to the state.
- */
-export function typedEmail(form: EventTarget | null, fromState: string): string {
-  const field = form instanceof HTMLFormElement ? form.querySelector<HTMLInputElement>('input[type="email"]') : null;
-  return (field?.value ?? '').trim() || fromState.trim();
-}

@@ -1,4 +1,4 @@
-import type { OperatorCategory, Locale } from './i18n/operators';
+import type { OperatorCategory } from './i18n/operators';
 
 export interface EcosystemCard {
   id: string;

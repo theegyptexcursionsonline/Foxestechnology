@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useId, useEffect } from 'react';
+import { useState, useId, useEffect, useRef } from 'react';
+import { fieldValue, useAdoptTypedValues, useScriptReady } from '@/lib/use-script-ready';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Loader2, MessageCircle } from 'lucide-react';
 import type { OperatorCopy, OperatorCategory, Locale } from '@/lib/i18n/operators';
@@ -50,6 +51,16 @@ export default function LeadForm({
   const [honeypot, setHoneypot] = useState('');
 
   const [sourcePath, setSourcePath] = useState('');
+  const scriptReady = useScriptReady();
+  // The form arrives as HTML, so a visitor on a slow connection can type before the script runs.
+  const formRef = useRef<HTMLFormElement>(null);
+  useAdoptTypedValues(formRef, (form) => {
+    const typed = (suffix: string) => fieldValue(form, `[id="${baseId}-${suffix}"]`);
+    if (typed('name')) setName(typed('name'));
+    if (typed('business')) setBusiness(typed('business'));
+    if (typed('whatsapp')) setWhatsapp(typed('whatsapp'));
+    if (typed('bookings')) setMonthlyBookings(typed('bookings'));
+  });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -63,17 +74,10 @@ export default function LeadForm({
     e.preventDefault();
     if (status === 'submitting') return;
 
-    // The form arrives as HTML, so a visitor can type before the script has loaded and the state
-    // never hears of it. Read what the fields show now, falling back to the state.
-    const form = e.currentTarget as HTMLFormElement;
-    const shown = (suffix: string, fromState: string) => {
-      const el = form.querySelector<HTMLInputElement | HTMLSelectElement>(`[id="${baseId}-${suffix}"]`);
-      return el && el.value !== '' ? el.value : fromState;
-    };
-    const name = shown('name', nameState);
-    const business = shown('business', businessState);
-    const whatsapp = shown('whatsapp', whatsappState);
-    const monthlyBookings = shown('bookings', monthlyBookingsState);
+    const name = nameState;
+    const business = businessState;
+    const whatsapp = whatsappState;
+    const monthlyBookings = monthlyBookingsState;
 
     // The form is noValidate so the message is ours and in the page's language. Check here what
     // the endpoint checks, so an empty form is never sent only to come back as "something went wrong".
@@ -191,6 +195,7 @@ export default function LeadForm({
           </motion.div>
         ) : (
           <motion.form
+            ref={formRef}
             key="form"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -315,8 +320,8 @@ export default function LeadForm({
 
             <button
               type="submit"
-              disabled={status === 'submitting'}
-              className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-red-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-red-600/30 transition hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40 disabled:cursor-not-allowed disabled:opacity-70"
+              disabled={!scriptReady || status === 'submitting'}
+              className={`group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-red-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-red-600/30 transition hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40 ${status === 'submitting' ? 'cursor-not-allowed opacity-70' : ''}`}
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               {status === 'submitting' ? (

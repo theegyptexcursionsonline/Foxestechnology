@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { joinNewsletter, PRIORITY_LIST_MESSAGES, typedEmail } from '@/lib/priority-list';
+import { joinNewsletter, PRIORITY_LIST_MESSAGES } from '@/lib/priority-list';
+import { useAdoptTypedValues, useScriptReady } from '@/lib/use-script-ready';
 
 // --- Enhanced Logo Component ---
 const FoxesLogo = () => (
@@ -52,13 +53,19 @@ const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const scriptReady = useScriptReady();
+  // An address typed before the script ran (slow connection) becomes the form's own.
+  const inputRef = useRef<HTMLInputElement>(null);
+  useAdoptTypedValues(inputRef, (input) => {
+    if (input.value) setEmail(input.value);
+  });
 
   // Confirm only once the lead endpoint has recorded the address.
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (status === 'loading') return;
     setStatus('loading');
-    const result = await joinNewsletter(typedEmail(e.currentTarget, email), typeof window !== 'undefined' ? window.location.pathname : undefined);
+    const result = await joinNewsletter(email.trim(), typeof window !== 'undefined' ? window.location.pathname : undefined);
     if (result !== 'ok') {
       setStatus('error');
       setMessage(PRIORITY_LIST_MESSAGES[result]);
@@ -98,6 +105,7 @@ const NewsletterSignup = () => {
         <form onSubmit={handleSubmit} className="space-y-3">
           <div className="relative">
             <input
+              ref={inputRef}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -108,8 +116,8 @@ const NewsletterSignup = () => {
           </div>
           <button
             type="submit"
-            disabled={status === 'loading'}
-            className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-red-600 shadow-lg transition-all hover:bg-white hover:shadow-xl disabled:opacity-50"
+            disabled={!scriptReady || status === 'loading'}
+            className={`group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-red-600 shadow-lg transition-all hover:bg-white hover:shadow-xl ${status === 'loading' ? 'opacity-50' : ''}`}
           >
             {status === 'loading' ? 'Sending...' : status === 'success' ? '✓ You’re on the list' : 'Keep me posted'}
             {status === 'idle' && <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />}

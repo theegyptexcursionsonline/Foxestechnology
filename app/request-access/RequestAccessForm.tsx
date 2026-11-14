@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type FormEvent, type InputHTMLAttributes, type ReactNode } from "react";
+import { fieldValue, useAdoptTypedValues, useScriptReady } from "@/lib/use-script-ready";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -105,18 +106,14 @@ export function RequestAccessForm({ solution, source }: RequestAccessFormProps) 
   // The first step arrives as HTML, so a visitor can type before this script runs. Take what is
   // already in the fields, or "Continue" would ask for a name the field is showing.
   const formRef = useRef<HTMLFormElement>(null);
-  useEffect(() => {
-    const form = formRef.current;
-    if (!form) return;
-    const typed = (field: string) => {
-      const el = form.elements.namedItem(field);
-      return el instanceof HTMLInputElement || el instanceof HTMLSelectElement ? el.value : "";
-    };
+  const scriptReady = useScriptReady();
+  useAdoptTypedValues(formRef, (form) => {
+    const typed = (field: string) => fieldValue(form, `[name="${field}"]`);
     if (typed("name")) setName(typed("name"));
     if (typed("email")) setEmail(typed("email"));
     if (typed("phone")) setPhone(typed("phone"));
     if (typed("role")) setRole(typed("role"));
-  }, []);
+  });
 
   const toggleSolution = (key: string) =>
     setSolutions((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
@@ -360,8 +357,8 @@ export function RequestAccessForm({ solution, source }: RequestAccessFormProps) 
                       )}
                       <button
                         type="submit"
-                        disabled={busy}
-                        className="group flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-600 to-orange-600 px-4 text-sm font-semibold text-white shadow-lg shadow-red-900/40 transition hover:shadow-xl hover:shadow-red-900/50 disabled:opacity-60"
+                        disabled={!scriptReady || busy}
+                        className={`group flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-600 to-orange-600 px-4 text-sm font-semibold text-white shadow-lg shadow-red-900/40 transition hover:shadow-xl hover:shadow-red-900/50 ${busy ? "opacity-60" : ""}`}
                       >
                         {busy ? "Submitting…" : step < STEPS.length - 1 ? "Continue" : "Request access"}
                         {!busy && <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />}
