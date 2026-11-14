@@ -63,6 +63,8 @@ const BOOKING_ONLY: Banned[] = [
   { claim: 'dive certificates, courses or equipment tracking', pattern: /\bPADI\b|\bSSI\b|certif|equipment|شهادات|معدات/i },
   { claim: 'seating, menus or dietary handling', pattern: /seating|dietary|menu|vegetarian|قائمة الطعام/i },
   { claim: 'WhatsApp or other message channels sent by the product', pattern: /whatsapp (?:scripts?|confirmation|reminder)|تأكيد عبر واتساب/i },
+  // Staff cannot issue gift cards and guests cannot buy one while card payment is off (15 Nov 2026).
+  { claim: 'gift cards', pattern: /gift.?cards?|بطاقات? (?:ال)?هدايا|بطاقة هدية/i },
 ];
 
 const VOICE_ONLY: Banned[] = [

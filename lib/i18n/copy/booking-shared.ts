@@ -155,8 +155,8 @@ const base: Record<Locale, Omit<OperatorCopy, 'meta' | 'pricing'>> = {
           description: 'Invite an agent to book at a commission percentage. Each booking shows the commission and what you receive.',
         },
         {
-          title: 'Coupons and gift cards',
-          description: 'Create discount codes and gift cards that guests can use when they book.',
+          title: 'Discount codes',
+          description: 'Create discount codes that guests enter when they book.',
         },
         {
           title: 'Connect another system',
@@ -395,8 +395,8 @@ const base: Record<Locale, Omit<OperatorCopy, 'meta' | 'pricing'>> = {
           description: 'ادعُ وكيلًا ليحجز بنسبة عمولة. يعرض كل حجز العمولة وما تستلمه أنت.',
         },
         {
-          title: 'القسائم الترويجية وبطاقات الهدايا',
-          description: 'أنشئ أكواد خصم وبطاقات هدايا يستخدمها الضيوف عند الحجز.',
+          title: 'أكواد الخصم',
+          description: 'أنشئ أكواد خصم يُدخلها الضيوف عند الحجز.',
         },
         {
           title: 'اربط نظامًا آخر',
