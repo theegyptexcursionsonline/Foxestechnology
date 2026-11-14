@@ -1,3 +1,5 @@
+// First: nothing under test may reach a real provider (see the file).
+import './test-support/no-outside-network';
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 import { afterEach, vi } from 'vitest';

@@ -41,6 +41,12 @@ export default defineConfig({
         env: {
           NEXT_PUBLIC_SHOW_COMING_SOON: 'true',
           CRM_ACCESS_REQUEST_URL: 'http://127.0.0.1:9/disabled-in-browser-tests',
+          // No real provider for the local build, even if the shell carries a key.
+          MAILGUN_API_KEY: '',
+          MAILGUN_DOMAIN: '',
+          LEADS_NOTIFY_TO: '',
+          LEADS_BACKEND_URL: '',
+          LEADS_BACKEND_TOKEN: '',
         },
       },
 });
