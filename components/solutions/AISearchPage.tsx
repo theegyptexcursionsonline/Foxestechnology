@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { HERO_IMAGE_SIZES } from '@/lib/hero-image';
 import Link from 'next/link';
 import { useState } from 'react';
 import {
@@ -297,6 +298,7 @@ function HeroVisual({ locale }: { locale: Locale }) {
           alt=""
           width={1400}
           height={1000}
+          sizes={HERO_IMAGE_SIZES}
           priority
           className="h-[540px] w-full object-cover sm:h-[580px]"
         />
