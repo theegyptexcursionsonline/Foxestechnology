@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { CATEGORY_PATTERN, cleanLine, cleanUtm, escapeHtml, sendLeadMail } from '@/lib/lead-delivery';
 
 export const runtime = 'nodejs';
 
@@ -47,10 +48,11 @@ function validate(body: unknown): { ok: true; data: MagnetPayload } | { ok: fals
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: 'invalid_email' };
   if (email.length > 254) return { ok: false, error: 'email_too_long' };
 
-  const category = typeof b.category === 'string' ? b.category.trim() : '';
+  const category = cleanLine(b.category, 80);
   if (!category) return { ok: false, error: 'missing_category' };
+  if (!CATEGORY_PATTERN.test(category)) return { ok: false, error: 'invalid_category' };
 
-  const magnet = typeof b.magnet === 'string' ? b.magnet.trim() : 'lead-magnet';
+  const magnet = cleanLine(b.magnet, 80) || 'lead-magnet';
   const locale: 'en' | 'ar' = b.locale === 'ar' ? 'ar' : 'en';
 
   return {
@@ -60,29 +62,13 @@ function validate(body: unknown): { ok: true; data: MagnetPayload } | { ok: fals
       category,
       magnet,
       locale,
-      source: typeof b.source === 'string' ? b.source : undefined,
-      utm: typeof b.utm === 'object' && b.utm !== null ? (b.utm as Record<string, string>) : undefined,
+      source: cleanLine(b.source, 300) || undefined,
+      utm: cleanUtm(b.utm),
     },
   };
 }
 
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-async function notify(payload: MagnetPayload): Promise<{ sent: boolean; reason?: string }> {
-  const apiKey = process.env.MAILGUN_API_KEY;
-  const domain = process.env.MAILGUN_DOMAIN;
-  const to = process.env.LEADS_NOTIFY_TO ?? 'sales@foxestechnology.com';
-  const from = `Foxes Lead Magnets <leads@${domain ?? 'hello.foxestechnology.com'}>`;
-
-  if (!apiKey || !domain) return { sent: false, reason: 'mailgun_not_configured' };
-
+async function notify(payload: MagnetPayload) {
   const utmLines = payload.utm
     ? Object.entries(payload.utm)
         .map(([k, v]) => `  ${k}: ${v}`)
@@ -113,30 +99,14 @@ async function notify(payload: MagnetPayload): Promise<{ sent: boolean; reason?:
     </div>
   `;
 
-  const formData = new URLSearchParams();
-  formData.append('from', from);
-  formData.append('to', to);
-  formData.append('subject', `Lead magnet · ${payload.category} · ${payload.email}`);
-  formData.append('text', text);
-  formData.append('html', html);
-  formData.append('h:Reply-To', payload.email);
-  formData.append('o:tag', `lead-magnet:${payload.category}`);
-
-  const auth = Buffer.from(`api:${apiKey}`).toString('base64');
-  const res = await fetch(`https://api.mailgun.net/v3/${domain}/messages`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${auth}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: formData.toString(),
+  return sendLeadMail({
+    fromName: 'Foxes Lead Magnets',
+    subject: `Lead magnet · ${payload.category} · ${payload.email}`,
+    text,
+    html,
+    replyTo: payload.email,
+    tag: `lead-magnet:${payload.category}`,
   });
-
-  if (!res.ok) {
-    const reason = await res.text().catch(() => 'unknown');
-    return { sent: false, reason: `mailgun_${res.status}: ${reason.slice(0, 200)}` };
-  }
-  return { sent: true };
 }
 
 async function forwardToBackend(payload: MagnetPayload): Promise<{ forwarded: boolean }> {

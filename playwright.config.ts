@@ -45,6 +45,7 @@ export default defineConfig({
           MAILGUN_API_KEY: '',
           MAILGUN_DOMAIN: '',
           LEADS_NOTIFY_TO: '',
+          MAILGUN_API_BASE: '',
           LEADS_BACKEND_URL: '',
           LEADS_BACKEND_TOKEN: '',
         },

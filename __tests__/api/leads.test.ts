@@ -33,6 +33,8 @@ function post(body: unknown, ip = freshIp()) {
   );
 }
 
+const HOSTILE = { ...VALID, business: 'Example\r\nBcc: x@evil.example <script>x</script>', utm: { utm_source: 'ad\n<script>', evil: 'x'.repeat(5000) } };
+
 const fetchMock = vi.fn();
 
 beforeEach(() => {
@@ -52,6 +54,7 @@ describe('POST /api/leads', () => {
   it('e-mails our team and confirms, with the visitor’s details and no reply-time promise', async () => {
     vi.stubEnv('MAILGUN_API_KEY', 'test-key');
     vi.stubEnv('MAILGUN_DOMAIN', 'mail.example.test');
+    vi.stubEnv('LEADS_NOTIFY_TO', 'team@foxes.example.test');
     fetchMock.mockResolvedValue({ ok: true, status: 200, text: async () => 'queued' });
 
     const res = await post(VALID);
@@ -62,7 +65,7 @@ describe('POST /api/leads', () => {
     const [url, init] = fetchMock.mock.calls[0];
     expect(url).toBe('https://api.mailgun.net/v3/mail.example.test/messages');
     const sent = new URLSearchParams(init.body as string);
-    expect(sent.get('to')).toBe('sales@foxestechnology.com');
+    expect(sent.getAll('to')).toEqual(['team@foxes.example.test']);
     expect(sent.get('text')).toContain('Example Charters');
     expect(sent.get('text')).toContain('+20 100 555 0100');
     expect(sent.get('html')).not.toMatch(/within 1 hour|SLA/i);
@@ -123,6 +126,8 @@ describe('POST /api/leads', () => {
     ['a number that is not a phone number', { ...VALID, whatsapp: 'call me' }, 'Invalid WhatsApp number'],
     ['a filled-in trap field', { ...VALID, honeypot: 'https://spam.example' }, 'Bot detected'],
     ['a body that is not an object', 'null', 'Invalid payload'],
+    ['a page name that is not one of ours', { ...VALID, category: 'Boat Operators <b>' }, 'Invalid category'],
+    ['an over-long monthly figure', { ...VALID, monthlyBookings: '9'.repeat(50) }, 'Invalid monthly bookings'],
   ])('refuses %s and sends nothing', async (_label, body, error) => {
     const res = await post(body);
     expect(res.status).toBe(400);
@@ -143,5 +148,66 @@ describe('POST /api/leads', () => {
     expect(sixth.status).toBe(429);
     expect(await sixth.json()).toEqual({ ok: false, error: 'rate_limited' });
     expect((await post({ ...VALID, name: '' })).status).toBe(400);
+  });
+
+  describe('destination', () => {
+    beforeEach(() => {
+      vi.stubEnv('MAILGUN_API_KEY', 'test-key');
+      vi.stubEnv('MAILGUN_DOMAIN', 'mail.example.test');
+      fetchMock.mockResolvedValue({ ok: true, status: 200, text: async () => 'queued' });
+    });
+
+    it('goes only to the configured team inbox, never to an address in the code', async () => {
+      vi.stubEnv('LEADS_NOTIFY_TO', ' Sales@Foxes.Example.test , ops@foxes.example.test ');
+      expect((await post(VALID)).status).toBe(200);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      const sent = new URLSearchParams(fetchMock.mock.calls[0][1].body as string);
+      expect(sent.getAll('to')).toEqual(['sales@foxes.example.test', 'ops@foxes.example.test']);
+      expect(sent.get('cc')).toBeNull();
+      expect(sent.get('bcc')).toBeNull();
+      expect(sent.get('from')).toMatch(/@mail\.example\.test>$/);
+    });
+
+    it.each([
+      ['no inbox is set', ''],
+      ['the inbox setting is not an address', 'sales-team'],
+      ['one of the inboxes is malformed', 'sales@foxes.example.test, nope'],
+    ])('sends nothing and answers with an error when %s', async (_label, value) => {
+      vi.stubEnv('LEADS_NOTIFY_TO', value);
+      const res = await post(VALID);
+      expect(res.status).toBe(502);
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+
+    it('refuses an inbox outside the allowed domains', async () => {
+      vi.stubEnv('LEADS_NOTIFY_TO', 'someone@outside.example');
+      vi.stubEnv('LEADS_NOTIFY_ALLOWED_DOMAINS', 'foxes.example.test');
+      expect((await post(VALID)).status).toBe(502);
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+
+    it('uses the configured provider address for a regional provider', async () => {
+      vi.stubEnv('LEADS_NOTIFY_TO', 'team@foxes.example.test');
+      vi.stubEnv('MAILGUN_API_BASE', 'https://api.eu.mailgun.net/');
+      expect((await post(VALID)).status).toBe(200);
+      expect(fetchMock.mock.calls[0][0]).toBe('https://api.eu.mailgun.net/v3/mail.example.test/messages');
+    });
+
+    it('answers with an error, not a success, when the provider cannot be reached', async () => {
+      vi.stubEnv('LEADS_NOTIFY_TO', 'team@foxes.example.test');
+      fetchMock.mockRejectedValue(new Error('connect ECONNREFUSED'));
+      const res = await post(VALID);
+      expect(res.status).toBe(502);
+      expect(await res.json()).toEqual({ ok: false, error: 'delivery_failed' });
+    });
+
+    it('keeps visitor line breaks and markup out of the subject and the message', async () => {
+      vi.stubEnv('LEADS_NOTIFY_TO', 'team@foxes.example.test');
+      expect((await post(HOSTILE)).status).toBe(200);
+      const sent = new URLSearchParams(fetchMock.mock.calls[0][1].body as string);
+      expect(sent.get('subject')).not.toMatch(/[\r\n]/);
+      expect(sent.get('html')).not.toContain('<script>');
+      expect(sent.get('text')!.length).toBeLessThan(3000);
+    });
   });
 });

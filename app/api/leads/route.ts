@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { CATEGORY_PATTERN, cleanLine, cleanUtm, escapeHtml, sendLeadMail } from '@/lib/lead-delivery';
 
 export const runtime = 'nodejs';
 
@@ -53,15 +54,17 @@ function validate(body: unknown): { ok: true; data: LeadPayload } | { ok: false;
     }
   }
 
-  const name = (b.name as string).trim();
-  const business = (b.business as string).trim();
-  const whatsapp = (b.whatsapp as string).trim();
-  const monthlyBookings = (b.monthlyBookings as string).trim();
-  const category = (b.category as string).trim();
+  const name = cleanLine(b.name, 200);
+  const business = cleanLine(b.business, 300);
+  const whatsapp = cleanLine(b.whatsapp, 40);
+  const monthlyBookings = cleanLine(b.monthlyBookings, 60);
+  const category = cleanLine(b.category, 80);
 
   if (name.length < 2 || name.length > 120) return { ok: false, error: 'Invalid name' };
   if (business.length < 2 || business.length > 200) return { ok: false, error: 'Invalid business name' };
   if (!/^[+\d\s\-()]{7,25}$/.test(whatsapp)) return { ok: false, error: 'Invalid WhatsApp number' };
+  if (monthlyBookings.length === 0 || monthlyBookings.length > 40) return { ok: false, error: 'Invalid monthly bookings' };
+  if (!CATEGORY_PATTERN.test(category)) return { ok: false, error: 'Invalid category' };
 
   const locale: 'en' | 'ar' = b.locale === 'ar' ? 'ar' : 'en';
 
@@ -74,22 +77,13 @@ function validate(body: unknown): { ok: true; data: LeadPayload } | { ok: false;
       monthlyBookings,
       category,
       locale,
-      source: typeof b.source === 'string' ? b.source : undefined,
-      utm: typeof b.utm === 'object' && b.utm !== null ? (b.utm as Record<string, string>) : undefined,
+      source: cleanLine(b.source, 300) || undefined,
+      utm: cleanUtm(b.utm),
     },
   };
 }
 
-async function sendMailgunNotification(lead: LeadPayload): Promise<{ sent: boolean; reason?: string }> {
-  const apiKey = process.env.MAILGUN_API_KEY;
-  const domain = process.env.MAILGUN_DOMAIN;
-  const to = process.env.LEADS_NOTIFY_TO ?? 'sales@foxestechnology.com';
-  const from = process.env.LEADS_NOTIFY_FROM ?? `Foxes Leads <leads@${domain ?? 'hello.foxestechnology.com'}>`;
-
-  if (!apiKey || !domain) {
-    return { sent: false, reason: 'Mailgun env not configured' };
-  }
-
+async function sendMailgunNotification(lead: LeadPayload) {
   const utmLines = lead.utm
     ? Object.entries(lead.utm)
         .map(([k, v]) => `  ${k}: ${v}`)
@@ -128,29 +122,14 @@ async function sendMailgunNotification(lead: LeadPayload): Promise<{ sent: boole
     </div>
   `;
 
-  const formData = new URLSearchParams();
-  formData.append('from', from);
-  formData.append('to', to);
-  formData.append('subject', `New lead · ${lead.business} · ${lead.category}`);
-  formData.append('text', text);
-  formData.append('html', html);
-  formData.append('h:Reply-To', `lead-${Date.now()}@${domain}`);
-
-  const auth = Buffer.from(`api:${apiKey}`).toString('base64');
-  const res = await fetch(`https://api.mailgun.net/v3/${domain}/messages`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${auth}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: formData.toString(),
+  const domain = process.env.MAILGUN_DOMAIN ?? 'hello.foxestechnology.com';
+  return sendLeadMail({
+    fromName: 'Foxes Leads',
+    subject: `New lead · ${lead.business} · ${lead.category}`,
+    text,
+    html,
+    replyTo: `lead-${Date.now()}@${domain}`,
   });
-
-  if (!res.ok) {
-    const reason = await res.text().catch(() => 'unknown');
-    return { sent: false, reason: `Mailgun ${res.status}: ${reason.slice(0, 200)}` };
-  }
-  return { sent: true };
 }
 
 async function forwardToBackend(lead: LeadPayload): Promise<{ forwarded: boolean; reason?: string }> {
@@ -176,15 +155,6 @@ async function forwardToBackend(lead: LeadPayload): Promise<{ forwarded: boolean
   } catch (err) {
     return { forwarded: false, reason: err instanceof Error ? err.message : 'unknown' };
   }
-}
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
 }
 
 export async function POST(req: NextRequest) {
