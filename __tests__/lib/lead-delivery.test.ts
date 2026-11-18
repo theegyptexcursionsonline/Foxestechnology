@@ -60,20 +60,23 @@ describe('cleanLine / cleanUtm', () => {
 });
 
 describe('no outside mailbox in the site source', () => {
-  it('names no personal or developer mailbox anywhere a form could send to', () => {
-    const roots = ['app', 'components', 'lib'];
-    const hits: string[] = [];
+  // Every address written in the pages is a Foxes address or an obvious form placeholder.
+  const PLACEHOLDER = /^(example\.com|company\.com|your[a-z]+\.com)$/;
+  it('names only Foxes addresses, so no form can be pointed at an outside mailbox from the code', () => {
+    const found = new Set<string>();
     const walk = (dir: string) => {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         const full = path.join(dir, entry.name);
         if (entry.isDirectory()) walk(full);
         else if (/\.(ts|tsx)$/.test(entry.name)) {
-          const text = fs.readFileSync(full, 'utf8');
-          if (/@(gmail|yahoo|hotmail|outlook)\.com|rdmi/i.test(text)) hits.push(full);
+          for (const m of fs.readFileSync(full, 'utf8').matchAll(/[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+)/g)) {
+            const domain = m[1].toLowerCase();
+            if (!/(^|\.)foxestechnology\.com$/.test(domain) && !PLACEHOLDER.test(domain)) found.add(`${full}: ${domain}`);
+          }
         }
       }
     };
-    for (const root of roots) walk(path.join(process.cwd(), root));
-    expect(hits).toEqual([]);
+    for (const root of ['app', 'components', 'lib']) walk(path.join(process.cwd(), root));
+    expect([...found]).toEqual([]);
   });
 });
