@@ -1,6 +1,13 @@
 // Every Foxes solution funnels its sign-up to /request-access?solution=<key>&source=<app>. The key
 // picks the heading, the blurb and the interest that is ticked in advance; `signIn` is where an
 // approved customer of that solution signs in.
+//
+// An approved business opens AI Booking, AI Search and FoxesConnect from the Foxes client portal
+// (one sign-in, then each product opens already signed in). Their own sign-in pages sit behind a
+// "coming soon" access code until each product opens to the public, so pointing an approved
+// customer there was a dead end.
+export const PORTAL_SIGN_IN = "https://support.foxestechnology.com/login";
+
 interface Solution {
   label: string;
   blurb: string;
@@ -11,7 +18,7 @@ export const SOLUTIONS = {
   booking: {
     label: "AI Booking Engine",
     blurb: "A booking system for tour and activity operators, with a booking widget for your own website.",
-    signIn: "https://booking.foxestechnology.com/login",
+    signIn: PORTAL_SIGN_IN,
   },
   voice: {
     label: "AI Voice Agent",
@@ -21,7 +28,7 @@ export const SOLUTIONS = {
   search: {
     label: "AI Search Agent",
     blurb: "A search and chat widget that answers visitors from your own tours.",
-    signIn: "https://search.foxestechnology.com/login",
+    signIn: PORTAL_SIGN_IN,
   },
   attractions: {
     label: "Attractions Network",
@@ -32,8 +39,10 @@ export const SOLUTIONS = {
     blurb: "Online booking for airport transfers.",
   },
   support: {
-    label: "Support Portal",
-    blurb: "A support desk for your team and your customers.",
+    // The key stays "support": the portal files these requests under it.
+    label: "FoxesConnect",
+    blurb: "A shared inbox for your customer conversations, with an assistant that answers from your own knowledge and hands over to your team.",
+    signIn: PORTAL_SIGN_IN,
   },
 } satisfies Record<string, Solution>;
 

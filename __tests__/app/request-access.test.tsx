@@ -152,14 +152,31 @@ describe('request access page', () => {
     expect(screen.getByRole('button', { name: 'Request access' })).toBeEnabled();
   });
 
-  it("sends an approved customer to their own product's sign-in", async () => {
-    // It pointed every approved customer at this site's home page.
-    const { unmount } = await renderPage({ solution: 'booking' });
-    expect(screen.getByRole('link', { name: 'Sign in to AI Booking Engine' })).toHaveAttribute('href', 'https://booking.foxestechnology.com/login');
+  it("sends an approved customer to a sign-in that opens, never a coming-soon wall", async () => {
+    // It pointed every approved customer at this site's home page, and later at AI Booking's and
+    // AI Search's own sign-in pages, which sit behind a coming-soon access code.
+    const { unmount } = await renderPage({ solution: 'voice' });
+    expect(screen.getByRole('link', { name: 'Sign in to AI Voice Agent' })).toHaveAttribute('href', 'https://voice.foxestechnology.com/login');
     unmount();
+
+    for (const [solution, label] of [['booking', 'AI Booking Engine'], ['search', 'AI Search Agent'], ['support', 'FoxesConnect']] as const) {
+      const view = await renderPage({ solution });
+      expect(screen.getByRole('link', { name: `Sign in to the client portal to open ${label}` })).toHaveAttribute('href', 'https://support.foxestechnology.com/login');
+      view.unmount();
+    }
 
     await renderPage({ solution: 'attractions' });
     expect(screen.queryByRole('link', { name: /^Sign in to/ })).not.toBeInTheDocument();
     expect(screen.getByText(/Sign in on your product's own site/)).toBeInTheDocument();
+  });
+});
+
+describe('request access catalogue', () => {
+  it('names FoxesConnect, the product sold, for the support key the portal files requests under', async () => {
+    const { SOLUTIONS, signInFor } = await import('@/app/request-access/solutions');
+    expect(SOLUTIONS.support.label).toBe('FoxesConnect');
+    expect(Object.values(SOLUTIONS).map((s) => s.label)).not.toContain('Support Portal');
+    // No approved customer is sent to a product sign-in that is still behind its access code.
+    for (const key of ['booking', 'search', 'support'] as const) expect(signInFor(key)).toBe('https://support.foxestechnology.com/login');
   });
 });

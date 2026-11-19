@@ -102,10 +102,12 @@ describe('internal links on the public pages', () => {
     expect(missing).toEqual([]);
   });
 
-  it('sign-in hand-off goes to each product’s own secure address, never to a page here', () => {
+  it('sign-in hand-off goes to a secure Foxes sign-in that is open today, never to a page here', () => {
+    // AI Booking's and AI Search's own sign-in pages sit behind a coming-soon access code, so an
+    // approved customer signs in at the client portal and opens the product from there.
     const signIns = Object.values(SOLUTIONS).flatMap((s) => ('signIn' in s && s.signIn ? [s.signIn] : []));
-    expect(signIns.length).toBe(3);
-    for (const url of signIns) expect(url).toMatch(/^https:\/\/(booking|voice|search)\.foxestechnology\.com\/login$/);
+    expect(signIns.length).toBe(4);
+    for (const url of signIns) expect(url).toMatch(/^https:\/\/(voice|support)\.foxestechnology\.com\/login$/);
     expect(fs.existsSync(path.join(ROOT, 'app/login'))).toBe(false);
   });
 

@@ -19,7 +19,7 @@ import {
   Sparkles,
   User,
 } from "lucide-react";
-import { DEFAULT_BLURB, SOLUTIONS, SOLUTION_KEYS, signInFor, type SolutionKey } from "./solutions";
+import { DEFAULT_BLURB, PORTAL_SIGN_IN, SOLUTIONS, SOLUTION_KEYS, signInFor, type SolutionKey } from "./solutions";
 
 // Best-effort attribution when a visitor lands from a Foxes solution without an
 // explicit ?source= — infer the platform from the referring host.
@@ -377,7 +377,7 @@ export function RequestAccessForm({ solution, source }: RequestAccessFormProps) 
               Already approved?{" "}
               {signIn ? (
                 <a href={signIn} className="-my-[13px] inline-block py-[13px] font-medium text-slate-200 underline-offset-4 hover:text-white hover:underline">
-                  Sign in to {solutionLabel}
+                  {signIn === PORTAL_SIGN_IN ? `Sign in to the client portal to open ${solutionLabel}` : `Sign in to ${solutionLabel}`}
                 </a>
               ) : (
                 "Sign in on your product's own site."
